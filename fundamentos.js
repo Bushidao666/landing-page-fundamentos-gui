@@ -269,17 +269,12 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-    async function sha256Hash(message) {
-      if (!message) return undefined;
-      try {
-        const msgBuffer = new TextEncoder().encode(message.toLowerCase().trim());
-        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        const hashArray = Array.from(new Uint8Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-      } catch (error) {
-        console.error('Erro no hash SHA-256:', error);
-        return undefined;
-      }
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
     }
 
     function normalizePhone(phone) {
@@ -564,10 +559,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const normalizedUserPhone = formData.phone ? normalizePhone(formData.phone) : undefined;
       
       const hashedData = {
-        em: formData.email ? await sha256Hash(formData.email) : undefined,
-        ph: normalizedUserPhone ? await sha256Hash(normalizedUserPhone) : undefined,
-        fn: firstName ? await sha256Hash(firstName) : undefined,
-        ln: lastName ? await sha256Hash(lastName) : undefined
+        em: formData.email ? await sha256(formData.email) : undefined,
+        ph: normalizedUserPhone ? await sha256(normalizedUserPhone) : undefined,
+        fn: firstName ? await sha256(firstName) : undefined,
+        ln: lastName ? await sha256(lastName) : undefined
       };
       
       // Filter out undefined hashed values before updating
