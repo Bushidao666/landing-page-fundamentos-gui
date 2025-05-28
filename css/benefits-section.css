@@ -1,6 +1,10 @@
-/* Benefits Section (Dobra 4) */
+/* ========================================
+   BENEFITS SECTION - HIERARQUIA DESTRUIDORA DE OBJEÇÕES
+   Aplicação de princípios de desbloqueio de capacidades e eliminação de frustrações
+   ======================================== */
+
 .benefits-section {
-    padding: 80px 20px; /* Adjusted padding */
+    padding: 96px 20px; /* Padding aumentado para respiro estratégico */
     background: var(--color-white);
     position: relative;
     overflow: hidden;
@@ -11,60 +15,150 @@
     z-index: 2;
 }
 
-/* Skills Unlock Section */
+/* ========================================
+   SKILLS UNLOCK - DESBLOQUEIO DE CAPACIDADES
+   ======================================== */
+
 .skills-unlock {
-    margin-bottom: 60px; /* Adjusted margin */
+    margin-bottom: 80px; /* Margem aumentada para separação clara */
 }
 
 .benefits-section .section-title {
+    /* TIPOGRAFIA EMPODERAMENTO */
     font-family: var(--font-headings);
-    font-size: clamp(1.8rem, 4vw, 2.8rem); /* Consistent */
-    font-weight: 800;
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem); /* 36px→52px - Impacto de desbloqueio */
+    font-weight: 800; /* Weight máximo para autoridade */
+    line-height: 1.2; /* Line-height condensado para densidade */
+    letter-spacing: -0.02em; /* Tracking negativo para elegância */
+    
+    /* HIERARQUIA DE COR */
     color: var(--color-blue-dark);
-    margin-bottom: 35px; /* Adjusted margin */
+    
+    /* LAYOUT */
+    margin-bottom: 48px; /* Respiro estratégico sistema 8px */
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    flex-wrap: wrap; /* Wrap para responsive */
+    gap: 16px; /* Gap otimizado */
+    
+    /* SOMBRA SUTIL */
+    text-shadow: 0 2px 4px rgba(20, 23, 52, 0.1);
 }
 
 .check-icon {
-    font-size: 1.2em;
-    animation: bounce 2s ease-in-out infinite;
+    /* ÍCONE DE CONFIRMAÇÃO */
+    font-size: 1.3em; /* Tamanho aumentado para presença */
+    color: var(--color-success); /* Verde de sucesso */
+    
+    /* ANIMAÇÃO DE DESBLOQUEIO */
+    animation: successBounce 2.5s ease-in-out infinite;
+    
+    /* EFEITO GLOW */
+    filter: drop-shadow(0 0 10px rgba(0, 184, 83, 0.4));
+}
+
+@keyframes successBounce {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg); 
+        filter: drop-shadow(0 0 10px rgba(0, 184, 83, 0.4));
+    }
+    50% { 
+        transform: scale(1.1) rotate(5deg); 
+        filter: drop-shadow(0 0 15px rgba(0, 184, 83, 0.6));
+    }
 }
 
 .x-icon {
-    font-size: 1.2em;
-    color: var(--color-danger);
+    /* ÍCONE DE ELIMINAÇÃO */
+    font-size: 1.3em; /* Tamanho aumentado */
+    color: var(--color-danger); /* Vermelho de urgência */
+    
+    /* ANIMAÇÃO DE ELIMINAÇÃO */
+    animation: eliminationPulse 2s ease-in-out infinite;
+    
+    /* EFEITO GLOW VERMELHO */
+    filter: drop-shadow(0 0 8px rgba(242, 58, 78, 0.4));
+}
+
+@keyframes eliminationPulse {
+    0%, 100% { 
+        transform: scale(1); 
+        filter: drop-shadow(0 0 8px rgba(242, 58, 78, 0.4));
+    }
+    50% { 
+        transform: scale(1.05); 
+        filter: drop-shadow(0 0 12px rgba(242, 58, 78, 0.6));
+    }
 }
 
 .subtitle {
-    font-size: clamp(0.8rem, 2vw, 0.9rem); /* Adjusted clamp for subtitle */
-    font-weight: 400;
+    /* SUBTITLE ELEGANTE */
+    font-size: clamp(0.9rem, 2.2vw, 1rem); /* 14px→16px - Tamanho otimizado */
+    font-weight: 500; /* Weight médio para clareza */
+    line-height: 1.5; /* Line-height balanceado */
+    
+    /* HIERARQUIA DE COR */
     color: var(--color-text-light);
-    font-style: italic;
+    font-style: italic; /* Elegância tipográfica */
+    
+    /* LAYOUT */
+    display: block;
+    margin-top: 8px; /* Margem superior sutil */
 }
 
-/* Skills Grid */
+/* ========================================
+   SKILLS GRID - CAPACIDADES DESBLOQUEÁVEIS
+   ======================================== */
+
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted minmax */
-    gap: 20px; /* Adjusted gap */
-    max-width: 1100px; /* Adjusted max-width */
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); /* Minmax otimizado */
+    gap: 24px; /* Gap sistema 8px para respiração */
+    max-width: 1200px; /* Width aumentada para melhor aproveitamento */
     margin: 0 auto;
 }
 
 .skill-card {
-    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-light-gray) 100%);
-    border: 1px solid var(--color-medium-gray); /* Lighter initial border */
-    border-radius: 20px;
-    padding: 20px; /* Adjusted padding */
+    /* ESTRUTURA DO CARD */
+    background: linear-gradient(135deg, 
+        var(--color-white) 0%, 
+        rgba(249, 250, 252, 0.8) 100%); /* Gradient sutil */
+    border: 2px solid var(--color-medium-gray); /* Border mais pronunciado */
+    border-radius: 24px; /* Border-radius moderno */
+    padding: 28px; /* Padding generoso sistema 8px */
+    
+    /* INTERATIVIDADE */
     position: relative;
-    transition: all 0.3s ease;
     overflow: hidden;
+    cursor: default;
+    
+    /* TRANSIÇÕES SUAVES */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* SOMBRA BASE */
+    box-shadow: 0 4px 16px rgba(20, 23, 52, 0.08);
+    
+    /* ANIMAÇÃO INICIAL */
+    animation: skillUnlock 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
+/* ANIMAÇÃO DE DESBLOQUEIO ESCALONADA */
+@keyframes skillUnlock {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* EFEITO SHIMMER DE DESBLOQUEIO */
 .skill-card::before {
     content: '';
     position: absolute;
@@ -72,225 +166,412 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 184, 83, 0.1), transparent);
-    transition: left 0.6s ease;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 184, 83, 0.15), 
+        transparent); /* Verde de sucesso */
+    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
 }
 
 .skill-card:hover::before {
     left: 100%;
 }
 
+/* HOVER STATES DE DESBLOQUEIO */
 .skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0, 184, 83, 0.15); /* Adjusted shadow */
-    border-color: var(--color-success);
+    transform: translateY(-8px); /* Lift effect dramático */
+    box-shadow: 
+        0 20px 40px rgba(0, 184, 83, 0.2),
+        0 8px 16px rgba(0, 184, 83, 0.15); /* Sombra verde de sucesso */
+    border-color: var(--color-success); /* Border verde no hover */
 }
 
 .skill-header {
+    /* HEADER DO SKILL */
     display: flex;
     align-items: center;
-    gap: 12px; /* Adjusted gap */
-    margin-bottom: 12px; /* Adjusted margin */
+    gap: 16px; /* Gap aumentado para respiração */
+    margin-bottom: 16px; /* Respiro do texto */
+    position: relative;
+    z-index: 2;
 }
 
 .skill-icon {
-    font-size: 1.8rem; /* Adjusted size */
-    width: 45px; /* Adjusted size */
-    height: 45px; /* Adjusted size */
+    /* ÍCONE DO SKILL */
+    font-size: 2rem; /* Tamanho aumentado para presença */
+    width: 56px; /* Tamanho aumentado */
+    height: 56px;
+    
+    /* LAYOUT */
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 184, 83, 0.1);
-    border-radius: 15px;
-    transition: all 0.3s ease;
+    
+    /* DESIGN VISUAL */
+    background: rgba(0, 184, 83, 0.12); /* Background verde sutil */
+    border-radius: 16px; /* Border-radius moderno */
+    color: var(--color-success); /* Cor verde de sucesso */
+    
+    /* TRANSIÇÕES */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* SOMBRA SUTIL */
+    box-shadow: 0 4px 12px rgba(0, 184, 83, 0.2);
 }
 
 .skill-card:hover .skill-icon {
-    background: var(--color-success);
-    transform: rotate(15deg); /* Simplified rotation */
+    background: var(--color-success); /* Background verde total */
+    color: var(--color-white); /* Texto branco para contraste */
+    transform: scale(1.1) rotate(12deg); /* Scale e rotação no hover */
+    box-shadow: 0 8px 20px rgba(0, 184, 83, 0.3); /* Sombra intensificada */
 }
 
 .skill-header h3 {
+    /* TÍTULO DO SKILL */
     font-family: var(--font-headings);
-    font-size: clamp(1.05rem, 2.8vw, 1.15rem); /* Adjusted clamp */
+    font-size: clamp(1.125rem, 2.6vw, 1.25rem); /* 18px→20px - Hierarquia clara */
+    font-weight: 700; /* Weight forte para destaque */
+    line-height: 1.3; /* Line-height condensado para impacto */
+    
+    /* HIERARQUIA DE COR */
     color: var(--color-blue-dark);
+    
+    /* LAYOUT */
     flex: 1;
-    line-height: 1.35; /* Adjusted line-height */
+    
+    /* TRANSIÇÃO */
+    transition: color 0.3s ease;
+}
+
+.skill-card:hover .skill-header h3 {
+    color: var(--color-success); /* Verde no hover para consistência */
 }
 
 .skill-card p {
+    /* DESCRIÇÃO DO SKILL */
+    font-size: clamp(0.95rem, 2.1vw, 1.05rem); /* 15px→17px - Legibilidade otimizada */
+    font-weight: 400; /* Weight padrão para leitura fluida */
+    line-height: 1.6; /* Line-height científico para conforto */
+    
+    /* HIERARQUIA DE COR */
     color: var(--color-text);
-    line-height: 1.6;
-    margin-bottom: 15px;
-    font-size: clamp(0.85rem, 2.2vw, 0.95rem); /* Adjusted clamp */
+    
+    /* ESPAÇAMENTO */
+    margin-bottom: 20px; /* Respiro da progress bar */
+    
+    /* POSIÇÃO */
+    position: relative;
+    z-index: 2;
 }
 
-/* Progress Bar */
+/* ========================================
+   PROGRESS BAR - INDICADOR DE PROGRESSO
+   ======================================== */
+
 .skill-progress {
+    /* ESTRUTURA DA PROGRESS BAR */
     width: 100%;
-    height: 6px;
+    height: 8px; /* Altura aumentada para visibilidade */
     background: var(--color-medium-gray);
-    border-radius: 3px;
+    border-radius: 4px; /* Border-radius suave */
     overflow: hidden;
     position: relative;
+    z-index: 2;
+    
+    /* SOMBRA INTERNA */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .progress-bar {
+    /* BARRA DE PROGRESSO */
     height: 100%;
-    background: linear-gradient(90deg, var(--color-success), var(--color-success-light));
-    width: 0;
-    border-radius: 3px;
-    transition: width 1.5s ease;
+    background: linear-gradient(90deg, 
+        var(--color-success) 0%, 
+        #00D45A 50%,
+        var(--color-success-light) 100%); /* Gradient verde intenso */
+    width: 0; /* Inicia vazio */
+    border-radius: 4px;
+    
+    /* TRANSIÇÃO DRAMÁTICA */
+    transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* POSIÇÃO */
     position: relative;
+    
+    /* SOMBRA VERDE */
+    box-shadow: 0 0 10px rgba(0, 184, 83, 0.4);
 }
 
 .skill-card:hover .progress-bar {
-    width: 100%;
+    width: 100%; /* Completa no hover */
+    box-shadow: 0 0 15px rgba(0, 184, 83, 0.6); /* Sombra intensificada */
 }
 
+/* EFEITO SHIMMER NA PROGRESS BAR */
 .progress-bar::after {
     content: '';
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
-    width: 30px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6));
-    animation: shimmer 2s infinite;
+    width: 40px; /* Width aumentada */
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.8), 
+        transparent); /* Shimmer mais intenso */
+    animation: progressShimmer 2.5s infinite;
+    border-radius: 4px;
 }
 
-/* Section Divider */
+@keyframes progressShimmer {
+    0% { transform: translateX(-40px); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(40px); opacity: 0; }
+}
+
+/* ========================================
+   SECTION DIVIDER - SEPARAÇÃO ESTRATÉGICA
+   ======================================== */
+
 .section-divider {
+    /* LAYOUT DO DIVIDER */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 50px 0; /* Adjusted margin */
-    gap: 18px; /* Adjusted gap */
+    margin: 64px 0; /* Margem sistema 8px */
+    gap: 24px; /* Gap aumentado */
 }
 
 .divider-line {
+    /* LINHA DO DIVIDER */
     flex: 1;
-    height: 1px; /* Thinner line */
-    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
-    max-width: 180px; /* Adjusted width */
+    height: 2px; /* Altura aumentada para visibilidade */
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--color-gold), 
+        transparent); /* Gradiente dourado */
+    max-width: 200px; /* Width aumentada */
+    border-radius: 1px; /* Bordas suaves */
 }
 
 .divider-icon {
-    font-size: 1.8rem; /* Adjusted size */
+    /* ÍCONE CENTRAL */
+    font-size: 2rem; /* Tamanho aumentado */
     color: var(--color-gold);
-    animation: pulse 2s ease-in-out infinite;
+    
+    /* ANIMAÇÃO PULSANTE */
+    animation: dividerPulse 2.5s ease-in-out infinite;
+    
+    /* EFEITO GLOW */
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.4));
 }
 
-/* Frustrations Goodbye Section */
+@keyframes dividerPulse {
+    0%, 100% { 
+        transform: scale(1); 
+        filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.4));
+    }
+    50% { 
+        transform: scale(1.1); 
+        filter: drop-shadow(0 0 18px rgba(255, 215, 0, 0.6));
+    }
+}
+
+/* ========================================
+   FRUSTRATIONS GOODBYE - ELIMINAÇÃO DE FRUSTRAÇÕES
+   ======================================== */
+
 .frustrations-goodbye {
-    max-width: 850px; /* Adjusted max-width */
+    max-width: 900px; /* Width aumentada para melhor leitura */
     margin: 0 auto;
 }
 
 .frustrations-list {
     display: flex;
     flex-direction: column;
-    gap: 18px; /* Adjusted gap */
+    gap: 24px; /* Gap aumentado sistema 8px */
 }
 
 .frustration-item {
+    /* ESTRUTURA DO ITEM */
     display: flex;
     align-items: center;
-    gap: 18px; /* Adjusted gap */
-    padding: 20px; /* Adjusted padding */
-    background: linear-gradient(135deg, var(--color-danger-light) 0%, rgba(242, 58, 78, 0.05) 100%);
-    border-radius: 20px;
-    border: 1px solid transparent; /* Adjusted border */
-    transition: all 0.4s ease;
+    gap: 24px; /* Gap aumentado para respiração */
+    padding: 28px; /* Padding generoso */
+    
+    /* DESIGN INICIAL (FRUSTRAÇÃO) */
+    background: linear-gradient(135deg, 
+        rgba(242, 58, 78, 0.08) 0%, 
+        rgba(242, 58, 78, 0.05) 100%); /* Background vermelho sutil */
+    border-radius: 24px; /* Border-radius moderno */
+    border: 2px solid rgba(242, 58, 78, 0.2); /* Border vermelho sutil */
+    
+    /* INTERATIVIDADE */
     position: relative;
     overflow: hidden;
+    cursor: default;
+    
+    /* TRANSIÇÕES DRAMÁTICAS */
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* SOMBRA BASE */
+    box-shadow: 0 4px 16px rgba(242, 58, 78, 0.1);
 }
 
+/* TRANSFORMAÇÃO DRAMÁTICA NO HOVER */
 .frustration-item::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 0;
+    width: 0; /* Inicia vazio */
     height: 100%;
-    background: linear-gradient(135deg, var(--color-success-light) 0%, rgba(0, 184, 83, 0.05) 100%);
-    transition: width 0.6s ease;
+    background: linear-gradient(135deg, 
+        rgba(0, 184, 83, 0.12) 0%, 
+        rgba(0, 184, 83, 0.08) 100%); /* Background verde de solução */
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
+    border-radius: 24px;
 }
 
 .frustration-item:hover::before {
-    width: 100%;
+    width: 100%; /* Preenche completamente */
 }
 
 .frustration-item:hover {
-    border-color: var(--color-success);
-    transform: translateX(10px);
+    /* TRANSFORMAÇÃO COMPLETA */
+    border-color: var(--color-success); /* Border verde */
+    background: rgba(0, 184, 83, 0.05); /* Background verde */
+    transform: translateX(12px); /* Slide effect */
+    box-shadow: 
+        0 16px 40px rgba(0, 184, 83, 0.2),
+        0 4px 12px rgba(0, 184, 83, 0.15); /* Sombra verde */
 }
 
-/* Frustration Icon Animation */
+/* ========================================
+   FRUSTRATION ICON - TRANSFORMAÇÃO X→✓
+   ======================================== */
+
 .frustration-icon {
+    /* ESTRUTURA DO ÍCONE */
     position: relative;
-    width: 60px;
-    height: 60px;
+    width: 64px; /* Tamanho aumentado */
+    height: 64px;
     flex-shrink: 0;
     z-index: 2;
+    
+    /* BACKGROUND CIRCULAR */
+    background: rgba(242, 58, 78, 0.1); /* Background vermelho inicial */
+    border-radius: 50%;
+    
+    /* TRANSIÇÃO DO BACKGROUND */
+    transition: background 0.6s ease;
+}
+
+.frustration-item:hover .frustration-icon {
+    background: rgba(0, 184, 83, 0.15); /* Background verde no hover */
 }
 
 .x-mark, .check-mark {
+    /* POSICIONAMENTO DOS ÍCONES */
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-    font-weight: bold;
-    transition: all 0.4s ease;
+    
+    /* TIPOGRAFIA */
+    font-size: 2.25rem; /* Tamanho aumentado para presença */
+    font-weight: 900; /* Weight máximo */
+    
+    /* TRANSIÇÕES DRAMÁTICAS */
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .x-mark {
+    /* X MARK - ESTADO INICIAL */
     color: var(--color-danger);
     opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    
+    /* EFEITO GLOW VERMELHO */
+    filter: drop-shadow(0 0 8px rgba(242, 58, 78, 0.4));
 }
 
 .check-mark {
+    /* CHECK MARK - ESTADO SOLUÇÃO */
     color: var(--color-success);
     opacity: 0;
     transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+    
+    /* EFEITO GLOW VERDE */
+    filter: drop-shadow(0 0 10px rgba(0, 184, 83, 0.5));
 }
 
+/* TRANSFORMAÇÃO DRAMÁTICA NO HOVER */
 .frustration-item:hover .x-mark {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0) rotate(180deg);
+    filter: drop-shadow(0 0 0px rgba(242, 58, 78, 0));
 }
 
 .frustration-item:hover .check-mark {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1) rotate(0);
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 15px rgba(0, 184, 83, 0.7));
 }
 
+/* ========================================
+   FRUSTRATION CONTENT - CONTEÚDO TRANSFORMATIVO
+   ======================================== */
+
 .frustration-content {
+    /* LAYOUT DO CONTEÚDO */
     flex: 1;
     z-index: 2;
 }
 
 .frustration-content h4 {
+    /* TÍTULO DA FRUSTRAÇÃO */
     font-family: var(--font-headings);
-    font-size: 1.2rem;
+    font-size: clamp(1.25rem, 2.8vw, 1.375rem); /* 20px→22px - Hierarquia clara */
+    font-weight: 700; /* Weight forte para impacto */
+    line-height: 1.3; /* Line-height condensado */
+    
+    /* HIERARQUIA DE COR */
     color: var(--color-blue-dark);
-    margin-bottom: 8px;
-    transition: color 0.3s ease;
+    
+    /* ESPAÇAMENTO */
+    margin-bottom: 8px; /* Respiro sutil */
+    
+    /* TRANSIÇÃO DE COR */
+    transition: color 0.5s ease;
 }
 
 .frustration-item:hover .frustration-content h4 {
-    color: var(--color-success);
+    color: var(--color-success); /* Verde no hover para transformação */
 }
 
 .frustration-content p {
+    /* DESCRIÇÃO DA TRANSFORMAÇÃO */
+    font-size: clamp(1rem, 2.2vw, 1.125rem); /* 16px→18px - Legibilidade otimizada */
+    font-weight: 400; /* Weight padrão */
+    line-height: 1.6; /* Line-height científico */
+    
+    /* HIERARQUIA DE COR */
     color: var(--color-text);
-    line-height: 1.6;
-    font-size: clamp(0.85rem, 2.2vw, 0.95rem); /* Adjusted clamp */
+    
+    /* TRANSIÇÃO SUTIL */
+    transition: color 0.3s ease;
 }
 
-/* Background Pattern */
+.frustration-item:hover .frustration-content p {
+    color: var(--color-text); /* Mantém cor para legibilidade */
+}
+
+/* ========================================
+   BACKGROUND PATTERN - AMBIENTE SUTIL
+   ======================================== */
+
 .benefits-pattern {
     position: absolute;
     top: 0;
@@ -299,19 +580,33 @@
     height: 100%;
     overflow: hidden;
     pointer-events: none;
-    opacity: 0.03;
+    opacity: 0.04; /* Opacidade aumentada sutilmente */
+    z-index: 1;
 }
 
 .pattern-line {
     position: absolute;
-    width: 1px;
-    height: 100%;
     background: var(--color-blue-dark);
 }
 
-.pattern-line:nth-child(1) { left: 25%; }
-.pattern-line:nth-child(2) { left: 50%; }
-.pattern-line:nth-child(3) { left: 75%; }
+.pattern-line:nth-child(1) { 
+    left: 25%; 
+    width: 1px;
+    height: 100%;
+}
+
+.pattern-line:nth-child(2) { 
+    left: 50%; 
+    width: 1px;
+    height: 100%;
+}
+
+.pattern-line:nth-child(3) { 
+    left: 75%; 
+    width: 1px;
+    height: 100%;
+}
+
 .pattern-line:nth-child(4) { 
     width: 100%;
     height: 1px;
@@ -319,7 +614,11 @@
     left: 0;
 }
 
-/* Animações específicas */
+/* ========================================
+   ANIMAÇÕES ESCALONADAS
+   ======================================== */
+
+/* Delays escalonados para cards de skills */
 .skill-card[data-skill="1"] { animation-delay: 0.1s; }
 .skill-card[data-skill="2"] { animation-delay: 0.2s; }
 .skill-card[data-skill="3"] { animation-delay: 0.3s; }
@@ -328,50 +627,176 @@
 .skill-card[data-skill="6"] { animation-delay: 0.6s; }
 .skill-card[data-skill="7"] { animation-delay: 0.7s; }
 
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
+/* ========================================
+   RESPONSIVIDADE CIENTÍFICA
+   ======================================== */
 
-.skill-card {
-    animation: slideInLeft 0.6s ease-out forwards;
-    opacity: 0;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
+/* TABLET - 992px */
+@media (max-width: 992px) {
     .benefits-section {
-        padding: 50px 20px; /* Adjusted padding */
+        padding: 80px 20px;
+    }
+    
+    .skills-unlock {
+        margin-bottom: 64px;
     }
     
     .skills-grid {
-        grid-template-columns: 1fr;
-        gap: 18px; /* Adjusted gap */
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .skill-card {
+        padding: 24px;
+    }
+    
+    .frustrations-list {
+        gap: 20px;
+    }
+    
+    .frustration-item {
+        padding: 24px;
+        gap: 20px;
+    }
+    
+    .section-divider {
+        margin: 56px 0;
+    }
+}
+
+/* MOBILE - 768px */
+@media (max-width: 768px) {
+    .benefits-section {
+        padding: 64px 20px;
+    }
+    
+    .skills-unlock {
+        margin-bottom: 56px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr; /* Single column */
+        gap: 20px;
     }
     
     .benefits-section .section-title {
-        font-size: clamp(1.6rem, 5vw, 2rem); /* Adjusted clamp */
+        font-size: clamp(1.875rem, 5.5vw, 2.25rem); /* Tamanho ajustado */
         flex-wrap: wrap;
-        text-align: center;
+        gap: 12px;
     }
 
-    .skill-card,
-    .frustration-item {
-        padding: 18px;
+    .skill-card {
+        padding: 20px;
+    }
+    
+    .skill-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.75rem;
     }
     
     .frustration-item {
-        flex-direction: column;
+        flex-direction: column; /* Stack vertical em mobile */
         text-align: center;
+        padding: 20px;
+        gap: 16px;
+    }
+    
+    .frustration-icon {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .x-mark, .check-mark {
+        font-size: 2rem;
     }
     
     .frustration-item:hover {
-        transform: translateY(-5px);
+        transform: translateY(-4px); /* Mudança para Y em mobile */
+    }
+    
+    .section-divider {
+        margin: 48px 0;
+        gap: 20px;
+    }
+    
+    .divider-line {
+        max-width: 120px; /* Width reduzida para mobile */
+    }
+}
+
+/* MOBILE PEQUENO - 480px */
+@media (max-width: 480px) {
+    .benefits-section {
+        padding: 56px 20px;
+    }
+    
+    .skills-unlock {
+        margin-bottom: 48px;
+    }
+    
+    .skills-grid {
+        gap: 16px;
+    }
+    
+    .skill-card {
+        padding: 18px;
+        border-radius: 20px;
+    }
+    
+    .skill-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+        border-radius: 12px;
+    }
+    
+    .frustration-item {
+        padding: 18px;
+        border-radius: 20px;
+    }
+    
+    .frustration-icon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .x-mark, .check-mark {
+        font-size: 1.75rem;
+    }
+    
+    .section-divider {
+        margin: 40px 0;
+        gap: 16px;
+    }
+}
+
+/* ========================================
+   OTIMIZAÇÕES PARA PERFORMANCE
+   ======================================== */
+
+/* Reduce motion para usuários sensíveis */
+@media (prefers-reduced-motion: reduce) {
+    .skill-card,
+    .check-icon,
+    .x-icon,
+    .divider-icon,
+    .skill-icon,
+    .progress-bar,
+    .x-mark,
+    .check-mark {
+        animation: none;
+        transition: none;
+    }
+    
+    .skill-card:hover,
+    .frustration-item:hover {
+        transform: none;
+    }
+    
+    .skill-card::before,
+    .frustration-item::before,
+    .progress-bar::after {
+        display: none;
     }
 } 

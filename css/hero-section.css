@@ -2,13 +2,14 @@
 .hero-section {
     min-height: 100vh;
     display: flex;
-    flex-direction: column; /* Ensure content stacks vertically on smaller screens if needed */
-    justify-content: center; /* Vertically center content */
-    align-items: center; /* Horizontally center content */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, var(--color-blue-gradient-start) 0%, var(--color-blue-gradient-end) 100%);
-    padding: 40px 20px; /* Add some padding for smaller screens */
+    padding: 40px 20px;
+    z-index: 1; /* Ensure proper stacking context */
 }
 
 .hero-section::before {
@@ -20,107 +21,126 @@
     bottom: 0;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
     background-size: cover;
+    opacity: 0.8; /* Slightly increased for better contrast with content */
+    z-index: -1;
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
     text-align: center;
-    animation: fadeInUp 1s ease-out;
-    width: 100%; /* Ensure hero content takes full width available */
-    max-width: 900px; /* Limit max width for very large screens */
-}
-
-.hero-video-wrapper {
-    margin-bottom: 30px; /* Adjusted margin */
-    position: relative;
-    display: inline-block;
-    width: 100%; /* Make video wrapper responsive */
-    max-width: 560px; /* Slightly reduced max-width for better balance */
-}
-
-.hero-video-wrapper::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: linear-gradient(45deg, var(--color-gold), var(--color-gold-light));
-    border-radius: 20px;
-    z-index: -1;
-    animation: shimmer 3s infinite linear;
-    background-size: 200% 100%;
-}
-
-.hero-video {
+    animation: fadeInUp 0.8s ease-out; /* Slightly faster animation for immediate impact */
     width: 100%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25); /* Adjusted shadow */
+    max-width: 920px; /* Slightly increased for better content breathing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* ===== HEADLINE: Primary Visual Hook ===== */
 .hero-headline {
     font-family: var(--font-headings);
-    font-size: clamp(1.8rem, 4.5vw, 3.2rem); /* Adjusted clamp for better scaling */
-    font-weight: 800;
+    font-size: clamp(2.75rem, 6vw, 4.8rem); /* Increased for stronger visual hierarchy */
+    font-weight: 900;
     color: var(--color-white);
-    margin-bottom: 25px; /* Adjusted margin */
-    line-height: 1.25; /* Adjusted line-height */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 28px; /* Optimized spacing to create visual relationship with subheadline */
+    line-height: 1.15;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Deeper shadow for better contrast */
+    letter-spacing: -0.025em; /* Slightly tighter tracking for premium feel */
+    max-width: 95%; /* Control line length for better readability */
 }
 
 .hero-headline .emoji {
-    font-size: 1.2em;
+    font-size: 1.1em; /* Slightly smaller for better integration */
     display: inline-block;
     animation: float 3s ease-in-out infinite;
+    vertical-align: middle; /* Better alignment with text */
+    margin-left: 5px; /* Small spacing for visual breathing */
 }
 
 .hero-headline .highlight {
     color: var(--color-gold);
     text-decoration: underline;
     text-decoration-color: var(--color-gold);
-    text-decoration-thickness: 3px;
-    text-underline-offset: 6px; /* Adjusted offset */
+    text-decoration-thickness: 5px; /* Thicker for stronger emphasis */
+    text-underline-offset: 8px;
+    font-weight: 900;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4); /* Combined shadow for readability and emphasis */
+    position: relative; /* For potential pseudo-elements */
+    display: inline-block; /* Better control */
+    padding: 0 5px; /* Add minimal padding for visual breathing */
 }
 
+/* ===== SUBHEADLINE: Supporting Message with Strategic Contrast ===== */
 .hero-subheadline {
-    font-size: clamp(1rem, 2.5vw, 1.3rem); /* Adjusted clamp */
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 35px; /* Adjusted margin */
-    max-width: 750px; /* Adjusted max-width */
+    font-size: clamp(1.175rem, 3vw, 1.6rem); /* Slightly larger for better hierarchy bridge */
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 42px; /* Increased space before CTA to create anticipation */
+    max-width: 700px; /* Slightly wider for better line length */
     margin-left: auto;
     margin-right: auto;
-    font-weight: 400;
-    line-height: 1.65; /* Adjusted line-height */
+    font-weight: 500;
+    line-height: 1.55; /* Slightly tighter for better cohesion */
+    letter-spacing: 0.01em;
+    position: relative; /* For positioning potential decorative elements */
 }
 
 .hero-subheadline em {
     font-style: normal;
     color: var(--color-gold-light);
-    font-weight: 600;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    position: relative; /* For potential decorative elements */
 }
 
+.hero-subheadline strong {
+    position: relative;
+    display: inline-block;
+    padding: 0 2px;
+    font-weight: 800; /* Heavier weight for more emphasis */
+}
+
+/* ===== CTA SECTION: Conversion Focal Point ===== */
 .hero-cta-wrapper {
-    margin-bottom: 25px; /* Adjusted margin */
+    margin-bottom: 32px;
+    position: relative; /* For potential decorative elements */
+    width: 100%;
+    max-width: 500px; /* Control width for better proportions */
+}
+
+/* Strategic highlight glow for attention */
+.hero-cta-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 130%;
+    background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .hero-cta {
     display: inline-block;
-    padding: 18px 45px; /* Adjusted padding */
-    font-size: clamp(1.1rem, 2vw, 1.25rem); /* Adjusted clamp */
-    font-weight: 700;
+    padding: 24px 54px; /* Larger for increased visual weight */
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem); /* Larger for stronger CTA presence */
+    font-weight: 800;
     font-family: var(--font-headings);
     background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
     color: var(--color-blue-dark);
     text-decoration: none;
     border-radius: 50px;
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-    transition: all 0.3s ease;
+    box-shadow: 0 12px 40px rgba(255, 215, 0, 0.45), 0 6px 0 rgba(220, 170, 0, 0.5); /* Added bottom highlight for 3D effect */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Elastic curve for more dynamic feel */
     position: relative;
     overflow: hidden;
-    animation: pulse 2s infinite;
+    animation: pulse 2.5s infinite;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    width: 100%; /* Full width for maximum impact */
+    transform: translateZ(0); /* Hardware acceleration */
 }
 
 .hero-cta::before {
@@ -130,8 +150,8 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.5s;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transition: left 0.7s;
 }
 
 .hero-cta:hover::before {
@@ -139,85 +159,52 @@
 }
 
 .hero-cta:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+    transform: translateY(-5px) scale(1.02); /* More dramatic effect */
+    box-shadow: 0 18px 50px rgba(255, 215, 0, 0.55), 0 8px 0 rgba(220, 170, 0, 0.5); /* Enhanced shadow on hover */
 }
 
+.hero-cta:active {
+    transform: translateY(2px) scale(0.98); /* Tactile press effect */
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4), 0 3px 0 rgba(220, 170, 0, 0.5); /* Reduced shadow when pressed */
+}
+
+/* ===== TRUST INDICATORS: Psychological Safety Elements ===== */
 .hero-trust-badges {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px; /* Adjusted gap */
-    font-size: clamp(0.8rem, 1.8vw, 0.9rem); /* Adjusted clamp */
-    color: rgba(255, 255, 255, 0.8);
+    gap: 26px; /* Slightly larger for better visual separation */
+    font-size: clamp(0.925rem, 2vw, 1.05rem); /* Slightly larger for better readability */
+    color: rgba(255, 255, 255, 0.9);
     flex-wrap: wrap;
-    margin-top: 10px; /* Added margin-top */
+    margin-top: 18px; /* Slightly increased spacing */
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    position: relative; /* For potential decorative elements */
+    padding: 5px 15px; /* Add padding for better touch targets */
+    background: rgba(255, 255, 255, 0.05); /* Subtle background for better grouping */
+    border-radius: 30px; /* Rounded corners for visual softness */
+    backdrop-filter: blur(5px); /* Subtle blur effect for depth */
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .hero-trust-badges span {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 7px; /* Increased for better visual relationship */
+    transition: all 0.3s ease;
+    cursor: default;
+    padding: 6px 12px; /* More padding for better touch targets */
+    border-radius: 20px; /* Rounded corners for visual distinction */
 }
 
-.hero-trust-badges span::before {
-    content: '✓';
-    color: var(--color-gold);
-    font-weight: bold;
+.hero-trust-badges span:hover {
+    color: var(--color-gold-light);
+    transform: translateY(-2px) scale(1.05); /* Slight scale for more dynamic interaction */
+    background: rgba(255, 255, 255, 0.1); /* Subtle background highlight on hover */
 }
 
-/* Gráfico animado de montanha-russa */
-/* .roller-coaster-graph { (REMOVED as per user request)
-    position: absolute;
-    top: 50%;
-    right: -100px;
-    transform: translateY(-50%);
-    width: 300px;
-    height: 200px;
-    opacity: 0.1;
-} */
-
-@media (max-width: 992px) { /* Added a new breakpoint for tablets */
-    .hero-headline {
-        font-size: clamp(2rem, 5vw, 2.8rem);
-    }
-    .hero-subheadline {
-        font-size: clamp(1.05rem, 2.8vw, 1.2rem);
-        max-width: 650px;
-    }
-    .hero-cta {
-        padding: 16px 40px;
-        font-size: clamp(1rem, 1.9vw, 1.2rem);
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-section {
-        padding: 50px 20px; /* Adjusted padding */
-        min-height: auto; /* Allow height to adjust to content */
-    }
-    
-    .hero-headline {
-        font-size: clamp(1.8rem, 6vw, 2.2rem); /* Further refined for mobile */
-    }
-    
-    .hero-subheadline {
-        font-size: clamp(0.95rem, 4vw, 1.1rem); /* Further refined for mobile */
-        margin-bottom: 30px;
-    }
-    
-    .hero-cta {
-        padding: 14px 35px; /* Adjusted padding */
-        font-size: clamp(1rem, 4vw, 1.1rem); /* Adjusted font size */
-        width: 90%; /* Make CTA take more width on mobile */
-        max-width: 350px;
-    }
-    .hero-video-wrapper {
-        max-width: 100%; /* Ensure video wrapper uses available width */
-    }
-}
-
-/* Partículas decorativas */
+/* ===== PARTICLE EFFECTS: Create Visual Movement & Depth ===== */
 .hero-particles {
     position: absolute;
     top: 0;
@@ -226,6 +213,7 @@
     height: 100%;
     overflow: hidden;
     pointer-events: none;
+    z-index: 1; /* Above background, below content */
 }
 
 .particle {
@@ -236,6 +224,7 @@
     border-radius: 50%;
     opacity: 0;
     animation: particleFloat 15s infinite;
+    filter: blur(1px); /* Subtle blur for glow effect */
 }
 
 .particle:nth-child(1) {
@@ -273,6 +262,40 @@
     background: var(--color-gold-light);
 }
 
+/* ===== SCROLL INDICATOR: Direct User Journey ===== */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px; /* Slightly larger for better visibility */
+    height: 50px; /* Slightly larger for better visibility */
+    border: 2px solid rgba(255, 255, 255, 0.6); /* Brighter for better visibility */
+    border-radius: 25px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.scroll-indicator:hover {
+    transform: translateX(-50%) scale(1.1); /* Subtle scale effect on hover */
+    border-color: var(--color-gold-light); /* Change color on hover */
+}
+
+.scroll-indicator::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px; /* Slightly larger */
+    height: 10px; /* Slightly larger */
+    background: var(--color-gold);
+    border-radius: 3px;
+    animation: scrollDown 2s infinite;
+}
+
+/* ===== ANIMATIONS: Create Dynamic Visual Interest ===== */
 @keyframes particleFloat {
     0% {
         transform: translateY(100vh) rotate(0deg);
@@ -288,99 +311,6 @@
         transform: translateY(-100vh) rotate(720deg);
         opacity: 0;
     }
-}
-
-/* Efeito de brilho no hover do vídeo */
-.hero-video-wrapper:hover::before {
-    animation: shimmer 1s infinite linear;
-}
-
-/* Animação de digitação para headline */
-/* @keyframes typing { (REMOVED as per user request)
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-} */
-
-/* Sombra dourada sutil no texto */
-.hero-headline {
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
-}
-
-/* Efeito de hover nos trust badges */
-.hero-trust-badges span {
-    transition: all 0.3s ease;
-    cursor: default;
-    padding: 5px 0; /* Add some padding for easier interaction */
-}
-
-.hero-trust-badges span:hover {
-    color: var(--color-gold-light);
-    transform: translateY(-2px);
-}
-
-/* Animação especial para o preço no CTA */
-.hero-cta::after {
-    content: '💰';
-    position: absolute;
-    right: -30px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.5rem;
-    animation: bounce 1s ease-in-out infinite;
-    opacity: 0.8;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(-50%) scale(1);
-    }
-    50% {
-        transform: translateY(-60%) scale(1.1);
-    }
-}
-
-/* Responsividade aprimorada */
-@media (max-width: 768px) {
-    /* ... existing code ... */
-    
-    .hero-particles {
-        display: none; /* Desativa partículas em mobile para performance */
-    }
-    
-    .hero-cta::after {
-        display: none;
-    }
-}
-
-/* Indicador de scroll */
-.scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 28px; /* Adjusted size */
-    height: 48px; /* Adjusted size */
-    border: 2px solid rgba(255, 255, 255, 0.4); /* Adjusted border */
-    border-radius: 25px;
-    cursor: pointer;
-    z-index: 10; /* Ensure it's above other elements */
-}
-
-.scroll-indicator::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 5px; /* Adjusted size */
-    height: 8px; /* Adjusted size */
-    background: var(--color-gold);
-    border-radius: 3px;
-    animation: scrollDown 2s infinite;
 }
 
 @keyframes scrollDown {
@@ -400,7 +330,108 @@
     }
 }
 
-/* Efeito Ripple no CTA */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 12px 40px rgba(255, 215, 0, 0.45), 0 6px 0 rgba(220, 170, 0, 0.5);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 15px 45px rgba(255, 215, 0, 0.55), 0 6px 0 rgba(220, 170, 0, 0.5);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 12px 40px rgba(255, 215, 0, 0.45), 0 6px 0 rgba(220, 170, 0, 0.5);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVE ADAPTATIONS ===== */
+@media (max-width: 992px) {
+    .hero-headline {
+        font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+        line-height: 1.2;
+        margin-bottom: 24px;
+    }
+    
+    .hero-subheadline {
+        font-size: clamp(1.125rem, 3.2vw, 1.4rem);
+        max-width: 620px;
+        margin-bottom: 36px;
+    }
+    
+    .hero-cta {
+        padding: 20px 44px;
+        font-size: clamp(1.125rem, 2.2vw, 1.4rem);
+    }
+    
+    .hero-trust-badges {
+        gap: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 60px 20px 80px; /* Added bottom padding for scroll indicator */
+        min-height: auto;
+    }
+    
+    .hero-headline {
+        font-size: clamp(2.1rem, 7vw, 2.9rem);
+        line-height: 1.25;
+        margin-bottom: 24px;
+        max-width: 100%;
+    }
+    
+    .hero-subheadline {
+        font-size: clamp(1.05rem, 4.5vw, 1.25rem);
+        margin-bottom: 32px;
+        max-width: 100%;
+    }
+    
+    .hero-cta {
+        padding: 18px 40px;
+        font-size: clamp(1.125rem, 4.5vw, 1.25rem);
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .hero-trust-badges {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        max-width: 300px;
+        padding: 12px;
+    }
+    
+    .hero-trust-badges span {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Simplify particles for performance */
+    .hero-particles {
+        opacity: 0.5;
+    }
+    
+    .particle:nth-child(4),
+    .particle:nth-child(5) {
+        display: none;
+    }
+}
+
+/* Add ripple effect for interactive elements */
 .ripple {
     position: absolute;
     border-radius: 50%;
