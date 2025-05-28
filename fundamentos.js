@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let externalId = getCookie('fb_external_id');
       if (!externalId) {
         externalId = generateUUID();
-        setCookie('fb_external_id', externalId, 365);
+        setCookie('fb_external_id', externalId, 730); // Set cookie for 2 years
       }
       return externalId;
     }
@@ -360,22 +360,34 @@ document.addEventListener('DOMContentLoaded', function() {
       try {
         const stored = localStorage.getItem('fb_user_data');
         if (stored) {
-          const data = JSON.parse(stored);
-          // Ensure essential IDs are re-evaluated or preserved if missing from storage
-          data.external_id = data.external_id || getExternalId();
-          data.fbp = data.fbp || getCookie('_fbp');
-          data.fbc = data.fbc || getCookie('_fbc') || getFbclid();
-          Object.assign(globalUserData, data);
+          const dataFromStorage = JSON.parse(stored);
+          // Merge stored data, giving priority to fresh cookie/URL param values for IDs
+          globalUserData = {
+            ...dataFromStorage, // Load all PII (em, ph, fn, ln etc.) from storage
+            external_id: getExternalId(), // Always get fresh or existing valid external_id
+            fbp: getCookie('_fbp') || dataFromStorage.fbp, // Use fresh cookie if available, else from storage
+            fbc: getCookie('_fbc') || getFbclid() || dataFromStorage.fbc, // Use fresh cookie/URL param if available, else from storage
+          };
+        } else {
+          // If no stored data, initialize with fresh cookie/URL param values
+          globalUserData.external_id = getExternalId();
+          globalUserData.fbp = getCookie('_fbp');
+          globalUserData.fbc = getCookie('_fbc') || getFbclid();
         }
-         // Ensure these are always fresh on load if not in localStorage or cookies changed
-        globalUserData.external_id = getExternalId();
-        globalUserData.fbp = getCookie('_fbp');
-        globalUserData.fbc = getCookie('_fbc') || getFbclid();
 
-        debugLog('User data loaded from localStorage', JSON.parse(JSON.stringify(globalUserData)));
+        // Ensure essential IDs are always present even if not in storage initially
+        if (!globalUserData.external_id) globalUserData.external_id = getExternalId();
+        if (!globalUserData.fbp) globalUserData.fbp = getCookie('_fbp');
+        // Ensure fbc is updated if a new fbclid is in the URL
+        const currentFbclid = getFbclid();
+        if (currentFbclid) {
+            globalUserData.fbc = currentFbclid;
+        }
+
+        debugLog('User data loaded/initialized', JSON.parse(JSON.stringify(globalUserData)));
       } catch (error) {
         console.error('Erro ao carregar dados do usuário do localStorage:', error);
-        // Fallback to initial if load fails
+        // Fallback to initial if load fails, ensuring essential IDs
         globalUserData.external_id = getExternalId();
         globalUserData.fbp = getCookie('_fbp');
         globalUserData.fbc = getCookie('_fbc') || getFbclid();
