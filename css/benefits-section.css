@@ -1,0 +1,377 @@
+/* Benefits Section (Dobra 4) */
+.benefits-section {
+    padding: 80px 20px; /* Adjusted padding */
+    background: var(--color-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.benefits-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Skills Unlock Section */
+.skills-unlock {
+    margin-bottom: 60px; /* Adjusted margin */
+}
+
+.benefits-section .section-title {
+    font-family: var(--font-headings);
+    font-size: clamp(1.8rem, 4vw, 2.8rem); /* Consistent */
+    font-weight: 800;
+    color: var(--color-blue-dark);
+    margin-bottom: 35px; /* Adjusted margin */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.check-icon {
+    font-size: 1.2em;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.x-icon {
+    font-size: 1.2em;
+    color: var(--color-danger);
+}
+
+.subtitle {
+    font-size: clamp(0.8rem, 2vw, 0.9rem); /* Adjusted clamp for subtitle */
+    font-weight: 400;
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted minmax */
+    gap: 20px; /* Adjusted gap */
+    max-width: 1100px; /* Adjusted max-width */
+    margin: 0 auto;
+}
+
+.skill-card {
+    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-light-gray) 100%);
+    border: 1px solid var(--color-medium-gray); /* Lighter initial border */
+    border-radius: 20px;
+    padding: 20px; /* Adjusted padding */
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 184, 83, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.skill-card:hover::before {
+    left: 100%;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 184, 83, 0.15); /* Adjusted shadow */
+    border-color: var(--color-success);
+}
+
+.skill-header {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Adjusted gap */
+    margin-bottom: 12px; /* Adjusted margin */
+}
+
+.skill-icon {
+    font-size: 1.8rem; /* Adjusted size */
+    width: 45px; /* Adjusted size */
+    height: 45px; /* Adjusted size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 184, 83, 0.1);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover .skill-icon {
+    background: var(--color-success);
+    transform: rotate(15deg); /* Simplified rotation */
+}
+
+.skill-header h3 {
+    font-family: var(--font-headings);
+    font-size: clamp(1.05rem, 2.8vw, 1.15rem); /* Adjusted clamp */
+    color: var(--color-blue-dark);
+    flex: 1;
+    line-height: 1.35; /* Adjusted line-height */
+}
+
+.skill-card p {
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: clamp(0.85rem, 2.2vw, 0.95rem); /* Adjusted clamp */
+}
+
+/* Progress Bar */
+.skill-progress {
+    width: 100%;
+    height: 6px;
+    background: var(--color-medium-gray);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-success), var(--color-success-light));
+    width: 0;
+    border-radius: 3px;
+    transition: width 1.5s ease;
+    position: relative;
+}
+
+.skill-card:hover .progress-bar {
+    width: 100%;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6));
+    animation: shimmer 2s infinite;
+}
+
+/* Section Divider */
+.section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0; /* Adjusted margin */
+    gap: 18px; /* Adjusted gap */
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px; /* Thinner line */
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    max-width: 180px; /* Adjusted width */
+}
+
+.divider-icon {
+    font-size: 1.8rem; /* Adjusted size */
+    color: var(--color-gold);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Frustrations Goodbye Section */
+.frustrations-goodbye {
+    max-width: 850px; /* Adjusted max-width */
+    margin: 0 auto;
+}
+
+.frustrations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Adjusted gap */
+}
+
+.frustration-item {
+    display: flex;
+    align-items: center;
+    gap: 18px; /* Adjusted gap */
+    padding: 20px; /* Adjusted padding */
+    background: linear-gradient(135deg, var(--color-danger-light) 0%, rgba(242, 58, 78, 0.05) 100%);
+    border-radius: 20px;
+    border: 1px solid transparent; /* Adjusted border */
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.frustration-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-success-light) 0%, rgba(0, 184, 83, 0.05) 100%);
+    transition: width 0.6s ease;
+    z-index: 1;
+}
+
+.frustration-item:hover::before {
+    width: 100%;
+}
+
+.frustration-item:hover {
+    border-color: var(--color-success);
+    transform: translateX(10px);
+}
+
+/* Frustration Icon Animation */
+.frustration-icon {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.x-mark, .check-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+    transition: all 0.4s ease;
+}
+
+.x-mark {
+    color: var(--color-danger);
+    opacity: 1;
+}
+
+.check-mark {
+    color: var(--color-success);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+}
+
+.frustration-item:hover .x-mark {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0) rotate(180deg);
+}
+
+.frustration-item:hover .check-mark {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0);
+}
+
+.frustration-content {
+    flex: 1;
+    z-index: 2;
+}
+
+.frustration-content h4 {
+    font-family: var(--font-headings);
+    font-size: 1.2rem;
+    color: var(--color-blue-dark);
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.frustration-item:hover .frustration-content h4 {
+    color: var(--color-success);
+}
+
+.frustration-content p {
+    color: var(--color-text);
+    line-height: 1.6;
+    font-size: clamp(0.85rem, 2.2vw, 0.95rem); /* Adjusted clamp */
+}
+
+/* Background Pattern */
+.benefits-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0.03;
+}
+
+.pattern-line {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background: var(--color-blue-dark);
+}
+
+.pattern-line:nth-child(1) { left: 25%; }
+.pattern-line:nth-child(2) { left: 50%; }
+.pattern-line:nth-child(3) { left: 75%; }
+.pattern-line:nth-child(4) { 
+    width: 100%;
+    height: 1px;
+    top: 50%;
+    left: 0;
+}
+
+/* Animações específicas */
+.skill-card[data-skill="1"] { animation-delay: 0.1s; }
+.skill-card[data-skill="2"] { animation-delay: 0.2s; }
+.skill-card[data-skill="3"] { animation-delay: 0.3s; }
+.skill-card[data-skill="4"] { animation-delay: 0.4s; }
+.skill-card[data-skill="5"] { animation-delay: 0.5s; }
+.skill-card[data-skill="6"] { animation-delay: 0.6s; }
+.skill-card[data-skill="7"] { animation-delay: 0.7s; }
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.skill-card {
+    animation: slideInLeft 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .benefits-section {
+        padding: 50px 20px; /* Adjusted padding */
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 18px; /* Adjusted gap */
+    }
+    
+    .benefits-section .section-title {
+        font-size: clamp(1.6rem, 5vw, 2rem); /* Adjusted clamp */
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .skill-card,
+    .frustration-item {
+        padding: 18px;
+    }
+    
+    .frustration-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .frustration-item:hover {
+        transform: translateY(-5px);
+    }
+} 

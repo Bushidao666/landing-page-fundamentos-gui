@@ -1,0 +1,520 @@
+/* FAQ Section (Dobra 12) */
+.faq-section {
+    padding: 100px 20px; /* Adjusted padding */
+    background: linear-gradient(135deg, var(--color-blue-gradient-start) 0%, var(--color-blue-gradient-end) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px; /* Added horizontal padding */
+}
+
+.faq-section .section-title {
+    font-family: var(--font-headings);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--color-white);
+    margin-bottom: 50px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.3; /* Added for better readability */
+}
+
+.faq-section .subtitle {
+    display: block;
+    font-size: clamp(0.8em, 2vw, 0.9em); /* Adjusted clamp */
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 10px;
+}
+
+/* FAQ List */
+.faq-list {
+    margin-bottom: 60px;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+    background: rgba(30, 60, 114, 0.05);
+}
+
+.faq-question h3 {
+    font-family: var(--font-headings);
+    font-size: clamp(1.1rem, 2.8vw, 1.2rem); /* Adjusted clamp */
+    color: var(--color-blue-dark);
+    margin: 0;
+    flex: 1;
+    padding-right: 20px;
+    line-height: 1.4; /* Added for better readability */
+}
+
+.faq-toggle {
+    font-size: clamp(1.5rem, 3.5vw, 2rem); /* Adjusted clamp */
+    color: var(--color-gold);
+    font-weight: 300;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px; /* Ensure this is enough for content */
+}
+
+.faq-answer p {
+    padding: 0 30px 25px;
+    color: var(--color-text);
+    line-height: 1.8;
+    margin: 0;
+    font-size: clamp(0.9rem, 2.2vw, 1rem); /* Added font size for answer */
+}
+
+.faq-answer strong {
+    color: var(--color-blue-dark);
+}
+
+/* FAQ CTA */
+.faq-cta {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 40px; /* Adjusted padding */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.faq-cta h3 {
+    font-family: var(--font-headings);
+    font-size: clamp(1.3rem, 3vw, 1.5rem); /* Adjusted clamp */
+    color: var(--color-white);
+    margin-bottom: 15px;
+}
+
+.faq-cta p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem); /* Adjusted clamp */
+}
+
+.faq-cta a {
+    color: var(--color-gold);
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+.faq-cta a:hover {
+    color: var(--color-gold-light);
+}
+
+.or-divider {
+    font-size: clamp(1rem, 2.5vw, 1.2rem); /* Adjusted clamp */
+    color: rgba(255, 255, 255, 0.6);
+    margin: 20px 0;
+}
+
+.final-cta-button {
+    display: inline-block;
+    padding: 20px 50px;
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    border-radius: 50px;
+    font-family: var(--font-headings);
+    font-size: clamp(1.1rem, 2.8vw, 1.2rem); /* Adjusted clamp */
+    font-weight: 700;
+    color: var(--color-blue-dark);
+    text-decoration: none;
+    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.final-cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.4);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .pricing-section, .faq-section { /* Combined rule for consistent padding */
+        padding: 60px 20px;
+    }
+
+    .faq-content {
+        padding: 0 15px; /* Consistent mobile padding */
+    }
+    
+    .value-comparison { /* This rule was in the previous section, ensuring it's correctly placed or removed if not needed here */
+        flex-direction: column;
+    }
+    
+    .vs-symbol { /* This rule was in the previous section, ensuring it's correctly placed or removed if not needed here */
+        transform: rotate(90deg);
+        margin: 20px 0;
+    }
+    
+    .comparison-item { /* This rule was in the previous section, ensuring it's correctly placed or removed if not needed here */
+        width: 100%;
+    }
+    
+    .comparison-item.highlight { /* This rule was in the previous section, ensuring it's correctly placed or removed if not needed here */
+        transform: scale(1);
+    }
+    
+    .price { /* This rule was in the previous section, ensuring it's correctly placed or removed if not needed here */
+        font-size: clamp(3rem, 12vw, 4rem); /* Adjusted for mobile pricing */
+    }
+    
+    .pricing-card { /* This rule was in the previous section, ensuring it's correctly placed or removed if not needed here */
+        margin: 0 0px; /* Adjusted margin for mobile */
+    }
+    
+    .whats-included, .pricing-cta { /* This rule was in the previous section, ensuring it's correctly placed or removed if not needed here */
+        padding: 30px 20px;
+    }
+    
+    .buy-button { /* This rule was in the previous section, ensuring it's correctly placed or removed if not needed here */
+        font-size: clamp(0.95rem, 3.5vw, 1rem);
+        padding: 15px 20px; /* Further refined padding for mobile */
+        max-width: 350px; /* Added for mobile */
+        margin-left: auto; /* Center button if it's not full width */
+        margin-right: auto; /* Center button if it's not full width */
+    }
+    
+    .payment-icons {
+        flex-direction: column; /* Stack payment methods vertically on mobile */
+        align-items: flex-start; /* Align items to the start (left) */
+        gap: 10px; /* Add gap between stacked items */
+    }
+
+    .payment-method-item {
+        margin-right: 0; /* Remove right margin when stacked */
+        margin-bottom: 8px; /* Consistent bottom margin for stacked items */
+    }
+
+    .faq-question {
+        padding: 20px;
+    }
+    
+    .faq-question h3 {
+        font-size: clamp(1rem, 3vw, 1.1rem); /* Adjusted clamp for mobile */
+    }
+    
+    .faq-answer p {
+        padding: 0 20px 20px;
+        font-size: clamp(0.85rem, 2.5vw, 0.95rem); /* Adjusted clamp for mobile */
+    }
+    
+    .faq-cta {
+        padding: 30px 20px;
+    }
+
+    .faq-cta h3 {
+        font-size: clamp(1.2rem, 3.5vw, 1.4rem); /* Adjusted for mobile */
+    }
+
+    .faq-cta p {
+        font-size: clamp(0.9rem, 2.8vw, 1rem); /* Adjusted for mobile */
+    }
+    
+    .final-cta-button {
+        width: 100%;
+        padding: 18px 20px;
+        font-size: clamp(1rem, 4vw, 1.1rem); /* Adjusted clamp for mobile */
+        max-width: 350px; /* Add max-width for consistency */
+    }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+    .pricing-section {
+        padding: 60px 15px 40px;
+    }
+    
+    .value-comparison {
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .comparison-item {
+        min-width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 20px 15px; /* Better mobile padding */
+    }
+    
+    .vs-symbol {
+        transform: rotate(90deg);
+        padding: 10px 0;
+    }
+    
+    .pricing-card {
+        margin: 0 5px; /* Tighter margins for mobile */
+        border-radius: 18px; /* Slightly smaller radius */
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+    }
+    
+    /* Enhanced price header for mobile */
+    .price-header {
+        padding: 25px 20px;
+        background: linear-gradient(135deg, var(--color-blue-gradient-start) 0%, var(--color-blue-gradient-end) 100%);
+    }
+    
+    .product-name {
+        font-size: clamp(1.1rem, 4.5vw, 1.3rem); /* Better scaling */
+        line-height: 1.2;
+        margin-bottom: 12px;
+    }
+    
+    .price-tag {
+        margin-bottom: 10px;
+        gap: 2px; /* Small gap between currency and price */
+    }
+    
+    .price {
+        font-size: clamp(2.5rem, 11vw, 4.5rem); /* Optimized size */
+        line-height: 0.85;
+    }
+    
+    .price-description {
+        font-size: clamp(0.85rem, 3.2vw, 1rem);
+        line-height: 1.3;
+    }
+    
+    /* Enhanced what's included section */
+    .whats-included {
+        padding: 25px 20px;
+    }
+    
+    .whats-included h4 {
+        font-size: clamp(1rem, 3.8vw, 1.2rem);
+        margin-bottom: 18px;
+    }
+    
+    .included-list li {
+        gap: 10px;
+        padding: 10px 0;
+        font-size: clamp(0.8rem, 3vw, 0.95rem);
+        line-height: 1.3;
+    }
+    
+    .check {
+        font-size: clamp(1.1rem, 4.2vw, 1.4rem);
+        margin-top: 0;
+    }
+    
+    /* Enhanced CTA section */
+    .pricing-cta {
+        padding: 0 20px 25px;
+    }
+    
+    .buy-button {
+        padding: 14px 16px;
+        gap: 6px;
+        font-size: clamp(0.85rem, 3.2vw, 1rem);
+        border-radius: 45px; /* Slightly smaller radius */
+        box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        min-height: 50px; /* Ensure minimum touch target */
+    }
+    
+    .button-arrow {
+        font-size: clamp(1.1rem, 3.8vw, 1.3rem);
+    }
+    
+    /* Enhanced payment methods */
+    .payment-methods {
+        margin-top: 12px;
+    }
+    
+    .payment-methods p {
+        font-size: clamp(0.75rem, 2.8vw, 0.85rem);
+        margin-bottom: 6px;
+        color: var(--color-text-light);
+    }
+    
+    .payment-icons {
+        flex-direction: row; /* Keep horizontal but improve spacing */
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px; /* Add gap between wrapped items */
+    }
+    
+    .payment-method-item {
+        margin-right: 12px;
+        margin-bottom: 6px;
+        padding: 4px 8px; /* Add padding for better touch target */
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        transition: background 0.2s ease;
+    }
+    
+    .payment-method-item:last-child {
+        margin-right: 0;
+    }
+    
+    .payment-method-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .payment-icon {
+        font-size: clamp(1rem, 3.8vw, 1.3rem);
+        margin-right: 3px;
+    }
+    
+    .payment-text {
+        font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+        font-weight: 500;
+    }
+    
+    /* Enhanced urgency section */
+    .subtle-urgency {
+        padding: 12px 15px;
+        border-radius: 0 0 16px 16px; /* Match card radius */
+        background: linear-gradient(135deg, var(--color-light-gray) 0%, #f0f2f5 100%);
+    }
+    
+    .subtle-urgency p {
+        font-size: clamp(0.8rem, 3vw, 0.95rem);
+        line-height: 1.3;
+        color: var(--color-text);
+    }
+    
+    .subtle-urgency .icon {
+        font-size: clamp(0.9rem, 3.2vw, 1.1rem);
+        margin-right: 5px;
+        color: var(--color-blue-dark);
+    }
+    
+    .subtle-urgency strong {
+        font-size: 1.15em; /* Slightly smaller but still prominent */
+        color: var(--color-blue-dark);
+        font-weight: 800;
+    }
+}
+
+@media (max-width: 480px) {
+    .pricing-section {
+        padding: 50px 10px 30px;
+    }
+    
+    .pricing-content {
+        padding: 0 5px; /* Minimal side padding */
+    }
+    
+    .pricing-card {
+        margin: 0 0px; /* Full width approach */
+        border-radius: 16px;
+    }
+    
+    /* Ultra-compact mobile layout */
+    .price-header {
+        padding: 20px 15px;
+    }
+    
+    .product-name {
+        font-size: clamp(1rem, 5vw, 1.2rem);
+        margin-bottom: 10px;
+    }
+    
+    .price {
+        font-size: clamp(2.2rem, 12vw, 4rem);
+    }
+    
+    .currency, .period {
+        font-size: clamp(1rem, 5.5vw, 1.8rem);
+    }
+    
+    .whats-included {
+        padding: 20px 15px;
+    }
+    
+    .whats-included h4 {
+        font-size: clamp(0.95rem, 4.2vw, 1.1rem);
+        margin-bottom: 15px;
+    }
+    
+    .included-list li {
+        padding: 8px 0;
+        font-size: clamp(0.75rem, 3.5vw, 0.9rem);
+        gap: 8px;
+    }
+    
+    .check {
+        font-size: clamp(1rem, 4.5vw, 1.2rem);
+    }
+    
+    .pricing-cta {
+        padding: 0 15px 20px;
+    }
+    
+    .buy-button {
+        padding: 12px 14px;
+        font-size: clamp(0.8rem, 3.5vw, 0.95rem);
+        min-height: 48px;
+    }
+    
+    .button-arrow {
+        font-size: clamp(1rem, 4vw, 1.2rem);
+    }
+    
+    /* Stack payment methods vertically on very small screens */
+    .payment-icons {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .payment-method-item {
+        margin-right: 0;
+        margin-bottom: 3px;
+        justify-content: center;
+        width: auto;
+        padding: 3px 6px;
+    }
+    
+    .subtle-urgency {
+        padding: 10px 12px;
+    }
+    
+    .subtle-urgency p {
+        font-size: clamp(0.75rem, 3.2vw, 0.85rem);
+    }
+    
+    .subtle-urgency .icon {
+        font-size: clamp(0.85rem, 3.5vw, 1rem);
+    }
+} 

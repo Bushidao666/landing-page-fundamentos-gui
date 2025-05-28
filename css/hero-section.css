@@ -1,0 +1,418 @@
+/* Hero Section (Dobra 1) */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically on smaller screens if needed */
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-blue-gradient-start) 0%, var(--color-blue-gradient-end) 100%);
+    padding: 40px 20px; /* Add some padding for smaller screens */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+    background-size: cover;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+    width: 100%; /* Ensure hero content takes full width available */
+    max-width: 900px; /* Limit max width for very large screens */
+}
+
+.hero-video-wrapper {
+    margin-bottom: 30px; /* Adjusted margin */
+    position: relative;
+    display: inline-block;
+    width: 100%; /* Make video wrapper responsive */
+    max-width: 560px; /* Slightly reduced max-width for better balance */
+}
+
+.hero-video-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, var(--color-gold), var(--color-gold-light));
+    border-radius: 20px;
+    z-index: -1;
+    animation: shimmer 3s infinite linear;
+    background-size: 200% 100%;
+}
+
+.hero-video {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25); /* Adjusted shadow */
+}
+
+.hero-headline {
+    font-family: var(--font-headings);
+    font-size: clamp(1.8rem, 4.5vw, 3.2rem); /* Adjusted clamp for better scaling */
+    font-weight: 800;
+    color: var(--color-white);
+    margin-bottom: 25px; /* Adjusted margin */
+    line-height: 1.25; /* Adjusted line-height */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-headline .emoji {
+    font-size: 1.2em;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+
+.hero-headline .highlight {
+    color: var(--color-gold);
+    text-decoration: underline;
+    text-decoration-color: var(--color-gold);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px; /* Adjusted offset */
+}
+
+.hero-subheadline {
+    font-size: clamp(1rem, 2.5vw, 1.3rem); /* Adjusted clamp */
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 35px; /* Adjusted margin */
+    max-width: 750px; /* Adjusted max-width */
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    line-height: 1.65; /* Adjusted line-height */
+}
+
+.hero-subheadline em {
+    font-style: normal;
+    color: var(--color-gold-light);
+    font-weight: 600;
+}
+
+.hero-cta-wrapper {
+    margin-bottom: 25px; /* Adjusted margin */
+}
+
+.hero-cta {
+    display: inline-block;
+    padding: 18px 45px; /* Adjusted padding */
+    font-size: clamp(1.1rem, 2vw, 1.25rem); /* Adjusted clamp */
+    font-weight: 700;
+    font-family: var(--font-headings);
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    color: var(--color-blue-dark);
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s infinite;
+}
+
+.hero-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.hero-cta:hover::before {
+    left: 100%;
+}
+
+.hero-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+}
+
+.hero-trust-badges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Adjusted gap */
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem); /* Adjusted clamp */
+    color: rgba(255, 255, 255, 0.8);
+    flex-wrap: wrap;
+    margin-top: 10px; /* Added margin-top */
+}
+
+.hero-trust-badges span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.hero-trust-badges span::before {
+    content: '✓';
+    color: var(--color-gold);
+    font-weight: bold;
+}
+
+/* Gráfico animado de montanha-russa */
+/* .roller-coaster-graph { (REMOVED as per user request)
+    position: absolute;
+    top: 50%;
+    right: -100px;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 200px;
+    opacity: 0.1;
+} */
+
+@media (max-width: 992px) { /* Added a new breakpoint for tablets */
+    .hero-headline {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+    }
+    .hero-subheadline {
+        font-size: clamp(1.05rem, 2.8vw, 1.2rem);
+        max-width: 650px;
+    }
+    .hero-cta {
+        padding: 16px 40px;
+        font-size: clamp(1rem, 1.9vw, 1.2rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 50px 20px; /* Adjusted padding */
+        min-height: auto; /* Allow height to adjust to content */
+    }
+    
+    .hero-headline {
+        font-size: clamp(1.8rem, 6vw, 2.2rem); /* Further refined for mobile */
+    }
+    
+    .hero-subheadline {
+        font-size: clamp(0.95rem, 4vw, 1.1rem); /* Further refined for mobile */
+        margin-bottom: 30px;
+    }
+    
+    .hero-cta {
+        padding: 14px 35px; /* Adjusted padding */
+        font-size: clamp(1rem, 4vw, 1.1rem); /* Adjusted font size */
+        width: 90%; /* Make CTA take more width on mobile */
+        max-width: 350px;
+    }
+    .hero-video-wrapper {
+        max-width: 100%; /* Ensure video wrapper uses available width */
+    }
+}
+
+/* Partículas decorativas */
+.hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--color-gold);
+    border-radius: 50%;
+    opacity: 0;
+    animation: particleFloat 15s infinite;
+}
+
+.particle:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    width: 3px;
+    height: 3px;
+}
+
+.particle:nth-child(2) {
+    left: 30%;
+    animation-delay: 3s;
+    width: 5px;
+    height: 5px;
+    background: var(--color-gold-light);
+}
+
+.particle:nth-child(3) {
+    left: 50%;
+    animation-delay: 6s;
+}
+
+.particle:nth-child(4) {
+    left: 70%;
+    animation-delay: 9s;
+    width: 6px;
+    height: 6px;
+}
+
+.particle:nth-child(5) {
+    left: 90%;
+    animation-delay: 12s;
+    width: 3px;
+    height: 3px;
+    background: var(--color-gold-light);
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Efeito de brilho no hover do vídeo */
+.hero-video-wrapper:hover::before {
+    animation: shimmer 1s infinite linear;
+}
+
+/* Animação de digitação para headline */
+/* @keyframes typing { (REMOVED as per user request)
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+} */
+
+/* Sombra dourada sutil no texto */
+.hero-headline {
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+}
+
+/* Efeito de hover nos trust badges */
+.hero-trust-badges span {
+    transition: all 0.3s ease;
+    cursor: default;
+    padding: 5px 0; /* Add some padding for easier interaction */
+}
+
+.hero-trust-badges span:hover {
+    color: var(--color-gold-light);
+    transform: translateY(-2px);
+}
+
+/* Animação especial para o preço no CTA */
+.hero-cta::after {
+    content: '💰';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    animation: bounce 1s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(-50%) scale(1);
+    }
+    50% {
+        transform: translateY(-60%) scale(1.1);
+    }
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 768px) {
+    /* ... existing code ... */
+    
+    .hero-particles {
+        display: none; /* Desativa partículas em mobile para performance */
+    }
+    
+    .hero-cta::after {
+        display: none;
+    }
+}
+
+/* Indicador de scroll */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px; /* Adjusted size */
+    height: 48px; /* Adjusted size */
+    border: 2px solid rgba(255, 255, 255, 0.4); /* Adjusted border */
+    border-radius: 25px;
+    cursor: pointer;
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+.scroll-indicator::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px; /* Adjusted size */
+    height: 8px; /* Adjusted size */
+    background: var(--color-gold);
+    border-radius: 3px;
+    animation: scrollDown 2s infinite;
+}
+
+@keyframes scrollDown {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    80% {
+        transform: translateX(-50%) translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Efeito Ripple no CTA */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: rippleEffect 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+} 

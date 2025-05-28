@@ -1,0 +1,121 @@
+/* Lead Capture Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--color-white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.4s ease-in-out;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: var(--color-text-light);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-close-button:hover {
+    color: var(--color-danger);
+}
+
+.modal-content h3 {
+    font-family: var(--font-headings);
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
+    color: var(--color-blue-dark);
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+    color: var(--color-text-light);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+#leadCaptureForm .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+#leadCaptureForm label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+#leadCaptureForm input[type="text"],
+#leadCaptureForm input[type="email"],
+#leadCaptureForm input[type="tel"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--color-medium-gray);
+    border-radius: 10px;
+    font-size: 1rem;
+    color: var(--color-text);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#leadCaptureForm input[type="text"]:focus,
+#leadCaptureForm input[type="email"]:focus,
+#leadCaptureForm input[type="tel"]:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+    outline: none;
+}
+
+.modal-submit-button {
+    display: inline-block;
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: var(--font-headings);
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    color: var(--color-blue-dark);
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+} 

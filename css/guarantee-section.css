@@ -1,0 +1,467 @@
+/* Guarantee Section (Dobra 10) */
+.guarantee-section {
+    padding: 100px 20px; /* Adjusted padding */
+    background: linear-gradient(135deg, var(--color-blue-gradient-start) 0%, var(--color-blue-gradient-end) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.guarantee-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px; /* Added horizontal padding */
+}
+
+/* Shield Icon */
+.shield-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.shield-icon svg {
+    width: clamp(60px, 10vw, 80px); /* Responsive size */
+    height: clamp(60px, 10vw, 80px); /* Responsive size */
+    color: var(--color-gold);
+    filter: drop-shadow(0 10px 20px rgba(255, 215, 0, 0.3));
+}
+
+/* Section Header */
+.guarantee-section .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.guarantee-section .section-title {
+    font-family: var(--font-headings);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--color-white);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.3; /* Added for better readability */
+}
+
+.highlight-days {
+    font-size: 1.3em;
+    color: var(--color-gold);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.guarantee-section .subtitle {
+    display: block;
+    font-size: clamp(0.8em, 2vw, 0.9em); /* Adjusted clamp */
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 10px;
+}
+
+/* Guarantee Box */
+.guarantee-box {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 30px;
+    padding: 50px; /* Adjusted padding */
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.guarantee-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light), var(--color-gold));
+    animation: shimmer 3s infinite linear;
+    background-size: 200% 100%;
+}
+
+/* Guarantee Badge */
+.guarantee-badge {
+    position: absolute;
+    top: -20px;
+    right: 40px;
+    background: linear-gradient(135deg, var(--color-danger) 0%, #D42B3D 100%);
+    padding: 10px 30px;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(242, 58, 78, 0.3);
+    transform: rotate(5deg);
+    z-index: 3; /* Ensure badge is above other elements */
+}
+
+.badge-text {
+    font-family: var(--font-headings);
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Adjusted clamp */
+    font-weight: 800;
+    color: var(--color-white);
+    letter-spacing: 1px;
+}
+
+.badge-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Guarantee Main Content */
+.guarantee-main {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.guarantee-headline {
+    font-family: var(--font-headings);
+    font-size: clamp(1.5rem, 3.5vw, 2rem); /* Adjusted clamp */
+    font-weight: 700;
+    color: var(--color-blue-dark);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.highlight-gold {
+    color: var(--color-gold-dark);
+    display: block;
+    margin-top: 10px;
+}
+
+.guarantee-description {
+    font-size: clamp(1rem, 2.5vw, 1.1rem); /* Adjusted clamp */
+    color: var(--color-text);
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+/* Guarantee Features */
+.guarantee-features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: var(--color-light-gray);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    background: var(--color-success-light);
+    transform: translateY(-3px);
+}
+
+.feature-icon {
+    width: 25px;
+    height: 25px;
+    background: var(--color-success);
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.feature-item span {
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: clamp(0.85rem, 2vw, 0.95rem); /* Adjusted font size */
+}
+
+/* Security Seals */
+.security-seals {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding-top: 30px;
+    border-top: 1px solid var(--color-medium-gray);
+    flex-wrap: wrap; /* Allow seals to wrap */
+}
+
+.seal-item {
+    text-align: center;
+    transition: all 0.3s ease;
+    flex-basis: 100px; /* Provide a base width for wrapping */
+}
+
+.seal-item:hover {
+    transform: translateY(-5px);
+}
+
+.seal-icon {
+    font-size: clamp(2rem, 5vw, 2.5rem); /* Adjusted clamp */
+    margin-bottom: 10px;
+    display: block;
+    filter: grayscale(0.2);
+    color: var(--color-blue-dark); /* Added color for consistency */
+}
+
+.seal-item span {
+    font-size: clamp(0.8rem, 2vw, 0.85rem); /* Adjusted clamp */
+    color: var(--color-text-light);
+    line-height: 1.3;
+}
+
+/* Trust Message */
+.trust-message {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px; /* Adjusted padding */
+    margin-bottom: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.message-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.message-content h4 {
+    font-family: var(--font-headings);
+    font-size: clamp(1.3rem, 3vw, 1.5rem); /* Adjusted clamp */
+    color: var(--color-white);
+    margin-bottom: 20px;
+}
+
+.message-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1rem, 2.5vw, 1.1rem); /* Adjusted clamp */
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.signature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.signature-img {
+    max-width: 200px;
+    height: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+}
+
+.signature-name {
+    font-family: var(--font-headings);
+    font-size: clamp(1rem, 2.5vw, 1.1rem); /* Adjusted clamp */
+    color: var(--color-gold);
+    font-weight: 600;
+}
+
+/* Guarantee CTA */
+.guarantee-cta {
+    text-align: center;
+}
+
+.guarantee-button {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 25px 50px;
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.guarantee-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.7s ease;
+}
+
+.guarantee-button:hover::before {
+    left: 100%;
+}
+
+.guarantee-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(255, 215, 0, 0.5);
+}
+
+.button-main-text {
+    font-family: var(--font-headings);
+    font-size: clamp(1.1rem, 2.8vw, 1.2rem); /* Adjusted clamp */
+    font-weight: 700;
+    color: var(--color-blue-dark);
+}
+
+.button-price {
+    font-size: clamp(0.85rem, 2.2vw, 0.9rem); /* Adjusted clamp */
+    color: var(--color-blue-dark);
+    opacity: 0.8;
+}
+
+.risk-free-text {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: clamp(0.9rem, 2.2vw, 0.95rem); /* Adjusted clamp */
+}
+
+.risk-free-text .icon {
+    font-size: 1.2rem;
+}
+
+/* Background Pattern */
+.guarantee-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.03;
+    z-index: 1;
+}
+
+.pattern-shield {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><path d="M40 5L15 15V35C15 51.5 25.5 66.5 40 70C54.5 66.5 65 51.5 65 35V15L40 5Z" fill="none" stroke="white" stroke-width="1"/></svg>') no-repeat center;
+    background-size: contain;
+}
+
+.pattern-shield:nth-child(1) {
+    top: 10%;
+    left: 5%;
+    transform: rotate(15deg);
+}
+
+.pattern-shield:nth-child(2) {
+    top: 50%;
+    right: 10%;
+    transform: rotate(-20deg);
+    width: 150px;
+    height: 150px;
+}
+
+.pattern-shield:nth-child(3) {
+    bottom: 10%;
+    left: 15%;
+    transform: rotate(30deg);
+    width: 100px;
+    height: 100px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .guarantee-section {
+        padding: 60px 20px; /* Adjusted padding */
+    }
+
+    .guarantee-content {
+        padding: 0 15px; /* Consistent mobile padding */
+    }
+    
+    .guarantee-box {
+        padding: 30px 20px;
+    }
+    
+    .guarantee-badge {
+        position: static;
+        transform: rotate(0) translateY(-15px); /* Adjust position slightly for static layout */
+        margin: 0 auto 30px;
+        display: inline-block;
+    }
+    
+    .guarantee-headline {
+        font-size: clamp(1.3rem, 4vw, 1.5rem); /* Adjusted clamp for mobile */
+    }
+
+    .guarantee-description {
+        font-size: clamp(0.95rem, 2.8vw, 1rem); /* Adjusted clamp for mobile */
+    }
+    
+    .guarantee-features {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .feature-item {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .security-seals {
+        gap: 20px;
+    }
+    
+    .seal-icon {
+        font-size: clamp(1.8rem, 4.5vw, 2rem); /* Adjusted clamp for mobile */
+    }
+    
+    .trust-message {
+        padding: 30px 20px;
+    }
+
+    .message-content h4 {
+        font-size: clamp(1.2rem, 3.5vw, 1.4rem); /* Adjusted clamp for mobile */
+    }
+
+    .message-content p {
+        font-size: clamp(0.95rem, 2.8vw, 1rem); /* Adjusted clamp for mobile */
+    }
+    
+    .guarantee-button {
+        width: 100%;
+        padding: 20px 30px;
+        max-width: 350px; /* Add max-width for very wide buttons */
+    }
+    
+    .button-main-text {
+        font-size: clamp(1rem, 4vw, 1.1rem); /* Adjusted clamp for mobile */
+    }
+
+    .button-price {
+        font-size: clamp(0.8rem, 2.5vw, 0.85rem); /* Adjusted for mobile */
+    }
+
+    .risk-free-text {
+        font-size: clamp(0.85rem, 2.5vw, 0.9rem); /* Adjusted for mobile */
+        flex-direction: column; /* Stack for better centering on mobile */
+        gap: 5px; /* Adjust gap */
+    }
+} 

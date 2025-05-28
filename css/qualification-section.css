@@ -1,0 +1,789 @@
+/* Qualification Section (Dobra 9) */
+.qualification-section {
+    padding: 100px 20px; /* Adjusted padding */
+    background: var(--color-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.qualification-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px; /* Added horizontal padding for content safety */
+}
+
+.qualification-section .section-title {
+    font-family: var(--font-headings);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--color-blue-dark);
+    margin-bottom: 50px;
+    text-align: center;
+    line-height: 1.3; /* Added for better readability */
+}
+
+.highlight-for {
+    position: relative;
+    background: linear-gradient(135deg, var(--color-blue-gradient-start) 0%, var(--color-blue-gradient-end) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-size: 1.2em;
+    font-weight: 900;
+}
+
+.highlight-for::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-blue-gradient-start), var(--color-blue-gradient-end));
+}
+
+/* Instrução para seleção de perfis */
+.selection-instruction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 15px 30px;
+    background: rgba(30, 60, 114, 0.05);
+    border-radius: 50px;
+    border: 1px dashed var(--color-blue-gradient-end);
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.instruction-icon {
+    font-size: 1.5rem;
+    animation: bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.selection-instruction p {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Adjusted clamp */
+    color: var(--color-blue-dark);
+    font-weight: 600;
+    margin: 0;
+    text-align: center; /* Ensure text is centered if it wraps */
+}
+
+/* Profiles Grid - Enhanced Responsiveness & UX */
+.profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+    gap: clamp(20px, 4vw, 30px);
+    margin-bottom: clamp(40px, 8vw, 60px);
+    /* Neuromarketing: Progressive disclosure pattern for cognitive ease */
+}
+
+/* Profile Cards - Enhanced Clickable Design */
+.profile-card {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(12px, 2.5vw, 18px);
+    background: var(--color-white);
+    border-radius: clamp(16px, 3vw, 20px);
+    padding: clamp(12px, 2vw, 20px);
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(30, 60, 114, 0.1);
+    box-shadow: 
+        0 8px 20px rgba(30, 60, 114, 0.08),
+        0 3px 8px rgba(30, 60, 114, 0.05);
+    will-change: transform;
+    /* Neuromarketing: Add clickable appearance */
+}
+
+.profile-card::after {
+    content: '✓';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 60px;
+    height: 60px;
+    background: var(--color-gold);
+    color: var(--color-blue-dark);
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    z-index: 3;
+}
+
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(30, 60, 114, 0.03) 0%, 
+        rgba(30, 60, 114, 0.01) 100%);
+    transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    z-index: 1;
+    /* Neuromarketing: Progressive visual feedback for engagement */
+}
+
+.profile-card:hover::before {
+    opacity: 1;
+}
+
+.profile-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(30, 60, 114, 0.15),
+        0 12px 16px rgba(30, 60, 114, 0.1);
+    border-color: rgba(30, 60, 114, 0.3);
+    /* Neuromarketing: Enhanced elevation suggests importance and priority */
+}
+
+.profile-card:active {
+    transform: translateY(-4px) scale(1.01);
+    transition: all 0.15s ease;
+    box-shadow: 
+        0 15px 30px rgba(30, 60, 114, 0.2),
+        0 8px 12px rgba(30, 60, 114, 0.15);
+}
+
+/* Check Box Design - Traditional Checkbox Look */
+.profile-check {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(12px, 2.5vw, 18px) clamp(8px, 1.5vw, 12px);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    min-width: clamp(50px, 10vw, 70px);
+}
+
+.check-box {
+    width: clamp(28px, 5vw, 32px);
+    height: clamp(28px, 5vw, 32px);
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(30, 60, 114, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: clamp(6px, 1.2vw, 8px);
+    box-shadow: 
+        0 4px 10px rgba(30, 60, 114, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    /* Neuromarketing: Checkbox is universally recognized as selectable */
+}
+
+.check-box::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: inherit;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.check-mark {
+    color: var(--color-blue-dark);
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    font-weight: 700;
+    transform: scale(0);
+    transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+    opacity: 0;
+}
+
+.check-line {
+    width: clamp(2px, 0.4vw, 3px);
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        var(--color-blue-gradient-start), 
+        rgba(30, 60, 114, 0.15));
+    flex-grow: 1;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover .check-box {
+    transform: scale(1.15);
+    background: rgba(255, 215, 0, 0.1);
+    border-color: var(--color-gold);
+    box-shadow: 
+        0 8px 20px rgba(255, 215, 0, 0.2),
+        0 4px 8px rgba(255, 215, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.profile-card:hover .check-box::after {
+    opacity: 0.3;
+    transform: scale(1.3);
+}
+
+.profile-card.selected .check-box {
+    background: var(--color-success);
+    border-color: rgba(76, 175, 80, 0.8);
+    transform: scale(1.1);
+    box-shadow: 
+        0 6px 15px rgba(76, 175, 80, 0.25),
+        0 3px 5px rgba(76, 175, 80, 0.15);
+}
+
+.profile-card.selected .check-mark {
+    transform: scale(1);
+    color: var(--color-white);
+    opacity: 1;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Checkbox Animation for Selection */
+@keyframes checkbox-check {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(5deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.profile-card.selected .check-mark {
+    animation: checkbox-check 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Profile Content - Enhanced Typography & Spacing */
+.profile-content {
+    padding: clamp(16px, 3vw, 24px) clamp(12px, 2vw, 20px) clamp(16px, 3vw, 24px) 0;
+    flex: 1;
+    position: relative;
+    z-index: 2;
+    min-height: clamp(80px, 15vw, 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-content p {
+    color: var(--color-blue-dark);
+    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+    line-height: 1.65;
+    margin: 0 0 clamp(12px, 2vw, 16px) 0;
+    /* Neuromarketing: Optimal line height for reading comprehension */
+}
+
+.profile-content strong {
+    color: var(--color-blue-dark);
+    font-weight: 800;
+    /* Neuromarketing: Strong emphasis draws attention to key points */
+}
+
+.clickable-hint {
+    font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+    color: var(--color-blue-dark);
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(8px, 1.5vw, 10px) clamp(12px, 2vw, 16px);
+    background: rgba(30, 60, 114, 0.08);
+    border-radius: clamp(50px, 10vw, 50px);
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(30, 60, 114, 0.1);
+    box-shadow: 0 3px 8px rgba(30, 60, 114, 0.1);
+    width: fit-content;
+    /* Neuromarketing: Button-like appearance creates affordance */
+}
+
+.clickable-hint::before {
+    content: '→';
+    margin-right: 8px;
+    font-size: 1.1em;
+    transform: translateX(0);
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover .clickable-hint {
+    background: var(--color-gold);
+    color: var(--color-blue-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4);
+    padding-right: clamp(16px, 2.5vw, 20px);
+}
+
+.profile-card:hover .clickable-hint::before {
+    transform: translateX(3px);
+}
+
+.profile-card.selected {
+    background: #f8fbf8;
+    border-color: var(--color-success);
+    transform: translateY(-5px);
+    box-shadow: 
+        0 15px 30px rgba(76, 175, 80, 0.2),
+        0 8px 15px rgba(76, 175, 80, 0.1);
+    /* Neuromarketing: Green indicates success and positive reinforcement */
+}
+
+.profile-card.selected::after {
+    top: 0;
+    right: 0;
+    transform: rotate(0deg);
+    opacity: 1;
+}
+
+.profile-card.selected .check-box {
+    background: linear-gradient(135deg, 
+        var(--color-success) 0%, 
+        #388e3c 100%);
+    transform: scale(1.1);
+    box-shadow: 
+        0 10px 25px rgba(76, 175, 80, 0.4),
+        0 5px 10px rgba(76, 175, 80, 0.3);
+}
+
+.profile-card.selected .check-mark {
+    transform: scale(1);
+}
+
+.profile-card.selected .check-line {
+    background: linear-gradient(to bottom, 
+        var(--color-success), 
+        rgba(76, 175, 80, 0.2));
+}
+
+.profile-card.selected .clickable-hint {
+    background: var(--color-success);
+    color: var(--color-white);
+    font-weight: 700;
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
+}
+
+.profile-card.selected .clickable-hint::before {
+    content: "✓";
+    transform: translateX(0);
+}
+
+/* CTA com Auto-Identificação - Enhanced Visual Impact */
+.qualification-cta {
+    background: linear-gradient(135deg, 
+        var(--color-blue-gradient-start) 0%, 
+        var(--color-blue-gradient-end) 70%,
+        #1a365d 100%);
+    border-radius: clamp(20px, 4vw, 30px);
+    padding: clamp(30px, 6vw, 50px);
+    text-align: center;
+    box-shadow: 
+        0 30px 60px rgba(30, 60, 114, 0.3),
+        0 10px 30px rgba(30, 60, 114, 0.2);
+    position: relative;
+    overflow: hidden;
+    margin: clamp(40px, 8vw, 60px) auto;
+    /* Neuromarketing: Enhanced depth creates premium perception */
+}
+
+.qualification-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><path fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1" d="M0,0 L80,80"></path></svg>');
+    background-size: 100% 100%, 100% 100%, 20px 20px;
+    opacity: 0.6;
+    /* Neuromarketing: Subtle texture adds premium feel */
+}
+
+/* Identification Meter - Enhanced Interactivity */
+.identification-meter {
+    margin-bottom: clamp(30px, 6vw, 50px);
+    position: relative;
+    z-index: 2;
+}
+
+.meter-label {
+    font-family: var(--font-headings);
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+    color: var(--color-white);
+    margin-bottom: clamp(20px, 4vw, 30px);
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    /* Neuromarketing: Clear hierarchy with strong visual weight */
+}
+
+.meter-bar {
+    height: clamp(8px, 1.5vw, 12px);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: clamp(4px, 0.8vw, 6px);
+    position: relative;
+    margin-bottom: clamp(25px, 5vw, 40px);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+}
+
+.meter-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, 
+        var(--color-danger) 0%, 
+        #ff9800 30%,
+        var(--color-gold) 60%, 
+        var(--color-success) 100%);
+    border-radius: inherit;
+    transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.5),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+    /* Neuromarketing: Color progression suggests improvement and progress */
+}
+
+.meter-marker {
+    position: absolute;
+    top: clamp(-12px, -2vw, -16px);
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+}
+
+.meter-marker span {
+    display: inline-block;
+    padding: clamp(4px, 0.8vw, 6px) clamp(8px, 1.5vw, 12px);
+    background: var(--color-white);
+    border-radius: clamp(8px, 1.5vw, 12px);
+    font-size: clamp(0.75rem, 1.6vw, 0.9rem);
+    font-weight: 700;
+    color: var(--color-blue-dark);
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.meter-marker span::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--color-white);
+}
+
+.meter-message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: clamp(12px, 2.5vw, 18px);
+    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.low-match {
+    color: #ffcdd2;
+}
+
+.medium-match {
+    color: #fff3e0;
+}
+
+.high-match {
+    color: #c8e6c9;
+}
+
+/* CTA Button - Enhanced Conversion Focus */
+.identification-button {
+    display: inline-block;
+    padding: clamp(16px, 3vw, 24px) clamp(30px, 6vw, 60px);
+    background: linear-gradient(135deg, 
+        var(--color-gold) 0%, 
+        var(--color-gold-dark) 50%,
+        #b8860b 100%);
+    border-radius: clamp(25px, 5vw, 50px);
+    font-family: var(--font-headings);
+    font-size: clamp(1.1rem, 2.8vw, 1.4rem);
+    font-weight: 800;
+    color: var(--color-blue-dark);
+    text-decoration: none;
+    box-shadow: 
+        0 20px 40px rgba(255, 215, 0, 0.4),
+        0 8px 20px rgba(255, 215, 0, 0.3),
+        inset 0 2px 0 rgba(255,255,255,0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 2px solid rgba(255,255,255,0.2);
+    /* Neuromarketing: Golden color triggers premium/exclusive feeling */
+}
+
+.identification-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.6), 
+        transparent);
+    transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.identification-button:hover::before {
+    left: 100%;
+}
+
+.identification-button:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 
+        0 30px 60px rgba(255, 215, 0, 0.5),
+        0 12px 30px rgba(255, 215, 0, 0.4);
+    border-color: rgba(255,255,255,0.4);
+}
+
+.identification-button:active {
+    transform: translateY(-4px) scale(1.02);
+    transition: all 0.15s ease;
+}
+
+/* Waves Background - Enhanced Animation */
+.qualification-waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.qualification-waves svg {
+    position: absolute;
+    bottom: 0;
+    width: 120%;
+    height: clamp(80px, 15vw, 150px);
+    min-height: 60px;
+}
+
+.qualification-waves svg:nth-child(1) {
+    bottom: 0;
+    animation: wave-float-1 8s ease-in-out infinite alternate;
+}
+
+.qualification-waves svg:nth-child(2) {
+    bottom: 0;
+    opacity: 0.4;
+    animation: wave-float-2 12s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes wave-float-1 {
+    0% {
+        transform: translateX(-10%) rotate(0deg);
+    }
+    100% {
+        transform: translateX(10%) rotate(1deg);
+    }
+}
+
+@keyframes wave-float-2 {
+    0% {
+        transform: translateX(-5%) rotate(-0.5deg);
+    }
+    100% {
+        transform: translateX(15%) rotate(0.5deg);
+    }
+}
+
+/* Enhanced Responsividade - Breakpoint Strategy */
+@media (max-width: 1200px) {
+    .profiles-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: clamp(16px, 3vw, 24px);
+    }
+}
+
+@media (max-width: 768px) {
+    .qualification-section {
+        padding: clamp(40px, 10vw, 80px) 0;
+    }
+
+    .qualification-content {
+        padding: 0 clamp(16px, 4vw, 24px);
+    }
+
+    .selection-instruction {
+        padding: clamp(16px, 3vw, 24px);
+        max-width: 95%;
+        margin: 0 auto clamp(30px, 6vw, 40px);
+        border-radius: clamp(12px, 2.5vw, 16px);
+    }
+
+    .selection-instruction p {
+        font-size: clamp(0.9rem, 3.2vw, 1.1rem);
+        line-height: 1.6;
+    }
+    
+    .profiles-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(16px, 4vw, 24px);
+    }
+
+    .profile-card {
+        min-height: clamp(100px, 20vw, 140px);
+    }
+    
+    .qualification-cta {
+        padding: clamp(24px, 5vw, 40px) clamp(16px, 4vw, 24px);
+        margin: clamp(30px, 6vw, 40px) auto;
+    }
+
+    .meter-label {
+        font-size: clamp(1.1rem, 4.5vw, 1.4rem);
+        margin-bottom: clamp(16px, 4vw, 24px);
+    }
+    
+    .meter-message {
+        flex-direction: column;
+        gap: clamp(8px, 2vw, 12px);
+        text-align: center;
+        font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+    }
+
+    .meter-marker span {
+        font-size: clamp(0.7rem, 2vw, 0.8rem);
+        padding: clamp(3px, 0.8vw, 5px) clamp(6px, 1.5vw, 10px);
+    }
+    
+    .identification-button {
+        width: 100%;
+        max-width: 400px;
+        padding: clamp(14px, 3.5vw, 20px) clamp(20px, 5vw, 40px);
+        font-size: clamp(1rem, 4vw, 1.2rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+        padding: clamp(12px, 3vw, 16px);
+    }
+
+    .profile-check {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0 clamp(12px, 3vw, 16px) 0;
+        width: 100%;
+        min-width: auto;
+    }
+
+    .check-line {
+        width: clamp(40px, 10vw, 60px);
+        height: clamp(2px, 0.5vw, 3px);
+        margin: 0 clamp(8px, 2vw, 12px);
+    }
+
+    .profile-content {
+        padding: 0;
+        min-height: auto;
+    }
+
+    .clickable-hint {
+        margin-top: clamp(12px, 3vw, 16px);
+        align-self: center;
+    }
+}
+
+/* JavaScript Interactivity - Enhanced States */
+.profile-card.selected .check-box {
+    background: linear-gradient(135deg, 
+        var(--color-success) 0%, 
+        #2e7d32 100%);
+    transform: scale(1.2);
+    animation: success-pulse 2s ease-in-out infinite;
+}
+
+@keyframes success-pulse {
+    0%, 100% {
+        box-shadow: 
+            0 8px 20px rgba(76, 175, 80, 0.4),
+            0 0 0 0 rgba(76, 175, 80, 0.7);
+    }
+    50% {
+        box-shadow: 
+            0 8px 20px rgba(76, 175, 80, 0.4),
+            0 0 0 10px rgba(76, 175, 80, 0);
+    }
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+    .profile-card,
+    .check-box,
+    .identification-button,
+    .meter-progress {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .profile-card {
+        border: 3px solid;
+    }
+    
+    .check-box {
+        border: 2px solid;
+    }
+} 

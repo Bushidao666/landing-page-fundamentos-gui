@@ -1,0 +1,453 @@
+/* Modules Section (Dobra 6) */
+.modules-section {
+    padding: 80px 20px; /* Adjusted padding */
+    background: var(--color-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.modules-content {
+    position: relative;
+    z-index: 2;
+}
+
+.modules-section .section-title {
+    font-family: var(--font-headings);
+    font-size: clamp(1.8rem, 4vw, 2.8rem); /* Consistent */
+    font-weight: 800;
+    color: var(--color-blue-dark);
+    margin-bottom: 35px; /* Adjusted margin */
+    text-align: center;
+    line-height: 1.25;
+}
+
+.modules-section .subtitle {
+    font-size: clamp(0.9rem, 2.2vw, 1rem); /* Adjusted clamp */
+    display: block;
+    margin-top: 10px;
+    color: var(--color-text-light);
+    font-weight: 400;
+}
+
+/* Tabs Navigation */
+.modules-tabs {
+    max-width: 950px; /* Adjusted max-width */
+    margin: 0 auto 50px; /* Adjusted margin */
+    border-radius: 30px;
+    background: var(--color-light-gray);
+    padding: 30px; /* Adjusted padding */
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.06); /* Adjusted shadow */
+}
+
+.tab-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Adjusted gap */
+    margin-bottom: 30px; /* Adjusted margin */
+    flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
+}
+
+.tab-button {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Adjusted gap */
+    padding: 12px 25px; /* Adjusted padding */
+    background: var(--color-white);
+    border: 1px solid var(--color-medium-gray); /* Lighter border */
+    border-radius: 50px;
+    font-family: var(--font-headings);
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem); /* Adjusted clamp */
+    font-weight: 700;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.tab-button.active {
+    background: linear-gradient(135deg, var(--color-blue-gradient-start) 0%, var(--color-blue-gradient-end) 100%);
+    color: var(--color-white);
+    box-shadow: 0 8px 18px rgba(30, 60, 114, 0.25); /* Adjusted shadow */
+    border-color: transparent; /* Remove border when active */
+}
+
+.tab-icon {
+    font-size: 1.4rem; /* Adjusted size */
+}
+
+/* Tab Content */
+.tab-content {
+    position: relative;
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.6s ease;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Module Header */
+.module-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.module-header h3 {
+    font-family: var(--font-headings);
+    font-size: clamp(1.3rem, 3.2vw, 1.6rem); /* Adjusted clamp */
+    color: var(--color-blue-dark);
+    margin-bottom: 15px;
+    line-height: 1.35;
+}
+
+.module-progress {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.progress-label {
+    font-size: clamp(0.85rem, 2vw, 0.9rem); /* Adjusted clamp */
+    color: var(--color-text-light);
+    font-weight: 600;
+    min-width: 70px;
+}
+
+.progress-bar-wrapper {
+    flex: 1;
+    height: 8px;
+    background: var(--color-medium-gray);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0; /* Start at 0, will be animated by JS */
+    background: linear-gradient(90deg, var(--color-blue-gradient-start), var(--color-blue-gradient-end));
+    border-radius: 4px;
+    transform-origin: left;
+    /* transition: width 1.5s ease; */ /* JS will handle this if needed, or keep CSS transition */
+}
+
+.tab-pane.active .progress-bar {
+    width: 100%; /* Example: animate to full on active */
+    transition: width 1.5s 0.3s ease; /* Added delay for better UX */
+}
+
+/* Lesson Cards */
+.module-lessons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.lesson-card {
+    display: flex;
+    align-items: center;
+    gap: 18px; /* Adjusted gap */
+    padding: 18px; /* Adjusted padding */
+    background: var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.lesson-card.collapsed {
+    display: none;
+}
+
+.lesson-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Adjusted shadow */
+}
+
+/* Lesson Icon */
+.lesson-icon {
+    position: relative;
+    width: 45px; /* Adjusted size */
+    height: 45px; /* Adjusted size */
+    flex-shrink: 0;
+}
+
+.icon-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-blue-gradient-start) 0%, var(--color-blue-gradient-end) 100%);
+    border-radius: 50%;
+    opacity: 0.15; /* Adjusted opacity */
+    transition: all 0.3s ease;
+}
+
+.lesson-card:hover .icon-bg {
+    opacity: 0.8; /* Adjusted hover opacity */
+}
+
+.icon-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-headings);
+    font-size: 1.2rem; /* Adjusted size */
+    font-weight: 700;
+    color: var(--color-blue-dark);
+    transition: all 0.3s ease;
+}
+
+.lesson-card:hover .icon-number {
+    color: var(--color-white);
+}
+
+/* Lesson Content */
+.lesson-content {
+    flex: 1;
+}
+
+.lesson-content h4 {
+    font-family: var(--font-headings);
+    font-size: clamp(1rem, 2.5vw, 1.1rem); /* Adjusted clamp */
+    color: var(--color-blue-dark);
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+
+.lesson-content p {
+    color: var(--color-text-light);
+    font-size: clamp(0.85rem, 2.2vw, 0.9rem); /* Adjusted clamp */
+    line-height: 1.5;
+}
+
+.lesson-content strong {
+    color: var(--color-blue-dark);
+    font-weight: 700;
+}
+
+/* Lesson Badge */
+.lesson-badge {
+    padding: 5px 12px; /* Adjusted padding */
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    border-radius: 30px;
+    font-size: clamp(0.7rem, 1.8vw, 0.75rem); /* Adjusted clamp */
+    font-weight: 700;
+    color: var(--color-blue-dark);
+    white-space: nowrap;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.lesson-card:hover .lesson-badge {
+    opacity: 1;
+    transform: scale(1.05); /* Adjusted scale */
+}
+
+/* Show More Button */
+.show-more-wrapper {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.show-more-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 22px; /* Adjusted padding */
+    background: transparent;
+    border: 1px solid var(--color-blue-gradient-end); /* Adjusted border */
+    border-radius: 30px;
+    font-family: var(--font-headings);
+    font-size: clamp(0.9rem, 2.2vw, 0.95rem); /* Adjusted clamp */
+    font-weight: 600;
+    color: var(--color-blue-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.show-more-button:hover {
+    background: var(--color-blue-gradient-end);
+    color: var(--color-white);
+}
+
+.button-icon {
+    font-size: 1.1rem; /* Adjusted size */
+    transition: transform 0.3s ease;
+}
+
+.show-more-button.active .button-icon {
+    transform: rotate(45deg);
+}
+
+.hide-text {
+    display: none;
+}
+
+.show-more-button.active .show-text {
+    display: none;
+}
+
+.show-more-button.active .hide-text {
+    display: inline;
+}
+
+/* CTA Section */
+.modules-cta {
+    max-width: 800px;
+    margin: 50px auto 0; /* Adjusted margin */
+    padding: 35px; /* Adjusted padding */
+    background: linear-gradient(135deg, var(--color-blue-gradient-start) 0%, var(--color-blue-gradient-end) 100%);
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(30, 60, 114, 0.25); /* Adjusted shadow */
+    position: relative;
+    overflow: hidden;
+}
+
+.modules-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.03" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+    background-size: cover;
+    opacity: 0.3; /* Adjusted opacity */
+}
+
+.modules-value {
+    margin-bottom: 25px; /* Adjusted margin */
+    position: relative;
+    z-index: 2;
+}
+
+.value-highlight {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px; /* Adjusted margin */
+}
+
+.value-text {
+    font-size: clamp(1rem, 2.8vw, 1.1rem); /* Adjusted clamp */
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.value-price {
+    font-family: var(--font-headings);
+    font-size: clamp(2.8rem, 6vw, 3.2rem); /* Adjusted clamp */
+    font-weight: 900;
+    color: var(--color-gold);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.value-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem); /* Adjusted clamp */
+}
+
+.modules-button {
+    display: inline-block;
+    padding: 16px 35px; /* Adjusted padding */
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    border-radius: 50px;
+    font-family: var(--font-headings);
+    font-size: clamp(1rem, 2.8vw, 1.1rem); /* Adjusted clamp */
+    font-weight: 700;
+    color: var(--color-blue-dark);
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.25); /* Adjusted shadow */
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.modules-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.7s ease;
+}
+
+.modules-button:hover::before {
+    left: 100%;
+}
+
+.modules-button:hover {
+    transform: translateY(-3px); /* Adjusted hover effect */
+    box-shadow: 0 12px 25px rgba(255, 215, 0, 0.35); /* Adjusted shadow */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .modules-section {
+        padding: 50px 20px; /* Adjusted padding */
+    }
+    
+    .modules-tabs {
+        padding: 20px 15px; /* Adjusted padding */
+    }
+    
+    .tab-navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .tab-button {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 20px; /* Adjusted padding */
+    }
+
+    .module-header h3 {
+        font-size: clamp(1.1rem, 3vw, 1.3rem);
+    }
+    
+    .lesson-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px; /* Adjusted padding */
+    }
+    
+    .lesson-content {
+        margin-bottom: 12px; /* Adjusted margin */
+    }
+    
+    .modules-cta {
+        padding: 30px 20px; /* Adjusted padding */
+        margin-top: 40px;
+    }
+    
+    .value-price {
+        font-size: clamp(2.2rem, 8vw, 2.8rem); /* Adjusted clamp */
+    }
+    
+    .modules-button {
+        width: 90%;
+        max-width: 350px;
+        padding: 15px 20px;
+        font-size: clamp(0.95rem, 3.5vw, 1rem); /* Adjusted clamp */
+    }
+} 

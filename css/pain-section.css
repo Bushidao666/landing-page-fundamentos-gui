@@ -1,0 +1,366 @@
+/* Pain Section (Dobra 2) */
+.pain-section {
+    padding: 80px 20px; /* Adjusted padding */
+    background: var(--color-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.pain-section::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, var(--color-blue-gradient-end), transparent);
+    opacity: 0.1;
+}
+
+.pain-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Header da Seção */
+.section-header {
+    text-align: center;
+    margin-bottom: 50px; /* Adjusted margin */
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.section-title {
+    font-family: var(--font-headings);
+    font-size: clamp(1.8rem, 4vw, 2.8rem); /* Adjusted clamp */
+    font-weight: 800;
+    color: var(--color-blue-dark);
+    margin-bottom: 15px;
+    line-height: 1.25; /* Adjusted line-height */
+}
+
+.section-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.15rem); /* Adjusted clamp */
+    color: var(--color-text-light);
+    font-style: italic;
+    max-width: 700px; /* Add max-width for better readability */
+    margin: 0 auto; /* Center subtitle */
+}
+
+/* Grid de Cards de Dor */
+.pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax */
+    gap: 25px; /* Adjusted gap */
+    margin-bottom: 60px; /* Adjusted margin */
+}
+
+.pain-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-medium-gray); /* Lighter initial border */
+    border-radius: 20px;
+    padding: 25px; /* Adjusted padding */
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    overflow: hidden;
+    display: flex; /* Added for better internal alignment */
+    flex-direction: column; /* Stack content vertically */
+}
+
+.pain-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--color-danger-light) 0%, rgba(242, 58, 78, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.pain-card:hover::before {
+    opacity: 1;
+}
+
+.pain-card:hover {
+    transform: translateY(-8px); /* Adjusted hover effect */
+    border-color: var(--color-danger);
+    box-shadow: 0 15px 35px rgba(242, 58, 78, 0.15); /* Adjusted shadow */
+}
+
+.pain-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Ícone da Dor */
+.pain-icon {
+    position: relative;
+    width: 70px; /* Adjusted size */
+    height: 70px; /* Adjusted size */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center; /* Center icon within the card */
+}
+
+/* Added specific adjustment for pain section emojis */
+.pain-section .icon-emoji {
+    position: relative; /* Allows nudging */
+    top: 0; /* Reset top, adjust if still needed */
+    font-size: 2.8rem; /* Adjusted emoji size */
+}
+
+.icon-emoji {
+    font-size: 3rem;
+    line-height: 1;
+    animation: float 3s ease-in-out infinite;
+    animation-delay: calc(var(--pain) * 0.2s);
+}
+
+.icon-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--color-danger);
+    opacity: 0.2;
+    animation: pulse 2s ease-out infinite;
+    animation-delay: calc(var(--pain) * 0.2s);
+    display: none; /* Added to remove the red circle */
+}
+
+/* Conteúdo do Card */
+.pain-title {
+    font-family: var(--font-headings);
+    font-size: clamp(1.15rem, 3vw, 1.25rem); /* Adjusted clamp */
+    font-weight: 700;
+    color: var(--color-blue-dark);
+    margin-bottom: 12px; /* Adjusted margin */
+    line-height: 1.35; /* Adjusted line-height */
+}
+
+.pain-description {
+    font-size: clamp(0.9rem, 2.2vw, 1rem); /* Adjusted clamp */
+    color: var(--color-text);
+    line-height: 1.65; /* Adjusted line-height */
+    flex-grow: 1; /* Allow description to take available space */
+}
+
+.highlight-pain {
+    color: var(--color-danger);
+    font-weight: 600;
+    background: linear-gradient(to bottom, transparent 60%, rgba(242, 58, 78, 0.2) 60%);
+    padding: 0 2px;
+}
+
+/* Indicador de Dor */
+.pain-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--color-danger), var(--color-danger-light));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+.pain-card:hover .pain-indicator {
+    transform: scaleX(1);
+}
+
+/* Transição para Solução */
+.pain-transition {
+    text-align: center;
+    max-width: 850px; /* Adjusted max-width */
+    margin: 0 auto;
+    padding: 50px 30px; /* Adjusted padding */
+    background: linear-gradient(135deg, var(--color-light-gray) 0%, var(--color-white) 100%);
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pain-transition::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--color-gold), var(--color-gold-light), var(--color-gold));
+    border-radius: 30px;
+    opacity: 0.3;
+    z-index: -1;
+    animation: shimmer 3s infinite linear;
+    background-size: 200% 100%;
+}
+
+.transition-title {
+    font-family: var(--font-headings);
+    font-size: clamp(1.5rem, 3.5vw, 1.9rem); /* Adjusted clamp */
+    font-weight: 700;
+    color: var(--color-blue-dark);
+    margin-bottom: 20px;
+    line-height: 1.35; /* Adjusted line-height */
+}
+
+.transition-text {
+    font-size: clamp(1.05rem, 2.8vw, 1.2rem); /* Adjusted clamp */
+    color: var(--color-text);
+    margin-bottom: 35px; /* Adjusted margin */
+    line-height: 1.65; /* Adjusted line-height */
+}
+
+/* Analogia Visual */
+.analogy-visual {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Make items same height */
+    gap: 30px; /* Adjusted gap */
+    margin: 35px 0; /* Adjusted margin */
+    flex-wrap: wrap;
+}
+
+.analogy-item {
+    background: var(--color-white);
+    padding: 25px; /* Adjusted padding */
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    min-width: 220px; /* Adjusted min-width */
+    flex: 1; /* Allow items to grow */
+    display: flex; /* Added for better internal alignment */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Distribute space */
+}
+
+.analogy-item.bad {
+    border: 2px solid var(--color-danger-light);
+}
+
+.analogy-item.good {
+    border: 2px solid var(--color-success-light);
+    transform: scale(1.05);
+}
+
+.analogy-item:hover {
+    transform: translateY(-5px) scale(1.08);
+}
+
+.analogy-icon {
+    font-size: 2.8rem; /* Adjusted size */
+    margin-bottom: 15px;
+    display: block;
+    color: var(--color-blue-dark); /* Added color for consistency */
+}
+
+.analogy-item p {
+    font-weight: 600;
+    color: var(--color-blue-dark);
+    margin-bottom: 10px;
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem); /* Adjusted clamp */
+    flex-grow: 1; /* Allow text to take space */
+}
+
+.analogy-item .result {
+    font-size: 0.85rem; /* Adjusted size */
+    display: block;
+    padding: 8px 18px; /* Adjusted padding */
+    border-radius: 20px;
+    margin-top: 15px; /* Adjusted margin */
+    font-weight: 500; /* Added font-weight */
+}
+
+.analogy-item.bad .result {
+    background: var(--color-danger-light);
+    color: var(--color-danger);
+}
+
+.analogy-item.good .result {
+    background: var(--color-success-light);
+    color: var(--color-success);
+}
+
+.vs-divider {
+    font-family: var(--font-headings);
+    font-size: clamp(1.8rem, 3vw, 2rem); /* Adjusted clamp */
+    font-weight: 800;
+    color: var(--color-gold);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    align-self: center; /* Center vertically */
+}
+
+.transition-conclusion {
+    font-size: clamp(1.1rem, 3vw, 1.25rem); /* Adjusted clamp */
+    color: var(--color-text);
+    margin-top: 35px; /* Adjusted margin */
+    line-height: 1.65; /* Adjusted line-height */
+}
+
+.highlight-gold {
+    color: var(--color-gold-dark);
+    font-weight: 600;
+    position: relative;
+}
+
+.highlight-gold::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-gold), var(--color-gold-light));
+    animation: shimmer 2s infinite linear;
+    background-size: 200% 100%;
+}
+
+/* Animações específicas para cards de dor */
+.pain-card[data-pain="1"] { --pain: 1; }
+.pain-card[data-pain="2"] { --pain: 2; }
+.pain-card[data-pain="3"] { --pain: 3; }
+.pain-card[data-pain="4"] { --pain: 4; }
+.pain-card[data-pain="5"] { --pain: 5; }
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .pain-section {
+        padding: 50px 20px; /* Adjusted padding */
+    }
+    
+    .pain-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .analogy-visual {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .vs-divider {
+        transform: rotate(0); /* Reset rotation for column layout */
+        margin: 15px 0; /* Adjusted margin */
+    }
+    
+    .pain-transition {
+        padding: 35px 20px; /* Adjusted padding */
+    }
+    
+    .transition-title {
+        font-size: clamp(1.3rem, 4.5vw, 1.6rem); /* Adjusted clamp */
+    }
+    .transition-text, .transition-conclusion {
+        font-size: clamp(1rem, 3.5vw, 1.1rem); /* Adjusted clamp */
+    }
+} 
