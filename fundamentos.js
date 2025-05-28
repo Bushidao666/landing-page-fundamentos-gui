@@ -258,17 +258,18 @@ document.addEventListener('DOMContentLoaded', function() {
       document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
     }
 
-    function generateUUID() {
-      if (typeof crypto !== 'undefined' && crypto.randomUUID) {
-        return crypto.randomUUID();
-      }
-      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        const r = Math.random() * 16 | 0;
-        const v = c === 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-      });
-    }
+    // function generateUUID() {
+    //   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    //     return crypto.randomUUID();
+    //   }
+    //   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    //     const r = Math.random() * 16 | 0;
+    //     const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    //     return v.toString(16);
+    //   });
+    // }
 
+    /*
     async function sha256(message) {
       const msgBuffer = new TextEncoder().encode(message);
       const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -276,6 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
       return hashHex;
     }
+    */
 
     function normalizePhone(phone) {
       if (!phone) return undefined;
@@ -557,20 +559,22 @@ document.addEventListener('DOMContentLoaded', function() {
       const lastName = nameParts.slice(1).join(' ') || (nameParts.length > 1 ? nameParts[0] : ''); // Use first if no last.
       
       const normalizedUserPhone = formData.phone ? normalizePhone(formData.phone) : undefined;
+      const userEmail = formData.email ? formData.email.trim().toLowerCase() : undefined;
       
-      const hashedData = {
-        em: formData.email ? await sha256(formData.email) : undefined,
-        ph: normalizedUserPhone ? await sha256(normalizedUserPhone) : undefined,
-        fn: firstName ? await sha256(firstName) : undefined,
-        ln: lastName ? await sha256(lastName) : undefined
+      // PII data is now sent raw
+      const piiData = {
+        em: userEmail, // Raw email
+        ph: normalizedUserPhone, // Raw, normalized phone
+        fn: firstName ? firstName.trim() : undefined, // Raw first name
+        ln: lastName ? lastName.trim() : undefined  // Raw last name
       };
       
-      // Filter out undefined hashed values before updating
-      const validHashedData = Object.fromEntries(Object.entries(hashedData).filter(([_, v]) => v !== undefined));
-      if (Object.keys(validHashedData).length > 0) {
-        updateUserData(validHashedData);
+      // Filter out undefined PII values before updating
+      const validPiiData = Object.fromEntries(Object.entries(piiData).filter(([_, v]) => v !== undefined && v !== ''));
+      if (Object.keys(validPiiData).length > 0) {
+        updateUserData(validPiiData);
       }
-      debugLog('PII data processed and globalUserData updated.', JSON.parse(JSON.stringify(globalUserData)));
+      debugLog('PII data processed (raw) and globalUserData updated.', JSON.parse(JSON.stringify(globalUserData)));
     }
 
     async function handleLeadFormSubmit(event) {
