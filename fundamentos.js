@@ -596,7 +596,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const emailInput = document.getElementById('leadEmail');
       const phoneInput = document.getElementById('leadPhone');
 
-      // Ensure inputs exist before accessing value
       const name = nameInput ? nameInput.value : '';
       const email = emailInput ? emailInput.value : '';
       const phone = phoneInput ? phoneInput.value : '';
@@ -604,22 +603,54 @@ document.addEventListener('DOMContentLoaded', function() {
       const formData = { fullName: name, email: email, phone: phone };
 
       debugLog('Lead form submitted. Processing data...', formData);
-      await processLeadForm(formData);
+      await processLeadForm(formData); // This updates globalUserData
       
       debugLog('Triggering InitiateCheckout event...');
       await triggerInitiateCheckout(courseProductData);
 
-      // Original actions from fundamentos.js
-      console.log('Lead Capturado (CAPI integration):');
-      console.log('Nome:', name);
-      console.log('Email:', email);
-      console.log('Telefone:', phone);
-      alert('Obrigado! Seus dados foram enviados. Você será redirecionado para o checkout.');
+      // Construct Hotmart URL
+      let hotmartUrl = 'https://pay.hotmart.com/G96072060L?checkoutMode=10';
+
+      // Add PII to Hotmart URL
+      if (name) hotmartUrl += `&name=${encodeURIComponent(name)}`;
+      if (email) hotmartUrl += `&email=${encodeURIComponent(email)}`;
+
+      // Parse phone for DDD and number
+      const cleanedPhone = phone.replace(/\D/g, ''); // Remove non-digits
+      let ddd = '';
+      let phoneNumber = '';
+
+      if (cleanedPhone.length >= 10) { // Basic check for DDD + number
+        // Assuming Brazilian format: 2 for DDD, rest for number
+        // If it starts with 55 (country code) and is longer, adjust
+        if (cleanedPhone.startsWith('55') && cleanedPhone.length > 2) {
+          ddd = cleanedPhone.substring(2, 4);
+          phoneNumber = cleanedPhone.substring(4);
+        } else if (cleanedPhone.length >= 2) {
+          ddd = cleanedPhone.substring(0, 2);
+          phoneNumber = cleanedPhone.substring(2);
+        }
+      }
+
+      if (ddd) hotmartUrl += `&phoneac=${encodeURIComponent(ddd)}`;
+      if (phoneNumber) hotmartUrl += `&phonenumber=${encodeURIComponent(phoneNumber)}`;
+
+      // Add UTM parameters to Hotmart URL
+      const urlParams = getUrlParameters(); // This function should already exist
+      if (urlParams.utm_source) hotmartUrl += `&src=${encodeURIComponent(urlParams.utm_source)}`;
+      if (urlParams.utm_campaign) hotmartUrl += `&sck=${encodeURIComponent(urlParams.utm_campaign)}`;
+      if (urlParams.utm_medium) hotmartUrl += `&utm_medium=${encodeURIComponent(urlParams.utm_medium)}`;
+      if (urlParams.utm_term) hotmartUrl += `&utm_term=${encodeURIComponent(urlParams.utm_term)}`;
+      if (urlParams.utm_content) hotmartUrl += `&utm_content=${encodeURIComponent(urlParams.utm_content)}`;
+
+      debugLog('Redirecting to Hotmart:', hotmartUrl);
       
+      // Clear form and close modal (optional, good UX)
       const modalOverlay = document.getElementById('leadCaptureModal');
       if (modalOverlay) modalOverlay.classList.remove('active');
       if (leadForm) leadForm.reset();
-      // window.location.href = 'URL_DO_CHECKOUT'; // Uncomment and set URL if redirection is needed
+
+      window.location.href = hotmartUrl;
     }
 
     // ==============================================
