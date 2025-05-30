@@ -203,14 +203,21 @@ class QualificationManager {
     }
 
     updateProgressVisualFeedback(selectedCount) {
+        // ✅ VERIFICAÇÃO ADICIONADA
+        if (!this.identificationMeter) return;
+        
         // Remove all previous state classes
         this.identificationMeter.classList.remove('no-match', 'low-match', 'medium-match', 'high-match', 'perfect-match');
         
         // Add pulse effect to the meter
-        this.meterBar.style.animation = 'none';
-        setTimeout(() => {
-            this.meterBar.style.animation = 'meter-pulse 0.6s ease-out';
-        }, 10);
+        if (this.meterBar) {
+            this.meterBar.style.animation = 'none';
+            setTimeout(() => {
+                if (this.meterBar) {
+                    this.meterBar.style.animation = 'meter-pulse 0.6s ease-out';
+                }
+            }, 10);
+        }
         
         // Determine match level and update visual state
         let matchClass = '';
@@ -239,11 +246,13 @@ class QualificationManager {
         this.identificationMeter.classList.add(matchClass);
         
         // Add glow effect to CTA area
-        this.qualificationCTA.style.boxShadow = `
-            0 30px 60px rgba(30, 60, 114, 0.3),
-            0 10px 30px rgba(30, 60, 114, 0.2),
-            inset 0 0 120px ${glowColor}
-        `;
+        if (this.qualificationCTA) {
+            this.qualificationCTA.style.boxShadow = `
+                0 30px 60px rgba(30, 60, 114, 0.3),
+                0 10px 30px rgba(30, 60, 114, 0.2),
+                inset 0 0 120px ${glowColor}
+            `;
+        }
         
         // Update message visibility
         this.updateMessageHighlight(selectedCount);
@@ -255,6 +264,9 @@ class QualificationManager {
     }
 
     updateMessageHighlight(selectedCount) {
+        // ✅ VERIFICAÇÃO ADICIONADA
+        if (!this.progressMessage) return;
+        
         const messages = this.progressMessage.querySelectorAll('span');
         
         // Reset all messages
@@ -290,45 +302,45 @@ class QualificationManager {
     }
 
     updateMeterLabel(selectedCount) {
-        if (this.meterLabel) {
-            const originalText = 'Se identificou com 3 ou mais itens?';
-            let newText = originalText;
-            let labelClass = '';
-            
-            if (selectedCount === 0) {
-                newText = 'Selecione os perfis que combinam com você';
-                labelClass = 'label-neutral';
-            } else if (selectedCount === 1) {
-                newText = 'Você selecionou 1 perfil - selecione mais!';
-                labelClass = 'label-low';
-            } else if (selectedCount === 2) {
-                newText = 'Você selecionou 2 perfis - quase lá!';
-                labelClass = 'label-low';
-            } else if (selectedCount === 3) {
-                newText = '✓ Você selecionou 3 perfis - boa compatibilidade!';
-                labelClass = 'label-medium';
-            } else if (selectedCount === 4) {
-                newText = '✓ Você selecionou 4 perfis - ótima compatibilidade!';
-                labelClass = 'label-high';
-            } else if (selectedCount === 5) {
-                newText = '🎯 Você selecionou 5 perfis - compatibilidade excelente!';
-                labelClass = 'label-perfect';
-            } else {
-                newText = '🚀 Você selecionou TODOS os perfis - MATCH PERFEITO!';
-                labelClass = 'label-perfect';
-            }
-            
-            // Apply animation
-            this.meterLabel.style.opacity = '0';
-            this.meterLabel.style.transform = 'translateY(-10px)';
-            
-            setTimeout(() => {
-                this.meterLabel.textContent = newText;
-                this.meterLabel.className = 'meter-label ' + labelClass;
-                this.meterLabel.style.opacity = '1';
-                this.meterLabel.style.transform = 'translateY(0)';
-            }, 300);
+        if (!this.meterLabel) return;
+        
+        const originalText = 'Se identificou com 3 ou mais itens?';
+        let newText = originalText;
+        let labelClass = '';
+        
+        if (selectedCount === 0) {
+            newText = 'Selecione os perfis que combinam com você';
+            labelClass = 'label-neutral';
+        } else if (selectedCount === 1) {
+            newText = 'Você selecionou 1 perfil - selecione mais!';
+            labelClass = 'label-low';
+        } else if (selectedCount === 2) {
+            newText = 'Você selecionou 2 perfis - quase lá!';
+            labelClass = 'label-low';
+        } else if (selectedCount === 3) {
+            newText = '✓ Você selecionou 3 perfis - boa compatibilidade!';
+            labelClass = 'label-medium';
+        } else if (selectedCount === 4) {
+            newText = '✓ Você selecionou 4 perfis - ótima compatibilidade!';
+            labelClass = 'label-high';
+        } else if (selectedCount === 5) {
+            newText = '🎯 Você selecionou 5 perfis - compatibilidade excelente!';
+            labelClass = 'label-perfect';
+        } else {
+            newText = '🚀 Você selecionou TODOS os perfis - MATCH PERFEITO!';
+            labelClass = 'label-perfect';
         }
+        
+        // Apply animation
+        this.meterLabel.style.opacity = '0';
+        this.meterLabel.style.transform = 'translateY(-10px)';
+        
+        setTimeout(() => {
+            this.meterLabel.textContent = newText;
+            this.meterLabel.className = 'meter-label ' + labelClass;
+            this.meterLabel.style.opacity = '1';
+            this.meterLabel.style.transform = 'translateY(0)';
+        }, 300);
     }
 
     triggerPerfectMatchAnimation() {
@@ -352,20 +364,49 @@ class QualificationManager {
         document.body.appendChild(celebration);
         
         // Create golden particles
-        for (let i = 0; i < 20; i++) {
-            const particle = document.createElement('div');
-            particle.style.cssText = `
-                position: absolute;
-                width: 6px;
-                height: 6px;
-                background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
-                border-radius: 50%;
-                left: 50%;
-                top: 50%;
-                animation: celebration-particle ${0.8 + Math.random() * 0.5}s ease-out forwards;
-                animation-delay: ${Math.random() * 0.3}s;
-            `;
-            celebration.querySelector('.celebration-particles').appendChild(particle);
+        const particlesContainer = celebration.querySelector('.celebration-particles');
+        if (particlesContainer) {
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                const randomX = (Math.random() - 0.5) * 200;
+                const randomY = (Math.random() - 0.5) * 200;
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 6px;
+                    height: 6px;
+                    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+                    border-radius: 50%;
+                    left: 50%;
+                    top: 50%;
+                    animation: celebration-particle-${i} ${0.8 + Math.random() * 0.5}s ease-out forwards;
+                    animation-delay: ${Math.random() * 0.3}s;
+                `;
+                particlesContainer.appendChild(particle);
+                
+                // ✅ CORREÇÃO: Criar animação dinâmica
+                const keyframes = `
+                    @keyframes celebration-particle-${i} {
+                        0% {
+                            transform: translate(0, 0) scale(1);
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: translate(${randomX}px, ${randomY}px) scale(0);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                
+                // Adicionar keyframes ao DOM
+                const style = document.createElement('style');
+                style.textContent = keyframes;
+                document.head.appendChild(style);
+                
+                // Remover style após animação
+                setTimeout(() => {
+                    style.remove();
+                }, 2000);
+            }
         }
         
         // Remove after animation
@@ -494,11 +535,15 @@ class QualificationManager {
     }
 
     showSelectionRequired() {
+        if (!this.qualificationCTA) return;
+        
         // Gentle shake animation to indicate selection required
         this.qualificationCTA.style.animation = 'gentle-shake 0.5s ease-in-out';
         
         setTimeout(() => {
-            this.qualificationCTA.style.animation = '';
+            if (this.qualificationCTA) {
+                this.qualificationCTA.style.animation = '';
+            }
         }, 500);
 
         // Add temporary message
@@ -525,11 +570,15 @@ class QualificationManager {
         this.qualificationCTA.appendChild(tempMessage);
 
         setTimeout(() => {
-            tempMessage.remove();
+            if (tempMessage && tempMessage.parentNode) {
+                tempMessage.remove();
+            }
         }, 3000);
     }
 
     showMinimumSelectionMessage() {
+        if (!this.qualificationCTA) return;
+        
         const tempMessage = document.createElement('div');
         tempMessage.className = 'selection-minimum-message';
         tempMessage.textContent = `Selecione pelo menos 3 perfis para continuar (faltam ${3 - this.selectedProfiles.size})`;
@@ -553,11 +602,15 @@ class QualificationManager {
         this.qualificationCTA.appendChild(tempMessage);
 
         setTimeout(() => {
-            tempMessage.remove();
+            if (tempMessage && tempMessage.parentNode) {
+                tempMessage.remove();
+            }
         }, 3000);
     }
 
     showSuccessConfirmation() {
+        if (!this.identificationButton) return;
+        
         const selectedCount = this.selectedProfiles.size;
         
         // Brief success animation before proceeding
@@ -570,8 +623,10 @@ class QualificationManager {
         }
         
         setTimeout(() => {
-            // Proceed with normal flow
-            this.identificationButton.style.background = '';
+            if (this.identificationButton) {
+                // Proceed with normal flow
+                this.identificationButton.style.background = '';
+            }
         }, 1500);
     }
 
@@ -670,20 +725,6 @@ const qualificationStyles = `
         100% { 
             opacity: 0;
             transform: translate(-50%, -50%) scale(1);
-        }
-    }
-
-    @keyframes celebration-particle {
-        0% {
-            transform: translate(0, 0) scale(1);
-            opacity: 1;
-        }
-        100% {
-            transform: translate(
-                ${() => (Math.random() - 0.5) * 200}px,
-                ${() => (Math.random() - 0.5) * 200}px
-            ) scale(0);
-            opacity: 0;
         }
     }
 
