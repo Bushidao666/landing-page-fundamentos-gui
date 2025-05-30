@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, 100);
                 }
             });
-        }, { threshold: 0.4 }); // Aumentado para garantir que seja bem visível
+        }, { threshold: 0.1 }); // Aumentado para garantir que seja bem visível
         
         timelineObserver.observe(timelineSection);
     }
