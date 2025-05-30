@@ -3,6 +3,7 @@
     padding: 80px 20px; /* Adjusted padding */
     background: var(--color-white);
     position: relative;
+    z-index: 2; /* Ensure pain-section is above hero-section with parallax */
     overflow: hidden;
 }
 
