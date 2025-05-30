@@ -6,6 +6,7 @@
 
 class QualificationManager {
     constructor() {
+        console.log('[QualificationManager] Constructor called');
         this.selectedProfiles = new Set();
         this.progressMeter = null;
         this.identificationButton = null;
@@ -21,13 +22,16 @@ class QualificationManager {
     }
 
     init() {
+        console.log('[QualificationManager] init() called');
         this.setupElements();
         this.bindEvents();
         this.setupIntersectionObserver();
         this.initializeProgressMeter();
+        console.log('[QualificationManager] init() completed');
     }
 
     setupElements() {
+        console.log('[QualificationManager] setupElements() called');
         this.profileCards = document.querySelectorAll('.profile-card');
         this.progressMeter = document.querySelector('.meter-progress');
         this.progressMarker = document.querySelector('.meter-marker');
@@ -37,12 +41,19 @@ class QualificationManager {
         this.meterLabel = document.querySelector('.meter-label');
         this.meterBar = document.querySelector('.meter-bar');
         this.identificationMeter = document.querySelector('.identification-meter');
+        console.log('[QualificationManager] profileCards found:', this.profileCards.length);
+        console.log('[QualificationManager] identificationButton found:', this.identificationButton);
+        console.log('[QualificationManager] qualificationCTA found:', this.qualificationCTA);
     }
 
     bindEvents() {
+        console.log('[QualificationManager] bindEvents() called');
         // Profile card selection with enhanced feedback
         this.profileCards.forEach((card, index) => {
-            card.addEventListener('click', (e) => this.handleProfileSelection(card, index, e));
+            card.addEventListener('click', (e) => {
+                console.log(`[QualificationManager] Profile card ${index} clicked`, e);
+                this.handleProfileSelection(card, index, e);
+            });
             card.addEventListener('mouseenter', (e) => this.handleProfileHover(card, true));
             card.addEventListener('mouseleave', (e) => this.handleProfileHover(card, false));
             
@@ -54,6 +65,7 @@ class QualificationManager {
                 }
             });
         });
+        console.log('[QualificationManager] Profile card event listeners bound.');
 
         // CTA button enhanced interactions
         if (this.identificationButton) {
@@ -68,20 +80,27 @@ class QualificationManager {
             this.identificationButton.addEventListener('click', (e) => {
                 this.handleCTAClick(e);
             });
+            console.log('[QualificationManager] CTA button event listeners bound.');
+        } else {
+            console.warn('[QualificationManager] identificationButton not found for binding events.');
         }
     }
 
     handleProfileSelection(card, index, event) {
+        console.log(`[QualificationManager] handleProfileSelection() called for card index: ${index}`, card);
         // Neuromarketing: Immediate visual feedback reduces cognitive load
         const cardId = `profile-${index}`;
         const isSelected = card.classList.contains('selected');
+        console.log(`[QualificationManager] Card ID: ${cardId}, Is Selected: ${isSelected}`);
         
         if (isSelected) {
+            console.log('[QualificationManager] Deselecting card.');
             // Deselect with smooth transition
             card.classList.remove('selected');
             this.selectedProfiles.delete(cardId);
             this.animateDeselection(card);
         } else {
+            console.log('[QualificationManager] Selecting card.');
             // Select with celebratory feedback
             card.classList.add('selected');
             this.selectedProfiles.add(cardId);
@@ -89,6 +108,7 @@ class QualificationManager {
         }
 
         // Update progress meter with smooth animation
+        console.log('[QualificationManager] Calling updateProgressMeter()');
         this.updateProgressMeter();
         
         // Haptic feedback for mobile devices
@@ -105,6 +125,7 @@ class QualificationManager {
     }
 
     animateSelection(card) {
+        console.log('[QualificationManager] animateSelection() called', card);
         const checkMark = card.querySelector('.check-mark');
         
         // Neuromarketing: Success animation reinforces positive choice
@@ -121,10 +142,12 @@ class QualificationManager {
         }, 150);
 
         // Add success particle effect (optional enhancement)
+        console.log('[QualificationManager] Calling createSuccessParticles() from animateSelection');
         this.createSuccessParticles(card);
     }
 
     animateDeselection(card) {
+        console.log('[QualificationManager] animateDeselection() called', card);
         const checkMark = card.querySelector('.check-mark');
         
         card.style.transform = 'scale(0.95)';
@@ -138,6 +161,7 @@ class QualificationManager {
     }
 
     createSuccessParticles(card) {
+        console.log('[QualificationManager] createSuccessParticles() called for card:', card);
         // Neuromarketing: Micro-celebration increases dopamine response
         const rect = card.getBoundingClientRect();
         const particles = 5;
@@ -180,21 +204,25 @@ class QualificationManager {
                 });
 
                 if (animation) {
+                    console.log('[QualificationManager] Particle animation created.', animation);
                     animation.onfinish = () => {
                         if (particle.parentNode) {
+                            console.log('[QualificationManager] Particle animation finished, removing particle.');
                             particle.remove();
                         }
                     };
                 } else {
+                    console.warn('[QualificationManager] Particle animation object was null/undefined. Removing particle directly.');
                     // Fallback if animation couldn't be created
                     if (particle.parentNode) {
                         particle.remove();
                     }
                 }
             } catch (error) {
-                console.error('Failed to create or run success particle animation:', error);
+                console.error('[QualificationManager] Failed to create or run success particle animation:', error);
                 // Ensure particle is removed even if animation fails
                 if (particle.parentNode) {
+                    console.log('[QualificationManager] Removing particle due to error in animation.');
                     particle.remove();
                 }
             }
@@ -202,9 +230,11 @@ class QualificationManager {
     }
 
     updateProgressMeter() {
+        console.log('[QualificationManager] updateProgressMeter() called');
         const totalProfiles = this.profileCards.length;
         const selectedCount = this.selectedProfiles.size;
         const progressPercentage = Math.min((selectedCount / totalProfiles) * 100, 100);
+        console.log(`[QualificationManager] Total Profiles: ${totalProfiles}, Selected: ${selectedCount}, Progress: ${progressPercentage}%`);
         
         // Smooth progress animation
         if (this.progressMeter) {
@@ -222,6 +252,7 @@ class QualificationManager {
     }
 
     updateProgressVisualFeedback(selectedCount) {
+        console.log(`[QualificationManager] updateProgressVisualFeedback() called with selectedCount: ${selectedCount}`);
         // Remove all previous state classes
         this.identificationMeter.classList.remove('no-match', 'low-match', 'medium-match', 'high-match', 'perfect-match');
         
@@ -254,6 +285,7 @@ class QualificationManager {
             textToHighlight = 'Este curso é PERFEITO para você!';
         }
         
+        console.log(`[QualificationManager] Match Class: ${matchClass}, Glow Color: ${glowColor}`);
         // Apply visual state
         this.identificationMeter.classList.add(matchClass);
         
@@ -274,6 +306,7 @@ class QualificationManager {
     }
 
     updateMessageHighlight(selectedCount) {
+        console.log(`[QualificationManager] updateMessageHighlight() called with selectedCount: ${selectedCount}`);
         const messages = this.progressMessage.querySelectorAll('span');
         
         // Reset all messages
@@ -309,6 +342,7 @@ class QualificationManager {
     }
 
     updateMeterLabel(selectedCount) {
+        console.log(`[QualificationManager] updateMeterLabel() called with selectedCount: ${selectedCount}`);
         if (this.meterLabel) {
             const originalText = 'Se identificou com 3 ou mais itens?';
             let newText = originalText;
@@ -351,6 +385,7 @@ class QualificationManager {
     }
 
     triggerPerfectMatchAnimation() {
+        console.log('[QualificationManager] triggerPerfectMatchAnimation() called');
         // Create celebratory effect
         const celebration = document.createElement('div');
         celebration.className = 'perfect-match-celebration';
@@ -404,7 +439,11 @@ class QualificationManager {
     }
 
     updateCTAButton(hasSelections) {
-        if (!this.identificationButton) return;
+        console.log(`[QualificationManager] updateCTAButton() called with hasSelections: ${hasSelections}`);
+        if (!this.identificationButton) {
+            console.warn('[QualificationManager] identificationButton not found in updateCTAButton.');
+            return;
+        }
         
         const button = this.identificationButton;
         const selectedCount = this.selectedProfiles.size;
@@ -441,6 +480,7 @@ class QualificationManager {
     }
 
     addCtaPulse() {
+        console.log('[QualificationManager] addCtaPulse() called');
         if (!this.identificationButton) return;
         
         const button = this.identificationButton;
@@ -465,6 +505,7 @@ class QualificationManager {
     }
 
     handleProfileHover(card, isEntering) {
+        // console.log(`[QualificationManager] handleProfileHover() called, isEntering: ${isEntering}`, card); // Frequent log, uncomment if needed
         const checkLine = card.querySelector('.check-line');
         
         if (isEntering) {
@@ -480,6 +521,7 @@ class QualificationManager {
     }
 
     animateButtonHover(isEntering) {
+        // console.log(`[QualificationManager] animateButtonHover() called, isEntering: ${isEntering}`); // Frequent log, uncomment if needed
         if (!this.identificationButton) return;
         
         if (isEntering) {
@@ -491,7 +533,9 @@ class QualificationManager {
     }
 
     handleCTAClick(event) {
+        console.log('[QualificationManager] handleCTAClick() called', event);
         const selectedCount = this.selectedProfiles.size;
+        console.log(`[QualificationManager] CTA clicked, selectedCount: ${selectedCount}`);
         
         if (selectedCount === 0) {
             event.preventDefault();
@@ -515,6 +559,7 @@ class QualificationManager {
     }
 
     showSelectionRequired() {
+        console.log('[QualificationManager] showSelectionRequired() called');
         // Gentle shake animation to indicate selection required
         this.qualificationCTA.style.animation = 'gentle-shake 0.5s ease-in-out';
         
@@ -551,6 +596,7 @@ class QualificationManager {
     }
 
     showMinimumSelectionMessage() {
+        console.log('[QualificationManager] showMinimumSelectionMessage() called');
         const tempMessage = document.createElement('div');
         tempMessage.className = 'selection-minimum-message';
         tempMessage.textContent = `Selecione pelo menos 3 perfis para continuar (faltam ${3 - this.selectedProfiles.size})`;
@@ -579,6 +625,7 @@ class QualificationManager {
     }
 
     showSuccessConfirmation() {
+        console.log('[QualificationManager] showSuccessConfirmation() called');
         const selectedCount = this.selectedProfiles.size;
         
         // Brief success animation before proceeding
@@ -597,6 +644,7 @@ class QualificationManager {
     }
 
     setupIntersectionObserver() {
+        console.log('[QualificationManager] setupIntersectionObserver() called');
         // Animate elements as they come into view
         const observerOptions = {
             threshold: 0.2,
@@ -624,6 +672,7 @@ class QualificationManager {
     }
 
     initializeProgressMeter() {
+        console.log('[QualificationManager] initializeProgressMeter() called');
         // Start with 0 progress
         if (this.progressMeter) {
             this.progressMeter.style.width = '0%';
@@ -641,8 +690,7 @@ class QualificationManager {
     }
 
     trackInteraction(eventType, data) {
-        // Analytics integration placeholder
-        console.log('Qualification Interaction:', eventType, data);
+        console.log('[QualificationManager] Qualification Interaction:', eventType, data);
         
         // Here you would integrate with your analytics service
         // Example: gtag('event', eventType, data);
@@ -847,40 +895,17 @@ const qualificationStyles = `
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('[QualificationManager] DOMContentLoaded event fired.');
     // Add dynamic styles
     const styleSheet = document.createElement('style');
     
-    // Correcting the invalid JavaScript function calls within the CSS string template
-    let celebrationParticleKeyframes = `
-        @keyframes celebration-particle {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(
-                    ${(Math.random() - 0.5) * 200}px, 
-                    ${(Math.random() - 0.5) * 200}px
-                ) scale(0);
-                opacity: 0;
-            }
-        }
-    `;
-    // Since the random values should be dynamic per particle, this keyframe definition 
-    // should ideally be created for each particle or use CSS variables set by JS.
-    // For now, this fixes the immediate syntax error by evaluating the JS once.
-    // A better approach for dynamic particle end positions would be to set them via JS .animate() or CSS custom properties per particle.
-
-    // For simplicity and addressing the user's primary complaint about clicks not working,
-    // I'm focusing on the JS error in createSuccessParticles first. The keyframe issue is secondary.
-    // The provided qualificationStyles already contains a static version of celebration-particle.
-    // The dynamic one with JS functions was problematic. We'll rely on the static one defined above in the string.
-
     styleSheet.textContent = qualificationStyles; // qualificationStyles already contains a valid celebration-particle keyframe
     document.head.appendChild(styleSheet);
     
+    console.log('[QualificationManager] Initializing QualificationManager class.');
     // Initialize qualification manager
     new QualificationManager();
+    console.log('[QualificationManager] QualificationManager class initialized.');
 });
 
 // Export for module systems
