@@ -368,57 +368,45 @@ class QualificationManager {
         if (particlesContainer) {
             for (let i = 0; i < 20; i++) {
                 const particle = document.createElement('div');
-                const randomX = (Math.random() - 0.5) * 200;
-                const randomY = (Math.random() - 0.5) * 200;
-                particle.style.cssText = `
-                    position: absolute;
-                    width: 6px;
-                    height: 6px;
-                    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
-                    border-radius: 50%;
-                    left: 50%;
-                    top: 50%;
-                    animation: celebration-particle-${i} ${0.8 + Math.random() * 0.5}s ease-out forwards;
-                    animation-delay: ${Math.random() * 0.3}s;
-                `;
+                // Adiciona a classe base da partícula que contém os estilos visuais (cor, forma)
+                particle.className = 'celebration-particle-base'; 
+                
+                const randomX = (Math.random() - 0.5) * 250; // Aumentei um pouco a dispersão
+                const randomY = (Math.random() - 0.5) * 250; // Aumentei um pouco a dispersão
+                const duration = 0.8 + Math.random() * 0.7; // Duração entre 0.8s e 1.5s
+                const delay = Math.random() * 0.5; // Delay até 0.5s
+
+                // Define as variáveis CSS para a animação no próprio elemento
+                particle.style.setProperty('--particle-end-x', `${randomX}px`);
+                particle.style.setProperty('--particle-end-y', `${randomY}px`);
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Adiciona a classe que dispara a animação
+                particle.classList.add('celebration-particle-animated');
+                
                 particlesContainer.appendChild(particle);
-                
-                // ✅ CORREÇÃO: Criar animação dinâmica
-                const keyframes = `
-                    @keyframes celebration-particle-${i} {
-                        0% {
-                            transform: translate(0, 0) scale(1);
-                            opacity: 1;
-                        }
-                        100% {
-                            transform: translate(${randomX}px, ${randomY}px) scale(0);
-                            opacity: 0;
-                        }
-                    }
-                `;
-                
-                // Adicionar keyframes ao DOM
-                const style = document.createElement('style');
-                style.textContent = keyframes;
-                document.head.appendChild(style);
-                
-                // Remover style após animação
+
+                // Remove a partícula do DOM após a animação
+                // O tempo total é delay + duration. Adicionamos uma pequena margem.
                 setTimeout(() => {
-                    style.remove();
-                }, 2000);
+                    particle.remove();
+                }, (delay + duration) * 1000 + 100);
             }
         }
         
-        // Remove after animation
+        // Remove o container da celebração após um tempo
         setTimeout(() => {
             celebration.remove();
-        }, 2500);
+        }, 3000); // Tempo para a animação 'celebration-appear' e partículas terminarem
         
         // Enhance button glow
         if (this.identificationButton) {
             this.identificationButton.classList.add('perfect-match-button');
             setTimeout(() => {
-                this.identificationButton.classList.remove('perfect-match-button');
+                if (this.identificationButton) { // Checa se ainda existe
+                    this.identificationButton.classList.remove('perfect-match-button');
+                }
             }, 3000);
         }
     }
@@ -724,8 +712,41 @@ const qualificationStyles = `
         }
         100% { 
             opacity: 0;
-            transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1); /* Mantém no centro ao desaparecer */
         }
+    }
+
+    /* Novo Keyframe Genérico para Partículas */
+    @keyframes celebration-particle-generic {
+        0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(var(--particle-end-x), var(--particle-end-y)) scale(0);
+            opacity: 0;
+        }
+    }
+
+    /* Classe base para estilos visuais da partícula */
+    .celebration-particle-base {
+        position: absolute;
+        width: 7px; /* Aumentei um pouco */
+        height: 7px; /* Aumentei um pouco */
+        background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+        border-radius: 50%;
+        left: 50%; /* Centraliza a origem da animação */
+        top: 50%;  /* Centraliza a origem da animação */
+        opacity: 0; /* Começa invisível, a animação controla a opacidade */
+        pointer-events: none; /* Garante que não interfiram */
+    }
+
+    /* Classe para ativar a animação da partícula */
+    .celebration-particle-animated {
+        animation-name: celebration-particle-generic;
+        /* animation-duration e animation-delay são definidos inline via JS */
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards; 
     }
 
     .animate-in {
@@ -873,7 +894,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(styleSheet);
     
     // Initialize qualification manager
-    new QualificationManager();
+    // Adicionando um pequeno delay para garantir que o CSS foi processado,
+    // especialmente se houver muitos estilos ou um DOM complexo.
+    setTimeout(() => {
+        new QualificationManager();
+    }, 100); // Pequeno delay, ajuste se necessário
 });
 
 // Export for module systems

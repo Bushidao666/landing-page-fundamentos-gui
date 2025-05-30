@@ -146,7 +146,6 @@
     transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     opacity: 0;
     z-index: 1;
-    pointer-events: none;
     /* Neuromarketing: Progressive visual feedback for engagement */
 }
 
@@ -602,7 +601,6 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    pointer-events: none;
     z-index: 1;
     opacity: 0.6;
 }
