@@ -37,10 +37,10 @@ const containerVariants: Variants = {
 
 const itemVariants: Variants = {
   hidden: { 
-    y: 40, 
+    y: 30, 
     opacity: 0, 
     scale: 0.95,
-    filter: "blur(10px)"
+    filter: "blur(5px)"
   },
   visible: {
     y: 0,
@@ -133,7 +133,7 @@ const benefits = [
     icon: TrendingUp
   },
   {
-    text: "Confiança: Pararam de operar no &ldquo;achismo&rdquo; e passaram a tomar decisões baseadas em fundamentos sólidos",
+    text: "Confiança: Pararam de operar no \"achismo\" e passaram a tomar decisões baseadas em fundamentos sólidos",
     icon: Award
   },
   {
@@ -142,15 +142,15 @@ const benefits = [
   },
 ];
 
-// === COMPONENTE DE PARTÍCULAS OTIMIZADO === //
+// === COMPONENTE DE PARTÍCULAS ULTRA-OTIMIZADO === //
 const FloatingElements = React.memo(() => {
   const particles = useMemo(() => 
-    Array.from({ length: 15 }, (_, i) => ({
+    Array.from({ length: window.innerWidth < 640 ? 8 : 12 }, (_, i) => ({
       id: i,
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-      delay: Math.random() * 5,
-      duration: 6 + Math.random() * 4,
+      delay: Math.random() * 3,
+      duration: 3 + Math.random() * 2,
     })), []
   );
 
@@ -165,10 +165,10 @@ const FloatingElements = React.memo(() => {
             top: particle.top,
           }}
           animate={{
-            y: [-20, -80, -20],
-            x: [-15, 15, -15],
-            opacity: [0.1, 0.6, 0.1],
-            scale: [0.8, 1.2, 0.8],
+            y: [-10, -50, -10],
+            x: [-8, 8, -8],
+            opacity: [0.1, 0.4, 0.1],
+            scale: [0.8, 1.1, 0.8],
           }}
           transition={{
             duration: particle.duration,
@@ -202,21 +202,21 @@ const TestimonialCard = React.memo<TestimonialCardProps>(({ testimonial, isCente
   }, [testimonial.image, position]);
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-4">
+    <div className="w-full max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl mx-auto px-3 sm:px-4">
       <motion.div
         className={`
           relative bg-gradient-to-br from-white via-gray-50 to-white backdrop-blur-xl 
-          rounded-3xl border shadow-2xl transition-all duration-300 overflow-hidden
+          rounded-2xl sm:rounded-3xl border shadow-2xl transition-all duration-300 overflow-hidden
           ${testimonial.highlight 
             ? 'border-[#D4AF37]/50 shadow-[#D4AF37]/20' 
             : 'border-gray-200/50'
           }
         `}
         style={{
-          height: '520px', // Altura fixa para consistência
+          minHeight: window.innerWidth < 640 ? '350px' : window.innerWidth < 768 ? '400px' : window.innerWidth < 1024 ? '450px' : '500px',
           willChange: 'transform',
         }}
-        whileHover={isCenter ? { y: -5, scale: 1.01 } : {}}
+        whileHover={isCenter ? { y: -3, scale: 1.01 } : {}}
         layout
         layoutId={`testimonial-${testimonial.id}`}
       >
@@ -224,54 +224,50 @@ const TestimonialCard = React.memo<TestimonialCardProps>(({ testimonial, isCente
         {/* Badge de Destaque - Sempre Visível */}
         {testimonial.highlight && (
           <motion.div
-            className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-[#D4AF37] to-yellow-400 rounded-full flex items-center justify-center border-4 border-white shadow-xl z-20"
-            animate={{ rotate: [0, 10, -10, 0] }}
+            className="absolute -top-2 sm:-top-3 md:-top-4 -right-2 sm:-right-3 md:-right-4 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#D4AF37] to-yellow-400 rounded-full flex items-center justify-center border-2 sm:border-3 md:border-4 border-white shadow-xl z-20"
+            animate={{ rotate: [0, 8, -8, 0] }}
             transition={{ duration: 3, repeat: Infinity }}
             layoutId={`badge-${testimonial.id}`}
           >
-            <Star className="w-8 h-8 text-[#0A192F] fill-[#0A192F]" />
+            <Star className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-[#0A192F] fill-[#0A192F]" />
           </motion.div>
         )}
 
         {/* Grid Container com Altura Controlada */}
         <div 
-          className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-stretch h-full p-6 lg:p-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 items-stretch h-full p-4 sm:p-6 md:p-8"
           style={{
             gridTemplateRows: 'minmax(0, 1fr)',
           }}
         >
           
           {/* Coluna da Imagem - Lado Esquerdo */}
-          <div className="order-2 lg:order-1 flex flex-col justify-between">
+          <div className="order-2 md:order-1 flex flex-col justify-between">
             
-            {/* Container da Imagem com Altura Fixa */}
+            {/* Container da Imagem com Altura Flexível */}
             <div className="flex-1 flex flex-col justify-center">
-              <div className="relative bg-gradient-to-br from-gray-100 via-white to-gray-50 rounded-2xl border-2 border-gray-200/50 shadow-xl overflow-hidden">
+              <div className="relative bg-gradient-to-br from-gray-100 via-white to-gray-50 rounded-xl sm:rounded-2xl border-2 border-gray-200/50 shadow-xl overflow-hidden">
                 {/* Header WhatsApp Style */}
-                <div className="flex items-center gap-3 p-4 border-b border-gray-200 bg-gradient-to-r from-green-50 to-green-100">
-                  <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                    <span className="text-white text-sm font-bold">💬</span>
+                <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 border-b border-gray-200 bg-gradient-to-r from-green-50 to-green-100">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-full flex items-center justify-center">
+                    <span className="text-white text-xs sm:text-sm font-bold">💬</span>
                   </div>
                   <div>
-                    <h4 className="font-bold text-[#0A192F] text-sm">Depoimento WhatsApp</h4>
+                    <h4 className="font-bold text-[#0A192F] text-xs sm:text-sm">Depoimento WhatsApp</h4>
                     <p className="text-xs text-gray-500">Aluno Verificado ✓</p>
                   </div>
                 </div>
                 
-                {/* Container da Imagem com Aspect Ratio Fixo */}
+                {/* Container da Imagem com Aspect Ratio Responsivo */}
                 <div 
-                  className="relative bg-white"
-                  style={{
-                    height: '280px', // Altura fixa para todas as imagens
-                    width: '100%',
-                  }}
+                  className="relative bg-white h-[200px] sm:h-[240px] md:h-[280px] w-full"
                 >
                   {!imageError ? (
                     <Image
                       src={testimonial.image}
                       alt={`Print do depoimento de ${testimonial.name} no WhatsApp`}
                       fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                       className={`
                         object-contain transition-all duration-500
                         ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}
@@ -284,10 +280,10 @@ const TestimonialCard = React.memo<TestimonialCardProps>(({ testimonial, isCente
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gray-100">
                       <div className="text-center text-gray-500">
-                        <div className="w-16 h-16 mx-auto mb-2 bg-gray-200 rounded-full flex items-center justify-center">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2 bg-gray-200 rounded-full flex items-center justify-center">
                           📱
                         </div>
-                        <p className="text-sm">Imagem indisponível</p>
+                        <p className="text-xs sm:text-sm">Imagem indisponível</p>
                       </div>
                     </div>
                   )}
@@ -296,7 +292,7 @@ const TestimonialCard = React.memo<TestimonialCardProps>(({ testimonial, isCente
                   {!imageLoaded && !imageError && (
                     <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
                       <motion.div
-                        className="w-8 h-8 border-4 border-[#D4AF37] border-t-transparent rounded-full"
+                        className="w-6 h-6 sm:w-8 sm:h-8 border-4 border-[#D4AF37] border-t-transparent rounded-full"
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                       />
@@ -308,37 +304,37 @@ const TestimonialCard = React.memo<TestimonialCardProps>(({ testimonial, isCente
           </div>
 
           {/* Coluna do Conteúdo - Lado Direito */}
-          <div className="order-1 lg:order-2 flex flex-col justify-between text-center lg:text-left h-full">
+          <div className="order-1 md:order-2 flex flex-col justify-between text-center md:text-left h-full">
             
             {/* Quote Principal - Parte Superior */}
             <div className="flex-1 flex flex-col justify-center">
-              <blockquote className="mb-6">
-                <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-[#0A192F] mb-4 leading-tight">
+              <blockquote className="mb-4 sm:mb-6">
+                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#0A192F] mb-3 sm:mb-4 leading-tight">
                   &ldquo;{testimonial.quote}&rdquo;
                 </h3>
-                <p className="text-base lg:text-lg text-gray-700 leading-relaxed italic line-clamp-3">
+                <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed italic line-clamp-3">
                   &ldquo;{testimonial.description}&rdquo;
                 </p>
               </blockquote>
             </div>
 
             {/* Seção Inferior - Sempre Visível */}
-            <div className="flex-shrink-0 space-y-4">
+            <div className="flex-shrink-0 space-y-3 sm:space-y-4">
               {/* Divisor */}
               <div className="w-full h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
               
               {/* Autor */}
               <div>
-                <p className="font-bold text-[#0A192F] text-lg lg:text-xl">
+                <p className="font-bold text-[#0A192F] text-base sm:text-lg md:text-xl">
                   {testimonial.name}
                 </p>
-                <p className="text-[#D4AF37] font-medium text-base">
+                <p className="text-[#D4AF37] font-medium text-sm sm:text-base">
                   {testimonial.title}
                 </p>
               </div>
 
               {/* Rating Stars */}
-              <div className="flex justify-center lg:justify-start gap-1">
+              <div className="flex justify-center md:justify-start gap-1">
                 {[...Array(5)].map((_, i) => (
                   <motion.div
                     key={i}
@@ -351,16 +347,16 @@ const TestimonialCard = React.memo<TestimonialCardProps>(({ testimonial, isCente
                       stiffness: 200
                     }}
                   >
-                    <Star className="w-5 h-5 text-[#D4AF37] fill-[#D4AF37]" />
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37] fill-[#D4AF37]" />
                   </motion.div>
                 ))}
               </div>
 
               {/* Badge de Autenticidade - Sempre Visível */}
-              <div className="flex justify-center lg:justify-start">
-                <div className="inline-flex items-center gap-2 bg-green-100 border border-green-200 px-3 py-1.5 rounded-full">
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  <span className="text-green-700 font-medium text-sm">Depoimento Verificado</span>
+              <div className="flex justify-center md:justify-start">
+                <div className="inline-flex items-center gap-1 sm:gap-2 bg-green-100 border border-green-200 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
+                  <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
+                  <span className="text-green-700 font-medium text-xs sm:text-sm">Depoimento Verificado</span>
                 </div>
               </div>
             </div>
@@ -374,7 +370,7 @@ const TestimonialCard = React.memo<TestimonialCardProps>(({ testimonial, isCente
 
 TestimonialCard.displayName = "TestimonialCard";
 
-// === CARROSSEL OTIMIZADO === //
+// === CARROSSEL MOBILE-OPTIMIZED === //
 const TestimonialsCarousel = React.memo(() => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -400,11 +396,12 @@ const TestimonialsCarousel = React.memo(() => {
     debouncedNavigation(newIndex);
   }, [currentSlide, debouncedNavigation]);
   
-  // Auto-play inteligente
+  // Auto-play inteligente mobile-optimized
   useEffect(() => {
     if (!isAutoPlaying) return;
 
-    const interval = setInterval(nextSlide, 5000);
+    const isMobile = window.innerWidth < 640;
+    const interval = setInterval(nextSlide, isMobile ? 3000 : 5000);
     return () => clearInterval(interval);
   }, [isAutoPlaying, nextSlide]);
 
@@ -412,7 +409,7 @@ const TestimonialsCarousel = React.memo(() => {
   const handleMouseEnter = useCallback(() => setIsAutoPlaying(false), []);
   const handleMouseLeave = useCallback(() => setIsAutoPlaying(true), []);
 
-  // Variants do carrossel otimizadas
+  // Variants do carrossel mobile-optimized
   const carouselVariants: Variants = useMemo(() => ({
     center: {
       x: "0%",
@@ -428,11 +425,11 @@ const TestimonialsCarousel = React.memo(() => {
       },
     },
     left: {
-      x: "-65%",
-      scale: 0.75,
-      opacity: 0.4,
+      x: "-60%",
+      scale: 0.8,
+      opacity: 0.5,
       zIndex: 2,
-      filter: "blur(2px)",
+      filter: "blur(1px)",
       transition: { 
         type: "spring", 
         stiffness: 300, 
@@ -441,11 +438,11 @@ const TestimonialsCarousel = React.memo(() => {
       },
     },
     right: {
-      x: "65%",
-      scale: 0.75,
-      opacity: 0.4,
+      x: "60%",
+      scale: 0.8,
+      opacity: 0.5,
       zIndex: 1,
-      filter: "blur(2px)",
+      filter: "blur(1px)",
       transition: { 
         type: "spring", 
         stiffness: 300, 
@@ -458,7 +455,7 @@ const TestimonialsCarousel = React.memo(() => {
       scale: 0.5,
       opacity: 0,
       zIndex: 0,
-      filter: "blur(8px)",
+      filter: "blur(4px)",
       transition: { 
         type: "spring", 
         stiffness: 300, 
@@ -474,8 +471,8 @@ const TestimonialsCarousel = React.memo(() => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Container do Carrossel */}
-      <div className="relative w-full max-w-7xl flex items-center justify-center mb-12" style={{ height: '580px' }}>
+      {/* Container do Carrossel Responsivo */}
+      <div className="relative w-full max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl flex items-center justify-center mb-8 sm:mb-10 md:mb-12 min-h-[400px] sm:min-h-[480px] md:min-h-[520px] lg:min-h-[580px]">
         <LayoutGroup>
           <AnimatePresence mode="wait" initial={false}>
           {testimonials.map((testimonial, index) => {
@@ -508,7 +505,7 @@ const TestimonialsCarousel = React.memo(() => {
                     willChange: 'transform, opacity, filter',
                 }}
                   onClick={() => variant !== "center" && !isTransitioning && debouncedNavigation(index)}
-                whileHover={variant !== "center" ? { scale: 0.8, y: -10 } : {}}
+                whileHover={variant !== "center" ? { scale: 0.85, y: -5 } : {}}
               >
                   <TestimonialCard 
                     testimonial={testimonial} 
@@ -522,55 +519,55 @@ const TestimonialsCarousel = React.memo(() => {
         </LayoutGroup>
       </div>
 
-      {/* Controles e Indicadores */}
-      <div className="flex flex-col items-center gap-8 w-full">
-        {/* Controles de Navegação */}
-        <div className="flex items-center justify-center gap-6">
+      {/* Controles e Indicadores Mobile-Optimized */}
+      <div className="flex flex-col items-center gap-4 sm:gap-6 md:gap-8 w-full">
+        {/* Controles de Navegação Touch-Friendly */}
+        <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6">
           <motion.button
             onClick={prevSlide}
             disabled={isTransitioning}
-            className="w-14 h-14 bg-gradient-to-r from-[#D4AF37] to-yellow-400 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-r from-[#D4AF37] to-yellow-400 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
-            <ChevronLeft className="w-7 h-7 text-[#0A192F]" />
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-[#0A192F]" />
           </motion.button>
           
           {/* Auto-play Toggle */}
           <motion.button
             onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-            className="w-12 h-12 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-all duration-300"
+            className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-all duration-300 touch-manipulation"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
             {isAutoPlaying ? (
-              <Pause className="w-5 h-5 text-gray-700" />
+              <Pause className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-gray-700" />
             ) : (
-              <Play className="w-5 h-5 text-gray-700 ml-0.5" />
+              <Play className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-gray-700 ml-0.5" />
             )}
           </motion.button>
           
           <motion.button
             onClick={nextSlide}
             disabled={isTransitioning}
-            className="w-14 h-14 bg-gradient-to-r from-[#D4AF37] to-yellow-400 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-r from-[#D4AF37] to-yellow-400 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
-            <ChevronRight className="w-7 h-7 text-[#0A192F]" />
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-[#0A192F]" />
           </motion.button>
         </div>
         
-        {/* Indicadores de Posição */}
-        <div className="flex justify-center gap-3">
+        {/* Indicadores de Posição Touch-Friendly */}
+        <div className="flex justify-center gap-2 sm:gap-3">
           {testimonials.map((_, index) => (
             <motion.button
               key={index}
               onClick={() => !isTransitioning && debouncedNavigation(index)}
               disabled={isTransitioning}
-              className={`relative overflow-hidden rounded-full transition-all duration-300 disabled:cursor-not-allowed ${
+              className={`relative overflow-hidden rounded-full transition-all duration-300 disabled:cursor-not-allowed touch-manipulation ${
                 index === currentSlide
-                  ? 'w-12 h-3 bg-gradient-to-r from-[#D4AF37] to-yellow-400'
+                  ? 'w-8 h-3 sm:w-10 sm:h-3 md:w-12 md:h-3 bg-gradient-to-r from-[#D4AF37] to-yellow-400'
                   : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
               }`}
               whileHover={{ scale: 1.2 }}
@@ -580,7 +577,11 @@ const TestimonialsCarousel = React.memo(() => {
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
                   animate={{ x: ["-100%", "100%"] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                  transition={{ 
+                    duration: window.innerWidth < 640 ? 3 : 5, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
                 />
               )}
             </motion.button>
@@ -604,13 +605,13 @@ export default function SocialProofSection() {
   return (
     <MotionSection
       id="social-proof"
-      className="relative py-20 lg:py-32 overflow-hidden"
+      className="relative py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
       variants={containerVariants}
     >
-      {/* Background Tech-Aristocrático */}
+      {/* Background Tech-Aristocrático Responsivo */}
       <div className="absolute inset-0">
         {/* Camada Base - Gradiente Premium */}
         <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-slate-100" />
@@ -623,37 +624,37 @@ export default function SocialProofSection() {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#D4AF37_1px,transparent_1px),linear-gradient(to_bottom,#D4AF37_1px,transparent_1px)] bg-[size:60px_60px]" />
         </div>
         
-        {/* Nebulosa Premium */}
+        {/* Nebulosa Premium Responsiva */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-1/4 right-1/3 w-[600px] h-[400px] bg-gradient-to-l from-[#D4AF37]/15 via-[#D4AF37]/5 to-transparent rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[300px] bg-gradient-to-r from-slate-400/10 via-slate-500/5 to-transparent rounded-full blur-2xl" />
+          <div className="absolute top-1/4 right-1/3 w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[200px] sm:h-[300px] md:h-[400px] bg-gradient-to-l from-[#D4AF37]/15 via-[#D4AF37]/5 to-transparent rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 left-1/3 w-[250px] sm:w-[350px] md:w-[450px] lg:w-[500px] h-[150px] sm:h-[250px] md:h-[300px] bg-gradient-to-r from-slate-400/10 via-slate-500/5 to-transparent rounded-full blur-2xl" />
         </div>
         
         {/* Partículas Flutuantes */}
         <FloatingElements />
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8">
+        <div className="max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto">
           
           {/* Header da Seção */}
-          <MotionDiv className="text-center mb-20" variants={itemVariants}>
+          <MotionDiv className="text-center mb-12 sm:mb-16 md:mb-20" variants={itemVariants}>
             {/* Badge Premium */}
             <MotionDiv
-              className="inline-flex items-center gap-4 bg-gradient-to-r from-[#D4AF37]/30 via-[#FFD700]/20 to-[#D4AF37]/30 backdrop-blur-2xl border border-[#D4AF37]/50 px-8 py-4 rounded-full shadow-2xl mb-12"
+              className="inline-flex items-center gap-2 sm:gap-3 md:gap-4 bg-gradient-to-r from-[#D4AF37]/30 via-[#FFD700]/20 to-[#D4AF37]/30 backdrop-blur-2xl border border-[#D4AF37]/50 px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full shadow-2xl mb-6 sm:mb-8 md:mb-12"
               variants={itemVariants}
               whileHover={{ scale: 1.05, y: -2 }}
             >
-              <Users className="w-6 h-6 text-[#D4AF37]" />
-              <span className="text-[#D4AF37] font-bold text-base uppercase tracking-[0.2em]">
+              <Users className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#D4AF37]" />
+              <span className="text-[#D4AF37] font-bold text-xs sm:text-sm md:text-base uppercase tracking-[0.15em] sm:tracking-[0.2em]">
                 Quem experimentou, aprova
               </span>
-              <Star className="w-6 h-6 text-[#D4AF37]" />
+              <Star className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#D4AF37]" />
             </MotionDiv>
 
             {/* Headline Provocativa */}
             <MotionH2
-              className="text-4xl md:text-5xl lg:text-6xl font-serif font-black leading-[0.9] tracking-tight text-[#0A192F] mb-8"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-black leading-[0.9] tracking-tight text-[#0A192F] mb-6 sm:mb-8"
               variants={itemVariants}
             >
               Não Precisa Acreditar Só na{" "}
@@ -680,7 +681,7 @@ export default function SocialProofSection() {
             </MotionH2>
 
             <MotionP 
-              className="text-2xl lg:text-3xl text-gray-600 font-light max-w-4xl mx-auto"
+              className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-600 font-light max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto"
               variants={itemVariants}
             >
               Veja o Que Dizem Quem Já Colocou em Prática:
@@ -688,22 +689,22 @@ export default function SocialProofSection() {
           </MotionDiv>
 
           {/* Carrossel de Depoimentos Estratégicos */}
-          <MotionDiv className="mb-20" variants={itemVariants}>
+          <MotionDiv className="mb-12 sm:mb-16 md:mb-20" variants={itemVariants}>
             <TestimonialsCarousel />
           </MotionDiv>
 
           {/* Seção "Percebeu o Padrão?" */}
-          <MotionDiv className="mb-20" variants={itemVariants}>
+          <MotionDiv className="mb-12 sm:mb-16 md:mb-20" variants={itemVariants}>
             <MotionDiv 
-              className="bg-gradient-to-br from-[#D4AF37]/10 via-[#FFD700]/5 to-[#D4AF37]/10 backdrop-blur-xl rounded-3xl p-8 lg:p-12 border border-[#D4AF37]/30 shadow-2xl"
+              className="bg-gradient-to-br from-[#D4AF37]/10 via-[#FFD700]/5 to-[#D4AF37]/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 border border-[#D4AF37]/30 shadow-2xl"
               whileHover={{ scale: 1.01, y: -3 }}
             >
               {/* Header */}
-              <MotionDiv className="text-center mb-12" variants={itemVariants}>
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[#0A192F] mb-6">
+              <MotionDiv className="text-center mb-8 sm:mb-10 md:mb-12" variants={itemVariants}>
+                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-[#0A192F] mb-4 sm:mb-6">
                   Percebeu o Padrão?
                 </h3>
-                <p className="text-xl lg:text-2xl text-gray-700 leading-relaxed max-w-4xl mx-auto">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto">
                   Estes não são apenas &ldquo;alunos satisfeitos&rdquo;. São{" "}
                   <span className="font-bold text-[#0A192F]">pessoas que já fizeram outros cursos</span>{" "}
                   e podem{" "}
@@ -716,19 +717,19 @@ export default function SocialProofSection() {
               </MotionDiv>
 
               {/* O que todos têm em comum */}
-              <MotionDiv className="mb-10" variants={itemVariants}>
-                <h4 className="text-2xl lg:text-3xl font-bold text-[#0A192F] text-center mb-8">
+              <MotionDiv className="mb-6 sm:mb-8 md:mb-10" variants={itemVariants}>
+                <h4 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#0A192F] text-center mb-6 sm:mb-8">
                   O que todos eles têm em comum?
                 </h4>
 
-                <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   {benefits.map((benefit, index) => (
                     <MotionDiv
                       key={index}
-                      className="flex items-start gap-4 p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200/50 hover:border-[#D4AF37]/30 transition-all duration-300 group"
+                      className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-200/50 hover:border-[#D4AF37]/30 transition-all duration-300 group"
                       custom={index}
                       variants={{
-                        hidden: { x: -30, opacity: 0 },
+                        hidden: { x: -20, opacity: 0 },
                         visible: {
                           x: 0,
                           opacity: 1,
@@ -740,12 +741,12 @@ export default function SocialProofSection() {
                       }}
                       whileHover={{ x: 5, scale: 1.02 }}
                     >
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-yellow-400 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        <benefit.icon className="w-6 h-6 text-[#0A192F]" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#D4AF37] to-yellow-400 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                        <benefit.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#0A192F]" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-lg text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
-                          <CheckCircle className="w-5 h-5 text-green-500 inline mr-2 mb-1" />
+                        <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
+                          <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-green-500 inline mr-2 mb-1" />
                           <span className="font-semibold text-[#0A192F]">
                             {benefit.text.split(':')[0]}:
                           </span>{" "}
@@ -760,22 +761,22 @@ export default function SocialProofSection() {
           </MotionDiv>
 
           {/* Pergunta Provocativa Final */}
-          <MotionDiv className="text-center mb-16" variants={itemVariants}>
+          <MotionDiv className="text-center mb-10 sm:mb-12 md:mb-16" variants={itemVariants}>
             <MotionDiv 
-              className="bg-gradient-to-br from-gray-50 via-white to-gray-50 backdrop-blur-xl rounded-3xl p-8 lg:p-12 border border-gray-200/50 shadow-2xl"
+              className="bg-gradient-to-br from-gray-50 via-white to-gray-50 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 border border-gray-200/50 shadow-2xl"
               whileHover={{ scale: 1.01, y: -2 }}
             >
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#D4AF37] mb-8 uppercase tracking-wide">
+              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-[#D4AF37] mb-6 sm:mb-8 uppercase tracking-wide">
                 A Pergunta Que Não Quer Calar:
               </h3>
               
-              <div className="space-y-6 max-w-4xl mx-auto">
-                <p className="text-xl lg:text-2xl text-[#0A192F] leading-relaxed font-medium">
+              <div className="space-y-4 sm:space-y-6 max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#0A192F] leading-relaxed font-medium">
                   <span className="font-bold">Se profissionais experientes, que já fizeram outros cursos e mentorias, tiveram resultados tão impactantes...</span>
                 </p>
                 
                 <MotionP 
-                  className="text-2xl lg:text-3xl text-[#D4AF37] leading-relaxed font-bold"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-[#D4AF37] leading-relaxed font-bold"
                   animate={{ 
                     textShadow: ["0 0 10px rgba(212, 175, 55, 0.3)", "0 0 20px rgba(212, 175, 55, 0.6)", "0 0 10px rgba(212, 175, 55, 0.3)"]
                   }}
@@ -787,7 +788,7 @@ export default function SocialProofSection() {
             </MotionDiv>
           </MotionDiv>
 
-          {/* CTA Contextualizado */}
+          {/* CTA Contextualizado Mobile-Optimized */}
           <MotionDiv
             className="text-center"
             variants={itemVariants}
@@ -799,7 +800,7 @@ export default function SocialProofSection() {
             >
               <Button 
                 size="lg" 
-                className="relative overflow-hidden text-2xl px-16 py-10 h-auto bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-black shadow-2xl shadow-[#D4AF37]/50 border-4 border-[#D4AF37]/30 rounded-3xl transition-all duration-500 backdrop-blur-sm"
+                className="relative overflow-hidden w-full sm:w-auto text-sm sm:text-base md:text-lg lg:text-xl px-6 sm:px-8 md:px-12 lg:px-16 py-3 sm:py-4 md:py-6 lg:py-8 h-auto bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-black shadow-2xl shadow-[#D4AF37]/50 border-2 sm:border-3 md:border-4 border-[#D4AF37]/30 rounded-xl sm:rounded-2xl md:rounded-3xl transition-all duration-500 backdrop-blur-sm"
               >
                 {/* Efeito de Brilho */}
                 <MotionDiv
@@ -815,30 +816,33 @@ export default function SocialProofSection() {
                   }}
                 />
                 
-                <span className="relative flex items-center gap-4 z-10">
-                  <Users className="w-8 h-8 group-hover:rotate-12 transition-transform duration-300" />
-                  <span className="tracking-wide">EU QUERO FAZER PARTE DESSE GRUPO DE SUCESSO POR R$ 47!</span>
-                  <ArrowRight className="w-7 h-7 text-[#0A192F] group-hover:translate-x-2 transition-transform duration-300" />
+                <span className="relative flex items-center justify-center gap-2 sm:gap-3 md:gap-4 z-10">
+                  <Users className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 group-hover:rotate-12 transition-transform duration-300" />
+                  <span className="tracking-wide text-center leading-tight">
+                    <span className="hidden md:inline">EU QUERO FAZER PARTE DESSE GRUPO DE SUCESSO POR R$ 47!</span>
+                    <span className="md:hidden">QUERO FAZER PARTE! R$ 47</span>
+                  </span>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-[#0A192F] group-hover:translate-x-2 transition-transform duration-300" />
                 </span>
               </Button>
             </MotionDiv>
 
             {/* Indicadores de Pertencimento */}
             <MotionDiv 
-              className="flex flex-wrap items-center justify-center gap-6 pt-8 text-gray-600"
+              className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 pt-6 sm:pt-8 text-gray-600"
               variants={itemVariants}
             >
-              <div className="flex items-center gap-2">
-                <Users className="w-5 h-5 text-[#D4AF37]" />
-                <span>Junte-se aos Vencedores</span>
+              <div className="flex items-center gap-1 sm:gap-2">
+                <Users className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-[#D4AF37]" />
+                <span className="text-xs sm:text-sm">Junte-se aos Vencedores</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-500" />
-                <span>Resultados Comprovados</span>
+              <div className="flex items-center gap-1 sm:gap-2">
+                <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-green-500" />
+                <span className="text-xs sm:text-sm">Resultados Comprovados</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Star className="w-5 h-5 text-[#D4AF37]" />
-                <span>Satisfação Garantida</span>
+              <div className="flex items-center gap-1 sm:gap-2">
+                <Star className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-[#D4AF37]" />
+                <span className="text-xs sm:text-sm">Satisfação Garantida</span>
               </div>
             </MotionDiv>
           </MotionDiv>

@@ -18,7 +18,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { y: 60, opacity: 0, scale: 0.8 },
+  hidden: { y: 40, opacity: 0, scale: 0.9 },
   visible: {
     y: 0,
     opacity: 1,
@@ -31,7 +31,7 @@ const itemVariants = {
 };
 
 const floatingVariants = {
-  hidden: { y: 30, opacity: 0 },
+  hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -42,11 +42,11 @@ const floatingVariants = {
   },
 };
 
-// Componente de Partículas Flutuantes Premium
+// Componente de Partículas Flutuantes Premium Otimizado
 const FloatingElements = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(20)].map((_, i) => (
+      {[...Array(15)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute"
@@ -55,15 +55,15 @@ const FloatingElements = () => {
             top: `${Math.random() * 100}%`,
           }}
           animate={{
-            y: [-20, -80, -20],
-            x: [-15, 15, -15],
-            opacity: [0.1, 0.8, 0.1],
-            scale: [0.8, 1.4, 0.8],
+            y: [-15, -60, -15],
+            x: [-10, 10, -10],
+            opacity: [0.1, 0.6, 0.1],
+            scale: [0.8, 1.2, 0.8],
           }}
           transition={{
-            duration: 5 + Math.random() * 4,
+            duration: 4 + Math.random() * 2,
             repeat: Infinity,
-            delay: Math.random() * 5,
+            delay: Math.random() * 3,
             ease: "easeInOut",
           }}
         >
@@ -81,7 +81,7 @@ export default function SolutionSection() {
   return (
     <motion.section
       id="solution"
-      className="relative py-20 lg:py-32 overflow-hidden"
+      className="relative py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
@@ -102,28 +102,28 @@ export default function SolutionSection() {
         
         {/* Nebulosa Premium */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-1/4 right-1/3 w-[600px] h-[400px] bg-gradient-to-l from-[#D4AF37]/15 via-[#D4AF37]/5 to-transparent rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[300px] bg-gradient-to-r from-slate-400/10 via-slate-500/5 to-transparent rounded-full blur-2xl" />
+          <div className="absolute top-1/4 right-1/3 w-[400px] sm:w-[500px] md:w-[600px] h-[250px] sm:h-[300px] md:h-[400px] bg-gradient-to-l from-[#D4AF37]/15 via-[#D4AF37]/5 to-transparent rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 left-1/3 w-[300px] sm:w-[400px] md:w-[500px] h-[200px] sm:h-[250px] md:h-[300px] bg-gradient-to-r from-slate-400/10 via-slate-500/5 to-transparent rounded-full blur-2xl" />
         </div>
         
         {/* Partículas Flutuantes */}
         <FloatingElements />
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-6xl mx-auto">
           
           {/* Mockup Premium do Produto - Lado Esquerdo */}
           <motion.div 
-            className="relative order-2 lg:order-1"
+            className="relative order-2 lg:order-1 max-w-xs sm:max-w-md md:max-w-lg mx-auto lg:mx-0"
             variants={itemVariants}
           >
             {/* Container Principal da Imagem com Glassmorphism */}
             <motion.div 
-              className="relative bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl rounded-3xl p-6 lg:p-8 shadow-2xl border border-white/20 overflow-hidden"
+              className="relative bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20 overflow-hidden"
               whileHover={{ 
                 scale: 1.02,
-                rotateY: 2,
+                rotateY: 1,
                 boxShadow: "0 25px 50px rgba(212, 175, 55, 0.3)"
               }}
               transition={{ duration: 0.4 }}
@@ -138,7 +138,7 @@ export default function SolutionSection() {
               {/* Container da Imagem Principal */}
               <div className="relative">
                 <motion.div
-                  className="relative rounded-2xl overflow-hidden shadow-2xl"
+                  className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.01, y: -2 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -153,19 +153,19 @@ export default function SolutionSection() {
                   />
                   
                   {/* Overlay Sutil para Integração Visual */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent rounded-xl sm:rounded-2xl" />
                 </motion.div>
               </div>
 
               {/* Status Badge Flutuante */}
               <motion.div 
-                className="absolute -top-6 -right-6 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-[#0A192F] px-6 py-3 rounded-full font-bold text-sm shadow-2xl border-2 border-white/20 z-10"
+                className="absolute -top-3 sm:-top-4 md:-top-6 -right-3 sm:-right-4 md:-right-6 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-[#0A192F] px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full font-bold text-xs sm:text-sm shadow-2xl border-2 border-white/20 z-10"
                 variants={floatingVariants}
-                animate={{ y: [-3, 3, -3] }}
+                animate={{ y: [-2, 2, -2] }}
                 transition={{ duration: 4, repeat: Infinity }}
               >
-                <div className="flex items-center gap-2">
-                  <Award className="w-4 h-4" />
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <Award className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>Acesso Vitalício</span>
                 </div>
               </motion.div>
@@ -174,31 +174,31 @@ export default function SolutionSection() {
 
           {/* Conteúdo da Solução Premium - Lado Direito */}
           <motion.div 
-            className="space-y-10 order-1 lg:order-2"
+            className="space-y-6 sm:space-y-8 md:space-y-10 order-1 lg:order-2"
             variants={containerVariants}
           >
             {/* Badge de Apresentação Premium */}
             <motion.div
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-[#D4AF37]/20 via-[#D4AF37]/10 to-[#D4AF37]/20 backdrop-blur-xl border border-[#D4AF37]/40 px-6 py-4 rounded-full shadow-lg"
+              className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-[#D4AF37]/20 via-[#D4AF37]/10 to-[#D4AF37]/20 backdrop-blur-xl border border-[#D4AF37]/40 px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 rounded-full shadow-lg"
               variants={itemVariants}
               whileHover={{ scale: 1.05, y: -2 }}
             >
               <motion.div
-                className="w-3 h-3 bg-[#D4AF37] rounded-full"
+                className="w-2 h-2 sm:w-3 sm:h-3 bg-[#D4AF37] rounded-full"
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <Brain className="w-5 h-5 text-[#D4AF37]" />
-              <span className="text-[#D4AF37] font-bold text-sm uppercase tracking-[0.15em]">
+              <Brain className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
+              <span className="text-[#D4AF37] font-bold text-xs sm:text-sm md:text-base uppercase tracking-[0.1em] sm:tracking-[0.15em]">
                 A Solução Inteligente
               </span>
-              <TrendingUp className="w-5 h-5 text-[#D4AF37]" />
+              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
             </motion.div>
 
             {/* Headline da Solução com Shimmer */}
-            <motion.div className="space-y-4" variants={itemVariants}>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-black leading-[0.9] tracking-tight text-[#0A192F]">
-                <span className="block text-gray-600 text-2xl md:text-3xl lg:text-4xl font-normal mb-4">
+            <motion.div className="space-y-3 sm:space-y-4" variants={itemVariants}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-black leading-[0.9] sm:leading-[0.85] tracking-tight text-[#0A192F]">
+                <span className="block text-gray-600 text-base sm:text-lg md:text-xl lg:text-2xl font-normal mb-2 sm:mb-3 md:mb-4">
                   Apresentando: O
                 </span>
                 <motion.span 
@@ -214,20 +214,20 @@ export default function SolutionSection() {
                 >
                   Fundamentos do Google Ads
                 </motion.span>
-                <span className="block text-gray-700 text-3xl md:text-4xl lg:text-5xl font-light mt-2">
+                <span className="block text-gray-700 text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mt-1 sm:mt-2">
                   para E-commerce
                 </span>
               </h2>
             </motion.div>
 
             {/* Texto de Posicionamento Premium */}
-            <motion.div className="space-y-8" variants={itemVariants}>
-              <p className="text-xl lg:text-2xl text-gray-700 leading-relaxed font-light">
+            <motion.div className="space-y-4 sm:space-y-6 md:space-y-8" variants={itemVariants}>
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed font-light">
                 Não é mais um "cursinho" genérico. É um{" "}
                 <span className="font-bold text-[#0A192F] relative">
                   Kit de Inteligência Estratégica
                   <motion.div
-                    className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent"
+                    className="absolute -bottom-0.5 sm:-bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ delay: 1.5, duration: 1 }}
@@ -240,30 +240,30 @@ export default function SolutionSection() {
               
               {/* Comparação Premium */}
               <motion.div 
-                className="bg-gradient-to-br from-gray-50 via-white to-gray-50 backdrop-blur-xl rounded-3xl p-8 border border-gray-200/50 shadow-lg"
+                className="bg-gradient-to-br from-gray-50 via-white to-gray-50 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-gray-200/50 shadow-lg"
                 variants={itemVariants}
                 whileHover={{ scale: 1.02, y: -2 }}
               >
-                <h4 className="font-bold text-[#0A192F] mb-6 text-lg flex items-center gap-3">
-                  <Target className="w-5 h-5 text-[#D4AF37]" />
+                <h4 className="font-bold text-[#0A192F] mb-4 sm:mb-6 text-base sm:text-lg flex items-center gap-2 sm:gap-3">
+                  <Target className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
                   A diferença crucial:
                 </h4>
-                <div className="grid gap-4">
+                <div className="grid gap-3 sm:gap-4">
                   <motion.div 
-                    className="flex gap-4 p-4 rounded-xl bg-red-50/50 border border-red-100"
+                    className="flex gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-red-50/50 border border-red-100"
                     whileHover={{ x: 5 }}
                   >
-                    <span className="text-red-500 font-bold text-xl">❌</span>
-                    <span className="text-gray-700">
+                    <span className="text-red-500 font-bold text-lg sm:text-xl">❌</span>
+                    <span className="text-gray-700 text-sm sm:text-base">
                       <strong className="text-red-600">Cursos tradicionais:</strong> Teoria sem fim, sem aplicação prática
                     </span>
                   </motion.div>
                   <motion.div 
-                    className="flex gap-4 p-4 rounded-xl bg-green-50/50 border border-green-100"
+                    className="flex gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-green-50/50 border border-green-100"
                     whileHover={{ x: 5 }}
                   >
-                    <span className="text-green-500 font-bold text-xl">✅</span>
-                    <span className="text-gray-700">
+                    <span className="text-green-500 font-bold text-lg sm:text-xl">✅</span>
+                    <span className="text-gray-700 text-sm sm:text-base">
                       <strong className="text-green-600">Kit de Inteligência:</strong> Sistema step-by-step para resultados imediatos
                     </span>
                   </motion.div>
@@ -280,7 +280,7 @@ export default function SolutionSection() {
               >
                 <Button 
                   size="lg" 
-                  className="relative overflow-hidden text-xl px-12 py-8 h-auto bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-bold shadow-2xl shadow-[#D4AF37]/40 border-2 border-[#D4AF37]/30 rounded-2xl transition-all duration-500 backdrop-blur-sm"
+                  className="relative overflow-hidden w-full sm:w-auto text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-6 h-auto bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-bold shadow-2xl shadow-[#D4AF37]/40 border-2 border-[#D4AF37]/30 rounded-xl sm:rounded-2xl transition-all duration-500 backdrop-blur-sm"
                 >
                   {/* Efeito de Brilho */}
                   <motion.div
@@ -296,10 +296,14 @@ export default function SolutionSection() {
                     }}
                   />
                   
-                  <span className="relative flex items-center gap-4 z-10">
-                    <CreditCard className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-                    <span className="tracking-wide">Quero Começar a Anunciar com Inteligência por R$ 47</span>
-                    <TrendingUp className="w-5 h-5 text-[#0A192F] group-hover:text-[#0A192F] transition-colors duration-300" />
+                  <span className="relative flex items-center justify-center gap-2 sm:gap-3 md:gap-4 z-10">
+                    <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:rotate-12 transition-transform duration-300" />
+                    <span className="tracking-wide text-center">
+                      <span className="hidden sm:inline">Quero Começar a Anunciar com Inteligência por </span>
+                      <span className="sm:hidden">Começar Agora por </span>
+                      R$ 47
+                    </span>
+                    <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A192F] group-hover:text-[#0A192F] transition-colors duration-300" />
                   </span>
                 </Button>
               </motion.div>
@@ -307,7 +311,7 @@ export default function SolutionSection() {
 
             {/* Trust Indicators Premium */}
             <motion.div 
-              className="grid grid-cols-2 gap-4 pt-6"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-4 sm:pt-6"
               variants={containerVariants}
             >
               {[
@@ -318,11 +322,11 @@ export default function SolutionSection() {
               ].map((item, index) => (
                 <motion.div 
                   key={index}
-                  className="flex items-center gap-3 bg-gradient-to-r from-white/60 to-white/40 backdrop-blur-xl px-4 py-3 rounded-xl border border-white/30 shadow-lg text-sm text-gray-700 font-medium"
+                  className="flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-white/60 to-white/40 backdrop-blur-xl px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-white/30 shadow-lg text-xs sm:text-sm text-gray-700 font-medium"
                   variants={itemVariants}
                   whileHover={{ scale: 1.03, y: -2 }}
                 >
-                  <item.icon className="h-4 w-4 text-[#D4AF37] flex-shrink-0" />
+                  <item.icon className="h-3 w-3 sm:h-4 sm:w-4 text-[#D4AF37] flex-shrink-0" />
                   <span className="whitespace-nowrap">{item.text}</span>
                 </motion.div>
               ))}

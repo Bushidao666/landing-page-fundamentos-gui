@@ -30,25 +30,24 @@ const itemVariants = {
 };
 
 const priceRevealVariants = {
-  hidden: { scale: 0, opacity: 0, rotateY: -90 },
+  hidden: { scale: 0.8, opacity: 0, y: 50 },
   visible: {
     scale: 1,
     opacity: 1,
-    rotateY: 0,
+    y: 0,
     transition: {
-      duration: 1.2,
+      duration: 1,
       delay: 1.5,
-      type: "spring" as const,
-      bounce: 0.4,
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 };
 
-// Componente de Partículas de Celebração
+// Componente de Partículas de Celebração - OTIMIZADO
 const CelebrationElements = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(30)].map((_, i) => (
+      {[...Array(15)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute"
@@ -72,8 +71,8 @@ const CelebrationElements = () => {
           <div className="w-1 h-1 bg-[#D4AF37] rounded-full shadow-lg shadow-[#D4AF37]/70" />
         </motion.div>
       ))}
-      {/* Confetti dourado */}
-      {[...Array(15)].map((_, i) => (
+      {/* Confetti dourado - OTIMIZADO */}
+      {[...Array(10)].map((_, i) => (
         <motion.div
           key={`confetti-${i}`}
           className="absolute"
@@ -179,7 +178,7 @@ export default function PriceAnchoringSection() {
   return (
     <motion.section
       id="price-anchoring"
-      className="relative py-20 lg:py-32 overflow-hidden"
+      className="relative py-16 sm:py-20 lg:py-28 xl:py-32 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
@@ -214,25 +213,25 @@ export default function PriceAnchoringSection() {
         <CelebrationElements />
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 lg:px-8">
-        {/* Header da Seção */}
-        <motion.div className="text-center max-w-6xl mx-auto mb-20" variants={itemVariants}>
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header da Seção - OTIMIZADO */}
+        <motion.div className="text-center max-w-5xl mx-auto mb-12 sm:mb-16 lg:mb-20" variants={itemVariants}>
           {/* Badge Premium */}
           <motion.div
-            className="inline-flex items-center gap-4 bg-gradient-to-r from-[#D4AF37]/30 via-[#FFD700]/20 to-[#D4AF37]/30 backdrop-blur-2xl border border-[#D4AF37]/50 px-8 py-4 rounded-full shadow-2xl mb-12"
+            className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-[#D4AF37]/30 via-[#FFD700]/20 to-[#D4AF37]/30 backdrop-blur-2xl border border-[#D4AF37]/50 px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-2xl mb-6 sm:mb-8 lg:mb-12"
             variants={itemVariants}
             whileHover={{ scale: 1.05, y: -2 }}
           >
-            <Calculator className="w-6 h-6 text-[#D4AF37]" />
-            <span className="text-[#D4AF37] font-bold text-base uppercase tracking-[0.2em]">
+            <Calculator className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
+            <span className="text-[#D4AF37] font-bold text-xs sm:text-sm uppercase tracking-[0.1em] sm:tracking-[0.2em]">
               Resumo da Oferta
             </span>
-            <Gift className="w-6 h-6 text-[#D4AF37]" />
+            <Gift className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline - OTIMIZADA */}
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-serif font-black leading-[0.9] tracking-tight text-white mb-8"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-serif font-black leading-[1] sm:leading-[0.9] tracking-tight text-white mb-6 sm:mb-8"
             variants={itemVariants}
           >
             Recapitulando{" "}
@@ -253,10 +252,10 @@ export default function PriceAnchoringSection() {
           </motion.h2>
         </motion.div>
 
-        {/* Breakdown de Valores */}
-        <motion.div className="max-w-5xl mx-auto mb-16" variants={itemVariants}>
-          <div className="bg-gradient-to-br from-white via-gray-50 to-white backdrop-blur-xl rounded-3xl p-8 lg:p-12 border border-gray-200/50 shadow-2xl">
-            <div className="space-y-6">
+        {/* Breakdown de Valores - OTIMIZADO */}
+        <motion.div className="max-w-4xl mx-auto mb-12 sm:mb-16 lg:mb-20" variants={itemVariants}>
+          <div className="bg-gradient-to-br from-white/95 via-gray-50/95 to-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 xl:p-12 border border-gray-200/50 shadow-2xl">
+            <div className="space-y-3 sm:space-y-4 lg:space-y-6">
               {valueBreakdown.map((item, index) => (
                 <motion.div
                   key={index}
@@ -264,23 +263,23 @@ export default function PriceAnchoringSection() {
                   initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.8 + index * 0.2, duration: 0.8 }}
-                  whileHover={{ x: 5, scale: 1.01 }}
+                  whileHover={{ x: 3, scale: 1.01 }}
                 >
-                  <div className="flex items-center justify-between p-6 lg:p-8 rounded-2xl bg-gradient-to-r from-white to-gray-50 border border-gray-200/50 hover:border-[#D4AF37]/30 transition-all duration-300 group-hover:shadow-lg">
-                    {/* Conteúdo do Item */}
-                    <div className="flex items-center gap-6 flex-1">
-                      {/* Ícone */}
-                      <div className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                        <item.icon className="w-8 h-8 text-white" />
+                  <div className="flex items-center justify-between p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-r from-white to-gray-50 border border-gray-200/50 hover:border-[#D4AF37]/30 transition-all duration-300 group-hover:shadow-lg">
+                    {/* Conteúdo do Item - OTIMIZADO */}
+                    <div className="flex items-center gap-3 sm:gap-4 lg:gap-6 flex-1">
+                      {/* Ícone - OTIMIZADO */}
+                      <div className={`w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-br ${item.color} rounded-lg sm:rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
+                        <item.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
                       </div>
                       
-                      {/* Informações */}
+                      {/* Informações - OTIMIZADAS */}
                       <div className="flex-1">
-                        <h3 className="text-xl lg:text-2xl font-bold text-[#0A192F] mb-2 group-hover:text-[#D4AF37] transition-colors duration-300">
+                        <h3 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-[#0A192F] mb-1 sm:mb-2 group-hover:text-[#D4AF37] transition-colors duration-300">
                           {item.name}
                           {item.highlight && (
                             <motion.span 
-                              className="ml-3 px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] text-sm font-bold uppercase rounded-full"
+                              className="ml-2 sm:ml-3 px-2 sm:px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] text-xs sm:text-sm font-bold uppercase rounded-full"
                               animate={{ scale: [1, 1.05, 1] }}
                               transition={{ duration: 2, repeat: Infinity }}
                             >
@@ -288,24 +287,24 @@ export default function PriceAnchoringSection() {
                             </motion.span>
                           )}
                         </h3>
-                        <p className="text-gray-700 text-lg">{item.description}</p>
+                        <p className="text-gray-600 text-sm sm:text-base">{item.description}</p>
                       </div>
                     </div>
 
-                    {/* Valor */}
-                    <div className="text-right">
-                      <div className="text-3xl lg:text-4xl font-black text-[#D4AF37]">
+                    {/* Valor - OTIMIZADO */}
+                    <div className="text-right ml-2 sm:ml-4">
+                      <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-black text-[#D4AF37]">
                         R$ <AnimatedPrice target={item.value} delay={1000 + index * 300} />
                       </div>
-                      <div className="text-gray-600 text-sm uppercase tracking-wide font-medium">Valor</div>
+                      <div className="text-gray-500 text-xs sm:text-sm uppercase tracking-wide font-medium">Valor</div>
                     </div>
                   </div>
                 </motion.div>
               ))}
 
-              {/* Separador Dramático */}
+              {/* Separador Dramático - OTIMIZADO */}
               <motion.div 
-                className="relative py-8"
+                className="relative py-4 sm:py-6 lg:py-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2.5 }}
@@ -314,29 +313,29 @@ export default function PriceAnchoringSection() {
                   <div className="w-full h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
                 </div>
                 <div className="relative flex justify-center">
-                  <div className="bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-[#0A192F] px-6 py-3 rounded-full font-bold text-lg shadow-lg">
-                    <Award className="w-5 h-5 inline mr-2" />
+                  <div className="bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-[#0A192F] px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg">
+                    <Award className="w-4 h-4 sm:w-5 sm:h-5 inline mr-2" />
                     VALOR TOTAL
                   </div>
                 </div>
               </motion.div>
 
-              {/* Valor Total Dramático */}
+              {/* Valor Total Dramático - OTIMIZADO */}
               <motion.div
-                className="text-center py-8"
+                className="text-center py-4 sm:py-6 lg:py-8"
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 3, duration: 1, type: "spring", bounce: 0.5 }}
               >
-                <div className="inline-flex items-center gap-4 bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] rounded-3xl px-12 py-8 shadow-2xl border-4 border-white/30">
-                  <span className="text-5xl md:text-6xl lg:text-7xl font-black text-[#0A192F]">
+                <div className="inline-flex items-center gap-3 sm:gap-4 bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] rounded-2xl sm:rounded-3xl px-6 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 shadow-2xl border-2 sm:border-4 border-white/30">
+                  <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#0A192F]">
                     R$ <AnimatedPrice target={totalValue} delay={3500} />
                   </span>
                   <motion.div
                     animate={{ rotate: [0, 15, -15, 0] }}
                     transition={{ duration: 2, repeat: Infinity, repeatDelay: 2 }}
                   >
-                    <Sparkles className="w-12 h-12 text-[#0A192F]" />
+                    <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#0A192F]" />
                   </motion.div>
                 </div>
               </motion.div>
@@ -344,10 +343,10 @@ export default function PriceAnchoringSection() {
           </div>
         </motion.div>
 
-        {/* Revelação do Preço Real */}
-        <motion.div className="max-w-4xl mx-auto text-center mb-16" variants={itemVariants}>
+        {/* Revelação do Preço Real - OTIMIZADO */}
+        <motion.div className="max-w-4xl mx-auto text-center mb-12 sm:mb-16" variants={itemVariants}>
           <motion.h3
-            className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-12"
+            className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-white mb-8 sm:mb-10 lg:mb-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 4 }}
@@ -355,46 +354,46 @@ export default function PriceAnchoringSection() {
             Seu Investimento Hoje para Ter Toda essa Estrutura:
           </motion.h3>
 
-          {/* Container da Revelação do Preço */}
+          {/* Container da Revelação do Preço - OTIMIZADO */}
           <AnimatePresence>
             {priceRevealed && (
               <motion.div
-                className="space-y-8"
+                className="space-y-6 sm:space-y-8"
                 variants={priceRevealVariants}
                 initial="hidden"
                 animate="visible"
               >
-                {/* Opções de Pagamento */}
-                <div className="flex justify-center gap-4 mb-8">
+                {/* Opções de Pagamento - OTIMIZADO */}
+                <div className="flex justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
                   <motion.button
-                    className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                    className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base ${
                       paymentOption === 'installments' 
-                        ? 'bg-[#D4AF37] text-[#0A192F]' 
-                        : 'bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30'
+                        ? 'bg-[#D4AF37] text-[#0A192F] shadow-lg shadow-[#D4AF37]/30' 
+                        : 'bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white/20'
                     }`}
                     onClick={() => setPaymentOption('installments')}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Calendar className="w-5 h-5 inline mr-2" />
+                    <Calendar className="w-4 h-4 sm:w-5 sm:h-5 inline mr-2" />
                     Parcelado
                   </motion.button>
                   <motion.button
-                    className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                    className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base ${
                       paymentOption === 'cash' 
-                        ? 'bg-[#D4AF37] text-[#0A192F]' 
-                        : 'bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30'
+                        ? 'bg-[#D4AF37] text-[#0A192F] shadow-lg shadow-[#D4AF37]/30' 
+                        : 'bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white/20'
                     }`}
                     onClick={() => setPaymentOption('cash')}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <DollarSign className="w-5 h-5 inline mr-2" />
+                    <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 inline mr-2" />
                     À Vista
                   </motion.button>
                 </div>
 
-                {/* Preço Principal */}
+                {/* Preço Principal - OTIMIZADO */}
                 <motion.div
                   className="relative"
                   animate={{ 
@@ -408,29 +407,29 @@ export default function PriceAnchoringSection() {
                   }}
                 >
                   {paymentOption === 'installments' ? (
-                    <div className="space-y-4">
-                      <h4 className="text-6xl md:text-7xl lg:text-8xl font-black text-[#D4AF37]">
+                    <div className="space-y-2 sm:space-y-3">
+                      <h4 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-[#D4AF37] leading-tight">
                         Apenas 12x de R$ 4,70
                       </h4>
-                      <p className="text-2xl text-gray-300">
+                      <p className="text-lg sm:text-xl lg:text-2xl text-gray-300">
                         ou <span className="font-bold text-white">R$ 47,00 à vista</span>
                       </p>
                     </div>
                   ) : (
-                    <div className="space-y-4">
-                      <h4 className="text-6xl md:text-7xl lg:text-8xl font-black text-[#D4AF37]">
+                    <div className="space-y-2 sm:space-y-3">
+                      <h4 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-[#D4AF37] leading-tight">
                         R$ 47,00 à vista
                       </h4>
-                      <p className="text-2xl text-gray-300">
+                      <p className="text-lg sm:text-xl lg:text-2xl text-gray-300">
                         ou <span className="font-bold text-white">12x de R$ 4,70</span>
                       </p>
                     </div>
                   )}
                 </motion.div>
 
-                {/* Texto de Comparação */}
+                {/* Texto de Comparação - OTIMIZADO */}
                 <motion.p
-                  className="text-2xl lg:text-3xl text-gray-300 leading-relaxed font-light max-w-3xl mx-auto"
+                  className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed font-light max-w-3xl mx-auto"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5 }}
@@ -447,21 +446,21 @@ export default function PriceAnchoringSection() {
                   </span>.
                 </motion.p>
 
-                {/* CTA Button Premium */}
+                {/* CTA Button Premium - OTIMIZADO */}
                 <motion.div
-                  className="pt-12"
+                  className="pt-8 sm:pt-10 lg:pt-12"
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 1 }}
                 >
                   <motion.div
-                    whileHover={{ scale: 1.05, y: -3 }}
+                    whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     className="group"
                   >
                     <Button 
                       size="lg" 
-                      className="relative overflow-hidden text-2xl px-16 py-10 h-auto bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-black shadow-2xl shadow-[#D4AF37]/50 border-4 border-[#D4AF37]/30 rounded-3xl transition-all duration-500 backdrop-blur-sm"
+                      className="relative overflow-hidden text-base sm:text-lg lg:text-xl xl:text-2xl px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 xl:py-8 h-auto bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-black shadow-2xl shadow-[#D4AF37]/50 border-2 sm:border-4 border-[#D4AF37]/30 rounded-2xl sm:rounded-3xl transition-all duration-500 backdrop-blur-sm"
                     >
                       {/* Efeito de Brilho */}
                       <motion.div
@@ -477,32 +476,32 @@ export default function PriceAnchoringSection() {
                         }}
                       />
                       
-                      <span className="relative flex items-center gap-4 z-10">
-                        <ShoppingCart className="w-8 h-8 group-hover:rotate-12 transition-transform duration-300" />
-                        <span className="tracking-wide">QUERO O KIT COMPLETO POR APENAS R$ 47!</span>
-                        <TrendingUp className="w-7 h-7 text-[#0A192F] group-hover:text-[#0A192F] transition-colors duration-300" />
+                      <span className="relative flex items-center gap-2 sm:gap-3 lg:gap-4 z-10">
+                        <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 group-hover:rotate-12 transition-transform duration-300" />
+                        <span className="tracking-wide text-center">QUERO O KIT COMPLETO POR APENAS R$ 47!</span>
+                        <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-[#0A192F] group-hover:text-[#0A192F] transition-colors duration-300" />
                       </span>
                     </Button>
                   </motion.div>
                 </motion.div>
 
-                {/* Indicações de Segurança */}
+                {/* Indicações de Segurança - OTIMIZADO */}
                 <motion.div 
-                  className="flex flex-wrap items-center justify-center gap-6 pt-8 text-gray-300"
+                  className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 pt-6 sm:pt-8 text-gray-400"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.5 }}
                 >
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-500" />
+                  <div className="flex items-center gap-2 text-sm sm:text-base">
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
                     <span>Pagamento Seguro</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-500" />
+                  <div className="flex items-center gap-2 text-sm sm:text-base">
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
                     <span>Acesso Imediato</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-500" />
+                  <div className="flex items-center gap-2 text-sm sm:text-base">
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
                     <span>Garantia 7 Dias</span>
                   </div>
                 </motion.div>

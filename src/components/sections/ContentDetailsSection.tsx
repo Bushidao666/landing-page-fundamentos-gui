@@ -16,7 +16,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { y: 60, opacity: 0, scale: 0.8 },
+  hidden: { y: 40, opacity: 0, scale: 0.9 },
   visible: {
     y: 0,
     opacity: 1,
@@ -29,7 +29,7 @@ const itemVariants = {
 };
 
 const accordionVariants = {
-  hidden: { x: -50, y: 30, opacity: 0, rotateY: -10 },
+  hidden: { x: -30, y: 20, opacity: 0, rotateY: -5 },
   visible: (index: number) => ({
     x: 0,
     y: 0,
@@ -37,17 +37,17 @@ const accordionVariants = {
     rotateY: 0,
     transition: {
       duration: 0.8,
-      delay: index * 0.2,
+      delay: index * 0.15,
       ease: [0.25, 0.46, 0.45, 0.94] as const,
     },
   }),
 };
 
-// Componente de Partículas Flutuantes Premium
+// Componente de Partículas Flutuantes Premium Otimizado
 const FloatingElements = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(25)].map((_, i) => (
+      {[...Array(15)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute"
@@ -56,15 +56,15 @@ const FloatingElements = () => {
             top: `${Math.random() * 100}%`,
           }}
           animate={{
-            y: [-30, -100, -30],
-            x: [-20, 20, -20],
-            opacity: [0.1, 0.7, 0.1],
-            scale: [0.6, 1.2, 0.6],
+            y: [-15, -60, -15],
+            x: [-10, 10, -10],
+            opacity: [0.1, 0.5, 0.1],
+            scale: [0.6, 1.1, 0.6],
           }}
           transition={{
-            duration: 6 + Math.random() * 4,
+            duration: 4 + Math.random() * 2,
             repeat: Infinity,
-            delay: Math.random() * 6,
+            delay: Math.random() * 3,
             ease: "easeInOut",
           }}
         >
@@ -157,7 +157,7 @@ export default function ContentDetailsSection() {
   return (
     <motion.section
       id="content-details"
-      className="relative py-20 lg:py-32 overflow-hidden"
+      className="relative py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
@@ -182,36 +182,36 @@ export default function ContentDetailsSection() {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#D4AF37_1px,transparent_1px),linear-gradient(to_bottom,#D4AF37_1px,transparent_1px)] bg-[size:80px_80px]" />
         </div>
         
-        {/* Nebulosa Interativa */}
+        {/* Nebulosa Interativa Responsiva */}
         <div className="absolute inset-0 opacity-25">
-          <div className="absolute top-1/3 left-1/4 w-[700px] h-[500px] bg-gradient-to-r from-[#D4AF37]/20 via-[#D4AF37]/8 to-transparent rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/3 right-1/4 w-[600px] h-[400px] bg-gradient-to-l from-slate-400/15 via-slate-500/8 to-transparent rounded-full blur-2xl" />
+          <div className="absolute top-1/3 left-1/4 w-[400px] sm:w-[500px] md:w-[600px] lg:w-[700px] h-[300px] sm:h-[400px] md:h-[500px] bg-gradient-to-r from-[#D4AF37]/20 via-[#D4AF37]/8 to-transparent rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/3 right-1/4 w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[200px] sm:h-[300px] md:h-[400px] bg-gradient-to-l from-slate-400/15 via-slate-500/8 to-transparent rounded-full blur-2xl" />
         </div>
         
         {/* Partículas Flutuantes */}
         <FloatingElements />
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 lg:px-8">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8">
         {/* Header Cinematográfico */}
-        <motion.div className="text-center max-w-6xl mx-auto mb-20" variants={itemVariants}>
+        <motion.div className="text-center max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl mx-auto mb-12 sm:mb-16 md:mb-20" variants={itemVariants}>
           {/* Badge Premium */}
           <motion.div
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-[#D4AF37]/30 via-[#D4AF37]/20 to-[#D4AF37]/30 backdrop-blur-2xl border border-[#D4AF37]/50 px-8 py-4 rounded-full shadow-2xl mb-12"
+            className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-[#D4AF37]/30 via-[#D4AF37]/20 to-[#D4AF37]/30 backdrop-blur-2xl border border-[#D4AF37]/50 px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full shadow-2xl mb-6 sm:mb-8 md:mb-12"
             variants={itemVariants}
             whileHover={{ scale: 1.05, y: -2 }}
           >
-            <Brain className="w-5 h-5 text-[#D4AF37]" />
-            <span className="text-[#D4AF37] font-bold text-sm uppercase tracking-[0.2em]">
+            <Brain className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
+            <span className="text-[#D4AF37] font-bold text-xs sm:text-sm md:text-base uppercase tracking-[0.15em] sm:tracking-[0.2em]">
               Conteúdo Exclusivo
             </span>
-            <Award className="w-5 h-5 text-[#D4AF37]" />
+            <Award className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
           </motion.div>
 
           {/* Headline Épica */}
-          <motion.div className="space-y-6 mb-12" variants={itemVariants}>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-black leading-[0.85] tracking-tight text-white">
-              <span className="block text-gray-300 text-2xl md:text-3xl lg:text-4xl font-normal mb-4">
+          <motion.div className="space-y-4 sm:space-y-6 mb-8 sm:mb-10 md:mb-12" variants={itemVariants}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-black leading-[0.9] sm:leading-[0.85] tracking-tight text-white">
+              <span className="block text-gray-300 text-base sm:text-lg md:text-xl lg:text-2xl font-normal mb-2 sm:mb-3 md:mb-4">
                 O Que Você Vai Dominar
               </span>
               <motion.span 
@@ -227,7 +227,7 @@ export default function ContentDetailsSection() {
               >
                 Módulo a Módulo
               </motion.span>
-              <span className="block text-gray-200 text-3xl md:text-4xl lg:text-5xl font-light mt-4">
+              <span className="block text-gray-200 text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mt-2 sm:mt-3 md:mt-4">
                 O Alicerce do Seu Lucro
               </span>
             </h2>
@@ -235,14 +235,14 @@ export default function ContentDetailsSection() {
 
           {/* Descrição Premium */}
           <motion.p
-            className="text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto font-light"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto font-light"
             variants={itemVariants}
           >
             Aqui não tem teoria vaga. É o{" "}
             <span className="text-[#D4AF37] font-semibold relative">
               mapa prático
               <motion.div
-                className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent"
+                className="absolute -bottom-0.5 sm:-bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 2, duration: 1 }}
@@ -254,8 +254,8 @@ export default function ContentDetailsSection() {
         </motion.div>
 
         {/* Accordion Premium dos Módulos */}
-        <div className="max-w-6xl mx-auto">
-          <div className="space-y-8">
+        <div className="max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl mx-auto">
+          <div className="space-y-6 sm:space-y-8 md:space-y-10">
             {modules.map((module, index) => (
               <motion.div
                 key={module.id}
@@ -272,51 +272,52 @@ export default function ContentDetailsSection() {
                   transition={{ duration: 0.3 }}
                 >
                   {/* Container Glassmorphism */}
-                  <div className="relative bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
+                  <div className="relative bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-2xl border border-white/20 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
                     
                     {/* Header do Módulo - Sempre Visível */}
                     <motion.div
-                      className="relative p-8 lg:p-10 cursor-pointer"
+                      className="relative p-4 sm:p-6 md:p-8 cursor-pointer touch-manipulation"
                       onClick={() => toggleModule(module.id)}
                       whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.05)" }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       {/* Background Pattern do Módulo */}
                       <div className={`absolute inset-0 bg-gradient-to-r ${module.bgColor} opacity-50`} />
                       
                       <div className="relative z-10 flex items-center justify-between">
-                        <div className="flex items-center gap-6 flex-1">
+                        <div className="flex items-center gap-3 sm:gap-4 md:gap-6 flex-1 min-w-0">
                           {/* Ícone Premium do Módulo */}
                           <motion.div 
-                            className={`w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br ${module.color} rounded-2xl flex items-center justify-center shadow-2xl`}
-                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br ${module.color} rounded-xl sm:rounded-2xl flex items-center justify-center shadow-2xl flex-shrink-0`}
+                            whileHover={{ scale: 1.1, rotate: 3 }}
                             transition={{ duration: 0.3 }}
                           >
-                            <module.icon className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
+                            <module.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                           </motion.div>
 
                           {/* Conteúdo do Header */}
-                          <div className="flex-1">
-                            <div className="flex items-center gap-3 mb-3">
-                              <span className="px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] text-xs font-bold uppercase tracking-wider rounded-full border border-[#D4AF37]/30">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                              <span className="px-2 sm:px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] text-xs font-bold uppercase tracking-wider rounded-full border border-[#D4AF37]/30 w-fit">
                                 Módulo {module.id}
                               </span>
                               {activeModule === module.id && (
                                 <motion.div
                                   initial={{ opacity: 0, scale: 0 }}
                                   animate={{ opacity: 1, scale: 1 }}
-                                  className="flex items-center gap-1"
+                                  className="flex items-center gap-1 w-fit"
                                 >
-                                  <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+                                  <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-[#D4AF37]" />
                                   <span className="text-[#D4AF37] text-xs font-medium">Expandido</span>
                                 </motion.div>
                               )}
                             </div>
                             
-                            <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2 group-hover:text-[#D4AF37] transition-colors duration-300">
+                            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 sm:mb-2 group-hover:text-[#D4AF37] transition-colors duration-300 leading-tight">
                               {module.title}
                             </h3>
                             
-                            <p className="text-lg text-gray-300 font-medium">
+                            <p className="text-sm sm:text-base md:text-lg text-gray-300 font-medium leading-relaxed">
                               {module.subtitle}
                             </p>
                           </div>
@@ -326,9 +327,9 @@ export default function ContentDetailsSection() {
                         <motion.div
                           animate={{ rotate: activeModule === module.id ? 180 : 0 }}
                           transition={{ duration: 0.3 }}
-                          className="ml-4"
+                          className="ml-2 sm:ml-4 flex-shrink-0"
                         >
-                          <ChevronDown className="w-6 h-6 text-[#D4AF37]" />
+                          <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37]" />
                         </motion.div>
                       </div>
                     </motion.div>
@@ -343,15 +344,15 @@ export default function ContentDetailsSection() {
                           transition={{ duration: 0.5, ease: "easeInOut" }}
                           className="overflow-hidden"
                         >
-                          <div className="px-8 lg:px-10 pb-8 lg:pb-10">
+                          <div className="px-4 sm:px-6 md:px-8 pb-4 sm:pb-6 md:pb-8">
                             {/* Separador Elegante */}
-                            <div className="w-full h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent mb-8" />
+                            <div className="w-full h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent mb-4 sm:mb-6 md:mb-8" />
                             
-                            <div className="grid lg:grid-cols-2 gap-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                               {/* Descrição Detalhada */}
-                              <div className="space-y-6">
+                              <div className="space-y-4 sm:space-y-6">
                                 <motion.p 
-                                  className="text-lg text-gray-300 leading-relaxed"
+                                  className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed"
                                   initial={{ y: 20, opacity: 0 }}
                                   animate={{ y: 0, opacity: 1 }}
                                   transition={{ delay: 0.2 }}
@@ -368,21 +369,21 @@ export default function ContentDetailsSection() {
                                   animate={{ y: 0, opacity: 1 }}
                                   transition={{ delay: 0.3 }}
                                 >
-                                  <h4 className="text-[#D4AF37] font-bold text-lg flex items-center gap-2">
-                                    <TrendingUp className="w-5 h-5" />
+                                  <h4 className="text-[#D4AF37] font-bold text-base sm:text-lg flex items-center gap-2">
+                                    <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
                                     Pontos-Chave:
                                   </h4>
                                   <div className="grid gap-2">
                                     {module.highlights.map((highlight, i) => (
                                       <motion.div 
                                         key={i}
-                                        className="flex items-center gap-3 text-gray-300"
+                                        className="flex items-center gap-2 sm:gap-3 text-gray-300"
                                         initial={{ x: -20, opacity: 0 }}
                                         animate={{ x: 0, opacity: 1 }}
                                         transition={{ delay: 0.4 + i * 0.1 }}
                                       >
-                                        <div className="w-2 h-2 bg-[#D4AF37] rounded-full" />
-                                        <span className="font-medium">{highlight}</span>
+                                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#D4AF37] rounded-full flex-shrink-0" />
+                                        <span className="font-medium text-xs sm:text-sm md:text-base">{highlight}</span>
                                       </motion.div>
                                     ))}
                                   </div>
@@ -396,23 +397,23 @@ export default function ContentDetailsSection() {
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.4 }}
                               >
-                                <h4 className="text-white font-bold text-lg flex items-center gap-2 mb-6">
-                                  <PlayCircle className="w-5 h-5 text-[#D4AF37]" />
+                                <h4 className="text-white font-bold text-base sm:text-lg flex items-center gap-2 mb-4 sm:mb-6">
+                                  <PlayCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
                                   O que você vai aprender:
                                 </h4>
                                 
-                                <div className="space-y-3">
+                                <div className="space-y-2 sm:space-y-3">
                                   {module.lessons.map((lesson, i) => (
                                     <motion.div 
                                       key={i}
-                                      className="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+                                      className="flex items-start gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group cursor-pointer"
                                       initial={{ x: 20, opacity: 0 }}
                                       animate={{ x: 0, opacity: 1 }}
                                       transition={{ delay: 0.5 + i * 0.1 }}
                                       whileHover={{ x: 5 }}
                                     >
-                                      <CheckCircle className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
-                                      <span className="text-gray-300 group-hover:text-white transition-colors duration-300">{lesson}</span>
+                                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37] flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
+                                      <span className="text-gray-300 group-hover:text-white transition-colors duration-300 text-xs sm:text-sm md:text-base">{lesson}</span>
                                     </motion.div>
                                   ))}
                                 </div>
@@ -426,13 +427,13 @@ export default function ContentDetailsSection() {
 
                   {/* Número do Módulo Flutuante */}
                   <motion.div
-                    className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-yellow-400 rounded-full flex items-center justify-center border-4 border-[#0A192F] shadow-2xl z-20"
+                    className="absolute -top-2 sm:-top-3 md:-top-4 -left-2 sm:-left-3 md:-left-4 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#D4AF37] to-yellow-400 rounded-full flex items-center justify-center border-2 sm:border-3 md:border-4 border-[#0A192F] shadow-2xl z-20"
                     whileHover={{ scale: 1.2 }}
                     style={{
-                      boxShadow: `0 0 30px rgba(212, 175, 55, 0.6)`,
+                      boxShadow: `0 0 20px rgba(212, 175, 55, 0.6)`,
                     }}
                   >
-                    <span className="text-[#0A192F] font-bold text-lg">{module.id}</span>
+                    <span className="text-[#0A192F] font-bold text-sm sm:text-base md:text-lg">{module.id}</span>
                   </motion.div>
                 </motion.div>
               </motion.div>
@@ -442,26 +443,26 @@ export default function ContentDetailsSection() {
 
         {/* Call to Action Final */}
         <motion.div 
-          className="text-center mt-20"
+          className="text-center mt-12 sm:mt-16 md:mt-20"
           variants={itemVariants}
           whileInView="visible"
           viewport={{ once: true }}
         >
           <motion.div 
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-[#D4AF37]/20 via-[#D4AF37]/10 to-[#D4AF37]/20 backdrop-blur-xl rounded-2xl p-8 border border-[#D4AF37]/40 shadow-2xl"
+            className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-3 bg-gradient-to-r from-[#D4AF37]/20 via-[#D4AF37]/10 to-[#D4AF37]/20 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-[#D4AF37]/40 shadow-2xl max-w-xs sm:max-w-2xl md:max-w-4xl mx-auto"
             whileHover={{ scale: 1.02, y: -5 }}
           >
-            <Zap className="w-8 h-8 text-[#D4AF37]" />
+            <Zap className="w-6 h-6 sm:w-8 sm:h-8 text-[#D4AF37] flex-shrink-0" />
             <div className="text-center">
-              <p className="text-2xl font-bold text-white mb-2">
+              <p className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 sm:mb-2">
                 Pronto para transformar teoria em{" "}
                 <span className="text-[#D4AF37]">lucro real</span>?
               </p>
-              <p className="text-gray-300">
+              <p className="text-gray-300 text-sm sm:text-base">
                 Cada módulo foi desenhado para te dar resultados práticos imediatos.
               </p>
             </div>
-            <TrendingUp className="w-8 h-8 text-[#D4AF37]" />
+            <TrendingUp className="w-6 h-6 sm:w-8 sm:h-8 text-[#D4AF37] flex-shrink-0" />
           </motion.div>
         </motion.div>
       </div>
