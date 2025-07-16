@@ -1,36 +1,9 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus, Users, Settings, Clock, CreditCard, Mail, HelpCircle } from "lucide-react";
+import { Plus, Minus, HelpCircle, Mail } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-
-const faqData = [
-  {
-    question: "\"Já anuncio há um tempo, isso serve pra mim?\"",
-    answer: "Com certeza. Este curso é sobre os *fundamentos estratégicos* que muitos anunciantes experientes pulam. Se você sente que seus resultados são inconsistentes ou não entende 100% o porquê de suas campanhas performarem bem (ou mal), esta base vai solidificar seu conhecimento e te dar mais controle.",
-    icon: Users
-  },
-  {
-    question: "\"Vou aprender a criar uma campanha do zero, passo a passo?\"",
-    answer: "Sim! O Módulo 3 é totalmente focado em como criar e estruturar suas primeiras campanhas do jeito certo, escolhendo o tipo de campanha ideal e configurando os públicos.",
-    icon: Settings
-  },
-  {
-    question: "\"O acesso é por quanto tempo?\"",
-    answer: "O acesso ao curso e à Comunidade do Zero ao 100K é **VITALÍCIO**. Você paga uma vez e tem acesso para sempre, incluindo todas as futuras atualizações do curso Fundamentos.",
-    icon: Clock
-  },
-  {
-    question: "\"Preciso de alguma ferramenta paga para usar os bônus GPTs?\"",
-    answer: "Os assistentes GPTs são criados na plataforma da OpenAI. Para usá-los em todo seu potencial, é recomendado ter uma assinatura do ChatGPT Plus.",
-    icon: CreditCard
-  },
-  {
-    question: "\"O que acontece depois que eu pagar?\"",
-    answer: "Imediatamente após a confirmação do pagamento, você receberá um e-mail com seu login e senha para acessar a nossa área de membros, onde todo o curso e os bônus já estarão te esperando.",
-    icon: Mail
-  },
-];
+import { faqData } from "@/lib/faq-data";
 
 // Atomic Components
 const FAQBadge = () => (
@@ -52,7 +25,7 @@ const FAQBadge = () => (
   </motion.div>
 );
 
-const FAQIcon = ({ icon: Icon }: { icon: React.ComponentType<{className?: string}> }) => (
+const FAQIcon = ({ icon: Icon }: { icon: React.ComponentType<any> }) => (
   <div className="relative flex-shrink-0">
     <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 bg-gradient-to-br from-[#D4AF37] to-[#FFD700] rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
       <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A192F]" />
@@ -107,7 +80,7 @@ const FAQItem = ({ faq, index }: { faq: typeof faqData[0], index: number }) => {
         className="w-full p-4 sm:p-5 lg:p-6 text-left focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#0A192F] rounded-xl sm:rounded-2xl transition-all duration-200"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
-        aria-controls={`faq-answer-${index}`}
+        aria-controls={`faq-answer-${faq.id}`}
       >
         <div className="flex items-start gap-3 sm:gap-4">
           {/* Icon */}
@@ -216,8 +189,8 @@ const FAQSection = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            {faqData.map((faq, index) => (
-              <FAQItem key={index} faq={faq} index={index} />
+            {faqData.slice(0, 5).map((faq, index) => (
+              <FAQItem key={faq.id} faq={faq} index={index} />
             ))}
           </motion.div>
 
