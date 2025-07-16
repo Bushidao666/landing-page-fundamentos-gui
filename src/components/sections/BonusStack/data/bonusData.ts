@@ -6,14 +6,14 @@
  * @layer: data
  */
 
-import { Brain, BarChart3, Calculator, Target, Percent, TrendingUp, Calendar } from "lucide-react";
+import { Brain, BarChart3, Calculator, Target, Percent, TrendingUp, Calendar, LucideIcon } from "lucide-react";
 
 export interface GPTData {
   id: number;
   name: string;
   subtitle: string;
   description: string;
-  icon: any;
+  icon: LucideIcon;
   color: string;
 }
 

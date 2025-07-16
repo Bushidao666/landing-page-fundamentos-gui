@@ -184,7 +184,7 @@ export const getResponsiveClasses = {
   gradient: (variant: ColorGradient) => `bg-gradient-to-br ${colors.gradients[variant]}`,
 };
 
-export default {
+const designSystem = {
   breakpoints,
   typography,
   spacing,
@@ -193,4 +193,6 @@ export default {
   colors,
   layout,
   getResponsiveClasses,
-}; 
+};
+
+export default designSystem; 
