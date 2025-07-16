@@ -48,31 +48,102 @@ export default function CommunityBonus({ index = 0 }: CommunityBonusProps) {
         à nossa comunidade de elite, onde:
       </motion.p>
 
-      {/* Grid de Benefícios Detalhados */}
-      <div className="grid lg:grid-cols-2 gap-3 md:gap-4 lg:gap-6">
+      {/* Grid de Benefícios Premium - Responsivo Otimizado */}
+      <div className="grid gap-4 md:gap-5 lg:gap-6 md:grid-cols-2">
         {communityBenefits.map((benefit, i) => (
-          <motion.div 
+          <motion.article 
             key={i}
-            className="bg-gray-50/80 backdrop-blur-xl rounded-lg md:rounded-xl p-3 md:p-4 lg:p-5 xl:p-6 border border-gray-200/50 hover:bg-white/90 hover:border-[#D4AF37]/30 transition-all duration-300 group shadow-sm"
-            initial={{ x: -30, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.7 + i * 0.1 }}
-            whileHover={{ x: 3, scale: 1.01 }}
+            className="bg-gradient-to-br from-gray-50/90 via-white/95 to-gray-50/90 backdrop-blur-xl rounded-xl md:rounded-2xl p-4 md:p-5 lg:p-6 xl:p-7 border border-gray-200/50 shadow-sm hover:shadow-lg group cursor-pointer overflow-hidden relative"
+            initial={{ x: -30, opacity: 0, scale: 0.95 }}
+            animate={{ x: 0, opacity: 1, scale: 1 }}
+            transition={{ 
+              delay: 0.7 + i * 0.15,
+              type: "spring",
+              stiffness: 200,
+              damping: 20
+            }}
+            whileHover={{ 
+              x: 5, 
+              scale: 1.02,
+              boxShadow: "0 10px 40px rgba(0, 0, 0, 0.1)",
+              borderColor: "rgba(212, 175, 55, 0.3)"
+            }}
+            whileTap={{ scale: 0.98 }}
+            role="article"
+            tabIndex={0}
+            aria-label={`Benefício: ${benefit.title}`}
           >
-            <div className="flex items-start gap-2 md:gap-3 mb-2 md:mb-3">
-              <div className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#D4AF37] to-yellow-400 rounded-md md:rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                {getBenefitIcon(i)}
-              </div>
-              <div className="flex-1">
-                <h4 className="text-sm md:text-base lg:text-lg font-bold text-[#0A192F] mb-1 md:mb-2 group-hover:text-[#D4AF37] transition-colors duration-300">
+            {/* Shimmer effect on hover */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/5 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
+              initial={{ x: "-100%" }}
+              animate={{ x: "200%" }}
+              transition={{ 
+                duration: 1.5, 
+                repeat: Infinity,
+                repeatDelay: 3,
+                ease: "easeInOut"
+              }}
+            />
+
+            <div className="flex items-start gap-3 md:gap-4 relative z-10">
+              {/* Icon Container Premium */}
+              <motion.div 
+                className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-[#D4AF37] to-yellow-400 rounded-xl md:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg relative overflow-hidden"
+                whileHover={{ 
+                  scale: 1.1,
+                  rotate: 5,
+                  boxShadow: "0 8px 25px rgba(212, 175, 55, 0.4)"
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              >
+                {/* Glow effect interno */}
+                <motion.div
+                  className="absolute inset-0 bg-white/20 rounded-xl md:rounded-2xl"
+                  animate={{ opacity: [0, 0.5, 0] }}
+                  transition={{ duration: 2.5, repeat: Infinity }}
+                />
+                
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  {getBenefitIcon(i)}
+                </motion.div>
+              </motion.div>
+              
+              {/* Content Area Refinado */}
+              <div className="flex-1 min-w-0">
+                <motion.h4 
+                  className="text-sm md:text-base lg:text-lg font-bold text-[#0A192F] mb-2 md:mb-3 leading-tight group-hover:text-[#D4AF37] transition-colors duration-300"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9 + i * 0.1 }}
+                >
                   {benefit.title}
-                </h4>
-                <p className="text-xs md:text-sm lg:text-base text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
+                </motion.h4>
+                
+                <motion.p 
+                  className="text-xs md:text-sm lg:text-base text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors duration-300"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0 + i * 0.1 }}
+                >
                   {benefit.description}
-                </p>
+                </motion.p>
               </div>
             </div>
-          </motion.div>
+
+            {/* Progress indicator sutil */}
+            <motion.div
+              className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#D4AF37] to-yellow-400 rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: "100%" }}
+              transition={{ delay: 1.2 + i * 0.2, duration: 0.8, ease: "easeOut" }}
+            />
+          </motion.article>
         ))}
       </div>
     </BonusCard>
