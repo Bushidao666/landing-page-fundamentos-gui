@@ -2,7 +2,7 @@
 
 import HeroSection from "@/components/sections/HeroSection";
 import { PainPointsSection } from "@/components/sections/pain-points";
-import SolutionSection from "@/components/sections/SolutionSection";
+import SolutionSection from "@/components/sections/solution/SolutionSection";
 import ContentDetailsSection from "@/components/sections/ContentDetailsSection";
 import SocialProofSection from "@/components/sections/SocialProofSection";
 import BonusStackSection from "@/components/sections/BonusStackSection";
