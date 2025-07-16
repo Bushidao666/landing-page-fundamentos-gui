@@ -88,7 +88,7 @@ const FAQItemComponent: React.FC<FAQItemComponentProps> = ({ faq, index }) => {
               {/* Answer Text */}
               <div className="pl-14 sm:pl-15 lg:pl-17">
                 <p 
-                  className="text-sm sm:text-base md:text-lg lg:text-lg text-gray-300 leading-relaxed"
+                  className="text-base sm:text-lg md:text-lg lg:text-xl text-gray-300 leading-relaxed"
                   dangerouslySetInnerHTML={{
                     __html: `<span class="text-[#D4AF37] font-semibold mr-1">R:</span> ${formatAnswer(faq.answer)}`
                   }}
