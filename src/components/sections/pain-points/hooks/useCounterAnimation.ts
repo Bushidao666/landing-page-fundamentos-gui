@@ -24,10 +24,17 @@ export function useCounterAnimation({
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref);
+  const hasAnimated = useRef(false);
+  const animationFrameRef = useRef<number>();
 
   useEffect(() => {
-    if (isInView) {
-      let animationFrameId: number;
+    // Reset animation flag when target changes
+    hasAnimated.current = false;
+  }, [target]);
+
+  useEffect(() => {
+    if (isInView && !hasAnimated.current) {
+      hasAnimated.current = true;
       const startTime = Date.now();
       
       const animate = () => {
@@ -38,19 +45,26 @@ export function useCounterAnimation({
         setCount(Math.floor(target * easedProgress));
         
         if (progress < 1) {
-          animationFrameId = requestAnimationFrame(animate);
+          animationFrameRef.current = requestAnimationFrame(animate);
         }
       };
       
       animate();
       
       return () => {
-        if (animationFrameId) {
-          cancelAnimationFrame(animationFrameId);
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
         }
       };
-    } else {
+    } else if (!isInView) {
+      // Reset counter when out of view
+      hasAnimated.current = false;
       setCount(0);
+      
+      // Cancel any running animation
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     }
   }, [isInView, target, duration, easing]);
 
