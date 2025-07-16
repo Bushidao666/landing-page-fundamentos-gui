@@ -1,0 +1,100 @@
+/* Design Tokens - Sistema de Design Otimizado */
+
+/* Animations */
+:root {
+  --animation-duration-fast: 200ms;
+  --animation-duration-normal: 300ms;
+  --animation-duration-slow: 600ms;
+  --animation-easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Spacing System */
+:root {
+  /* Section Spacing */
+  --spacing-section-mobile: 3rem;
+  --spacing-section-tablet: 4rem;
+  --spacing-section-desktop: 6rem;
+  
+  /* Component Spacing */
+  --spacing-component-xs: 0.5rem;
+  --spacing-component-sm: 1rem;
+  --spacing-component-md: 1.5rem;
+  --spacing-component-lg: 2rem;
+  --spacing-component-xl: 3rem;
+}
+
+/* Typography Scale */
+:root {
+  /* Headings */
+  --text-heading-mobile: clamp(1.75rem, 5vw, 2.25rem);
+  --text-heading-tablet: clamp(2.25rem, 4vw, 3rem);
+  --text-heading-desktop: clamp(3rem, 3vw, 4rem);
+  
+  /* Body Text */
+  --text-body-mobile: clamp(1rem, 2.5vw, 1.125rem);
+  --text-body-tablet: clamp(1.125rem, 2vw, 1.25rem);
+  --text-body-desktop: clamp(1.25rem, 1.5vw, 1.5rem);
+}
+
+/* Gradient Animations */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Utility Classes */
+.animate-gradient {
+  animation: gradient-shift 3s ease infinite;
+  background-size: 200% 100%;
+}
+
+/* Performance-optimized float animation */
+@keyframes float-optimized {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float-optimized 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Premium gradient with performance optimization */
+.gradient-premium {
+  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+  background-size: 200% 200%;
+}
+
+/* Text balance for better readability */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Responsive container with fluid padding */
+.container-fluid {
+  width: 100%;
+  padding-inline: clamp(1rem, 5vw, 3rem);
+  margin-inline: auto;
+  max-width: 1400px;
+}
+
+/* Shadow utilities */
+.shadow-premium {
+  box-shadow: 
+    0 4px 6px -1px rgba(212, 175, 55, 0.1),
+    0 2px 4px -1px rgba(212, 175, 55, 0.06),
+    0 0 0 1px rgba(212, 175, 55, 0.05);
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

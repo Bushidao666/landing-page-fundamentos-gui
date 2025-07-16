@@ -6,9 +6,10 @@ import SolutionSection from "@/components/sections/SolutionSection";
 import ContentDetailsSection from "@/components/sections/ContentDetailsSection";
 import SocialProofSection from "@/components/sections/SocialProofSection";
 import BonusStackSection from "@/components/sections/BonusStackSection";
-import PriceAnchoringSection from "@/components/sections/PriceAnchoringSection";
-import PriceJustificationSection from "@/components/sections/PriceJustificationSection";
-import GuaranteeAndFAQSection from "@/components/sections/GuaranteeAndFAQSection";
+import PriceAnchoringSectionComplete from "@/components/sections/PriceAnchoringSectionComplete";
+import PriceJustificationSection from "@/components/sections/PriceJustification";
+import GuaranteeSection from "@/components/sections/GuaranteeSection";
+import FAQSection from "@/components/sections/FAQSection";
 import FooterSection from "@/components/sections/FooterSection";
 
 export default function Home() {
@@ -20,9 +21,10 @@ export default function Home() {
       <ContentDetailsSection />
       <SocialProofSection />
       <BonusStackSection />
-      <PriceAnchoringSection />
+      <PriceAnchoringSectionComplete />
       <PriceJustificationSection />
-      <GuaranteeAndFAQSection />
+      <GuaranteeSection />
+      <FAQSection />
       <FooterSection />
     </main>
   );

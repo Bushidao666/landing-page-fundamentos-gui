@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
-import { Users, Zap, Bot, Gift, Star, Crown, Sparkles, CheckCircle, Award, TrendingUp, Brain, Calculator, BarChart3, Target, Percent, Calendar, MessageSquare, Smartphone, BookOpen, Play, ArrowRight, Eye, Briefcase, TrendingDown, Edit3, PieChart, ShoppingCart } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Users, Zap, Bot, Gift, Star, Crown, Sparkles, CheckCircle, Award, TrendingUp, Brain, Calculator, BarChart3, Target, Percent, Calendar, MessageSquare, BookOpen, Play, ArrowRight, Briefcase } from "lucide-react";
 import { useState } from "react";
 
 const containerVariants = {
@@ -445,8 +445,8 @@ export default function BonusStackSection() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5 }}
                 >
-                  Se o "Fundamentos" é a sua{" "}
-                  <span className="text-[#D4AF37] font-semibold">aula de anatomia</span>, o "Passaporte" é o seu{" "}
+                  Se o &quot;Fundamentos&quot; é a sua{" "}
+                  <span className="text-[#D4AF37] font-semibold">aula de anatomia</span>, o &quot;Passaporte&quot; é o seu{" "}
                   <span className="text-[#D4AF37] font-semibold">kit de primeiros socorros</span>. 
                   Enquanto você aprende a base teórica, já pode usar as{" "}
                   <span className="text-[#0A192F] font-semibold">9 aulas rápidas</span>{" "}

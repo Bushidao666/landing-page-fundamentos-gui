@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
-import { Brain, Target, Settings, Megaphone, ChevronDown, PlayCircle, CheckCircle, Lightbulb, MapPin, Cog, Edit3, Sparkles, Award, TrendingUp, Zap } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Brain, Target, Settings, ChevronDown, PlayCircle, CheckCircle, Edit3, Sparkles, Award, TrendingUp, Zap } from "lucide-react";
 import { useState } from "react";
 
 const containerVariants = {
@@ -148,7 +148,6 @@ const modules = [
 
 export default function ContentDetailsSection() {
   const [activeModule, setActiveModule] = useState<number | null>(1);
-  const scrollY = useMotionValue(0);
 
   const toggleModule = (moduleId: number) => {
     setActiveModule(activeModule === moduleId ? null : moduleId);
