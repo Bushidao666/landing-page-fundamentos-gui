@@ -17,14 +17,15 @@ interface FAQToggleProps {
 
 const FAQToggle: React.FC<FAQToggleProps> = ({ isOpen }) => (
   <motion.div 
-    className="w-8 h-8 sm:w-9 sm:h-9 bg-white/5 hover:bg-white/10 rounded-lg flex items-center justify-center transition-colors duration-200"
+    className="w-10 h-10 sm:w-10 sm:h-10 bg-white/5 hover:bg-white/10 rounded-lg flex items-center justify-center transition-colors duration-200 cursor-pointer"
     animate={{ rotate: isOpen ? 180 : 0 }}
     transition={{ duration: 0.3 }}
+    whileTap={{ scale: 0.95 }}
   >
     {isOpen ? (
-      <Minus className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
+      <Minus className="w-5 h-5 sm:w-5 sm:h-5 text-[#D4AF37]" />
     ) : (
-      <Plus className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
+      <Plus className="w-5 h-5 sm:w-5 sm:h-5 text-[#D4AF37]" />
     )}
   </motion.div>
 );

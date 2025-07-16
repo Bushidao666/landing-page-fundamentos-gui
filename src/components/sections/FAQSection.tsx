@@ -37,18 +37,18 @@ const FAQItem = ({ faq, index }: { faq: typeof faqData[0], index: number }) => {
     >
       {/* Question Button */}
       <button
-        className="w-full p-4 sm:p-5 lg:p-6 text-left focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#0A192F] rounded-xl sm:rounded-2xl transition-all duration-200"
+        className="w-full p-5 sm:p-6 lg:p-7 text-left focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#0A192F] rounded-xl sm:rounded-2xl transition-all duration-200"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${faq.id}`}
       >
-        <div className="flex items-start gap-3 sm:gap-4">
+        <div className="flex items-start gap-4 sm:gap-4 lg:gap-5">
           {/* Icon */}
           <FAQIcon icon={faq.icon} />
           
           {/* Question Text */}
           <div className="flex-1 pt-0.5">
-            <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-white leading-tight">
+            <h3 className="text-base sm:text-lg md:text-lg lg:text-xl font-semibold text-white leading-relaxed">
               <span className="text-[#D4AF37] mr-1">P:</span> 
               <span className="group-hover:text-[#D4AF37] transition-colors duration-300">
                 {faq.question}
