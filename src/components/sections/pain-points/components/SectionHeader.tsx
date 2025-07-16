@@ -13,7 +13,6 @@ import { Target, BarChart3 } from "lucide-react";
 import { statisticsData } from "../data/painPointsData";
 import { AnimatedCounter } from "./AnimatedCounter";
 import { itemVariants, containerVariants, statisticsVariants } from "../styles/animations";
-import { layout, typography, spacing } from "../styles/responsive";
 
 const colorClasses = {
   red: {

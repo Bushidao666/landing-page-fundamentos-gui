@@ -12,7 +12,6 @@ import { motion } from "framer-motion";
 import { Brain, Target, TrendingUp, DollarSign } from "lucide-react";
 import { FloatingElements } from "./FloatingElements";
 import { transformationVariants, hoverVariants } from "../styles/animations";
-import { typography, spacing, icons } from "../styles/responsive";
 
 export function TransformationSection() {
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Target, Crown, Zap, Sparkles, LucideIcon } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 

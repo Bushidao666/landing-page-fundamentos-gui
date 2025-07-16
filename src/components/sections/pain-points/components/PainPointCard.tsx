@@ -11,7 +11,6 @@
 import { motion } from "framer-motion";
 import { PainPoint } from "../data/painPointsData";
 import { cascadeVariants, hoverVariants } from "../styles/animations";
-import { typography, spacing, icons } from "../styles/responsive";
 
 interface PainPointCardProps {
   painPoint: PainPoint;

@@ -15,7 +15,6 @@ import { TransformationSection } from "./components/TransformationSection";
 import { FloatingElements } from "./components/FloatingElements";
 import { useScrollProgress } from "./hooks/useScrollProgress";
 import { containerVariants } from "./styles/animations";
-import { spacing } from "./styles/responsive";
 
 export default function PainPointsSection() {
   const { 

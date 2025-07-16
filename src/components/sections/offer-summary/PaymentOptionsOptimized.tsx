@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, DollarSign, Check, Percent } from "lucide-react";
-import { useState } from "react";
 
 interface PaymentOption {
   id: 'installments' | 'cash';
@@ -42,7 +41,6 @@ export default function PaymentOptionsOptimized({
   selectedOption, 
   onOptionChange 
 }: PaymentOptionsOptimizedProps) {
-  const [isHovering, setIsHovering] = useState<string | null>(null);
 
   return (
     <div className="w-full max-w-2xl mx-auto px-4 sm:px-0">
@@ -70,15 +68,12 @@ export default function PaymentOptionsOptimized({
           
           {paymentOptions.map((option) => {
             const isSelected = selectedOption === option.id;
-            const isHovered = isHovering === option.id;
             
             return (
               <motion.button
                 key={option.id}
                 className="relative group text-left"
                 onClick={() => onOptionChange(option.id)}
-                onHoverStart={() => setIsHovering(option.id)}
-                onHoverEnd={() => setIsHovering(null)}
                 whileTap={{ scale: 0.98 }}
                 aria-pressed={isSelected}
                 aria-label={`${option.label} - ${option.price}`}

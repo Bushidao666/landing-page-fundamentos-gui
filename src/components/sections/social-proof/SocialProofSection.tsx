@@ -12,7 +12,7 @@ import {
   FloatingElements,
   containerVariants, 
   itemVariants 
-} from "./social-proof";
+} from "./";
 
 // Motion components
 const MotionSection = motion.section;

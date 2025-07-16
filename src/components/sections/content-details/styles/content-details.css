@@ -1,0 +1,196 @@
+/**
+ * @file: content-details.css
+ * @responsibility: content details section styles
+ * @layer: styles
+ */
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+  background-size: 200% 100%;
+}
+
+/* Pulse Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Float Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* GPU Optimization */
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+/* Touch Manipulation */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Focus States */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#0A192F];
+}
+
+/* Hover Glow Effect */
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+/* Module Card Transitions */
+.module-card-transition {
+  @apply transition-all duration-300 ease-out;
+}
+
+/* Responsive Typography Scale */
+.text-responsive-xs {
+  @apply text-xs sm:text-sm md:text-base;
+}
+
+.text-responsive-sm {
+  @apply text-sm sm:text-base md:text-lg;
+}
+
+.text-responsive-base {
+  @apply text-base sm:text-lg md:text-xl;
+}
+
+.text-responsive-lg {
+  @apply text-lg sm:text-xl md:text-2xl;
+}
+
+.text-responsive-xl {
+  @apply text-xl sm:text-2xl md:text-3xl;
+}
+
+.text-responsive-2xl {
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+}
+
+.text-responsive-3xl {
+  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+}
+
+/* Responsive Spacing */
+.space-responsive-xs {
+  @apply space-y-2 sm:space-y-3 md:space-y-4;
+}
+
+.space-responsive-sm {
+  @apply space-y-4 sm:space-y-6 md:space-y-8;
+}
+
+.space-responsive-base {
+  @apply space-y-6 sm:space-y-8 md:space-y-10;
+}
+
+/* Responsive Padding */
+.p-responsive-xs {
+  @apply p-3 sm:p-4 md:p-5;
+}
+
+.p-responsive-sm {
+  @apply p-4 sm:p-6 md:p-8;
+}
+
+.p-responsive-base {
+  @apply p-6 sm:p-8 md:p-10;
+}
+
+/* Responsive Gaps */
+.gap-responsive-xs {
+  @apply gap-2 sm:gap-3 md:gap-4;
+}
+
+.gap-responsive-sm {
+  @apply gap-3 sm:gap-4 md:gap-6;
+}
+
+.gap-responsive-base {
+  @apply gap-4 sm:gap-6 md:gap-8;
+}
+
+/* Reduce Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-shimmer,
+  .animate-pulse {
+    animation: none !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .text-gray-300 {
+    @apply text-gray-100;
+  }
+  
+  .border-white\/20 {
+    @apply border-white\/40;
+  }
+  
+  .bg-white\/5 {
+    @apply bg-white\/10;
+  }
+}
+
+/* Mobile Touch Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .touch-manipulation {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .hover\\:scale-110:active {
+    transform: scale(1.05);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .absolute {
+    position: relative !important;
+  }
+  
+  .shadow-2xl {
+    box-shadow: none !important;
+  }
+  
+  .backdrop-blur-2xl {
+    backdrop-filter: none !important;
+  }
+}

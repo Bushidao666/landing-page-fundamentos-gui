@@ -1,3 +1,4 @@
+export { default as SocialProofSection } from './SocialProofSection';
 export { TestimonialCard } from './TestimonialCard';
 export { TestimonialsCarousel } from './TestimonialsCarousel';
 export { PatternSection } from './PatternSection';

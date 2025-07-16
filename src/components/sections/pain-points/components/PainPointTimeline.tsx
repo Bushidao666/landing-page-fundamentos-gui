@@ -10,7 +10,6 @@
 
 import { PainPointCard } from "./PainPointCard";
 import { painPointsData } from "../data/painPointsData";
-import { layout } from "../styles/responsive";
 
 export function PainPointTimeline() {
   return (

@@ -9,12 +9,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import BackgroundEffects from "./BonusStack/components/BackgroundEffects";
-import BonusHeader from "./BonusStack/components/BonusHeader";
-import CommunityBonus from "./BonusStack/components/CommunityBonus";
-import PassportBonus from "./BonusStack/components/PassportBonus";
-import GPTsBonus from "./BonusStack/components/GPTsBonus";
-import FinalCTA from "./BonusStack/components/FinalCTA";
+import BackgroundEffects from "./components/BackgroundEffects";
+import BonusHeader from "./components/BonusHeader";
+import CommunityBonus from "./components/CommunityBonus";
+import PassportBonus from "./components/PassportBonus";
+import GPTsBonus from "./components/GPTsBonus";
+import FinalCTA from "./components/FinalCTA";
 
 const containerVariants = {
   hidden: { opacity: 0 },

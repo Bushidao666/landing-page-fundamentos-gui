@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { faqData } from "@/lib/faq-data";
-import FAQBadge from "@/components/faq/FAQBadge";
-import FAQItemComponent from "@/components/faq/FAQItemComponent";
+import FAQBadge from "./components/FAQBadge";
+import FAQItemComponent from "./components/FAQItemComponent";
 
 const FAQSection = () => {
   return (
@@ -57,7 +57,7 @@ const FAQSection = () => {
 
           {/* FAQ Items Container */}
           <motion.div 
-            className="space-y-3 sm:space-y-4 lg:space-y-5"
+            className="space-y-4 sm:space-y-5 lg:space-y-6"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -76,7 +76,7 @@ const FAQSection = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.5, duration: 0.6 }}
           >
-            <p className="text-sm sm:text-base text-gray-400 mb-4">
+            <p className="text-base sm:text-lg text-gray-400 mb-4">
               Ainda tem dúvidas?
             </p>
             <motion.a 

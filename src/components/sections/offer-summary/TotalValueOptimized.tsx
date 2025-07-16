@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { Award, Sparkles, TrendingUp } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -14,7 +14,7 @@ const AnimatedTotalPrice = ({ target }: { target: number }) => {
   const motionValue = useMotionValue(0);
   
   useEffect(() => {
-    const controls = motionValue.set(target);
+    motionValue.set(target);
     
     const unsubscribe = motionValue.on("change", (latest) => {
       const formatted = Math.floor(latest).toLocaleString('pt-BR');
