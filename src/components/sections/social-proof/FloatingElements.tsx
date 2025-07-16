@@ -1,18 +1,52 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
+interface Particle {
+  id: number;
+  left: string;
+  top: string;
+  delay: number;
+  duration: number;
+}
+
 export const FloatingElements = React.memo(() => {
-  const particles = useMemo(() => 
-    Array.from({ length: typeof window !== 'undefined' && window.innerWidth < 640 ? 8 : 12 }, (_, i) => ({
-      id: i,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      delay: Math.random() * 3,
-      duration: 3 + Math.random() * 2,
-    })), []
-  );
+  const [particles, setParticles] = useState<Particle[]>([]);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    
+    // Generate particles only on client side
+    const generateParticles = () => {
+      const isMobile = window.innerWidth < 640;
+      const particleCount = isMobile ? 8 : 12;
+      
+      return Array.from({ length: particleCount }, (_, i) => ({
+        id: i,
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        delay: Math.random() * 3,
+        duration: 3 + Math.random() * 2,
+      }));
+    };
+
+    setParticles(generateParticles());
+
+    // Handle window resize
+    const handleResize = () => {
+      setParticles(generateParticles());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Don't render particles until client-side hydration is complete
+  if (!isClient || particles.length === 0) {
+    return <div className="absolute inset-0 overflow-hidden pointer-events-none" />;
+  }
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
