@@ -9,6 +9,7 @@ import FAQItemComponent from "./components/FAQItemComponent";
 import FAQSearch from "./components/FAQSearch";
 import FAQCategories from "./components/FAQCategories";
 import FAQSchema from "./components/FAQSchema";
+import FAQBreadcrumbs from "./components/FAQBreadcrumbs";
 
 /**
  * @file: FAQSectionAdvanced.tsx
@@ -64,6 +65,7 @@ const FAQSectionAdvanced = () => {
     <>
       {/* SEO Schema */}
       <FAQSchema faqs={filteredFAQs.slice(0, 10)} />
+      <FAQBreadcrumbs />
       
       <section 
         id="faq"
