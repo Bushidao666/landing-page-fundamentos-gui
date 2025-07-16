@@ -14,13 +14,13 @@ const FAQSection = () => {
       aria-labelledby="faq-heading"
     >
       {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.02]">
+      <div className="absolute inset-0 opacity-[0.05]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#D4AF37_1px,transparent_1px),linear-gradient(to_bottom,#D4AF37_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
       {/* Content Container */}
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-        <div className="max-w-3xl mx-auto">
+      <div className="relative container mx-auto px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 max-w-screen-2xl">
+        <div className="max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto">
           
           {/* Header Section */}
           <motion.div 
@@ -46,7 +46,7 @@ const FAQSection = () => {
             
             {/* Subtitle */}
             <motion.p 
-              className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-gray-300 font-light max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.6 }}
