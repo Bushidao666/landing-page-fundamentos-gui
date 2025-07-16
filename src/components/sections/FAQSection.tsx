@@ -1,54 +1,14 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus, HelpCircle, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { faqData } from "@/lib/faq-data";
+import FAQBadge from "@/components/faq/FAQBadge";
+import FAQIcon from "@/components/faq/FAQIcon";
+import FAQToggle from "@/components/faq/FAQToggle";
 
-// Atomic Components
-const FAQBadge = () => (
-  <motion.div
-    className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-4 sm:mb-6"
-    initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.5 }}
-  >
-    <motion.div
-      animate={{ rotate: 360 }}
-      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-    >
-      <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
-    </motion.div>
-    <span className="text-[#D4AF37] font-semibold text-xs sm:text-sm uppercase tracking-wider">
-      Perguntas Frequentes
-    </span>
-  </motion.div>
-);
-
-const FAQIcon = ({ icon: Icon }: { icon: React.ComponentType<any> }) => (
-  <div className="relative flex-shrink-0">
-    <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 bg-gradient-to-br from-[#D4AF37] to-[#FFD700] rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
-      <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A192F]" />
-    </div>
-    {/* Subtle glow on hover - handled by parent */}
-    <div className="absolute inset-0 rounded-lg sm:rounded-xl bg-[#D4AF37]/0 group-hover:bg-[#D4AF37]/20 blur-xl transition-all duration-300" />
-  </div>
-);
-
-const FAQToggle = ({ isOpen }: { isOpen: boolean }) => (
-  <motion.div 
-    className="w-8 h-8 sm:w-9 sm:h-9 bg-white/5 hover:bg-white/10 rounded-lg flex items-center justify-center transition-colors duration-200"
-    animate={{ rotate: isOpen ? 180 : 0 }}
-    transition={{ duration: 0.3 }}
-  >
-    {isOpen ? (
-      <Minus className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
-    ) : (
-      <Plus className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
-    )}
-  </motion.div>
-);
-
+// Internal FAQ Item Component
 const FAQItem = ({ faq, index }: { faq: typeof faqData[0], index: number }) => {
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
