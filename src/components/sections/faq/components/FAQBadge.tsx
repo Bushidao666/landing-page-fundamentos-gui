@@ -20,7 +20,8 @@ const FAQBadge = () => (
   >
     <motion.div
       animate={{ rotate: 360 }}
-      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+      whileHover={{ scale: 1.1 }}
     >
       <HelpCircle className="w-5 h-5 sm:w-5 sm:h-5 text-[#D4AF37]" />
     </motion.div>

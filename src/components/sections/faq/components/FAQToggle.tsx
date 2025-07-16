@@ -19,7 +19,7 @@ const FAQToggle: React.FC<FAQToggleProps> = ({ isOpen }) => (
   <motion.div 
     className="w-10 h-10 sm:w-10 sm:h-10 bg-white/5 hover:bg-white/10 rounded-lg flex items-center justify-center transition-colors duration-200 cursor-pointer"
     animate={{ rotate: isOpen ? 180 : 0 }}
-    transition={{ duration: 0.3 }}
+    transition={{ type: "spring", stiffness: 200, damping: 20 }}
     whileTap={{ scale: 0.95 }}
   >
     {isOpen ? (

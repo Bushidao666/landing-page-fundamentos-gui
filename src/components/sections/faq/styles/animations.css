@@ -1,0 +1,38 @@
+/**
+ * @file: animations.css
+ * @responsibility: FAQ section animation styles and motion preferences
+ * @layer: styles
+ */
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Smooth scroll behavior */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Focus styles for better accessibility */
+.faq-focus-visible:focus-visible {
+  outline: 2px solid #D4AF37;
+  outline-offset: 4px;
+  border-radius: 0.75rem;
+}
+
+/* Skip animations on print */
+@media print {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
