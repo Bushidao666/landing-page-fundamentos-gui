@@ -1,64 +1,36 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect, Suspense } from "react";
-import dynamic from "next/dynamic";
+import { useEffect, Suspense, lazy, memo } from "react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import {
+  PriceAnchoringProvider,
+  usePriceAnchoring,
+  OfferHeaderOptimized,
+  ValueBreakdownOptimized,
+  TotalValueOptimized,
+  PaymentOptionsOptimized,
+  PriceRevealOptimized,
+  PremiumBackground,
+  SPACING,
+  TYPOGRAPHY,
+  COLORS,
+  ANIMATION
+} from "./offer-summary";
 
-// Import optimized components
-import OfferHeaderOptimized from "./offer-summary/OfferHeaderOptimized";
-import ValueBreakdownOptimized from "./offer-summary/ValueBreakdownOptimized";
-import TotalValueOptimized from "./offer-summary/TotalValueOptimized";
-import PaymentOptionsOptimized from "./offer-summary/PaymentOptionsOptimized";
-import PriceRevealOptimized from "./offer-summary/PriceRevealOptimized";
+// Lazy load security badges
+const SecurityBadges = lazy(() => import("./offer-summary/SecurityBadges"));
 
-// Lazy load security badges for performance
-const SecurityBadges = dynamic(() => import("./offer-summary/SecurityBadges"), {
-  loading: () => null,
-});
+// Removed - now imported from offer-summary
 
-// Enhanced background with performance optimizations
-const PremiumBackground = () => (
-  <div className="absolute inset-0 overflow-hidden">
-    {/* Base gradient - Optimized layers */}
-    <div className="absolute inset-0 bg-gradient-to-br 
-                    from-[#0A192F] via-[#1a2444] to-[#0f1419]" />
-    
-    {/* Premium texture overlay */}
-    <div className="absolute inset-0 opacity-30">
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] 
-                      bg-gradient-radial from-[#D4AF37]/10 to-transparent 
-                      rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] 
-                      bg-gradient-radial from-blue-600/10 to-transparent 
-                      rounded-full blur-2xl" />
-    </div>
-    
-    {/* Subtle grid pattern for depth */}
-    <div className="absolute inset-0 opacity-[0.015]"
-         style={{
-           backgroundImage: `
-             linear-gradient(to right, #D4AF37 1px, transparent 1px),
-             linear-gradient(to bottom, #D4AF37 1px, transparent 1px)
-           `,
-           backgroundSize: '100px 100px'
-         }}
-    />
-    
-    {/* Vignette effect */}
-    <div className="absolute inset-0 
-                    bg-gradient-to-t from-black/50 via-transparent to-black/30" />
-  </div>
-);
-
-// Optimized container animations
+// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.6,
-      staggerChildren: 0.2,
+      duration: ANIMATION.duration.slow / 1000,
+      staggerChildren: ANIMATION.stagger.normal,
     },
   },
 };
@@ -69,34 +41,40 @@ const sectionVariants = {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1],
+      duration: ANIMATION.duration.slow / 1000,
+      ease: ANIMATION.easing.smooth,
     },
   },
 };
 
-export default function PriceAnchoringSectionComplete() {
-  const [priceRevealed, setPriceRevealed] = useState(false);
-  const [paymentOption, setPaymentOption] = useState<'installments' | 'cash'>('installments');
-  const [totalValue, setTotalValue] = useState(0);
+// Inner component that uses the context
+const PriceAnchoringContent = memo(() => {
+  const {
+    totalValue,
+    priceRevealed,
+    selectedPayment,
+    setPriceRevealed,
+    setSelectedPayment,
+    setTotalValue
+  } = usePriceAnchoring();
   
-  // Intersection observer for viewport-based animations
+  // Intersection observer
   const { ref, hasIntersected } = useIntersectionObserver({
     threshold: 0.1,
     rootMargin: "50px",
     freezeOnceVisible: true,
   });
 
-  // Progressive price reveal
+  // Progressive price reveal with performance optimization
   useEffect(() => {
     if (hasIntersected && totalValue > 0) {
       const timer = setTimeout(() => {
         setPriceRevealed(true);
-      }, 1800);
+      }, ANIMATION.duration.slower);
       
       return () => clearTimeout(timer);
     }
-  }, [hasIntersected, totalValue]);
+  }, [hasIntersected, totalValue, setPriceRevealed]);
 
   return (
     <section
@@ -105,13 +83,17 @@ export default function PriceAnchoringSectionComplete() {
       className="relative overflow-hidden"
       aria-labelledby="price-section-title"
     >
-      {/* Responsive padding system */}
-      <div className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28">
-        
+      {/* Responsive padding with fluid system */}
+      <div 
+        style={{
+          paddingTop: SPACING['3xl'],
+          paddingBottom: SPACING['3xl']
+        }}
+      >
         {/* Premium background */}
-        <PremiumBackground />
+        <PremiumBackground reducedMotion={false} />
 
-        {/* Main content container with optimal constraints */}
+        {/* Main content container */}
         <motion.div 
           className="relative z-10 container-fluid"
           initial="hidden"
@@ -119,36 +101,48 @@ export default function PriceAnchoringSectionComplete() {
           variants={containerVariants}
         >
           {/* Section header */}
-          <div id="price-section-title" className="mb-8 sm:mb-12 lg:mb-16">
+          <div 
+            id="price-section-title" 
+            style={{ marginBottom: SPACING['2xl'] }}
+          >
             <OfferHeaderOptimized />
           </div>
 
           {/* Value breakdown section */}
           <motion.div 
-            className="max-w-5xl mx-auto mb-10 sm:mb-14 lg:mb-20"
+            className="max-w-5xl mx-auto"
+            style={{ marginBottom: SPACING['3xl'] }}
             variants={sectionVariants}
           >
             {/* Premium card container */}
             <div className="relative">
               {/* Card glow effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r 
-                              from-[#D4AF37]/20 via-transparent to-[#D4AF37]/20 
-                              rounded-3xl blur-xl opacity-50" />
+              <div 
+                className="absolute -inset-1 rounded-3xl blur-xl opacity-50"
+                style={{
+                  background: `linear-gradient(to right, ${COLORS.primary}20, transparent, ${COLORS.primary}20)`
+                }}
+              />
               
               {/* Main card */}
-              <div className="relative bg-gradient-to-br 
-                              from-white/[0.03] to-white/[0.01]
-                              backdrop-blur-xl 
-                              rounded-2xl sm:rounded-3xl 
-                              p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12
-                              border border-white/[0.08]
-                              shadow-2xl shadow-black/20">
-                
-                {/* Value items with lazy loading */}
+              <div 
+                className="relative backdrop-blur-xl rounded-3xl shadow-2xl"
+                style={{
+                  background: `linear-gradient(to bottom right, ${COLORS.surface.glass}, ${COLORS.surface.glass}50)`,
+                  padding: SPACING['2xl'],
+                  border: `1px solid ${COLORS.border.default}`,
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                }}
+              >
+                {/* Value items */}
                 <Suspense fallback={
                   <div className="space-y-4">
                     {[1,2,3,4].map(i => (
-                      <div key={i} className="animate-pulse h-20 bg-white/5 rounded-xl" />
+                      <div 
+                        key={i} 
+                        className="animate-pulse h-20 rounded-xl"
+                        style={{ backgroundColor: COLORS.surface.glassHover }}
+                      />
                     ))}
                   </div>
                 }>
@@ -157,7 +151,12 @@ export default function PriceAnchoringSectionComplete() {
                 
                 {/* Total value display */}
                 {totalValue > 0 && (
-                  <Suspense fallback={<div className="animate-pulse h-32 bg-white/5 rounded-xl mt-6" />}>
+                  <Suspense fallback={
+                    <div 
+                      className="animate-pulse h-32 rounded-xl mt-6"
+                      style={{ backgroundColor: COLORS.surface.glassHover }}
+                    />
+                  }>
                     <TotalValueOptimized total={totalValue} />
                   </Suspense>
                 )}
@@ -172,40 +171,46 @@ export default function PriceAnchoringSectionComplete() {
           >
             {/* Section title */}
             <motion.h3
-              className="text-center text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 
-                         font-serif font-semibold text-white 
-                         mb-8 sm:mb-10 lg:mb-12
-                         leading-tight"
+              className="text-center font-serif font-semibold leading-tight"
+              style={{
+                fontSize: TYPOGRAPHY.display.md,
+                color: COLORS.text.primary,
+                marginBottom: SPACING['2xl']
+              }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: hasIntersected ? 1 : 0, y: hasIntersected ? 0 : 20 }}
-              transition={{ delay: 1, duration: 0.6 }}
+              transition={{ delay: 1, duration: ANIMATION.duration.slow / 1000 }}
             >
               Seu Investimento para{" "}
-              <span className="text-transparent bg-clip-text 
-                               bg-gradient-to-r from-[#D4AF37] to-[#FFD700]">
+              <span 
+                className="text-transparent bg-clip-text"
+                style={{
+                  backgroundImage: `linear-gradient(to right, ${COLORS.primary}, ${COLORS.primaryLight})`
+                }}
+              >
                 Dominar Google Ads
               </span>
             </motion.h3>
 
-            {/* Payment options - Only show when price is calculated */}
+            {/* Payment options */}
             {hasIntersected && totalValue > 0 && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: priceRevealed ? 1 : 0, y: priceRevealed ? 0 : 20 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: ANIMATION.duration.normal / 1000 }}
               >
                 <PaymentOptionsOptimized 
-                  selectedOption={paymentOption}
-                  onOptionChange={setPaymentOption}
+                  selectedOption={selectedPayment}
+                  onOptionChange={setSelectedPayment}
                 />
               </motion.div>
             )}
 
             {/* Price reveal and CTA */}
-            <div className="mt-8 sm:mt-10 lg:mt-12">
+            <div style={{ marginTop: SPACING['2xl'] }}>
               <PriceRevealOptimized 
                 isRevealed={priceRevealed}
-                paymentOption={paymentOption}
+                paymentOption={selectedPayment}
               />
             </div>
 
@@ -220,9 +225,24 @@ export default function PriceAnchoringSectionComplete() {
       </div>
 
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 
-                      bg-gradient-to-t from-[#0A192F] to-transparent 
-                      pointer-events-none" />
+      <div 
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{
+          height: '8rem',
+          background: `linear-gradient(to top, ${COLORS.background.dark}, transparent)`
+        }}
+      />
     </section>
+  );
+});
+
+PriceAnchoringContent.displayName = 'PriceAnchoringContent';
+
+// Main component with provider
+export default function PriceAnchoringSectionComplete() {
+  return (
+    <PriceAnchoringProvider>
+      <PriceAnchoringContent />
+    </PriceAnchoringProvider>
   );
 }
