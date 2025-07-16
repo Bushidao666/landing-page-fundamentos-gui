@@ -14,6 +14,11 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HeroBackground from "./components/HeroBackground";
+import HeroBadge from "./components/HeroBadge";
+import HeroHeadline from "./components/HeroHeadline";
+import HeroMetric from "./components/HeroMetric";
+import HeroValueProp from "./components/HeroValueProp";
+import HeroUSPs from "./components/HeroUSPs";
 import { heroAnimations, createShimmerAnimation, createHoverScale, createFloatingAnimation } from "./animations";
 import { heroStyles, cn } from "./styles";
 import { HERO_CONTENT } from "./constants";
@@ -55,82 +60,44 @@ export default function HeroSection() {
             variants={heroAnimations.container}
           >
             {/* Premium Badge */}
-            <motion.div
-              className={heroStyles.badge}
-              variants={heroAnimations.item}
-              {...createHoverScale(1.02)}
-            >
-              <BadgeIcon className={heroStyles.iconSmall} />
-              <span className="font-semibold uppercase tracking-wider">
-                {HERO_CONTENT.badge.text}
-              </span>
-              <BadgeTrailingIcon className={heroStyles.iconSmall} />
-            </motion.div>
+            <HeroBadge
+              icon={BadgeIcon}
+              text={HERO_CONTENT.badge.text}
+              trailingIcon={BadgeTrailingIcon}
+            />
 
             {/* Main Headline */}
             <motion.div className={heroStyles.headlineWrapper} variants={heroAnimations.item}>
-              <motion.h1
-                className={heroStyles.headline}
-                variants={heroAnimations.item}
-              >
-                <span className="block text-gray-200 font-normal mb-2 sm:mb-3">
-                  {HERO_CONTENT.headline.prefix}
-                </span>
-                <motion.span 
-                  className={heroStyles.shimmerText}
-                  {...createShimmerAnimation()}
-                >
-                  {HERO_CONTENT.headline.highlight}
-                </motion.span>
-                <span className="block text-gray-100 font-light mt-2 sm:mt-3">
-                  {HERO_CONTENT.headline.suffix}
-                </span>
-              </motion.h1>
+              <HeroHeadline
+                prefix={HERO_CONTENT.headline.prefix}
+                highlight={HERO_CONTENT.headline.highlight}
+                suffix={HERO_CONTENT.headline.suffix}
+              />
               
               {/* Impact Metric */}
-              <motion.div 
-                className={heroStyles.metric}
-                variants={heroAnimations.item}
-              >
-                <MetricIcon className={cn(heroStyles.iconMedium, "flex-shrink-0")} />
-                <span className="text-center">{HERO_CONTENT.metric.text}</span>
-              </motion.div>
+              <HeroMetric
+                icon={MetricIcon}
+                text={HERO_CONTENT.metric.text}
+              />
             </motion.div>
 
             {/* Value Proposition */}
             <motion.div className="space-y-4 sm:space-y-6" variants={heroAnimations.item}>
-              <p className={heroStyles.valueProp}>
-                {HERO_CONTENT.valueProp.main}{" "}
-                <span className="text-[#D4AF37] font-semibold relative">
-                  {HERO_CONTENT.valueProp.highlight1}
-                  <motion.div
-                    className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ delay: 2, duration: 1 }}
-                  />
-                </span>{" "}
-                com o Kit de Inteligência Estratégica que te coloca no{" "}
-                <span className="text-white font-semibold">{HERO_CONTENT.valueProp.highlight2}</span> das suas campanhas.
-              </p>
+              <HeroValueProp
+                mainText="Descubra como transformar cliques em {0} com o Kit de Inteligência Estratégica que te coloca no {1} das suas campanhas."
+                highlights={[
+                  { text: HERO_CONTENT.valueProp.highlight1, underline: true },
+                  { text: HERO_CONTENT.valueProp.highlight2, className: "text-white" }
+                ]}
+              />
               
               {/* USPs */}
-              <div className={heroStyles.uspContainer}>
-                {HERO_CONTENT.usps.map((usp, index) => {
-                  const UspIcon = iconMap[usp.icon as keyof typeof iconMap];
-                  return (
-                    <motion.div 
-                      key={index}
-                      className={heroStyles.uspItem}
-                      custom={index}
-                      variants={heroAnimations.item}
-                    >
-                      <UspIcon className={cn(heroStyles.iconSmall, "text-[#D4AF37]")} />
-                      <span>{usp.text}</span>
-                    </motion.div>
-                  );
-                })}
-              </div>
+              <HeroUSPs
+                items={HERO_CONTENT.usps.map(usp => ({
+                  icon: iconMap[usp.icon as keyof typeof iconMap],
+                  text: usp.text
+                }))}
+              />
             </motion.div>
 
             {/* CTA Button */}
