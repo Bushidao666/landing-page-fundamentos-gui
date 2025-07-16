@@ -1,0 +1,122 @@
+/**
+ * @file: breakpoints.css
+ * @responsibility: responsive breakpoint system
+ * @layer: styles
+ */
+
+/* Breakpoint Variables */
+:root {
+  --breakpoint-xs: 475px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* Mobile First Approach */
+
+/* Extra Small Devices (phones in portrait) */
+@media (max-width: 474px) {
+  .mobile-compact {
+    @apply text-sm;
+  }
+  
+  .mobile-stack {
+    @apply flex-col;
+  }
+  
+  .mobile-full {
+    @apply w-full;
+  }
+}
+
+/* Small Devices (phones in landscape) */
+@media (min-width: 475px) and (max-width: 639px) {
+  .xs-optimize {
+    @apply px-6;
+  }
+}
+
+/* Medium Devices (tablets) */
+@media (min-width: 640px) and (max-width: 767px) {
+  .sm-optimize {
+    @apply px-8;
+  }
+}
+
+/* Large Tablets / Small Desktops */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .md-optimize {
+    @apply px-12;
+  }
+  
+  .md-grid-2 {
+    @apply grid-cols-2;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .desktop-enhance {
+    @apply hover:scale-[1.02];
+  }
+  
+  .desktop-spacing {
+    @apply gap-12;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1280px) {
+  .xl-optimize {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* Ultra Wide */
+@media (min-width: 1536px) {
+  .ultra-wide-optimize {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+/* Orientation Specific */
+@media (orientation: landscape) and (max-height: 500px) {
+  .landscape-compact {
+    @apply py-2;
+  }
+  
+  .section-space-y {
+    @apply py-8;
+  }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi-optimize {
+    image-rendering: -webkit-optimize-contrast;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Container Queries (future-proofing) */
+@container (min-width: 640px) {
+  .container-responsive {
+    @apply text-base;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-optimize {
+    color: black !important;
+    background: white !important;
+  }
+}

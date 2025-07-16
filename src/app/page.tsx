@@ -1,7 +1,7 @@
 "use client";
 
 import HeroSection from "@/components/sections/HeroSection";
-import PainPointsSection from "@/components/sections/PainPointsSection";
+import { PainPointsSection } from "@/components/sections/pain-points";
 import SolutionSection from "@/components/sections/SolutionSection";
 import ContentDetailsSection from "@/components/sections/ContentDetailsSection";
 import SocialProofSection from "@/components/sections/SocialProofSection";
