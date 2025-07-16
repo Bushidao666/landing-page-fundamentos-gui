@@ -1,96 +1,10 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
 import { faqData } from "@/lib/faq-data";
 import FAQBadge from "@/components/faq/FAQBadge";
-import FAQIcon from "@/components/faq/FAQIcon";
-import FAQToggle from "@/components/faq/FAQToggle";
-
-// Internal FAQ Item Component
-const FAQItem = ({ faq, index }: { faq: typeof faqData[0], index: number }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [contentHeight, setContentHeight] = useState(0);
-
-  useEffect(() => {
-    if (contentRef.current) {
-      setContentHeight(contentRef.current.scrollHeight);
-    }
-  }, [isOpen]);
-
-  // Format answer with proper styling
-  const formatAnswer = (text: string) => {
-    return text
-      .replace(/\*(.*?)\*/g, '<span class="text-white font-medium">$1</span>')
-      .replace(/\*\*(.*?)\*\*/g, '<span class="text-[#D4AF37] font-semibold">$1</span>');
-  };
-
-  return (
-    <motion.div
-      className="group bg-white/[0.02] hover:bg-white/[0.05] backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden transition-all duration-300"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.08, duration: 0.5 }}
-    >
-      {/* Question Button */}
-      <button
-        className="w-full p-5 sm:p-6 lg:p-7 text-left focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#0A192F] rounded-xl sm:rounded-2xl transition-all duration-200"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-expanded={isOpen}
-        aria-controls={`faq-answer-${faq.id}`}
-      >
-        <div className="flex items-start gap-4 sm:gap-4 lg:gap-5">
-          {/* Icon */}
-          <FAQIcon icon={faq.icon} />
-          
-          {/* Question Text */}
-          <div className="flex-1 pt-0.5">
-            <h3 className="text-base sm:text-lg md:text-lg lg:text-xl font-semibold text-white leading-relaxed">
-              <span className="text-[#D4AF37] mr-1">P:</span> 
-              <span className="group-hover:text-[#D4AF37] transition-colors duration-300">
-                {faq.question}
-              </span>
-            </h3>
-          </div>
-          
-          {/* Toggle Button */}
-          <FAQToggle isOpen={isOpen} />
-        </div>
-      </button>
-
-      {/* Answer Container */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: contentHeight, opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden"
-          >
-            <div ref={contentRef} className="px-4 pb-4 sm:px-5 sm:pb-5 lg:px-6 lg:pb-6">
-              {/* Divider */}
-              <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-3 sm:mb-4" />
-              
-              {/* Answer Text */}
-              <div className="pl-12 sm:pl-14 lg:pl-15">
-                <p 
-                  className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-300 leading-relaxed"
-                  dangerouslySetInnerHTML={{
-                    __html: `<span class="text-[#D4AF37] font-semibold mr-1">R:</span> ${formatAnswer(faq.answer)}`
-                  }}
-                />
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-};
+import FAQItemComponent from "@/components/faq/FAQItemComponent";
 
 const FAQSection = () => {
   return (
@@ -122,7 +36,7 @@ const FAQSection = () => {
             {/* Title */}
             <motion.h2 
               id="faq-heading"
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-3 sm:mb-4 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-serif font-bold text-white mb-4 sm:mb-5 leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
@@ -132,7 +46,7 @@ const FAQSection = () => {
             
             {/* Subtitle */}
             <motion.p 
-              className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.6 }}
@@ -150,7 +64,7 @@ const FAQSection = () => {
             transition={{ delay: 0.2, duration: 0.6 }}
           >
             {faqData.slice(0, 5).map((faq, index) => (
-              <FAQItem key={faq.id} faq={faq} index={index} />
+              <FAQItemComponent key={faq.id} faq={faq} index={index} />
             ))}
           </motion.div>
 
