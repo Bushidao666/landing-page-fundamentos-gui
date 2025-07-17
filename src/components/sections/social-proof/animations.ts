@@ -5,7 +5,7 @@ export const containerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: typeof window !== 'undefined' && window.innerWidth < 640 ? 0.08 : 0.15,
       delayChildren: 0.1,
     },
   },
@@ -13,10 +13,10 @@ export const containerVariants: Variants = {
 
 export const itemVariants: Variants = {
   hidden: { 
-    y: 30, 
+    y: typeof window !== 'undefined' && window.innerWidth < 640 ? 20 : 30, 
     opacity: 0, 
     scale: 0.95,
-    filter: "blur(5px)"
+    filter: typeof window !== 'undefined' && window.innerWidth < 640 ? "blur(2px)" : "blur(5px)"
   },
   visible: {
     y: 0,
@@ -25,9 +25,9 @@ export const itemVariants: Variants = {
     filter: "blur(0px)",
     transition: {
       type: "spring",
-      stiffness: 100,
-      damping: 15,
-      mass: 1
+      stiffness: typeof window !== 'undefined' && window.innerWidth < 640 ? 150 : 100,
+      damping: typeof window !== 'undefined' && window.innerWidth < 640 ? 20 : 15,
+      mass: typeof window !== 'undefined' && window.innerWidth < 640 ? 0.8 : 1
     }
   },
 };
@@ -41,34 +41,34 @@ export const carouselVariants: Variants = {
     filter: "blur(0px)",
     transition: { 
       type: "spring", 
-      stiffness: 300, 
-      damping: 30,
+      stiffness: typeof window !== 'undefined' && window.innerWidth < 640 ? 200 : 300, 
+      damping: typeof window !== 'undefined' && window.innerWidth < 640 ? 25 : 30,
       mass: 0.8
     },
   },
   left: {
     x: "-60%",
-    scale: 0.8,
-    opacity: 0.5,
+    scale: typeof window !== 'undefined' && window.innerWidth < 640 ? 0.85 : 0.8,
+    opacity: typeof window !== 'undefined' && window.innerWidth < 640 ? 0.6 : 0.5,
     zIndex: 2,
-    filter: "blur(1px)",
+    filter: typeof window !== 'undefined' && window.innerWidth < 640 ? "blur(0.5px)" : "blur(1px)",
     transition: { 
       type: "spring", 
-      stiffness: 300, 
-      damping: 30,
+      stiffness: typeof window !== 'undefined' && window.innerWidth < 640 ? 200 : 300, 
+      damping: typeof window !== 'undefined' && window.innerWidth < 640 ? 25 : 30,
       mass: 0.8
     },
   },
   right: {
     x: "60%",
-    scale: 0.8,
-    opacity: 0.5,
+    scale: typeof window !== 'undefined' && window.innerWidth < 640 ? 0.85 : 0.8,
+    opacity: typeof window !== 'undefined' && window.innerWidth < 640 ? 0.6 : 0.5,
     zIndex: 1,
-    filter: "blur(1px)",
+    filter: typeof window !== 'undefined' && window.innerWidth < 640 ? "blur(0.5px)" : "blur(1px)",
     transition: { 
       type: "spring", 
-      stiffness: 300, 
-      damping: 30,
+      stiffness: typeof window !== 'undefined' && window.innerWidth < 640 ? 200 : 300, 
+      damping: typeof window !== 'undefined' && window.innerWidth < 640 ? 25 : 30,
       mass: 0.8
     },
   },
@@ -80,8 +80,8 @@ export const carouselVariants: Variants = {
     filter: "blur(4px)",
     transition: { 
       type: "spring", 
-      stiffness: 300, 
-      damping: 30,
+      stiffness: typeof window !== 'undefined' && window.innerWidth < 640 ? 200 : 300, 
+      damping: typeof window !== 'undefined' && window.innerWidth < 640 ? 25 : 30,
       mass: 0.8
     },
   },

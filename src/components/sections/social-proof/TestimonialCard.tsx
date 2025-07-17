@@ -66,10 +66,11 @@ export const TestimonialCard = React.memo<TestimonialCardProps>(({
           </motion.div>
         )}
 
-        {/* Container da Imagem com Border Destacado em Proporção 9:16 */}
+        {/* Container da Imagem com Border Destacado Responsivo */}
         <div className="relative bg-gradient-to-br from-gray-100 via-white to-gray-50 
-          rounded-xl sm:rounded-2xl border-2 border-[#D4AF37]/30 shadow-2xl overflow-hidden
-          hover:border-[#D4AF37]/50 transition-all duration-300 h-full w-full">
+          rounded-xl sm:rounded-2xl border-2 border-[#D4AF37]/30 overflow-hidden
+          hover:border-[#D4AF37]/50 transition-all duration-300 h-full w-full
+          shadow-lg sm:shadow-2xl">
           {/* Header WhatsApp Style */}
           <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 
             border-b border-gray-200 bg-gradient-to-r from-green-50 to-green-100">
@@ -100,7 +101,8 @@ export const TestimonialCard = React.memo<TestimonialCardProps>(({
                 onLoad={() => setImageLoaded(true)}
                 onError={() => setImageError(true)}
                 priority={position === 'center'}
-                quality={85}
+                quality={position === 'center' ? 85 : 75}
+                loading={position === 'center' ? 'eager' : 'lazy'}
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-gray-100">

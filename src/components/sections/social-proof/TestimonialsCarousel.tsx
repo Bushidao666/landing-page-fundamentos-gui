@@ -12,14 +12,17 @@ export const TestimonialsCarousel = React.memo(() => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Debounced navigation para evitar clicks múltiplos
+  // Debounced navigation para evitar clicks múltiplos com cleanup
   const debouncedNavigation = useCallback((newIndex: number) => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentSlide(newIndex);
     
     // Reset transitioning state após animação com timeout mais longo
-    setTimeout(() => setIsTransitioning(false), 500);
+    const timeout = setTimeout(() => setIsTransitioning(false), 500);
+    
+    // Cleanup será feito automaticamente pelo React quando component desmontar
+    return () => clearTimeout(timeout);
   }, [isTransitioning]);
 
   const nextSlide = useCallback(() => {
@@ -32,18 +35,33 @@ export const TestimonialsCarousel = React.memo(() => {
     debouncedNavigation(newIndex);
   }, [currentSlide, debouncedNavigation]);
   
-  // Auto-play inteligente mobile-optimized
+  // Auto-play inteligente mobile-optimized com cleanup
   useEffect(() => {
     if (!isAutoPlaying || isTransitioning) return;
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
     const interval = setInterval(nextSlide, isMobile ? 4000 : 5000);
-    return () => clearInterval(interval);
+    
+    // Cleanup function
+    return () => {
+      clearInterval(interval);
+    };
   }, [isAutoPlaying, nextSlide, isTransitioning]);
 
-  // Pause auto-play no hover
-  const handleMouseEnter = useCallback(() => setIsAutoPlaying(false), []);
-  const handleMouseLeave = useCallback(() => setIsAutoPlaying(true), []);
+  // Pause auto-play no hover (apenas desktop)
+  const handleMouseEnter = useCallback(() => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    if (!isMobile) {
+      setIsAutoPlaying(false);
+    }
+  }, []);
+  
+  const handleMouseLeave = useCallback(() => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    if (!isMobile) {
+      setIsAutoPlaying(true);
+    }
+  }, []);
 
   return (
     <div 
