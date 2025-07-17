@@ -1,8 +1,8 @@
 /**
  * @file: CommunityBonus.tsx
- * @responsibility: community bonus card with aristocratic styling and benefits grid
+ * @responsibility: community bonus card with premium unified styling and benefits grid
  * @exports: CommunityBonus
- * @imports: BonusCard, framer-motion, lucide-react, bonusData, aristocratic tokens
+ * @imports: BonusCard, framer-motion, lucide-react, bonusData, unified tokens
  * @layer: components
  */
 
@@ -13,6 +13,7 @@ import { Users, Crown, MessageSquare, Briefcase, TrendingUp, Gift } from "lucide
 import BonusCard from "./BonusCard";
 import { bonusMetrics, communityBenefits } from "../data/bonusData";
 import "../styles/aristocratic-tokens.css";
+import Image from "next/image";
 
 interface CommunityBonusProps {
   index?: number;
@@ -36,21 +37,86 @@ export default function CommunityBonus({ index = 0 }: CommunityBonusProps) {
       floatingIcon={Crown}
       index={index}
     >
-      {/* Texto Introdutório - Professional Emphasis */}
+      {/* Mockup da Comunidade Premium - Logo abaixo da headline */}
       <motion.div
-        className="mb-4 md:mb-6"
+        className="bonus-spacing-lg"
+        initial={{ y: 20, opacity: 0, scale: 0.95 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+      >
+        <div className="relative group">
+          {/* Glow effect behind the mockup */}
+          <motion.div
+            className="absolute -inset-4 bg-gradient-to-r from-[#D4AF37]/20 via-white/10 to-[#D4AF37]/20 rounded-2xl blur-lg"
+            animate={{ opacity: [0.5, 0.8, 0.5] }}
+            transition={{ duration: 3, repeat: Infinity }}
+          />
+          
+          {/* Main mockup container */}
+          <motion.div
+            className="relative bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/10 hover:border-[#D4AF37]/30 transition-all duration-500"
+            whileHover={{ 
+              y: -3,
+              transition: { type: "spring", stiffness: 400, damping: 25 }
+            }}
+          >
+            {/* Shimmer overlay */}
+            <motion.div
+              className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent"
+              initial={{ x: "-100%" }}
+              animate={{ x: "200%" }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity,
+                repeatDelay: 3,
+                ease: "easeInOut"
+              }}
+            />
+            
+            <Image
+              src="/images/Mockups/mockup-do-zero-a-100k.png"
+              alt="Mockup da Comunidade Zero ao 100K mostrando conversas da comunidade em múltiplos dispositivos"
+              width={600}
+              height={400}
+              className="w-full h-auto rounded-lg shadow-2xl shadow-black/30 group-hover:shadow-[#D4AF37]/20 transition-shadow duration-500"
+              priority
+            />
+            
+            {/* Floating badges */}
+            <motion.div
+              className="absolute top-2 right-2 bg-[#D4AF37] text-[#0A192F] px-3 py-1 rounded-full text-xs font-bold shadow-lg"
+              animate={{ y: [-2, 2, -2] }}
+              transition={{ duration: 4, repeat: Infinity }}
+            >
+              VITALÍCIO
+            </motion.div>
+            
+            <motion.div
+              className="absolute bottom-2 left-2 bg-white/90 text-[#0A192F] px-3 py-1 rounded-full text-xs font-bold shadow-lg"
+              animate={{ y: [2, -2, 2] }}
+              transition={{ duration: 3.5, repeat: Infinity, delay: 0.5 }}
+            >
+              Comunidade Elite
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Texto Introdutório Premium */}
+      <motion.div
+        className="bonus-spacing-lg"
         initial={{ y: 15, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.2 }}
+        transition={{ delay: 0.4 }}
       >
-        <p className="text-base md:text-lg lg:text-xl text-aristocrat-secondary leading-relaxed mb-3">
-          <span className="font-bold text-aristocrat-primary text-lg md:text-xl">Isso aqui, sinceramente, vale 10x o valor do curso.</span>
+        <p className="bonus-text-large mb-3 text-white">
+          <span className="font-bold text-[#D4AF37] bonus-text-xl">Isso aqui, sinceramente, vale 10x o valor do curso.</span>
         </p>
-        <p className="text-base md:text-lg text-aristocrat-secondary leading-relaxed">
+        <p className="bonus-text-medium text-gray-300">
           Chega de se sentir sozinho, pesquisando em fóruns gringos ou esperando a boa vontade do suporte do Google. 
           Você terá acesso{" "}
           <motion.span 
-            className="inline-block text-imperial-primary font-bold text-lg md:text-xl"
+            className="inline-block text-[#D4AF37] font-bold bonus-text-xl"
             animate={{ scale: [1, 1.03, 1] }}
             transition={{ duration: 2.5, repeat: Infinity }}
           >
@@ -60,30 +126,29 @@ export default function CommunityBonus({ index = 0 }: CommunityBonusProps) {
         </p>
       </motion.div>
 
-      {/* Grid de Benefícios Premium - Optimized Spacing */}
-      <div className="grid gap-3 md:gap-4 lg:gap-5 md:grid-cols-2">
+      {/* Grid de Benefícios Premium */}
+      <div className="bonus-benefit-grid">
         {communityBenefits.map((benefit, i) => (
           <motion.article 
             key={i}
-            className="bg-white/98 rounded-xl p-4 md:p-5 border border-aristocrat-20 shadow-aristocrat-sm hover:shadow-aristocrat-md group cursor-pointer overflow-hidden relative transition-all duration-200"
+            className="bonus-benefit-card group cursor-pointer"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
-              delay: 0.3 + i * 0.08,
+              delay: 0.6 + i * 0.08,
               duration: 0.3
             }}
             whileHover={{ 
-              y: -3,
-              borderColor: "var(--imperial-gold-25)",
-              boxShadow: "var(--shadow-aristocrat-md)"
+              y: -2,
+              transition: { duration: 0.2 }
             }}
             role="article"
             tabIndex={0}
             aria-label={`Benefício: ${benefit.title}`}
           >
-            {/* Aristocratic shimmer effect on hover */}
+            {/* Shimmer effect premium */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-imperial-gold/3 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
+              className="absolute inset-0 bonus-shimmer opacity-0 group-hover:opacity-100 rounded-xl"
               initial={{ x: "-100%" }}
               animate={{ x: "200%" }}
               transition={{ 
@@ -94,20 +159,19 @@ export default function CommunityBonus({ index = 0 }: CommunityBonusProps) {
               }}
             />
 
-            <div className="flex items-start gap-3 md:gap-4 relative z-10">
-              {/* Icon Container Aristocratic */}
+            <div className="bonus-benefit-header">
+              {/* Icon Container Premium */}
               <motion.div 
-                className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-imperial-gold to-imperial-gold-light rounded-xl md:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-gold-sm relative overflow-hidden"
+                className="bonus-benefit-icon"
                 whileHover={{ 
                   scale: 1.05,
                   rotate: 3,
-                  boxShadow: "var(--shadow-gold-md)"
+                  transition: { type: "spring", stiffness: 350, damping: 15 }
                 }}
-                transition={{ type: "spring", stiffness: 350, damping: 15 }}
               >
-                {/* Aristocratic glow effect */}
+                {/* Glow effect premium */}
                 <motion.div
-                  className="absolute inset-0 bg-elegant-white/15 rounded-xl md:rounded-2xl"
+                  className="absolute inset-0 bg-white/15 rounded-lg"
                   animate={{ opacity: [0, 0.4, 0] }}
                   transition={{ duration: 3, repeat: Infinity }}
                 />
@@ -115,42 +179,34 @@ export default function CommunityBonus({ index = 0 }: CommunityBonusProps) {
                 <motion.div
                   initial={{ scale: 0.85, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.5 + i * 0.08, duration: 0.4 }}
+                  transition={{ delay: 0.8 + i * 0.08, duration: 0.4 }}
                   whileHover={{ scale: 1.05 }}
                 >
                   {getBenefitIcon(i)}
                 </motion.div>
               </motion.div>
               
-              {/* Content Area Refinado */}
+              {/* Content Premium */}
               <div className="flex-1 min-w-0">
                 <motion.h4 
-                  className="text-sm md:text-base lg:text-lg font-bold text-aristocrat-primary mb-2 md:mb-3 leading-tight group-hover:text-imperial-primary transition-colors duration-300"
+                  className="bonus-benefit-title group-hover:text-[#D4AF37] transition-colors duration-300"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 + i * 0.08 }}
+                  transition={{ delay: 0.9 + i * 0.08 }}
                 >
                   {benefit.title}
                 </motion.h4>
                 
                 <motion.p 
-                  className="text-xs md:text-sm lg:text-base text-aristocrat-secondary leading-relaxed group-hover:text-aristocrat-primary transition-colors duration-300"
+                  className="bonus-benefit-description group-hover:text-white transition-colors duration-300"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 + i * 0.08 }}
+                  transition={{ delay: 1.0 + i * 0.08 }}
                 >
                   {benefit.description}
                 </motion.p>
               </div>
             </div>
-
-            {/* Progress indicator aristocratic */}
-            <motion.div
-              className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-imperial-gold to-imperial-gold-light rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ delay: 0.8 + i * 0.15, duration: 0.6, ease: "easeOut" }}
-            />
           </motion.article>
         ))}
       </div>

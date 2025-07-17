@@ -32,7 +32,7 @@ export default function HeroValueProp({
   const parts = mainText.split(/\{(\d+)\}/);
   
   return (
-    <p className={cn(heroStyles.valueProp, className)}>
+    <div className={cn(heroStyles.valueProp, className)}>
       {parts.map((part, index) => {
         const highlightIndex = parseInt(part);
         
@@ -63,6 +63,6 @@ export default function HeroValueProp({
         
         return <span key={index}>{part}</span>;
       })}
-    </p>
+    </div>
   );
 }

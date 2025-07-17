@@ -1,35 +1,64 @@
 /**
  * @file: AnimatedCounter.tsx
- * @responsibility: animated counter component
- * @exports: AnimatedCounter component
- * @imports: useCounterAnimation hook
+ * @responsibility: Componente de contador animado para estatísticas
+ * @exports: AnimatedCounter
+ * @imports: React, useState, useEffect
  * @layer: components
  */
 
-"use client";
-
-import { useCounterAnimation } from "../hooks/useCounterAnimation";
+import React, { useState, useEffect } from 'react';
 
 interface AnimatedCounterProps {
-  target: number;
-  prefix?: string;
-  suffix?: string;
+  end: number;
   duration?: number;
-  className?: string;
+  suffix?: string;
+  shouldAnimate?: boolean;
 }
 
-export function AnimatedCounter({ 
-  target, 
-  prefix = "", 
-  suffix = "", 
+export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
+  end,
   duration = 2000,
-  className = ""
-}: AnimatedCounterProps) {
-  const { count, ref } = useCounterAnimation({ target, duration });
+  suffix = '',
+  shouldAnimate = true
+}) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!shouldAnimate) {
+      setCount(end);
+      return;
+    }
+
+    let startTime: number | null = null;
+    let animationFrame: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      
+      // Easing function para animação mais suave
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentCount = Math.floor(easeOutQuart * end);
+      
+      setCount(currentCount);
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [end, duration, shouldAnimate]);
 
   return (
-    <span ref={ref} className={className}>
-      {prefix}{count.toLocaleString('pt-BR')}{suffix}
+    <span className="animated-counter">
+      {count.toLocaleString('pt-BR')}{suffix}
     </span>
   );
-}
+};

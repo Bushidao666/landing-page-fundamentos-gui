@@ -56,7 +56,7 @@ export const TestimonialsCarousel = React.memo(() => {
         flex items-center justify-center mb-8 sm:mb-10 md:mb-12 
         min-h-[400px] sm:min-h-[480px] md:min-h-[520px] lg:min-h-[580px]">
         <LayoutGroup>
-          <AnimatePresence mode="wait" initial={false}>
+          <AnimatePresence initial={false}>
             {testimonials.map((testimonial, index) => {
               let variant: 'center' | 'left' | 'right' | 'hidden' = "hidden";
               const distance = index - currentSlide;

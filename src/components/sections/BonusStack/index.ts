@@ -21,7 +21,3 @@ export { default as BonusCard } from "./components/BonusCard";
 export { default as ValueStack, calculateValueMetrics } from "./components/ValueStack";
 export { default as GPTCard } from "./components/GPTCard";
 export { default as UrgencyBar } from "./components/UrgencyBar";
-export { default as BonusCardV2 } from "./components/BonusCardV2";
-export { default as BonusHeaderV2 } from "./components/BonusHeaderV2";
-export { default as BonusStackSectionV2 } from "./BonusStackSectionV2";
-export { default as ResponsiveLayout } from "./components/ResponsiveLayout";

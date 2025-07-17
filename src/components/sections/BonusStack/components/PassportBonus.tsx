@@ -13,6 +13,7 @@ import { Zap, BookOpen, Play, CheckCircle } from "lucide-react";
 import BonusCard from "./BonusCard";
 import { bonusMetrics } from "../data/bonusData";
 import "../styles/aristocratic-tokens.css";
+import Image from "next/image";
 
 interface PassportBonusProps {
   index?: number;
@@ -30,20 +31,85 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
       floatingIcon={Zap}
       index={index}
     >
+      {/* Mockup do Passaporte Premium - Logo abaixo da headline */}
+      <motion.div
+        className="bonus-spacing-lg"
+        initial={{ y: 20, opacity: 0, scale: 0.95 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+      >
+        <div className="relative group">
+          {/* Glow effect behind the mockup */}
+          <motion.div
+            className="absolute -inset-4 bg-gradient-to-r from-[#D4AF37]/20 via-white/10 to-[#D4AF37]/20 rounded-2xl blur-lg"
+            animate={{ opacity: [0.5, 0.8, 0.5] }}
+            transition={{ duration: 3, repeat: Infinity }}
+          />
+          
+          {/* Main mockup container */}
+          <motion.div
+            className="relative bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/10 hover:border-[#D4AF37]/30 transition-all duration-500"
+            whileHover={{ 
+              y: -3,
+              transition: { type: "spring", stiffness: 400, damping: 25 }
+            }}
+          >
+            {/* Shimmer overlay */}
+            <motion.div
+              className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent"
+              initial={{ x: "-100%" }}
+              animate={{ x: "200%" }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity,
+                repeatDelay: 3,
+                ease: "easeInOut"
+              }}
+            />
+            
+            <Image
+              src="/images/Mockups/mockup passaporte.png"
+              alt="Mockup do Passaporte Aceleração mostrando as 9 aulas rápidas e ferramentas práticas"
+              width={600}
+              height={400}
+              className="w-full h-auto rounded-lg shadow-2xl shadow-black/30 group-hover:shadow-[#D4AF37]/20 transition-shadow duration-500"
+              priority
+            />
+            
+            {/* Floating badges */}
+            <motion.div
+              className="absolute top-2 right-2 bg-[#D4AF37] text-[#0A192F] px-3 py-1 rounded-full text-xs font-bold shadow-lg"
+              animate={{ y: [-2, 2, -2] }}
+              transition={{ duration: 4, repeat: Infinity }}
+            >
+              KIT COMPLETO
+            </motion.div>
+            
+            <motion.div
+              className="absolute bottom-2 left-2 bg-white/90 text-[#0A192F] px-3 py-1 rounded-full text-xs font-bold shadow-lg"
+              animate={{ y: [2, -2, 2] }}
+              transition={{ duration: 3.5, repeat: Infinity, delay: 0.5 }}
+            >
+              9 Aulas + 9 Ferramentas
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.div>
+
       {/* Descrição Premium */}
       <motion.div
         className="mb-8 md:mb-10 lg:mb-12"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 0.4 }}
       >
         <motion.p 
-          className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed font-medium"
+          className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-300 leading-relaxed font-medium"
           animate={{
             textShadow: [
-              "0 0 0px rgba(107, 114, 128, 0)",
-              "0 0 8px rgba(107, 114, 128, 0.1)",
-              "0 0 0px rgba(107, 114, 128, 0)"
+              "0 0 0px rgba(255, 255, 255, 0)",
+              "0 0 8px rgba(255, 255, 255, 0.1)",
+              "0 0 0px rgba(255, 255, 255, 0)"
             ]
           }}
           transition={{ duration: 4, repeat: Infinity }}
@@ -78,15 +144,15 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
         </motion.p>
         
         <motion.p 
-          className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed font-medium mt-4 md:mt-5"
+          className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-300 leading-relaxed font-medium mt-4 md:mt-5"
           initial={{ opacity: 0.8 }}
           animate={{ opacity: [0.8, 1, 0.8] }}
           transition={{ duration: 2.5, repeat: Infinity, delay: 1 }}
         >
           Enquanto você aprende a base teórica, já pode usar as{" "}
-          <span className="text-[#0A192F] font-black text-lg md:text-xl lg:text-2xl">9 aulas rápidas</span>{" "}
+          <span className="text-white font-black text-lg md:text-xl lg:text-2xl">9 aulas rápidas</span>{" "}
           e as{" "}
-          <span className="text-[#0A192F] font-black text-lg md:text-xl lg:text-2xl">9 ferramentas práticas</span>{" "}
+          <span className="text-white font-black text-lg md:text-xl lg:text-2xl">9 ferramentas práticas</span>{" "}
           do Passaporte para aplicar otimizações imediatas e{" "}
           <motion.span 
             className="text-[#D4AF37] font-black relative"
@@ -146,10 +212,10 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
               repeatDelay: 2
             }}
           >
-            <BookOpen className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-green-600 drop-shadow-sm" />
+            <BookOpen className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-green-400 drop-shadow-sm" />
             {/* Glow ring */}
             <motion.div
-              className="absolute inset-0 rounded-full bg-green-500/20 blur-md"
+              className="absolute inset-0 rounded-full bg-green-400/20 blur-md"
               animate={{ 
                 scale: [1, 1.5, 1],
                 opacity: [0.3, 0.6, 0.3]
@@ -159,7 +225,7 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
           </motion.div>
           
           <motion.span 
-            className="text-green-600 text-base md:text-lg lg:text-xl font-bold"
+            className="text-green-400 text-base md:text-lg lg:text-xl font-bold"
             animate={{
               textShadow: [
                 "0 0 0px rgba(34, 197, 94, 0)",
@@ -192,19 +258,19 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
             transition={{ delay: 1, duration: 0.6 }}
           >
             <motion.h4 
-              className="text-[#0A192F] font-black text-base md:text-lg lg:text-xl mb-4 md:mb-5 flex items-center gap-2"
+              className="text-white font-black text-base md:text-lg lg:text-xl mb-4 md:mb-5 flex items-center gap-2"
               animate={{
                 textShadow: [
-                  "0 0 0px rgba(10, 25, 47, 0)",
-                  "0 0 8px rgba(10, 25, 47, 0.2)",
-                  "0 0 0px rgba(10, 25, 47, 0)"
+                  "0 0 0px rgba(255, 255, 255, 0)",
+                  "0 0 8px rgba(255, 255, 255, 0.3)",
+                  "0 0 0px rgba(255, 255, 255, 0)"
                 ]
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               <span>9 Aulas Rápidas:</span>
               <motion.div
-                className="w-2 h-2 bg-green-500 rounded-full"
+                className="w-2 h-2 bg-green-400 rounded-full"
                 animate={{ scale: [1, 1.3, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
@@ -223,9 +289,9 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
                   whileHover={{ scale: 1.2, rotate: 360 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Play className="w-4 h-4 md:w-5 md:h-5 text-green-600 drop-shadow-sm" />
+                  <Play className="w-4 h-4 md:w-5 md:h-5 text-green-400 drop-shadow-sm" />
                   <motion.div
-                    className="absolute inset-0 bg-green-500/30 rounded-full blur-sm"
+                    className="absolute inset-0 bg-green-400/30 rounded-full blur-sm"
                     animate={{ 
                       scale: [1, 1.4, 1],
                       opacity: [0.3, 0.6, 0.3]
@@ -271,7 +337,7 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
                 </div>
                 
                 <motion.span 
-                  className="text-green-700 text-sm md:text-base font-bold min-w-[60px] group-hover:text-green-600 transition-colors"
+                  className="text-green-300 text-sm md:text-base font-bold min-w-[60px] group-hover:text-green-200 transition-colors"
                   animate={{ opacity: [0.8, 1, 0.8] }}
                   transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
                 >
@@ -289,19 +355,19 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
             transition={{ delay: 1.2, duration: 0.6 }}
           >
             <motion.h4 
-              className="text-[#0A192F] font-black text-base md:text-lg lg:text-xl mb-4 md:mb-5 flex items-center gap-2"
+              className="text-white font-black text-base md:text-lg lg:text-xl mb-4 md:mb-5 flex items-center gap-2"
               animate={{
                 textShadow: [
-                  "0 0 0px rgba(10, 25, 47, 0)",
-                  "0 0 8px rgba(10, 25, 47, 0.2)",
-                  "0 0 0px rgba(10, 25, 47, 0)"
+                  "0 0 0px rgba(255, 255, 255, 0)",
+                  "0 0 8px rgba(255, 255, 255, 0.3)",
+                  "0 0 0px rgba(255, 255, 255, 0)"
                 ]
               }}
               transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
             >
               <span>9 Ferramentas Práticas:</span>
               <motion.div
-                className="w-2 h-2 bg-emerald-500 rounded-full"
+                className="w-2 h-2 bg-emerald-400 rounded-full"
                 animate={{ scale: [1, 1.3, 1] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 1 }}
               />
@@ -320,9 +386,9 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
                   whileHover={{ scale: 1.2, rotate: -360 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-600 drop-shadow-sm" />
+                  <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400 drop-shadow-sm" />
                   <motion.div
-                    className="absolute inset-0 bg-emerald-500/30 rounded-full blur-sm"
+                    className="absolute inset-0 bg-emerald-400/30 rounded-full blur-sm"
                     animate={{ 
                       scale: [1, 1.4, 1],
                       opacity: [0.3, 0.6, 0.3]
@@ -368,7 +434,7 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
                 </div>
                 
                 <motion.span 
-                  className="text-emerald-700 text-sm md:text-base font-bold min-w-[60px] group-hover:text-emerald-600 transition-colors"
+                  className="text-emerald-300 text-sm md:text-base font-bold min-w-[60px] group-hover:text-emerald-200 transition-colors"
                   animate={{ opacity: [0.8, 1, 0.8] }}
                   transition={{ duration: 2, repeat: Infinity, delay: (i * 0.2) + 1 }}
                 >

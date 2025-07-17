@@ -5,7 +5,7 @@ import { PainPointsSection } from "@/components/sections/pain-points";
 import { SolutionSection } from "@/components/sections/solution";
 import { ContentDetailsSection } from "@/components/sections/content-details";
 import { SocialProofSection } from "@/components/sections/social-proof";
-import { BonusStackSection, ResponsiveLayout } from "@/components/sections/BonusStack";
+import { BonusStackSection } from "@/components/sections/BonusStack";
 import PriceAnchoringSectionComplete from "@/components/sections/price-anchoring";
 import PriceJustificationSection from "@/components/sections/PriceJustification";
 import GuaranteeSection from "@/components/sections/GuaranteeSection";
@@ -20,18 +20,12 @@ export default function Home() {
       <SolutionSection />
       <ContentDetailsSection />
       <SocialProofSection />
-      
-      {/* DEMO: BonusStack v2.0 - Layout Estratégico Profissional */}
-      <ResponsiveLayout />
-      
-      {/* Original BonusStack (comentado para comparação) */}
-      {/* <BonusStackSection /> */}
-      
+      <BonusStackSection />
       <PriceAnchoringSectionComplete />
       <PriceJustificationSection />
       <GuaranteeSection />
-      <FAQSectionAdvanced />
       <FooterSection />
+      <FAQSectionAdvanced />
     </main>
   );
 }

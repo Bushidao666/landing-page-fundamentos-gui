@@ -159,11 +159,11 @@
   }
   
   .border-white\/20 {
-    @apply border-white\/40;
+    @apply border-white/40;
   }
   
   .bg-white\/5 {
-    @apply bg-white\/10;
+    @apply bg-white/10;
   }
 }
 
@@ -173,7 +173,7 @@
     -webkit-tap-highlight-color: transparent;
   }
   
-  .hover\\:scale-110:active {
+  .hover\:scale-110:active {
     transform: scale(1.05);
   }
 }

@@ -1,0 +1,193 @@
+/**
+ * EmotionalTransition Styles - Sistema de Design Premium Unificado
+ * Transição visual sutil entre pain points e solução
+ * Seguindo padrão de design da página
+ */
+
+/* ========================================
+   CONTAINER PRINCIPAL
+   ======================================== */
+.emotional-transition {
+  width: 100%;
+  padding: var(--pain-space-2xl) 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ========================================
+   CONTAINER INTERNO
+   ======================================== */
+.transition-container {
+  max-width: var(--pain-container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--pain-container-padding);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   PADRÃO DE RACHADURA/LINHA
+   ======================================== */
+.crack-pattern {
+  width: 100%;
+  height: 80px;
+  margin-bottom: var(--pain-space-lg);
+  transform-origin: center;
+  position: relative;
+}
+
+.crack-pattern svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.crack-pattern path {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 0;
+  animation: crackReveal 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.1));
+}
+
+/* ========================================
+   ANIMAÇÃO DA LINHA
+   ======================================== */
+@keyframes crackReveal {
+  from {
+    stroke-dashoffset: 2000;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   TEXTO DE TRANSIÇÃO
+   ======================================== */
+.transition-text {
+  font-size: var(--pain-text-2xl);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--pain-text-secondary);
+  opacity: 0.8;
+  letter-spacing: 0.02em;
+  position: relative;
+  display: inline-block;
+  padding: 0 var(--pain-space-lg);
+}
+
+.transition-text::before,
+.transition-text::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(
+    to var(--direction, right),
+    transparent 0%,
+    var(--pain-accent) 50%,
+    transparent 100%
+  );
+  transform: translateY(-50%);
+  opacity: 0.5;
+}
+
+.transition-text::before {
+  right: 100%;
+  margin-right: var(--pain-space-md);
+  --direction: right;
+}
+
+.transition-text::after {
+  left: 100%;
+  margin-left: var(--pain-space-md);
+  --direction: left;
+}
+
+/* ========================================
+   EFEITO DE BRILHO SUTIL
+   ======================================== */
+.transition-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.05) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  animation: glowPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+@media (max-width: 768px) {
+  .emotional-transition {
+    padding: var(--pain-space-xl) 0;
+  }
+  
+  .crack-pattern {
+    height: 60px;
+    margin-bottom: var(--pain-space-md);
+  }
+  
+  .transition-text {
+    font-size: var(--pain-text-xl);
+    padding: 0 var(--pain-space-md);
+  }
+  
+  .transition-text::before,
+  .transition-text::after {
+    width: 50px;
+  }
+}
+
+/* ========================================
+   ACESSIBILIDADE
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .crack-pattern path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  
+  .transition-container::before {
+    animation: none;
+    opacity: 0.5;
+  }
+}
+
+/* ========================================
+   MODO ESCURO (se aplicável)
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+  .transition-text {
+    color: var(--pain-text-muted);
+  }
+  
+  .crack-pattern path {
+    filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.2));
+  }
+}

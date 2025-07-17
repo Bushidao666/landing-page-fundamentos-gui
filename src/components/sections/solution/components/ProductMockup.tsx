@@ -52,47 +52,49 @@ export default function ProductMockup({
 }: ProductMockupProps) {
   return (
     <motion.div 
-      className={`relative order-2 lg:order-1 max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto lg:mx-0 ${className}`}
+      className={`relative max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto lg:mx-0 ${className}`}
       variants={itemVariants}
     >
-      {/* Container Principal da Imagem com Glassmorphism */}
-      <motion.div 
-        className="relative bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl border border-white/20 overflow-hidden"
-        whileHover={{ 
-          scale: 1.02,
-          rotateY: 1,
-          boxShadow: "0 25px 50px rgba(212, 175, 55, 0.3)"
-        }}
-        transition={{ duration: 0.4 }}
-      >
-        {/* Efeito de Brilho no Hover */}
+      {/* Container Principal da Imagem - Padrão BonusStack */}
+      <div className="relative group">
+        {/* Glow effect behind the mockup */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent skew-x-12 opacity-0"
-          whileHover={{ opacity: 1, x: ["100%", "-100%"] }}
-          transition={{ duration: 1.5 }}
+          className="absolute -inset-4 bg-gradient-to-r from-[#D4AF37]/20 via-white/10 to-[#D4AF37]/20 rounded-2xl blur-lg"
+          animate={{ opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 3, repeat: Infinity }}
         />
         
-        {/* Container da Imagem Principal */}
-        <div className="relative">
+        {/* Main mockup container */}
+        <motion.div
+          className="relative bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/10 hover:border-[#D4AF37]/30 transition-all duration-500"
+          whileHover={{ 
+            y: -3,
+            transition: { type: "spring", stiffness: 400, damping: 25 }
+          }}
+        >
+          {/* Shimmer overlay */}
           <motion.div
-            className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-            whileHover={{ scale: 1.01, y: -2 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Image
-              src={imageSrc}
-              alt={imageAlt}
-              width={600}
-              height={600}
-              className="w-full h-auto object-contain"
-              priority
-              quality={95}
-            />
-            
-            {/* Overlay Sutil para Integração Visual */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent rounded-xl md:rounded-2xl" />
-          </motion.div>
-        </div>
+            className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent"
+            initial={{ x: "-100%" }}
+            animate={{ x: "200%" }}
+            transition={{ 
+              duration: 2, 
+              repeat: Infinity,
+              repeatDelay: 3,
+              ease: "easeInOut"
+            }}
+          />
+          
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            width={600}
+            height={600}
+            className="w-full h-auto rounded-lg shadow-2xl shadow-black/30 group-hover:shadow-[#D4AF37]/20 transition-shadow duration-500"
+            priority
+            quality={95}
+          />
+        </motion.div>
 
         {/* Status Badge Flutuante */}
         <motion.div 
@@ -106,7 +108,7 @@ export default function ProductMockup({
             <span>{badgeText}</span>
           </div>
         </motion.div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

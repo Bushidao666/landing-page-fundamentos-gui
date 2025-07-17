@@ -1,0 +1,291 @@
+/**
+ * TransformationHero Styles - Sistema de Design Premium Unificado
+ * CTA dramático com design premium seguindo padrão da página
+ * Card de solução com glassmorphism e dourado
+ */
+
+/* ========================================
+   CONTAINER PRINCIPAL
+   ======================================== */
+.transformation-hero {
+  width: 100%;
+  padding: var(--pain-space-xl) 0 var(--pain-space-2xl);
+}
+
+/* ========================================
+   CONTAINER DO CARD
+   ======================================== */
+.transformation-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--pain-container-padding);
+}
+
+/* ========================================
+   CARD DOURADO PREMIUM
+   ======================================== */
+.golden-card {
+  position: relative;
+  padding: var(--pain-space-2xl);
+  border-radius: var(--pain-radius-2xl);
+  overflow: hidden;
+  transition: all var(--pain-transition-normal);
+}
+
+/* Glassmorphism Premium com Dourado */
+.golden-card.glassmorphism {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 251, 235, 0.90) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 
+    0 20px 60px rgba(212, 175, 55, 0.15),
+    0 10px 30px rgba(10, 25, 47, 0.1),
+    inset 0 2px 8px rgba(255, 255, 255, 0.8);
+}
+
+.golden-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 25px 70px rgba(212, 175, 55, 0.2),
+    0 15px 35px rgba(10, 25, 47, 0.12),
+    inset 0 2px 8px rgba(255, 255, 255, 0.9);
+}
+
+/* ========================================
+   EFEITO SHIMMER PREMIUM
+   ======================================== */
+.shimmer-effect {
+  position: absolute;
+  inset: -50%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(212, 175, 55, 0.15) 50%,
+    transparent 60%
+  );
+  animation: shimmer 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+/* ========================================
+   WRAPPER DE CONTEÚDO
+   ======================================== */
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* ========================================
+   BADGE DE TRANSFORMAÇÃO
+   ======================================== */
+.transformation-badge {
+  display: inline-block;
+  padding: var(--pain-space-xs) var(--pain-space-md);
+  background: linear-gradient(135deg, var(--pain-accent) 0%, #B8941F 100%);
+  color: white;
+  font-size: var(--pain-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: var(--pain-radius-full);
+  margin-bottom: var(--pain-space-lg);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  transition: all var(--pain-transition-fast);
+}
+
+.transformation-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+}
+
+/* ========================================
+   TIPOGRAFIA
+   ======================================== */
+.transformation-title {
+  font-size: var(--pain-text-3xl);
+  font-weight: 900;
+  color: var(--pain-text-primary);
+  line-height: 1.2;
+  margin-bottom: var(--pain-space-md);
+  letter-spacing: -0.02em;
+}
+
+.transformation-title .highlight {
+  background: linear-gradient(135deg, var(--pain-accent) 0%, #B8941F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.transformation-description {
+  font-size: var(--pain-text-lg);
+  font-weight: 400;
+  color: var(--pain-text-secondary);
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto var(--pain-space-lg);
+}
+
+.transformation-description strong {
+  color: var(--pain-text-primary);
+  font-weight: 600;
+}
+
+/* ========================================
+   ÊNFASE ADICIONAL
+   ======================================== */
+.transformation-emphasis {
+  margin: var(--pain-space-lg) 0;
+  padding: var(--pain-space-md);
+  background: rgba(212, 175, 55, 0.05);
+  border-radius: var(--pain-radius-lg);
+  border-left: 4px solid var(--pain-accent);
+}
+
+.emphasis-text {
+  font-size: var(--pain-text-xl);
+  font-weight: 500;
+  color: var(--pain-text-primary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.emphasis-text strong {
+  color: var(--pain-accent);
+  font-weight: 700;
+}
+
+/* ========================================
+   CTA BUTTON PREMIUM
+   ======================================== */
+.transformation-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pain-space-sm);
+  padding: var(--pain-space-md) var(--pain-space-xl);
+  background: linear-gradient(135deg, var(--pain-accent) 0%, #B8941F 100%);
+  color: white;
+  font-size: var(--pain-text-lg);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--pain-radius-full);
+  cursor: pointer;
+  transition: all var(--pain-transition-normal);
+  box-shadow: 
+    0 10px 30px rgba(212, 175, 55, 0.3),
+    0 5px 15px rgba(10, 25, 47, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin-top: var(--pain-space-lg);
+}
+
+.transformation-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.transformation-cta:hover::before {
+  transform: translateX(100%);
+}
+
+.transformation-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 15px 40px rgba(212, 175, 55, 0.4),
+    0 8px 20px rgba(10, 25, 47, 0.15);
+}
+
+.cta-arrow {
+  font-size: 1.25em;
+  transition: transform var(--pain-transition-fast);
+}
+
+.transformation-cta:hover .cta-arrow {
+  transform: translateX(5px);
+}
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+@media (max-width: 768px) {
+  .transformation-hero {
+    padding: var(--pain-space-lg) 0 var(--pain-space-xl);
+  }
+  
+  .golden-card {
+    padding: var(--pain-space-lg);
+  }
+  
+  .transformation-title {
+    font-size: var(--pain-text-2xl);
+  }
+  
+  .transformation-cta {
+    padding: var(--pain-space-sm) var(--pain-space-lg);
+    font-size: var(--pain-text-base);
+  }
+  
+  .emphasis-text {
+    font-size: var(--pain-text-lg);
+  }
+}
+
+/* ========================================
+   ACESSIBILIDADE
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-effect {
+    animation: none;
+  }
+  
+  .transformation-cta::before {
+    transition: none;
+  }
+  
+  .transformation-cta:hover {
+    transform: none;
+  }
+  
+  .cta-arrow {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .golden-card {
+    border-width: 3px;
+  }
+  
+  .transformation-badge {
+    border: 2px solid var(--pain-accent);
+  }
+  
+  .transformation-cta {
+    border: 2px solid white;
+  }
+}

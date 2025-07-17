@@ -1,75 +1,49 @@
 /**
  * @file: PainPointsSection.tsx
- * @responsibility: main pain points section container
- * @exports: PainPointsSection component
- * @imports: motion components, section components, hooks, animations
+ * @responsibility: Container principal da seção de pain points refatorada
+ * @exports: PainPointsSection
+ * @imports: React, HeroStatisticsGrid, PainPointBentoGrid, EmotionalTransition, TransformationHero
  * @layer: components
  */
 
 "use client";
 
-import { motion } from "framer-motion";
-import { SectionHeader } from "./components/SectionHeader";
-import { PainPointTimeline } from "./components/PainPointTimeline";
-import { TransformationSection } from "./components/TransformationSection";
-import { FloatingElements } from "./components/FloatingElements";
-import { useScrollProgress } from "./hooks/useScrollProgress";
-import { containerVariants } from "./styles/animations";
+import React from 'react';
+import { PainPointBentoGrid } from './components/PainPointBentoGrid';
+import { EmotionalTransition } from './components/EmotionalTransition';
+import { TransformationHero } from './components/TransformationHero';
+import './styles/pain-points-v2.css';
+import './styles/bento-grid.css';
+import './styles/bento-pain-card.css';
+import './styles/emotional-transition.css';
+import './styles/transformation-hero.css';
 
 export default function PainPointsSection() {
-  const { 
-    backgroundGradient, 
-    backgroundDarkness, 
-    gridOpacity, 
-    baseGradientOpacity 
-  } = useScrollProgress();
-
   return (
-    <motion.section
-      id="pain-points"
-      className="relative py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      variants={containerVariants}
-      style={{ background: backgroundGradient }}
-    >
-      {/* Background Cinematográfico Dinâmico */}
-      <div className="absolute inset-0">
-        {/* Gradiente base que escurece progressivamente */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-slate-100"
-          style={{ opacity: baseGradientOpacity }}
-        />
-        
-        {/* Overlay escuro progressivo */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-b from-[#0A192F]/0 via-[#0A192F]/20 to-[#0A192F]/60"
-          style={{ opacity: backgroundDarkness }}
-        />
-        
-        {/* Partículas flutuantes */}
-        <FloatingElements />
-        
-        {/* Grid pattern que aparece progressivamente */}
-        <motion.div 
-          className="absolute inset-0"
-          style={{ opacity: gridOpacity }}
-        >
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#D4AF37_1px,transparent_1px),linear-gradient(to_bottom,#D4AF37_1px,transparent_1px)] bg-[size:60px_60px]" />
-        </motion.div>
+    <section id="pain-points" className="pain-points-section-v2">
+      <div className="section-background">
+        <div className="gradient-overlay" />
+        <div className="pattern-overlay" />
       </div>
-
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8">
-        {/* Header com Badge, Título e Estatísticas */}
-        <SectionHeader />
-
-        {/* Timeline dos Pain Points */}
-        <PainPointTimeline />
-
-        {/* Seção de Transformação */}
-        <TransformationSection />
+      
+      <div className="section-content">
+        <div className="section-header">
+          <span className="section-badge">A REALIDADE DO CAMPO DE BATALHA</span>
+          <h2 className="section-title">
+            Sejamos honestos: gerenciar Google Ads para seu e-commerce
+            <br />
+            parece mais um <span className="highlight">campo minado</span> do que um caminho para o lucro?
+          </h2>
+          <p className="section-subtitle">
+            Se você se sente assim, saiba que você está no lugar certo. 
+            Eu converso com donos de e-commerce como você todos os dias. A história é a mesma...
+          </p>
+        </div>
+        
+        <PainPointBentoGrid />
+        <EmotionalTransition />
+        <TransformationHero />
       </div>
-    </motion.section>
+    </section>
   );
 }

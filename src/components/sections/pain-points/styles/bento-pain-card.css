@@ -1,0 +1,353 @@
+/**
+ * BentoPainCard Styles - Sistema de Design Premium Unificado
+ * Cards individuais com glassmorphism e efeitos premium
+ * Seguindo padrão de design da página
+ */
+
+/* ========================================
+   CARD BASE
+   ======================================== */
+.bento-pain-card {
+  position: relative;
+  border-radius: var(--pain-radius-2xl);
+  overflow: hidden;
+  cursor: pointer;
+  height: 100%;
+  transition: all var(--pain-transition-normal);
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+}
+
+/* ========================================
+   GLASSMORPHISM EFFECT
+   ======================================== */
+.bento-pain-card.glassmorphism {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 250, 252, 0.90) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--pain-shadow-lg);
+}
+
+.bento-pain-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--pain-shadow-xl);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+/* ========================================
+   CONTENT CONTAINER
+   ======================================== */
+.card-content {
+  position: relative;
+  height: 100%;
+  padding: var(--pain-space-lg);
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+/* ========================================
+   HEADER SECTION
+   ======================================== */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--pain-space-md);
+  gap: var(--pain-space-sm);
+}
+
+/* ========================================
+   ICON STYLING
+   ======================================== */
+.icon-wrapper {
+  position: relative;
+  width: clamp(3rem, 5vw, 4rem);
+  height: clamp(3rem, 5vw, 4rem);
+  flex-shrink: 0;
+}
+
+.icon-3d {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.1) 0%,
+    rgba(249, 115, 22, 0.05) 100%
+  );
+  border-radius: var(--pain-radius-xl);
+  position: relative;
+  z-index: 2;
+  transform: translateZ(20px);
+  transition: all var(--pain-transition-normal);
+  color: var(--pain-danger);
+}
+
+.bento-pain-card:hover .icon-3d {
+  transform: translateZ(30px) scale(1.1);
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.15) 0%,
+    rgba(249, 115, 22, 0.08) 100%
+  );
+}
+
+.icon-shadow {
+  position: absolute;
+  bottom: -8px;
+  left: 8px;
+  right: -8px;
+  height: 20px;
+  background: rgba(239, 68, 68, 0.15);
+  border-radius: 50%;
+  filter: blur(12px);
+  transition: all var(--pain-transition-normal);
+  opacity: 0.6;
+}
+
+.bento-pain-card:hover .icon-shadow {
+  bottom: -12px;
+  filter: blur(16px);
+  opacity: 0.8;
+}
+
+/* ========================================
+   SEVERITY BADGES
+   ======================================== */
+.severity-badge {
+  padding: var(--pain-space-xs) var(--pain-space-sm);
+  border-radius: var(--pain-radius-full);
+  font-size: var(--pain-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all var(--pain-transition-fast);
+}
+
+.severity-badge.crítico {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--pain-danger-dark);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.severity-badge.extremo {
+  background: rgba(249, 115, 22, 0.1);
+  color: #EA580C;
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.severity-badge.alto {
+  background: rgba(245, 158, 11, 0.1);
+  color: #D97706;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.severity-badge.devastador {
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(220, 38, 38, 0.1));
+  color: #991B1B;
+  border: 1px solid rgba(139, 0, 0, 0.2);
+}
+
+.severity-badge:hover {
+  transform: scale(1.05);
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+.card-title {
+  font-size: var(--pain-text-xl);
+  font-weight: 800;
+  color: var(--pain-text-primary);
+  margin-bottom: var(--pain-space-sm);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.card-description {
+  font-size: var(--pain-text-base);
+  font-weight: 400;
+  color: var(--pain-text-secondary);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* ========================================
+   GLOW EFFECTS
+   ======================================== */
+.card-glow {
+  position: absolute;
+  inset: -50%;
+  opacity: 0;
+  transition: opacity var(--pain-transition-normal);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bento-pain-card.crítico:hover .card-glow {
+  opacity: 1;
+  background: radial-gradient(
+    circle at center,
+    rgba(239, 68, 68, 0.08),
+    transparent 70%
+  );
+}
+
+.bento-pain-card.extremo:hover .card-glow {
+  opacity: 1;
+  background: radial-gradient(
+    circle at center,
+    rgba(249, 115, 22, 0.08),
+    transparent 70%
+  );
+}
+
+.bento-pain-card.alto:hover .card-glow {
+  opacity: 1;
+  background: radial-gradient(
+    circle at center,
+    rgba(245, 158, 11, 0.08),
+    transparent 70%
+  );
+}
+
+.bento-pain-card.devastador:hover .card-glow {
+  opacity: 1;
+  background: radial-gradient(
+    circle at center,
+    rgba(220, 38, 38, 0.1),
+    transparent 70%
+  );
+}
+
+/* ========================================
+   BORDER GLOW
+   ======================================== */
+.card-border-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--pain-radius-2xl);
+  opacity: 0;
+  transition: opacity var(--pain-transition-normal);
+  z-index: -1;
+}
+
+.bento-pain-card:hover .card-border-glow {
+  opacity: 1;
+}
+
+.bento-pain-card.crítico:hover .card-border-glow {
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.3),
+    rgba(239, 68, 68, 0.1)
+  );
+}
+
+.bento-pain-card.extremo:hover .card-border-glow {
+  background: linear-gradient(
+    135deg,
+    rgba(249, 115, 22, 0.3),
+    rgba(249, 115, 22, 0.1)
+  );
+}
+
+.bento-pain-card.alto:hover .card-border-glow {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.3),
+    rgba(245, 158, 11, 0.1)
+  );
+}
+
+.bento-pain-card.devastador:hover .card-border-glow {
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.3),
+    rgba(220, 38, 38, 0.1)
+  );
+}
+
+/* ========================================
+   SIZE VARIATIONS
+   ======================================== */
+.bento-pain-card.tall .card-content {
+  justify-content: space-between;
+}
+
+.bento-pain-card.wide .card-content {
+  padding: var(--pain-space-xl);
+}
+
+.bento-pain-card.wide .card-header {
+  margin-bottom: var(--pain-space-lg);
+}
+
+.bento-pain-card.wide .icon-wrapper {
+  width: clamp(3.5rem, 6vw, 4.5rem);
+  height: clamp(3.5rem, 6vw, 4.5rem);
+}
+
+.bento-pain-card.wide .icon-3d {
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+}
+
+.bento-pain-card.wide .card-title {
+  font-size: var(--pain-text-2xl);
+}
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+@media (max-width: 768px) {
+  .card-content {
+    padding: var(--pain-space-md);
+  }
+  
+  .bento-pain-card:hover {
+    transform: none;
+  }
+  
+  .bento-pain-card.wide .card-content {
+    padding: var(--pain-space-md);
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .bento-pain-card,
+  .icon-3d,
+  .icon-shadow,
+  .severity-badge {
+    transition: none;
+  }
+  
+  .bento-pain-card:hover {
+    transform: none;
+  }
+  
+  .bento-pain-card:hover .icon-3d {
+    transform: translateZ(20px);
+  }
+}
+
+@media (prefers-contrast: high) {
+  .bento-pain-card {
+    border-width: 2px;
+  }
+  
+  .severity-badge {
+    border-width: 2px;
+  }
+}

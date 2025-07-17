@@ -1,0 +1,261 @@
+/**
+ * PainPointsSection Styles - Sistema de Design Premium Unificado
+ * Aplicando o mesmo padrão da FooterSection e BonusStackSection
+ * Mantendo fundo branco/claro conforme design da página
+ */
+
+/* ========================================
+   VARIÁVEIS CSS CUSTOMIZADAS - PAIN POINTS
+   ======================================== */
+:root {
+  /* Spacing System Unificado - Escala Fibonacci */
+  --pain-space-xs: clamp(0.25rem, 0.5vw, 0.5rem);
+  --pain-space-sm: clamp(0.5rem, 1vw, 1rem);
+  --pain-space-md: clamp(1rem, 2vw, 1.5rem);
+  --pain-space-lg: clamp(1.5rem, 3vw, 2.5rem);
+  --pain-space-xl: clamp(2.5rem, 5vw, 4rem);
+  --pain-space-2xl: clamp(4rem, 8vw, 6rem);
+  --pain-space-3xl: clamp(6rem, 12vw, 8rem);
+
+  /* Typography Scale Unificada */
+  --pain-text-xs: clamp(0.75rem, 2vw, 0.875rem);
+  --pain-text-sm: clamp(0.875rem, 2.2vw, 1rem);
+  --pain-text-base: clamp(1rem, 2.5vw, 1.125rem);
+  --pain-text-lg: clamp(1.125rem, 3vw, 1.375rem);
+  --pain-text-xl: clamp(1.375rem, 3.5vw, 1.75rem);
+  --pain-text-2xl: clamp(1.75rem, 4vw, 2.25rem);
+  --pain-text-3xl: clamp(2.25rem, 5vw, 3rem);
+  --pain-text-4xl: clamp(3rem, 6vw, 4rem);
+
+  /* Container System Fluido */
+  --pain-container-padding: clamp(1rem, 5vw, 3rem);
+  --pain-container-max-width: 1400px;
+  
+  /* Grid System Responsivo */
+  --pain-grid-gap-mobile: clamp(0.75rem, 3vw, 1rem);
+  --pain-grid-gap-tablet: clamp(1rem, 4vw, 1.5rem);
+  --pain-grid-gap-desktop: clamp(1.5rem, 5vw, 2rem);
+
+  /* Colors Premium Unificados */
+  --pain-primary: #0A192F;
+  --pain-accent: #D4AF37;
+  --pain-accent-light: #FFD700;
+  --pain-danger: #EF4444;
+  --pain-danger-dark: #DC2626;
+  --pain-warning: #F97316;
+  --pain-bg-primary: #FFFFFF;
+  --pain-bg-secondary: #FAFBFC;
+  --pain-bg-tertiary: #F8FAFC;
+  --pain-text-primary: #0A192F;
+  --pain-text-secondary: #4A5568;
+  --pain-text-muted: #718096;
+
+  /* Shadows Premium Unificados */
+  --pain-shadow-sm: 0 1px 3px 0 rgba(10, 25, 47, 0.1), 0 1px 2px 0 rgba(10, 25, 47, 0.06);
+  --pain-shadow-md: 0 4px 6px -1px rgba(10, 25, 47, 0.1), 0 2px 4px -1px rgba(10, 25, 47, 0.06);
+  --pain-shadow-lg: 0 10px 15px -3px rgba(10, 25, 47, 0.1), 0 4px 6px -2px rgba(10, 25, 47, 0.05);
+  --pain-shadow-xl: 0 20px 25px -5px rgba(10, 25, 47, 0.1), 0 10px 10px -5px rgba(10, 25, 47, 0.04);
+  --pain-shadow-premium: 0 25px 50px -12px rgba(212, 175, 55, 0.25);
+  --pain-shadow-danger: 0 20px 40px -10px rgba(239, 68, 68, 0.2);
+
+  /* Border Radius System */
+  --pain-radius-sm: 0.5rem;
+  --pain-radius-md: 0.75rem;
+  --pain-radius-lg: 1rem;
+  --pain-radius-xl: 1.5rem;
+  --pain-radius-2xl: 2rem;
+  --pain-radius-full: 9999px;
+
+  /* Animation Timings */
+  --pain-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --pain-transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --pain-transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   SEÇÃO PRINCIPAL - PAIN POINTS
+   ======================================== */
+.pain-points-section-v2 {
+  /* Layout */
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  
+  /* Background BRANCO com gradiente sutil */
+  background: linear-gradient(
+    135deg,
+    #FFFFFF 0%,
+    var(--pain-bg-secondary) 25%,
+    #FFFFFF 50%,
+    var(--pain-bg-tertiary) 75%,
+    #FFFFFF 100%
+  );
+  
+  /* Spacing */
+  padding-block: var(--pain-space-2xl);
+  
+  /* Typography */
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   SISTEMA DE BACKGROUNDS SUTIS
+   ======================================== */
+.section-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 30% 30%,
+    rgba(239, 68, 68, 0.03) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    ellipse at 70% 70%,
+    rgba(249, 115, 22, 0.02) 0%,
+    transparent 50%
+  );
+  z-index: 1;
+}
+
+.pattern-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(10, 25, 47, 0.02) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(239, 68, 68, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px, 90px 90px;
+  background-position: 0 0, 30px 30px;
+  opacity: 0.3;
+  z-index: 2;
+}
+
+/* ========================================
+   CONTAINER SYSTEM
+   ======================================== */
+.section-content {
+  width: 100%;
+  max-width: var(--pain-container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--pain-container-padding);
+  position: relative;
+  z-index: 10;
+}
+
+/* ========================================
+   HEADER DA SEÇÃO
+   ======================================== */
+.section-header {
+  text-align: center;
+  margin-bottom: var(--pain-space-xl);
+}
+
+.section-badge {
+  display: inline-block;
+  padding: var(--pain-space-xs) var(--pain-space-md);
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--pain-danger-dark);
+  font-size: var(--pain-text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: var(--pain-radius-full);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  margin-bottom: var(--pain-space-md);
+  transition: all var(--pain-transition-fast);
+}
+
+.section-badge:hover {
+  background: rgba(239, 68, 68, 0.15);
+  transform: scale(1.02);
+}
+
+.section-title {
+  font-size: var(--pain-text-3xl);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--pain-text-primary);
+  text-balance: balance;
+  max-width: 900px;
+  margin-inline: auto;
+  margin-bottom: var(--pain-space-md);
+}
+
+.section-title .highlight {
+  color: var(--pain-danger);
+  text-decoration: underline;
+  text-decoration-color: var(--pain-danger);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.3em;
+}
+
+.section-subtitle {
+  font-size: var(--pain-text-lg);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--pain-text-secondary);
+  text-balance: balance;
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+/* ========================================
+   RESPONSIVIDADE PREMIUM
+   ======================================== */
+@media (min-width: 768px) {
+  .pain-points-section-v2 {
+    padding-block: var(--pain-space-3xl);
+  }
+  
+  .section-title {
+    font-size: var(--pain-text-4xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-content {
+    padding-inline: var(--pain-space-xl);
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY & PREFERENCES
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .section-badge {
+    border-width: 2px;
+  }
+  
+  .section-title .highlight {
+    text-decoration-thickness: 4px;
+  }
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+.pain-points-section-v2 * {
+  will-change: auto;
+}
+
+.pain-points-section-v2 [class*="animate-"],
+.pain-points-section-v2 [class*="transition"] {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}

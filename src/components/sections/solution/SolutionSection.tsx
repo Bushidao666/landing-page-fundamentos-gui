@@ -61,16 +61,9 @@ export default function SolutionSection() {
       <div className="relative z-10 container mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-center max-w-sm md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto">
           
-          {/* Mockup Premium do Produto - Lado Esquerdo */}
-          <ProductMockup
-            imageSrc={solutionContent.product.imageSrc}
-            imageAlt={solutionContent.product.imageAlt}
-            badgeText={solutionContent.product.badgeText}
-          />
-
-          {/* Conteúdo da Solução Premium - Lado Direito */}
+          {/* Conteúdo da Solução Premium - Lado Esquerdo */}
           <motion.div 
-            className="space-y-6 md:space-y-8 lg:space-y-10 xl:space-y-12 order-1 lg:order-2"
+            className="space-y-6 md:space-y-8 lg:space-y-10 xl:space-y-12 order-2 lg:order-1"
             variants={containerVariants}
           >
             {/* Badge de Apresentação Premium */}
@@ -85,7 +78,7 @@ export default function SolutionSection() {
 
             {/* Texto de Posicionamento Premium */}
             <motion.div className="space-y-4 md:space-y-6 lg:space-y-8" variants={itemVariants}>
-              <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed font-light">
+              <div className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed font-light">
                 {solutionContent.positioning.text}{" "}
                 <span className="font-bold text-[#0A192F] relative">
                   {solutionContent.positioning.highlight}
@@ -100,7 +93,7 @@ export default function SolutionSection() {
                 <span className="text-[#D4AF37] font-semibold">
                   {solutionContent.positioning.emphasis}
                 </span>.
-              </p>
+              </div>
               
               {/* Comparação Premium */}
               <ComparisonCard
@@ -150,6 +143,14 @@ export default function SolutionSection() {
             {/* Trust Indicators Premium */}
             <TrustIndicators items={trustIndicators} />
           </motion.div>
+
+          {/* Mockup Premium do Produto - Lado Direito */}
+          <ProductMockup
+            imageSrc={solutionContent.product.imageSrc}
+            imageAlt={solutionContent.product.imageAlt}
+            badgeText={solutionContent.product.badgeText}
+            className="order-1 lg:order-2"
+          />
         </div>
       </div>
 
