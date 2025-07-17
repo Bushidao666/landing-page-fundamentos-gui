@@ -1,0 +1,184 @@
+/**
+ * @file: aristocratic-tokens.css
+ * @responsibility: aristocratic color system tokens for BonusStack section
+ * @exports: CSS custom properties for aristocratic color system
+ * @imports: design system manifesto colors
+ * @layer: styles
+ */
+
+/* Aristocratic Color System - Primary Colors */
+:root {
+  /* Main Aristocratic Colors */
+  --aristocrat-blue: #0A192F;
+  --aristocrat-blue-light: #1a2444;
+  --aristocrat-blue-dark: #050c16;
+  --aristocrat-blue-muted: #334155;
+  
+  --imperial-gold: #D4AF37;
+  --imperial-gold-light: #FFD700;
+  --imperial-gold-dark: #B8941F;
+  --imperial-gold-accent: #FFA500;
+  
+  --pure-white: #FFFFFF;
+  --elegant-gray: #f8fafc;
+  --subtle-gray: #e2e8f0;
+  --text-gray: #64748b;
+}
+
+/* Aristocratic Color Variations with Opacity */
+:root {
+  /* Aristocratic Blue Variations */
+  --aristocrat-blue-10: rgba(10, 25, 47, 0.1);
+  --aristocrat-blue-20: rgba(10, 25, 47, 0.2);
+  --aristocrat-blue-30: rgba(10, 25, 47, 0.3);
+  --aristocrat-blue-40: rgba(10, 25, 47, 0.4);
+  --aristocrat-blue-50: rgba(10, 25, 47, 0.5);
+  
+  /* Imperial Gold Variations */
+  --imperial-gold-10: rgba(212, 175, 55, 0.1);
+  --imperial-gold-15: rgba(212, 175, 55, 0.15);
+  --imperial-gold-20: rgba(212, 175, 55, 0.2);
+  --imperial-gold-25: rgba(212, 175, 55, 0.25);
+  --imperial-gold-30: rgba(212, 175, 55, 0.3);
+  --imperial-gold-40: rgba(212, 175, 55, 0.4);
+  --imperial-gold-50: rgba(212, 175, 55, 0.5);
+  
+  /* Elegant Gray Variations */
+  --elegant-gray-10: rgba(248, 250, 252, 0.1);
+  --elegant-gray-20: rgba(248, 250, 252, 0.2);
+  --elegant-gray-50: rgba(248, 250, 252, 0.5);
+  --elegant-gray-80: rgba(248, 250, 252, 0.8);
+  --elegant-gray-95: rgba(248, 250, 252, 0.95);
+}
+
+/* Aristocratic Badge Colors */
+:root {
+  /* Primary Badge (Super Bônus #1) */
+  --badge-primary-bg: var(--aristocrat-blue-10);
+  --badge-primary-text: var(--aristocrat-blue);
+  --badge-primary-border: var(--aristocrat-blue-20);
+  
+  /* Secondary Badge (Super Bônus #2) */
+  --badge-secondary-bg: var(--imperial-gold-10);
+  --badge-secondary-text: var(--imperial-gold-dark);
+  --badge-secondary-border: var(--imperial-gold-20);
+  
+  /* Tertiary Badge (Super Bônus #3) */
+  --badge-tertiary-bg: var(--aristocrat-blue-light);
+  --badge-tertiary-text: var(--pure-white);
+  --badge-tertiary-border: var(--aristocrat-blue-30);
+}
+
+/* Aristocratic Gradient System */
+:root {
+  /* Primary Gradients */
+  --gradient-aristocrat-primary: linear-gradient(135deg, var(--aristocrat-blue) 0%, var(--aristocrat-blue-light) 50%, var(--aristocrat-blue) 100%);
+  --gradient-imperial-gold: linear-gradient(135deg, var(--imperial-gold) 0%, var(--imperial-gold-light) 50%, var(--imperial-gold) 100%);
+  
+  /* Background Gradients */
+  --gradient-aristocrat-bg: linear-gradient(135deg, var(--aristocrat-blue-10) 0%, var(--imperial-gold-10) 50%, var(--aristocrat-blue-10) 100%);
+  --gradient-elegant-bg: linear-gradient(135deg, var(--pure-white) 0%, var(--elegant-gray) 50%, var(--pure-white) 100%);
+  
+  /* Icon Gradients */
+  --gradient-icon-primary: linear-gradient(135deg, var(--aristocrat-blue) 0%, var(--aristocrat-blue-light) 100%);
+  --gradient-icon-secondary: linear-gradient(135deg, var(--imperial-gold) 0%, var(--imperial-gold-light) 100%);
+  --gradient-icon-tertiary: linear-gradient(135deg, var(--aristocrat-blue-light) 0%, var(--aristocrat-blue-muted) 100%);
+  
+  /* Hover Gradients */
+  --gradient-hover-primary: linear-gradient(135deg, var(--aristocrat-blue-light) 0%, var(--aristocrat-blue) 100%);
+  --gradient-hover-gold: linear-gradient(135deg, var(--imperial-gold-light) 0%, var(--imperial-gold) 100%);
+}
+
+/* Aristocratic Shadow System */
+:root {
+  /* Card Shadows */
+  --shadow-aristocrat-sm: 0 2px 4px var(--aristocrat-blue-10), 0 1px 2px var(--aristocrat-blue-10);
+  --shadow-aristocrat-md: 0 4px 8px var(--aristocrat-blue-15), 0 2px 4px var(--aristocrat-blue-10);
+  --shadow-aristocrat-lg: 0 8px 16px var(--aristocrat-blue-20), 0 4px 8px var(--aristocrat-blue-10);
+  
+  /* Gold Shadows */
+  --shadow-gold-sm: 0 2px 4px var(--imperial-gold-20), 0 1px 2px var(--imperial-gold-10);
+  --shadow-gold-md: 0 4px 8px var(--imperial-gold-25), 0 2px 4px var(--imperial-gold-15);
+  --shadow-gold-lg: 0 8px 16px var(--imperial-gold-30), 0 4px 8px var(--imperial-gold-20);
+  
+  /* Glow Shadows */
+  --shadow-glow-gold: 0 0 20px var(--imperial-gold-25), 0 0 40px var(--imperial-gold-15);
+  --shadow-glow-blue: 0 0 20px var(--aristocrat-blue-20), 0 0 40px var(--aristocrat-blue-10);
+}
+
+/* Aristocratic Interactive States */
+:root {
+  /* Hover States */
+  --hover-aristocrat-bg: var(--aristocrat-blue-10);
+  --hover-imperial-bg: var(--imperial-gold-10);
+  --hover-elegant-bg: var(--elegant-gray-20);
+  
+  /* Focus States */
+  --focus-aristocrat-ring: 0 0 0 3px var(--aristocrat-blue-20);
+  --focus-imperial-ring: 0 0 0 3px var(--imperial-gold-20);
+  
+  /* Active States */
+  --active-aristocrat-bg: var(--aristocrat-blue-20);
+  --active-imperial-bg: var(--imperial-gold-20);
+}
+
+/* Aristocratic Typography Colors */
+:root {
+  /* Primary Text */
+  --text-aristocrat-primary: var(--aristocrat-blue);
+  --text-aristocrat-secondary: var(--aristocrat-blue-muted);
+  --text-aristocrat-tertiary: var(--text-gray);
+  
+  /* Imperial Text */
+  --text-imperial-primary: var(--imperial-gold);
+  --text-imperial-secondary: var(--imperial-gold-dark);
+  --text-imperial-accent: var(--imperial-gold-light);
+  
+  /* Elegant Text */
+  --text-elegant-primary: var(--pure-white);
+  --text-elegant-secondary: var(--elegant-gray);
+  --text-elegant-muted: var(--subtle-gray);
+}
+
+/* Aristocratic Animation Colors */
+:root {
+  /* Shimmer Effect */
+  --shimmer-aristocrat: linear-gradient(90deg, transparent, var(--aristocrat-blue-10), transparent);
+  --shimmer-imperial: linear-gradient(90deg, transparent, var(--imperial-gold-10), transparent);
+  
+  /* Pulse Effect */
+  --pulse-aristocrat: var(--aristocrat-blue-15);
+  --pulse-imperial: var(--imperial-gold-15);
+}
+
+/* Utility Classes for Aristocratic Colors */
+.bg-aristocrat-primary { background-color: var(--aristocrat-blue); }
+.bg-aristocrat-light { background-color: var(--aristocrat-blue-light); }
+.bg-aristocrat-10 { background-color: var(--aristocrat-blue-10); }
+.bg-aristocrat-20 { background-color: var(--aristocrat-blue-20); }
+
+.bg-imperial-primary { background-color: var(--imperial-gold); }
+.bg-imperial-light { background-color: var(--imperial-gold-light); }
+.bg-imperial-10 { background-color: var(--imperial-gold-10); }
+.bg-imperial-20 { background-color: var(--imperial-gold-20); }
+
+.text-aristocrat-primary { color: var(--aristocrat-blue); }
+.text-aristocrat-secondary { color: var(--aristocrat-blue-muted); }
+.text-imperial-primary { color: var(--imperial-gold); }
+.text-imperial-secondary { color: var(--imperial-gold-dark); }
+
+.border-aristocrat-primary { border-color: var(--aristocrat-blue); }
+.border-aristocrat-20 { border-color: var(--aristocrat-blue-20); }
+.border-imperial-primary { border-color: var(--imperial-gold); }
+.border-imperial-20 { border-color: var(--imperial-gold-20); }
+
+.shadow-aristocrat-sm { box-shadow: var(--shadow-aristocrat-sm); }
+.shadow-aristocrat-md { box-shadow: var(--shadow-aristocrat-md); }
+.shadow-aristocrat-lg { box-shadow: var(--shadow-aristocrat-lg); }
+
+.shadow-gold-sm { box-shadow: var(--shadow-gold-sm); }
+.shadow-gold-md { box-shadow: var(--shadow-gold-md); }
+.shadow-gold-lg { box-shadow: var(--shadow-gold-lg); }
+
+.shadow-glow-gold { box-shadow: var(--shadow-glow-gold); }
+.shadow-glow-blue { box-shadow: var(--shadow-glow-blue); }

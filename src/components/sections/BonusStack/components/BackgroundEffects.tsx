@@ -1,8 +1,8 @@
 /**
  * @file: BackgroundEffects.tsx
- * @responsibility: optimized background animations and particles with performance enhancements
+ * @responsibility: optimized background animations with aristocratic styling and particles
  * @exports: BackgroundEffects
- * @imports: framer-motion, lucide-react, react hooks
+ * @imports: framer-motion, lucide-react, react hooks, aristocratic tokens
  * @layer: components
  */
 
@@ -11,6 +11,7 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
+import "../styles/aristocratic-tokens.css";
 
 interface BackgroundEffectsProps {
   reducedMotion?: boolean;
@@ -81,27 +82,27 @@ export default function BackgroundEffects({ reducedMotion = false }: BackgroundE
         transform: 'translateZ(0)' // Force GPU layer
       }}
     >
-      {/* Camadas Base - Gradientes Premium */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-slate-100" />
+      {/* Camadas Base - Gradientes Aristocráticos */}
+      <div className="absolute inset-0 bg-gradient-to-br from-elegant-white via-elegant-gray to-elegant-gray" />
       
-      {/* Overlay de Transição */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A192F]/5 to-[#0A192F]/15" />
+      {/* Overlay de Transição Aristocrático */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-aristocrat-primary/5 to-aristocrat-primary/15" />
       
-      {/* Grid Pattern Sutil - Sempre visível */}
+      {/* Grid Pattern Aristocrático - Sempre visível */}
       <div className="absolute inset-0 opacity-[0.02]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#D4AF37_1px,transparent_1px),linear-gradient(to_bottom,#D4AF37_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--imperial-gold)_1px,transparent_1px),linear-gradient(to_bottom,var(--imperial-gold)_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
       
-      {/* Nebulosa Premium - Conditional Animation */}
+      {/* Nebulosa Aristocrática - Conditional Animation */}
       <div className="absolute inset-0 opacity-20">
         <div 
-          className={`absolute top-1/4 right-1/3 w-96 h-64 md:w-[600px] md:h-[400px] bg-gradient-to-l from-[#D4AF37]/15 via-[#D4AF37]/5 to-transparent rounded-full blur-3xl ${
+          className={`absolute top-1/4 right-1/3 w-96 h-64 md:w-[600px] md:h-[400px] bg-gradient-to-l from-imperial-gold/15 via-imperial-gold/5 to-transparent rounded-full blur-3xl ${
             !shouldReduceMotion && isVisible ? 'animate-pulse' : ''
           }`}
           style={{ willChange: 'opacity' }}
         />
         <div 
-          className="absolute bottom-1/4 left-1/3 w-80 h-48 md:w-[500px] md:h-[300px] bg-gradient-to-r from-slate-400/10 via-slate-500/5 to-transparent rounded-full blur-2xl"
+          className="absolute bottom-1/4 left-1/3 w-80 h-48 md:w-[500px] md:h-[300px] bg-gradient-to-r from-aristocrat-primary/10 via-aristocrat-blue-muted/5 to-transparent rounded-full blur-2xl"
           style={{ willChange: 'opacity' }}
         />
       </div>
@@ -130,7 +131,7 @@ export default function BackgroundEffects({ reducedMotion = false }: BackgroundE
             ease: "easeInOut",
           }}
         >
-          <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-[#D4AF37] rounded-full shadow-lg shadow-[#D4AF37]/60" />
+          <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-imperial-gold rounded-full shadow-lg shadow-imperial-gold/60" />
         </motion.div>
       ))}
 
@@ -156,18 +157,18 @@ export default function BackgroundEffects({ reducedMotion = false }: BackgroundE
             delay: Math.random() * 4,
           }}
         >
-          <Star className="w-2 h-2 md:w-3 md:h-3 text-[#D4AF37] fill-[#D4AF37]" />
+          <Star className="w-2 h-2 md:w-3 md:h-3 text-imperial-gold fill-imperial-gold" />
         </motion.div>
       ))}
 
-      {/* Fallback estático para reduced motion */}
+      {/* Fallback estático aristocrático para reduced motion */}
       {shouldReduceMotion && (
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <Star className="w-4 h-4 text-[#D4AF37] fill-[#D4AF37] opacity-50" />
+            <Star className="w-4 h-4 text-imperial-gold fill-imperial-gold opacity-50" />
           </div>
           <div className="absolute top-1/3 right-1/3">
-            <div className="w-2 h-2 bg-[#D4AF37] rounded-full opacity-30" />
+            <div className="w-2 h-2 bg-imperial-gold rounded-full opacity-30" />
           </div>
         </div>
       )}

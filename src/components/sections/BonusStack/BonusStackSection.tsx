@@ -1,8 +1,8 @@
 /**
  * @file: BonusStackSection.tsx
- * @responsibility: main orchestrator for bonus stack section using modular components
+ * @responsibility: main orchestrator for bonus stack section with aristocratic styling
  * @exports: BonusStackSection
- * @imports: modular components from BonusStack/components
+ * @imports: modular components from BonusStack/components, aristocratic tokens
  * @layer: sections
  */
 
@@ -15,6 +15,7 @@ import CommunityBonus from "./components/CommunityBonus";
 import PassportBonus from "./components/PassportBonus";
 import GPTsBonus from "./components/GPTsBonus";
 import FinalCTA from "./components/FinalCTA";
+import "./styles/aristocratic-tokens.css";
 
 // Optimized container animation - performance focused
 const containerVariants = {

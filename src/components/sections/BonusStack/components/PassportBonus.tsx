@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { Zap, BookOpen, Play, CheckCircle } from "lucide-react";
 import BonusCard from "./BonusCard";
 import { bonusMetrics } from "../data/bonusData";
+import "../styles/aristocratic-tokens.css";
 
 interface PassportBonusProps {
   index?: number;
@@ -21,12 +22,11 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
   return (
     <BonusCard
       badgeText="Super Bônus #2"
-      badgeColor="orange-400"
+      badgeVariant="secondary"
       title="Acesso Completo ao Passaporte Aceleração"
       value={`(Valor: R$ ${bonusMetrics.passportValue})`}
       icon={Zap}
-      iconColor="from-green-500 to-emerald-600"
-      backgroundPattern="from-green-500/10 to-emerald-600/10"
+      iconVariant="secondary"
       floatingIcon={Zap}
       index={index}
     >

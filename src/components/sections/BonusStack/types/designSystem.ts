@@ -119,27 +119,75 @@ export const animations = {
   }
 } as const;
 
-// Color System
+// Aristocratic Color System
 export const colors = {
-  // Brand colors
-  primary: '#D4AF37',
-  primaryDark: '#B8941F',
-  secondary: '#0A192F',
+  // Primary Aristocratic Colors
+  aristocrat: {
+    blue: '#0A192F',
+    blueLight: '#1a2444',
+    blueDark: '#050c16',
+    blueMuted: '#334155',
+  },
+  imperial: {
+    gold: '#D4AF37',
+    goldLight: '#FFD700', 
+    goldDark: '#B8941F',
+    goldAccent: '#FFA500',
+  },
+  elegant: {
+    white: '#FFFFFF',
+    gray: '#f8fafc',
+    graySubtle: '#e2e8f0',
+    grayText: '#64748b',
+  },
   
-  // Status colors
-  success: '#10B981',
-  warning: '#F59E0B',
-  error: '#EF4444',
+  // Badge Color System (Aristocratic)
+  badges: {
+    primary: {
+      bg: 'bg-aristocrat-10',
+      text: 'text-aristocrat-primary',
+      border: 'border-aristocrat-20',
+    },
+    secondary: {
+      bg: 'bg-imperial-10', 
+      text: 'text-imperial-secondary',
+      border: 'border-imperial-20',
+    },
+    tertiary: {
+      bg: 'bg-aristocrat-light',
+      text: 'text-elegant-primary',
+      border: 'border-aristocrat-30',
+    },
+  },
   
-  // Gradient patterns
+  // Aristocratic Gradient System
   gradients: {
-    primary: 'from-[#D4AF37] to-yellow-400',
-    gold: 'from-[#D4AF37] via-[#FFD700] to-[#D4AF37]',
-    success: 'from-green-500 to-emerald-600',
-    info: 'from-blue-500 to-cyan-600',
-    warning: 'from-orange-500 to-red-600',
-    purple: 'from-purple-500 to-pink-600',
-  }
+    aristocratPrimary: 'from-[#0A192F] via-[#1a2444] to-[#0A192F]',
+    imperialGold: 'from-[#D4AF37] via-[#FFD700] to-[#D4AF37]',
+    aristocratBg: 'from-[var(--aristocrat-blue-10)] via-[var(--imperial-gold-10)] to-[var(--aristocrat-blue-10)]',
+    elegantBg: 'from-white via-[#f8fafc] to-white',
+    iconPrimary: 'from-[#0A192F] to-[#1a2444]',
+    iconSecondary: 'from-[#D4AF37] to-[#FFD700]',
+    iconTertiary: 'from-[#1a2444] to-[#334155]',
+  },
+  
+  // Shadow System
+  shadows: {
+    aristocrat: {
+      sm: 'shadow-aristocrat-sm',
+      md: 'shadow-aristocrat-md',
+      lg: 'shadow-aristocrat-lg',
+    },
+    imperial: {
+      sm: 'shadow-gold-sm',
+      md: 'shadow-gold-md', 
+      lg: 'shadow-gold-lg',
+    },
+    glow: {
+      gold: 'shadow-glow-gold',
+      blue: 'shadow-glow-blue',
+    },
+  },
 } as const;
 
 // Layout System
@@ -173,6 +221,8 @@ export type SpacingUnit = keyof typeof spacing.units;
 export type SpacingResponsive = keyof typeof spacing.responsive;
 export type ComponentSize = keyof typeof componentSizes.icon;
 export type ColorGradient = keyof typeof colors.gradients;
+export type BadgeVariant = keyof typeof colors.badges;
+export type ShadowVariant = keyof typeof colors.shadows.aristocrat;
 export type ContainerSize = keyof typeof layout.containers;
 
 // Responsive Utility Functions
@@ -182,6 +232,31 @@ export const getResponsiveClasses = {
   iconSize: (size: ComponentSize) => componentSizes.icon[size],
   container: (size: ContainerSize) => layout.containers[size],
   gradient: (variant: ColorGradient) => `bg-gradient-to-br ${colors.gradients[variant]}`,
+  badge: (variant: BadgeVariant) => colors.badges[variant],
+  shadow: (variant: ShadowVariant) => colors.shadows.aristocrat[variant],
+};
+
+// Aristocratic Color Utilities
+export const aristocraticColors = {
+  getBadgeClasses: (variant: BadgeVariant) => {
+    const badge = colors.badges[variant];
+    return `${badge.bg} ${badge.text} ${badge.border}`;
+  },
+  getIconGradient: (variant: 'primary' | 'secondary' | 'tertiary') => {
+    const gradients = {
+      primary: colors.gradients.iconPrimary,
+      secondary: colors.gradients.iconSecondary,
+      tertiary: colors.gradients.iconTertiary,
+    };
+    return `bg-gradient-to-br ${gradients[variant]}`;
+  },
+  getHoverEffect: (variant: 'aristocrat' | 'imperial') => {
+    const effects = {
+      aristocrat: 'hover:bg-aristocrat-10 hover:border-aristocrat-20',
+      imperial: 'hover:bg-imperial-10 hover:border-imperial-20',
+    };
+    return effects[variant];
+  },
 };
 
 const designSystem = {

@@ -1,8 +1,8 @@
 /**
  * @file: BonusCard.tsx
- * @responsibility: professional bonus card template with optimized spacing and performance
+ * @responsibility: professional bonus card template with aristocratic color system
  * @exports: BonusCard
- * @imports: framer-motion, lucide-react, ReactNode
+ * @imports: framer-motion, lucide-react, ReactNode, aristocratic design system
  * @layer: components
  */
 
@@ -11,15 +11,17 @@
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
+import { aristocraticColors, type BadgeVariant } from "../types/designSystem";
+import "../styles/aristocratic-tokens.css";
 
 interface BonusCardProps {
   // Header props
   badgeText: string;
-  badgeColor?: string;
+  badgeVariant?: BadgeVariant;
   title: string;
   value?: string;
   icon: LucideIcon;
-  iconColor: string;
+  iconVariant?: 'primary' | 'secondary' | 'tertiary';
   
   // Content props
   children: ReactNode;
@@ -29,7 +31,6 @@ interface BonusCardProps {
   
   // Style props
   className?: string;
-  backgroundPattern?: string;
   
   // Badge floating icon
   floatingIcon?: LucideIcon;
@@ -51,15 +52,14 @@ const bonusVariants = {
 
 export default function BonusCard({
   badgeText,
-  badgeColor = "red-500",
+  badgeVariant = 'primary',
   title,
   value,
   icon: Icon,
-  iconColor,
+  iconVariant = 'primary',
   children,
   index = 0,
   className = "",
-  backgroundPattern = "from-blue-500/10 to-purple-600/10",
   floatingIcon: FloatingIcon
 }: BonusCardProps) {
   return (
@@ -71,11 +71,11 @@ export default function BonusCard({
       viewport={{ once: true, amount: 0.3 }}
     >
       <motion.article 
-        className="relative bg-gradient-to-br from-white/98 to-gray-50/95 backdrop-blur-sm border border-gray-200/40 rounded-xl md:rounded-2xl p-4 md:p-5 lg:p-6 shadow-lg overflow-hidden"
+        className="relative bg-gradient-to-br from-white/98 to-elegant-gray/95 backdrop-blur-sm border border-aristocrat-20 rounded-xl md:rounded-2xl p-4 md:p-5 lg:p-6 shadow-aristocrat-md overflow-hidden"
         whileHover={{ 
           y: -3,
-          boxShadow: "0 15px 35px rgba(0, 0, 0, 0.08)",
-          borderColor: "rgba(212, 175, 55, 0.2)"
+          boxShadow: "var(--shadow-aristocrat-lg)",
+          borderColor: "var(--imperial-gold-25)"
         }}
         transition={{ 
           duration: 0.2
@@ -83,18 +83,18 @@ export default function BonusCard({
         role="article"
         tabIndex={0}
       >
-        {/* Background Pattern */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${backgroundPattern} opacity-50`} />
+        {/* Aristocratic Background Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-aristocrat-10 via-imperial-10 to-aristocrat-10 opacity-60" />
         
         {/* Header do Bônus - Professional */}
         <header className="relative z-10 mb-4 md:mb-6 lg:mb-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 md:gap-4 lg:gap-5 mb-3 md:mb-4 lg:mb-5">
-            {/* Icon - Clean Professional */}
+            {/* Icon - Aristocratic Professional */}
             <motion.div 
-              className={`w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-gradient-to-br ${iconColor} rounded-lg md:rounded-xl flex items-center justify-center shadow-md flex-shrink-0`}
+              className={`w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 ${aristocraticColors.getIconGradient(iconVariant)} rounded-lg md:rounded-xl flex items-center justify-center shadow-aristocrat-sm flex-shrink-0`}
               whileHover={{ 
                 scale: 1.03,
-                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.12)"
+                boxShadow: "var(--shadow-aristocrat-md)"
               }}
               transition={{ duration: 0.2 }}
             >
@@ -103,28 +103,28 @@ export default function BonusCard({
             
             {/* Content Area com Melhor Typography */}
             <div className="flex-1 min-w-0">
-              {/* Badge Professional */}
+              {/* Badge Aristocratic */}
               <motion.span 
-                className={`px-3 md:px-4 py-1.5 md:py-2 bg-${badgeColor}/15 text-${badgeColor} text-xs md:text-sm font-bold uppercase tracking-wider rounded-full border border-${badgeColor}/25 mb-2 md:mb-3 inline-block backdrop-blur-sm`}
+                className={`px-3 md:px-4 py-1.5 md:py-2 ${aristocraticColors.getBadgeClasses(badgeVariant)} text-xs md:text-sm font-bold uppercase tracking-wider rounded-full mb-2 md:mb-3 inline-block backdrop-blur-sm`}
                 whileHover={{ 
                   scale: 1.02,
-                  backgroundColor: `rgba(${badgeColor === 'red-400' ? '248, 113, 113' : '59, 130, 246'}, 0.1)`
+                  backgroundColor: badgeVariant === 'primary' ? 'var(--hover-aristocrat-bg)' : 'var(--hover-imperial-bg)'
                 }}
                 transition={{ duration: 0.2 }}
               >
                 {badgeText}
               </motion.span>
               
-              {/* Title - Clean Typography */}
+              {/* Title - Aristocratic Typography */}
               <motion.h3 
-                className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-[#0A192F] mb-2 md:mb-3 leading-tight group-hover:text-[#D4AF37] transition-colors duration-300"
+                className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-aristocrat-primary mb-2 md:mb-3 leading-tight group-hover:text-imperial-primary transition-colors duration-300"
                 initial={{ opacity: 0.95 }}
                 whileHover={{ opacity: 1 }}
               >
                 {title}
               </motion.h3>
               
-              {/* Value - Professional Highlight */}
+              {/* Value - Aristocratic Highlight */}
               {value && (
                 <motion.div 
                   className="flex items-center gap-2 md:gap-3"
@@ -133,13 +133,13 @@ export default function BonusCard({
                   transition={{ delay: 0.2 }}
                 >
                   <motion.span 
-                    className="text-base md:text-lg lg:text-xl font-black text-[#D4AF37] relative"
+                    className="text-base md:text-lg lg:text-xl font-black text-imperial-primary relative"
                     whileHover={{ scale: 1.01 }}
                     animate={{
                       textShadow: [
-                        "0 0 0px rgba(212, 175, 55, 0)",
-                        "0 0 8px rgba(212, 175, 55, 0.3)",
-                        "0 0 0px rgba(212, 175, 55, 0)"
+                        "0 0 0px var(--imperial-gold-10)",
+                        "0 0 8px var(--imperial-gold-30)",
+                        "0 0 0px var(--imperial-gold-10)"
                       ]
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
@@ -157,10 +157,10 @@ export default function BonusCard({
           {children}
         </div>
 
-        {/* Professional Floating Badge - Simplified */}
+        {/* Aristocratic Floating Badge - Refined */}
         {FloatingIcon && (
           <motion.div
-            className="absolute -top-3 -right-3 md:-top-4 md:-right-4 lg:-top-5 lg:-right-5 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-[#D4AF37] to-yellow-400 rounded-full flex items-center justify-center border-2 md:border-3 border-[#0A192F] shadow-lg cursor-pointer group z-20"
+            className="absolute -top-3 -right-3 md:-top-4 md:-right-4 lg:-top-5 lg:-right-5 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-imperial-gold to-imperial-gold-light rounded-full flex items-center justify-center border-2 md:border-3 border-aristocrat-primary shadow-gold-md cursor-pointer group z-20"
             animate={{ 
               rotate: [0, 4, -4, 0],
               scale: [1, 1.04, 1],
@@ -168,7 +168,7 @@ export default function BonusCard({
             whileHover={{
               scale: 1.08,
               rotate: 8,
-              boxShadow: "0 0 25px rgba(212, 175, 55, 0.4)"
+              boxShadow: "var(--shadow-glow-gold)"
             }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 3, repeat: Infinity }}
@@ -176,9 +176,9 @@ export default function BonusCard({
             aria-label="Badge de destaque"
             tabIndex={0}
           >
-            {/* Subtle pulse effect */}
+            {/* Aristocratic pulse effect */}
             <motion.div
-              className="absolute inset-0 rounded-full border border-[#D4AF37]/40"
+              className="absolute inset-0 rounded-full border border-imperial-primary/40"
               animate={{
                 scale: [1, 1.3],
                 opacity: [0.6, 0]
@@ -190,9 +190,9 @@ export default function BonusCard({
               }}
             />
             
-            {/* Inner highlight */}
+            {/* Inner aristocratic highlight */}
             <motion.div
-              className="absolute inset-1 bg-gradient-to-br from-white/25 to-transparent rounded-full"
+              className="absolute inset-1 bg-gradient-to-br from-elegant-white/25 to-transparent rounded-full"
               animate={{ opacity: [0.25, 0.5, 0.25] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
@@ -208,7 +208,7 @@ export default function BonusCard({
                 repeatDelay: 1.5 
               }}
             >
-              <FloatingIcon className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-[#0A192F] drop-shadow-sm relative z-10" />
+              <FloatingIcon className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-aristocrat-primary drop-shadow-sm relative z-10" />
             </motion.div>
           </motion.div>
         )}

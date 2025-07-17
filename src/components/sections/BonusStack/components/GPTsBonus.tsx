@@ -13,6 +13,7 @@ import { Bot, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import BonusCard from "./BonusCard";
 import { bonusMetrics, gptsData } from "../data/bonusData";
+import "../styles/aristocratic-tokens.css";
 
 interface GPTsBonusProps {
   index?: number;
@@ -24,12 +25,11 @@ export default function GPTsBonus({ index = 2 }: GPTsBonusProps) {
   return (
     <BonusCard
       badgeText="Super Bônus #3"
-      badgeColor="purple-400"
+      badgeVariant="tertiary"
       title="Seu Exército Pessoal de IA: 7 Assistentes GPTs Exclusivos"
       value={`(Valor: R$ ${bonusMetrics.gptsValue})`}
       icon={Bot}
-      iconColor="from-purple-500 to-pink-600"
-      backgroundPattern="from-purple-500/15 to-pink-600/15"
+      iconVariant="tertiary"
       floatingIcon={Bot}
       index={index}
     >
