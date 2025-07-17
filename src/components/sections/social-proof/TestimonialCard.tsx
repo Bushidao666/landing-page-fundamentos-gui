@@ -37,9 +37,9 @@ export const TestimonialCard = React.memo<TestimonialCardProps>(({
         `}
         style={{
           minHeight: typeof window !== 'undefined' ? 
-            (window.innerWidth < 640 ? '350px' : 
-             window.innerWidth < 768 ? '400px' : 
-             window.innerWidth < 1024 ? '450px' : '500px') : '500px',
+            (window.innerWidth < 640 ? '450px' : 
+             window.innerWidth < 768 ? '500px' : 
+             window.innerWidth < 1024 ? '550px' : '600px') : '600px',
           willChange: 'transform',
         }}
         whileHover={isCenter ? { y: -3, scale: 1.01 } : {}}
@@ -74,10 +74,11 @@ export const TestimonialCard = React.memo<TestimonialCardProps>(({
           {/* Coluna da Imagem - Lado Esquerdo */}
           <div className="order-2 md:order-1 flex flex-col justify-between">
             
-            {/* Container da Imagem com Altura Flexível */}
+            {/* Container da Imagem com Altura Flexível e Border Destacado */}
             <div className="flex-1 flex flex-col justify-center">
               <div className="relative bg-gradient-to-br from-gray-100 via-white to-gray-50 
-                rounded-xl sm:rounded-2xl border-2 border-gray-200/50 shadow-xl overflow-hidden">
+                rounded-xl sm:rounded-2xl border-2 border-[#D4AF37]/30 shadow-2xl overflow-hidden
+                hover:border-[#D4AF37]/50 transition-all duration-300">
                 {/* Header WhatsApp Style */}
                 <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 
                   border-b border-gray-200 bg-gradient-to-r from-green-50 to-green-100">
@@ -93,8 +94,8 @@ export const TestimonialCard = React.memo<TestimonialCardProps>(({
                   </div>
                 </div>
                 
-                {/* Container da Imagem com Aspect Ratio Responsivo */}
-                <div className="relative bg-white h-[200px] sm:h-[240px] md:h-[280px] w-full">
+                {/* Container da Imagem com Aspect Ratio Otimizado para 9:16 */}
+                <div className="relative bg-white h-[280px] sm:h-[340px] md:h-[400px] w-full">
                   {!imageError ? (
                     <Image
                       src={testimonial.image}
@@ -102,7 +103,7 @@ export const TestimonialCard = React.memo<TestimonialCardProps>(({
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                       className={`
-                        object-contain transition-all duration-500
+                        object-cover transition-all duration-500
                         ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}
                       `}
                       onLoad={() => setImageLoaded(true)}

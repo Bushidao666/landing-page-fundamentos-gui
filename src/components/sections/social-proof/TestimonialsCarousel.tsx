@@ -18,8 +18,8 @@ export const TestimonialsCarousel = React.memo(() => {
     setIsTransitioning(true);
     setCurrentSlide(newIndex);
     
-    // Reset transitioning state após animação
-    setTimeout(() => setIsTransitioning(false), 300);
+    // Reset transitioning state após animação com timeout mais longo
+    setTimeout(() => setIsTransitioning(false), 500);
   }, [isTransitioning]);
 
   const nextSlide = useCallback(() => {
@@ -34,12 +34,12 @@ export const TestimonialsCarousel = React.memo(() => {
   
   // Auto-play inteligente mobile-optimized
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    if (!isAutoPlaying || isTransitioning) return;
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
     const interval = setInterval(nextSlide, isMobile ? 3000 : 5000);
     return () => clearInterval(interval);
-  }, [isAutoPlaying, nextSlide]);
+  }, [isAutoPlaying, nextSlide, isTransitioning]);
 
   // Pause auto-play no hover
   const handleMouseEnter = useCallback(() => setIsAutoPlaying(false), []);
