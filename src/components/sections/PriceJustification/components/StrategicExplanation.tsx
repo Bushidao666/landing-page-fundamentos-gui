@@ -31,7 +31,7 @@ export function StrategicExplanation() {
   return (
     <motion.div
       ref={ref}
-      className="grid lg:grid-cols-[320px_1fr] gap-8 lg:gap-12 items-center mb-12 md:mb-16 lg:mb-20"
+      className="grid lg:grid-cols-[320px_1fr] gap-8 lg:gap-12 items-start mb-12 md:mb-16 lg:mb-20"
       initial="hidden"
       animate={isVisible ? "visible" : "hidden"}
       variants={containerVariants}
@@ -63,14 +63,14 @@ export function StrategicExplanation() {
         </div>
       </motion.div>
 
-      {/* Card de Conteúdo - Separado da Foto */}
+      {/* Card de Conteúdo - Compacto e Equilibrado */}
       <motion.div
-        className="bg-gradient-to-br from-[rgba(10,25,47,0.92)] to-[rgba(26,36,68,0.88)] backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 border border-white/20 shadow-xl"
+        className="bg-gradient-to-br from-[rgba(10,25,47,0.92)] to-[rgba(26,36,68,0.88)] backdrop-blur-sm rounded-2xl md:rounded-3xl p-5 md:p-6 lg:p-7 border border-white/20 shadow-xl"
         variants={itemVariants}
       >
-        <div className="space-y-6 md:space-y-8">
+        <div className="space-y-4 md:space-y-5">
           <motion.p
-            className="text-lg md:text-xl lg:text-2xl text-white leading-relaxed"
+            className="text-sm md:text-base lg:text-lg text-white leading-relaxed"
             variants={itemVariants}
           >
             Meu negócio principal é{" "}
@@ -82,7 +82,7 @@ export function StrategicExplanation() {
           </motion.p>
 
           <motion.p
-            className="text-lg md:text-xl lg:text-2xl text-white/90 leading-relaxed"
+            className="text-sm md:text-base lg:text-lg text-white/90 leading-relaxed"
             variants={itemVariants}
           >
             Eu criei o &quot;Fundamentos&quot; por um motivo estratégico: eu preciso de mais{" "}
@@ -92,11 +92,11 @@ export function StrategicExplanation() {
           </motion.p>
 
           <motion.div
-            className="bg-gradient-to-r from-[rgba(212,175,55,0.15)] to-[rgba(255,215,0,0.10)] backdrop-blur-md rounded-xl p-5 md:p-6 lg:p-8 border border-[rgba(212,175,55,0.3)]"
+            className="bg-gradient-to-r from-[rgba(212,175,55,0.15)] to-[rgba(255,215,0,0.10)] backdrop-blur-md rounded-xl p-4 md:p-5 border border-[rgba(212,175,55,0.3)]"
             variants={itemVariants}
             whileHover={!prefersReducedMotion ? { scale: 1.01 } : {}}
           >
-            <p className="text-lg md:text-xl lg:text-2xl text-white leading-relaxed font-medium">
+            <p className="text-sm md:text-base lg:text-lg text-white leading-relaxed font-medium">
               Porque quando você tiver essa base, vai ganhar confiança, vai começar 
               a crescer e, lá na frente, talvez se torne um dos e-commerces que a 
               minha equipe e eu vamos ajudar a escalar de verdade.{" "}
@@ -107,7 +107,7 @@ export function StrategicExplanation() {
           </motion.div>
 
           <motion.p
-            className="text-lg md:text-xl lg:text-2xl text-white/90 leading-relaxed italic"
+            className="text-sm md:text-base lg:text-lg text-white/90 leading-relaxed italic"
             variants={itemVariants}
           >
             Estou te dando o alicerce por um preço simbólico, porque{" "}
