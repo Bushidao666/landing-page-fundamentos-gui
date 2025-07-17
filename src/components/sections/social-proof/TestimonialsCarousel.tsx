@@ -37,7 +37,7 @@ export const TestimonialsCarousel = React.memo(() => {
     if (!isAutoPlaying || isTransitioning) return;
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
-    const interval = setInterval(nextSlide, isMobile ? 3000 : 5000);
+    const interval = setInterval(nextSlide, isMobile ? 4000 : 5000);
     return () => clearInterval(interval);
   }, [isAutoPlaying, nextSlide, isTransitioning]);
 
@@ -54,7 +54,7 @@ export const TestimonialsCarousel = React.memo(() => {
       {/* Container do Carrossel Responsivo */}
       <div className="relative w-full max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl 
         flex items-center justify-center mb-8 sm:mb-10 md:mb-12 
-        min-h-[400px] sm:min-h-[480px] md:min-h-[520px] lg:min-h-[580px]">
+        min-h-[300px] sm:min-h-[400px] md:min-h-[520px] lg:min-h-[580px]">
         <LayoutGroup>
           <AnimatePresence initial={false}>
             {testimonials.map((testimonial, index) => {
@@ -74,6 +74,8 @@ export const TestimonialsCarousel = React.memo(() => {
                 return null;
               }
 
+              const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+
               return (
                 <motion.div
                   key={testimonial.id}
@@ -85,9 +87,11 @@ export const TestimonialsCarousel = React.memo(() => {
                   style={{
                     cursor: variant === "center" ? "default" : "pointer",
                     willChange: 'transform, opacity, filter',
+                    pointerEvents: variant === "center" ? "none" : "auto",
                   }}
                   onClick={() => variant !== "center" && !isTransitioning && debouncedNavigation(index)}
-                  whileHover={variant !== "center" ? { scale: 0.85, y: -5 } : {}}
+                  whileHover={variant !== "center" && !isMobile ? { scale: 0.85, y: -5 } : {}}
+                  layout={!isMobile}
                 >
                   <TestimonialCard 
                     testimonial={testimonial} 

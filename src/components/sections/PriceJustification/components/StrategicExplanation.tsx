@@ -31,40 +31,43 @@ export function StrategicExplanation() {
   return (
     <motion.div
       ref={ref}
-      className="bg-gradient-to-br from-[rgba(10,25,47,0.92)] to-[rgba(26,36,68,0.88)] backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 border border-white/20 shadow-xl mb-12 md:mb-16 lg:mb-20"
+      className="grid lg:grid-cols-[320px_1fr] gap-8 lg:gap-12 items-center mb-12 md:mb-16 lg:mb-20"
       initial="hidden"
       animate={isVisible ? "visible" : "hidden"}
       variants={containerVariants}
     >
-      <div className="grid lg:grid-cols-[320px_1fr] gap-8 lg:gap-12 items-center">
-        {/* Foto Otimizada - Sistema Azul */}
-        <motion.div
-          className="flex justify-center lg:justify-start"
-          variants={itemVariants}
-        >
-          <div className="relative w-full max-w-[280px] md:max-w-[320px]">
-            <div className="aspect-[3/4] relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#0A192F] to-[#1A2444] p-1.5">
-              <div className="w-full h-full rounded-xl overflow-hidden bg-white">
-                <Image
-                  src="/images/Gui Mornatti Fotos/Gui Mornatti Foto Expert.jpg"
-                  alt="Gui Mornatti - Expert em Google Ads"
-                  width={320}
-                  height={427}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  sizes="(max-width: 768px) 280px, 320px"
-                  quality={85}
-                />
-              </div>
+      {/* Foto Independente - Fora do Card */}
+      <motion.div
+        className="flex justify-center lg:justify-start"
+        variants={itemVariants}
+      >
+        <div className="relative w-full max-w-[280px] md:max-w-[320px]">
+          <div className="aspect-[3/4] relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#0A192F] to-[#1A2444] p-1.5">
+            <div className="w-full h-full rounded-xl overflow-hidden bg-white">
+              <Image
+                src="/images/Gui Mornatti Fotos/Gui Mornatti Foto Expert.jpg"
+                alt="Gui Mornatti - Expert em Google Ads"
+                width={320}
+                height={427}
+                className="w-full h-full object-cover"
+                loading="lazy"
+                sizes="(max-width: 768px) 280px, 320px"
+                quality={85}
+              />
             </div>
-            {/* Glow effect azul premium */}
-            {!prefersReducedMotion && (
-              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,25,47,0.3)] to-transparent rounded-2xl blur-2xl -z-10" />
-            )}
           </div>
-        </motion.div>
+          {/* Glow effect azul premium */}
+          {!prefersReducedMotion && (
+            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,25,47,0.3)] to-transparent rounded-2xl blur-2xl -z-10" />
+          )}
+        </div>
+      </motion.div>
 
-        {/* Conteúdo - Sistema Unificado */}
+      {/* Card de Conteúdo - Separado da Foto */}
+      <motion.div
+        className="bg-gradient-to-br from-[rgba(10,25,47,0.92)] to-[rgba(26,36,68,0.88)] backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 border border-white/20 shadow-xl"
+        variants={itemVariants}
+      >
         <div className="space-y-6 md:space-y-8">
           <motion.p
             className="text-lg md:text-xl lg:text-2xl text-white leading-relaxed"
@@ -113,7 +116,7 @@ export function StrategicExplanation() {
             </span>
           </motion.p>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }

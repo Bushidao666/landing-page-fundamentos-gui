@@ -39,19 +39,24 @@ export default function SocialProofSection() {
         {/* Overlay de Transição */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A192F]/5 to-[#0A192F]/15" />
         
-        {/* Grid Pattern Sutil */}
-        <div className="absolute inset-0 opacity-[0.02]">
+        {/* Grid Pattern Sutil - Desabilitado em mobile */}
+        <div className="absolute inset-0 opacity-[0.02] hidden sm:block">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#D4AF37_1px,transparent_1px),linear-gradient(to_bottom,#D4AF37_1px,transparent_1px)] bg-[size:60px_60px]" />
         </div>
         
-        {/* Nebulosa Premium Responsiva */}
-        <div className="absolute inset-0 opacity-20">
+        {/* Nebulosa Premium Responsiva - Simplificada em mobile */}
+        <div className="absolute inset-0 opacity-20 hidden sm:block">
           <div className="absolute top-1/4 right-1/3 w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[200px] sm:h-[300px] md:h-[400px] bg-gradient-to-l from-[#D4AF37]/15 via-[#D4AF37]/5 to-transparent rounded-full blur-3xl animate-pulse" />
           <div className="absolute bottom-1/4 left-1/3 w-[250px] sm:w-[350px] md:w-[450px] lg:w-[500px] h-[150px] sm:h-[250px] md:h-[300px] bg-gradient-to-r from-slate-400/10 via-slate-500/5 to-transparent rounded-full blur-2xl" />
         </div>
         
-        {/* Partículas Flutuantes */}
-        <FloatingElements />
+        {/* Background simplificado para mobile */}
+        <div className="absolute inset-0 sm:hidden bg-gradient-to-b from-gray-50/50 to-slate-100/30" />
+        
+        {/* Partículas Flutuantes - Desabilitadas em mobile */}
+        <div className="hidden sm:block">
+          <FloatingElements />
+        </div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8">

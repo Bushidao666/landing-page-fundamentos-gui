@@ -14,26 +14,39 @@ export const TestimonialCard = React.memo<TestimonialCardProps>(({
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
-  // Pré-carregamento da imagem para melhor performance
+  // Pré-carregamento inteligente - apenas para cards visíveis
   useEffect(() => {
-    if (position === 'center' || position === 'left' || position === 'right') {
+    if (position === 'center') {
+      // Pré-carrega imagem central imediatamente
       const img = new window.Image();
       img.onload = () => setImageLoaded(true);
       img.onerror = () => setImageError(true);
       img.src = testimonial.image;
+    } else if (position === 'left' || position === 'right') {
+      // Lazy loading para cards laterais
+      const timer = setTimeout(() => {
+        const img = new window.Image();
+        img.onload = () => setImageLoaded(true);
+        img.onerror = () => setImageError(true);
+        img.src = testimonial.image;
+      }, 100);
+      return () => clearTimeout(timer);
     }
   }, [testimonial.image, position]);
 
+  // Detectar se é mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+  
   return (
     <div className="w-full max-w-xs mx-auto">
       <motion.div
         className="relative"
         style={{
-          aspectRatio: '9/16',
+          aspectRatio: isMobile ? '3/4' : '9/16',
           willChange: 'transform',
         }}
-        whileHover={isCenter ? { y: -3, scale: 1.01 } : {}}
-        layout
+        whileHover={isCenter && !isMobile ? { y: -3, scale: 1.01 } : {}}
+        layout={!isMobile}
         layoutId={`testimonial-${testimonial.id}`}
       >
         
