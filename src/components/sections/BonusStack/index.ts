@@ -7,6 +7,8 @@
  */
 
 export { default as BonusStackSection } from "./BonusStackSection";
+
+// Original components
 export { default as BackgroundEffects } from "./components/BackgroundEffects";
 export { default as BonusHeader } from "./components/BonusHeader";
 export { default as CommunityBonus } from "./components/CommunityBonus";
@@ -14,3 +16,8 @@ export { default as PassportBonus } from "./components/PassportBonus";
 export { default as GPTsBonus } from "./components/GPTsBonus";
 export { default as FinalCTA } from "./components/FinalCTA";
 export { default as BonusCard } from "./components/BonusCard";
+
+// New optimized components v2.0
+export { default as ValueStack, calculateValueMetrics } from "./components/ValueStack";
+export { default as GPTCard } from "./components/GPTCard";
+export { default as UrgencyBar } from "./components/UrgencyBar";

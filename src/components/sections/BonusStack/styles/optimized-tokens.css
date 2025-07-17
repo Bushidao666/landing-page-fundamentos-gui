@@ -1,0 +1,310 @@
+/**
+ * @file: optimized-tokens.css
+ * @responsibility: performance-first design tokens for BonusStack v2.0
+ * @exports: CSS custom properties optimized for conversion and mobile performance
+ * @imports: none (pure CSS tokens)
+ * @layer: design-system
+ */
+
+/* ===================================================================
+   PERFORMANCE-FIRST DESIGN TOKENS - BONUSSTACK V2.0
+   =================================================================== */
+
+:root {
+  /* ===============================
+     TIPOGRAFIA RESPONSIVE OTIMIZADA
+     =============================== */
+  
+  /* Hero Text - Value Display (R$ 1.041) */
+  --typography-hero-size: clamp(32px, 8vw, 48px);
+  --typography-hero-weight: 900;
+  --typography-hero-line: 1.1;
+  --typography-hero-spacing: -0.02em;
+  
+  /* Main Headers - Card Titles */
+  --typography-h2-size: clamp(20px, 5vw, 28px);
+  --typography-h2-weight: 700;
+  --typography-h2-line: 1.2;
+  --typography-h2-spacing: -0.01em;
+  
+  /* Subheadings - Card Values */
+  --typography-h3-size: clamp(16px, 4vw, 22px);
+  --typography-h3-weight: 600;
+  --typography-h3-line: 1.25;
+  
+  /* Body Text - Descriptions */
+  --typography-body-size: clamp(14px, 3.5vw, 18px);
+  --typography-body-weight: 400;
+  --typography-body-line: 1.5;
+  
+  /* Small Text - Badges/Values */
+  --typography-small-size: clamp(12px, 3vw, 16px);
+  --typography-small-weight: 600;
+  --typography-small-line: 1.3;
+  --typography-small-spacing: 0.05em;
+  
+  /* Micro Text - Trust signals */
+  --typography-micro-size: clamp(11px, 2.5vw, 14px);
+  --typography-micro-weight: 500;
+  --typography-micro-line: 1.4;
+
+  /* ===============================
+     CORES ESTRATÉGICAS CONVERSÃO
+     =============================== */
+  
+  /* Primary Action - CTA & Value Highlights */
+  --color-primary: #D4AF37;
+  --color-primary-light: #FFD700;
+  --color-primary-dark: #B8941F;
+  --color-primary-hover: #E6C547;
+  --color-primary-active: #C19A2E;
+  
+  /* Secondary - Text & Structure */
+  --color-secondary: #0A192F;
+  --color-secondary-light: #1A2444;
+  --color-secondary-muted: #334155;
+  --color-secondary-soft: #64748B;
+  
+  /* Background - Clean & Clear */
+  --color-bg-main: #FFFFFF;
+  --color-bg-subtle: #F8FAFC;
+  --color-bg-card: rgba(255, 255, 255, 0.95);
+  --color-bg-overlay: rgba(255, 255, 255, 0.9);
+  
+  /* Feedback Colors */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  
+  /* Opacity Variants */
+  --color-primary-10: rgba(212, 175, 55, 0.1);
+  --color-primary-15: rgba(212, 175, 55, 0.15);
+  --color-primary-20: rgba(212, 175, 55, 0.2);
+  --color-primary-30: rgba(212, 175, 55, 0.3);
+  
+  --color-secondary-10: rgba(10, 25, 47, 0.1);
+  --color-secondary-15: rgba(10, 25, 47, 0.15);
+  --color-secondary-20: rgba(10, 25, 47, 0.2);
+
+  /* ===============================
+     ESPAÇAMENTOS MATEMÁTICOS
+     =============================== */
+  
+  /* Base Scale - 1.25 Ratio */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+  
+  /* Component Specific */
+  --space-card-padding: clamp(16px, 4vw, 24px);
+  --space-card-gap: clamp(12px, 3vw, 20px);
+  --space-section-gap: clamp(24px, 6vw, 48px);
+
+  /* ===============================
+     ANIMAÇÕES OTIMIZADAS
+     =============================== */
+  
+  /* Duration - Conservative */
+  --anim-instant: 100ms;
+  --anim-fast: 200ms;
+  --anim-normal: 300ms;
+  --anim-slow: 500ms;
+  
+  /* Easings - Performance */
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-in: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
+  
+  /* Transform Base - GPU Layer */
+  --transform-gpu: translateZ(0);
+
+  /* ===============================
+     SHADOWS & EFFECTS
+     =============================== */
+  
+  /* Card Shadows */
+  --shadow-sm: 0 1px 3px rgba(10, 25, 47, 0.1), 0 1px 2px rgba(10, 25, 47, 0.06);
+  --shadow-md: 0 4px 6px rgba(10, 25, 47, 0.1), 0 2px 4px rgba(10, 25, 47, 0.06);
+  --shadow-lg: 0 10px 15px rgba(10, 25, 47, 0.1), 0 4px 6px rgba(10, 25, 47, 0.05);
+  --shadow-xl: 0 20px 25px rgba(10, 25, 47, 0.1), 0 10px 10px rgba(10, 25, 47, 0.04);
+  
+  /* Gold Glow */
+  --shadow-glow-primary: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.1);
+  --shadow-glow-primary-strong: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.2);
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* ===============================
+     BREAKPOINTS & CONTAINERS
+     =============================== */
+  
+  /* Breakpoints */
+  --bp-xs: 320px;
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1536px;
+  
+  /* Container Widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1400px;
+}
+
+/* ===================================================================
+   UTILITY CLASSES - PERFORMANCE FIRST
+   =================================================================== */
+
+/* Typography Utilities */
+.text-hero {
+  font-size: var(--typography-hero-size);
+  font-weight: var(--typography-hero-weight);
+  line-height: var(--typography-hero-line);
+  letter-spacing: var(--typography-hero-spacing);
+}
+
+.text-h2 {
+  font-size: var(--typography-h2-size);
+  font-weight: var(--typography-h2-weight);
+  line-height: var(--typography-h2-line);
+  letter-spacing: var(--typography-h2-spacing);
+}
+
+.text-h3 {
+  font-size: var(--typography-h3-size);
+  font-weight: var(--typography-h3-weight);
+  line-height: var(--typography-h3-line);
+}
+
+.text-body {
+  font-size: var(--typography-body-size);
+  font-weight: var(--typography-body-weight);
+  line-height: var(--typography-body-line);
+}
+
+.text-small {
+  font-size: var(--typography-small-size);
+  font-weight: var(--typography-small-weight);
+  line-height: var(--typography-small-line);
+  letter-spacing: var(--typography-small-spacing);
+}
+
+.text-micro {
+  font-size: var(--typography-micro-size);
+  font-weight: var(--typography-micro-weight);
+  line-height: var(--typography-micro-line);
+}
+
+/* Color Utilities */
+.text-primary { color: var(--color-primary); }
+.text-primary-dark { color: var(--color-primary-dark); }
+.text-secondary { color: var(--color-secondary); }
+.text-secondary-muted { color: var(--color-secondary-muted); }
+.text-secondary-soft { color: var(--color-secondary-soft); }
+
+.bg-primary { background-color: var(--color-primary); }
+.bg-primary-light { background-color: var(--color-primary-light); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-card { background-color: var(--color-bg-card); }
+.bg-subtle { background-color: var(--color-bg-subtle); }
+
+/* Border Utilities */
+.border-primary { border-color: var(--color-primary); }
+.border-primary-20 { border-color: var(--color-primary-20); }
+.border-secondary { border-color: var(--color-secondary); }
+.border-secondary-20 { border-color: var(--color-secondary-20); }
+
+/* Shadow Utilities */
+.shadow-card { box-shadow: var(--shadow-md); }
+.shadow-card-hover { box-shadow: var(--shadow-lg); }
+.shadow-glow { box-shadow: var(--shadow-glow-primary); }
+.shadow-glow-strong { box-shadow: var(--shadow-glow-primary-strong); }
+
+/* Animation Utilities */
+.animate-gpu {
+  transform: var(--transform-gpu);
+  will-change: transform;
+}
+
+.transition-smooth {
+  transition: all var(--anim-normal) var(--ease-out);
+}
+
+.transition-fast {
+  transition: all var(--anim-fast) var(--ease-out);
+}
+
+/* Container Utilities */
+.container-optimized {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .container-optimized {
+    padding: 0 var(--space-lg);
+  }
+}
+
+/* ===================================================================
+   REDUCED MOTION SUPPORT
+   =================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-gpu {
+    transform: none;
+    will-change: auto;
+  }
+}
+
+/* ===================================================================
+   COMPONENT SPECIFIC TOKENS
+   =================================================================== */
+
+/* Value Display Component */
+.value-display {
+  --value-bg: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  --value-text: var(--color-secondary);
+  --value-glow: var(--shadow-glow-primary);
+}
+
+/* CTA Button Component */
+.cta-button {
+  --cta-bg: var(--color-primary);
+  --cta-bg-hover: var(--color-primary-hover);
+  --cta-bg-active: var(--color-primary-active);
+  --cta-text: var(--color-secondary);
+  --cta-shadow: var(--shadow-lg);
+  --cta-shadow-hover: var(--shadow-glow-primary);
+}
+
+/* Card Component */
+.bonus-card {
+  --card-bg: var(--color-bg-card);
+  --card-border: var(--color-primary-15);
+  --card-shadow: var(--shadow-md);
+  --card-shadow-hover: var(--shadow-lg);
+  --card-radius: var(--radius-lg);
+} 
