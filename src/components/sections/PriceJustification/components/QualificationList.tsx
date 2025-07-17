@@ -20,31 +20,31 @@ const qualifications = [
   {
     text: "Você é **iniciante total** no Google Ads e quer começar com o pé direito.",
     icon: Target,
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#0A192F] to-[#1A2444]",
     priority: 1
   },
   {
     text: "Você **já anuncia**, mas se sente **inseguro** e opera no \"achismo\".",
     icon: AlertCircle,
-    color: "from-orange-500 to-orange-600",
+    color: "from-[#1A2444] to-[#2A3A5C]",
     priority: 2
   },
   {
     text: "Seu **orçamento é limitado** e cada real precisa ser investido com inteligência.",
     icon: DollarSign,
-    color: "from-green-500 to-green-600",
+    color: "from-[#D4AF37] to-[#B8941F]",
     priority: 3
   },
   {
     text: "Você está **cansado de dicas soltas** e busca um método com começo, meio e fim.",
     icon: Brain,
-    color: "from-purple-500 to-purple-600",
+    color: "from-[#0A192F] to-[#334155]",
     priority: 4
   },
   {
     text: "Você quer ter **conhecimento sólido** para gerenciar melhor um futuro gestor de tráfego.",
     icon: Award,
-    color: "from-amber-500 to-amber-600",
+    color: "from-[#D4AF37] to-[#E6C547]",
     priority: 5
   },
 ];
@@ -72,9 +72,6 @@ export function QualificationList() {
     visible: {
       x: 0,
       opacity: 1,
-      transition: {
-        duration: prefersReducedMotion ? 0 : 0.4,
-      },
     },
     exit: {
       x: -20,
@@ -93,14 +90,14 @@ export function QualificationList() {
       animate={isVisible ? "visible" : "hidden"}
       variants={containerVariants}
     >
-      {/* Header */}
+      {/* Header - Sistema Azul */}
       <div className="text-center mb-8 md:mb-12">
         <motion.div
-          className="inline-flex items-center gap-2 md:gap-3 bg-blue-50 border border-blue-200 px-4 md:px-6 py-2 md:py-3 rounded-full mb-6 md:mb-8"
+          className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-[rgba(10,25,47,0.85)] to-[rgba(26,36,68,0.80)] backdrop-blur-md border border-white/20 px-4 md:px-6 py-2 md:py-3 rounded-full mb-6 md:mb-8"
           whileHover={!prefersReducedMotion ? { scale: 1.02 } : {}}
         >
-          <Users className="w-4 h-4 md:w-5 md:h-5 text-blue-600" />
-          <span className="text-blue-600 font-semibold text-xs md:text-sm uppercase tracking-wider">
+          <Users className="w-4 h-4 md:w-5 md:h-5 text-white" />
+          <span className="text-white font-semibold text-xs md:text-sm uppercase tracking-wider">
             Qualificação
           </span>
         </motion.div>
@@ -113,7 +110,7 @@ export function QualificationList() {
         </p>
       </div>
 
-      {/* Lista de Qualificações */}
+      {/* Lista de Qualificações - Sistema Unificado */}
       <div className="max-w-4xl mx-auto">
         <AnimatePresence mode="sync">
           <motion.div className="space-y-4 md:space-y-6">
@@ -128,8 +125,8 @@ export function QualificationList() {
                   whileHover={!prefersReducedMotion ? { x: 4 } : {}}
                   layout
                 >
-                  <div className="flex items-center gap-4 md:gap-6 p-4 md:p-6 lg:p-8 rounded-xl md:rounded-2xl bg-white border border-gray-200 hover:border-amber-300 transition-all duration-300 shadow-sm hover:shadow-md">
-                    {/* Ícone */}
+                  <div className="flex items-center gap-4 md:gap-6 p-4 md:p-6 lg:p-8 rounded-xl md:rounded-2xl bg-white/95 backdrop-blur-sm border border-gray-200 hover:border-[#D4AF37]/50 transition-all duration-300 shadow-sm hover:shadow-md">
+                    {/* Ícone - Sistema Azul/Dourado */}
                     <div className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gradient-to-br ${qualification.color} rounded-xl md:rounded-2xl flex items-center justify-center shadow-md flex-shrink-0 transition-transform duration-300 ${!prefersReducedMotion ? 'group-hover:scale-105' : ''}`}>
                       <Icon className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-white" />
                     </div>
@@ -144,9 +141,9 @@ export function QualificationList() {
                       />
                     </div>
 
-                    {/* Check */}
-                    <div className="w-8 h-8 md:w-10 md:h-10 bg-amber-50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-amber-500" />
+                    {/* Check - Sistema Dourado */}
+                    <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-[#D4AF37]/10 to-[#FFD700]/10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-[#D4AF37]/20">
+                      <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-[#D4AF37]" />
                     </div>
                   </div>
                 </motion.div>
@@ -155,7 +152,7 @@ export function QualificationList() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Botão Ver Mais */}
+        {/* Botão Ver Mais - Sistema Dourado */}
         {!showAll && (
           <motion.div
             className="mt-6 md:mt-8 text-center"
@@ -167,7 +164,7 @@ export function QualificationList() {
               variant="outline"
               size="lg"
               onClick={() => setShowAll(true)}
-              className="group border-amber-300 hover:bg-amber-50 text-amber-700 hover:text-amber-800 transition-all duration-300"
+              className="group border-[#D4AF37]/60 hover:bg-[#D4AF37]/10 text-[#D4AF37] hover:text-[#B8941F] transition-all duration-300"
             >
               <span className="flex items-center gap-2">
                 Ver mais qualificações

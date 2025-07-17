@@ -38,9 +38,10 @@ export function FloatingElements() {
     canvas.width = width;
     canvas.height = height;
 
-    // Initialize particles with deterministic random values
-    const particleCount = isMobile ? 8 : 15;
-    const random = createDeterministicRandom(789);
+    // Initialize particles with deterministic random values - Reduced count for subtlety
+    const particleCount = isMobile ? 4 : 8;
+    const randomSeed = 789;
+    const random = createDeterministicRandom(randomSeed);
     
     particlesRef.current = Array.from({ length: particleCount }, (_, i) => ({
       id: i,
@@ -48,11 +49,11 @@ export function FloatingElements() {
       y: random() * height,
       baseX: random() * width,
       baseY: random() * height,
-      speed: 0.5 + random() * 0.5,
-      amplitude: 20 + random() * 30,
+      speed: 0.3 + random() * 0.3,
+      amplitude: 15 + random() * 20,
       phase: random() * Math.PI * 2,
-      opacity: 0.1 + random() * 0.3,
-      scale: 0.8 + random() * 0.4,
+      opacity: 0.05 + random() * 0.15,
+      scale: 0.6 + random() * 0.3,
     }));
 
     let time = 0;
@@ -71,21 +72,21 @@ export function FloatingElements() {
         if (particle.y < -50) particle.baseY = height + 50;
         if (particle.y > height + 50) particle.baseY = -50;
 
-        // Draw particle
+        // Draw particle - Subtle integration
         ctx.save();
         ctx.globalAlpha = particle.opacity;
         ctx.fillStyle = "#D4AF37";
-        ctx.shadowBlur = 10 * particle.scale;
+        ctx.shadowBlur = 6 * particle.scale;
         ctx.shadowColor = "#D4AF37";
         
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, 2 * particle.scale, 0, Math.PI * 2);
+        ctx.arc(particle.x, particle.y, 1.5 * particle.scale, 0, Math.PI * 2);
         ctx.fill();
         
         ctx.restore();
       });
 
-      time += 0.01;
+      time += 0.008;
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
@@ -106,7 +107,7 @@ export function FloatingElements() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.3 }}
       aria-hidden="true"
     />
   );

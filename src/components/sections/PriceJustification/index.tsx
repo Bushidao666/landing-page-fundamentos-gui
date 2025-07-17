@@ -13,19 +13,19 @@ export default function PriceJustificationSection() {
       id="price-justification"
       className="relative py-12 md:py-16 lg:py-24 overflow-hidden"
     >
-      {/* Optimized Background */}
+      {/* Background Premium Unificado */}
       <div className="absolute inset-0">
-        {/* Single gradient layer for better performance */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-slate-50" />
+        {/* Base gradient azul como Pain Points */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-100 via-slate-50 to-blue-50/30" />
         
-        {/* Subtle overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/5" />
+        {/* Subtle overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/5 to-[rgba(10,25,47,0.08)]" />
         
-        {/* Grid pattern with reduced opacity */}
+        {/* Grid pattern with unified colors */}
         <div 
-          className="absolute inset-0 opacity-[0.01]"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
-            backgroundImage: `linear-gradient(to right, #D4AF37 1px, transparent 1px), linear-gradient(to bottom, #D4AF37 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(to right, #0A192F 1px, transparent 1px), linear-gradient(to bottom, #0A192F 1px, transparent 1px)`,
             backgroundSize: '60px 60px'
           }}
         />

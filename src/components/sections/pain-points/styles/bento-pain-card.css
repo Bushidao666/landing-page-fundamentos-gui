@@ -288,7 +288,7 @@
 }
 
 /* ========================================
-   GLOW EFFECTS - GLOW DE DOR E PROBLEMAS
+   GLOW EFFECTS - REMOVIDOS PARA HOVER LIMPO
    ======================================== */
 .card-glow {
   position: absolute;
@@ -299,45 +299,7 @@
   z-index: 0;
 }
 
-.bento-pain-card.crítico:hover .card-glow {
-  opacity: 1;
-  background: radial-gradient(
-    circle at center,
-    rgba(239, 68, 68, 0.20),
-    rgba(185, 28, 28, 0.10),
-    transparent 70%
-  );
-}
-
-.bento-pain-card.extremo:hover .card-glow {
-  opacity: 1;
-  background: radial-gradient(
-    circle at center,
-    rgba(249, 115, 22, 0.18),
-    rgba(234, 88, 12, 0.09),
-    transparent 70%
-  );
-}
-
-.bento-pain-card.alto:hover .card-glow {
-  opacity: 1;
-  background: radial-gradient(
-    circle at center,
-    rgba(245, 158, 11, 0.18),
-    rgba(217, 119, 6, 0.09),
-    transparent 70%
-  );
-}
-
-.bento-pain-card.devastador:hover .card-glow {
-  opacity: 1;
-  background: radial-gradient(
-    circle at center,
-    rgba(185, 28, 28, 0.22),
-    rgba(153, 27, 27, 0.12),
-    transparent 70%
-  );
-}
+/* Glow effects removidos - hover limpo sem gradientes coloridos */
 
 /* ========================================
    BORDER GLOW - EFEITO PREMIUM AZUL/DOURADO

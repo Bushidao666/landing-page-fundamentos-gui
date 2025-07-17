@@ -12,10 +12,6 @@ export function Header() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: prefersReducedMotion ? 0 : 0.6,
-        ease: "easeOut",
-      },
     },
   };
 
@@ -27,22 +23,22 @@ export function Header() {
       viewport={{ once: true, amount: 0.8 }}
       variants={variants}
     >
-      {/* Badge Premium */}
+      {/* Badge Premium - Sistema Azul Glassmorphism */}
       <motion.div
-        className="inline-flex items-center gap-3 md:gap-4 bg-gradient-to-r from-amber-500/20 via-amber-400/10 to-amber-500/20 backdrop-blur-xl border border-amber-500/30 px-6 md:px-8 py-3 md:py-4 rounded-full shadow-lg mb-8 md:mb-12"
+        className="inline-flex items-center gap-3 md:gap-4 bg-gradient-to-r from-[rgba(10,25,47,0.85)] via-[rgba(26,36,68,0.80)] to-[rgba(10,25,47,0.85)] backdrop-blur-xl border border-white/20 px-6 md:px-8 py-3 md:py-4 rounded-full shadow-lg mb-8 md:mb-12"
         whileHover={!prefersReducedMotion ? { scale: 1.02 } : {}}
       >
-        <Target className="w-5 h-5 md:w-6 md:h-6 text-amber-600" />
-        <span className="text-amber-700 font-bold text-sm md:text-base uppercase tracking-[0.15em] md:tracking-[0.2em]">
+        <Target className="w-5 h-5 md:w-6 md:h-6 text-white" />
+        <span className="text-white font-bold text-sm md:text-base uppercase tracking-[0.15em] md:tracking-[0.2em] text-shadow-md">
           A Verdade por Trás do Preço
         </span>
-        <Lightbulb className="w-5 h-5 md:w-6 md:h-6 text-amber-600" />
+        <Lightbulb className="w-5 h-5 md:w-6 md:h-6 text-white" />
       </motion.div>
 
-      {/* Pergunta Principal */}
+      {/* Pergunta Principal - Sistema Dourado */}
       <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-black leading-tight tracking-tight text-slate-900 mb-4 md:mb-6">
         Por que um valor{" "}
-        <span className="text-transparent bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 bg-clip-text animate-gradient bg-[length:200%_100%]">
+        <span className="text-transparent bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] bg-clip-text animate-gradient bg-[length:200%_100%]">
           tão baixo?
         </span>
       </h2>
