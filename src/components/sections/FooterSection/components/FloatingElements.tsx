@@ -2,7 +2,7 @@
  * @file: FloatingElements.tsx
  * @responsibility: animated floating particles background
  * @exports: FloatingElements
- * @imports: motion from framer-motion, useReducedMotion hook
+ * @imports: motion from framer-motion, useReducedMotion hook, createDeterministicRandom
  * @layer: components
  */
 
@@ -11,6 +11,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { createDeterministicRandom } from "@/utils/deterministic-random";
 
 const PARTICLE_COUNT = 12; // Reduced from 20 for better performance
 
@@ -32,12 +33,14 @@ export function FloatingElements() {
     
     // Generate particles only on client side to avoid hydration mismatch
     const generateParticles = () => {
+      const random = createDeterministicRandom(456);
+      
       return Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
         id: i,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        duration: 10 + Math.random() * 5,
-        delay: Math.random() * 5,
+        left: `${random() * 100}%`,
+        top: `${random() * 100}%`,
+        duration: 10 + random() * 5,
+        delay: random() * 5,
       }));
     };
 

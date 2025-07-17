@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 import { useViewportSize } from "../hooks/useViewportSize";
+import { createDeterministicRandom } from "@/utils/deterministic-random";
 
 interface Particle {
   id: number;
@@ -37,19 +38,21 @@ export function FloatingElements() {
     canvas.width = width;
     canvas.height = height;
 
-    // Initialize particles
+    // Initialize particles with deterministic random values
     const particleCount = isMobile ? 8 : 15;
+    const random = createDeterministicRandom(789);
+    
     particlesRef.current = Array.from({ length: particleCount }, (_, i) => ({
       id: i,
-      x: Math.random() * width,
-      y: Math.random() * height,
-      baseX: Math.random() * width,
-      baseY: Math.random() * height,
-      speed: 0.5 + Math.random() * 0.5,
-      amplitude: 20 + Math.random() * 30,
-      phase: Math.random() * Math.PI * 2,
-      opacity: 0.1 + Math.random() * 0.3,
-      scale: 0.8 + Math.random() * 0.4,
+      x: random() * width,
+      y: random() * height,
+      baseX: random() * width,
+      baseY: random() * height,
+      speed: 0.5 + random() * 0.5,
+      amplitude: 20 + random() * 30,
+      phase: random() * Math.PI * 2,
+      opacity: 0.1 + random() * 0.3,
+      scale: 0.8 + random() * 0.4,
     }));
 
     let time = 0;

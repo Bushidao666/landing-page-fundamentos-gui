@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { createDeterministicRandom } from "@/utils/deterministic-random";
 
 interface Particle {
   id: number;
@@ -22,13 +23,14 @@ export const FloatingElements = React.memo(() => {
     const generateParticles = () => {
       const isMobile = window.innerWidth < 640;
       const particleCount = isMobile ? 8 : 12;
+      const random = createDeterministicRandom(999);
       
       return Array.from({ length: particleCount }, (_, i) => ({
         id: i,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        delay: Math.random() * 3,
-        duration: 3 + Math.random() * 2,
+        left: `${random() * 100}%`,
+        top: `${random() * 100}%`,
+        delay: random() * 3,
+        duration: 3 + random() * 2,
       }));
     };
 
