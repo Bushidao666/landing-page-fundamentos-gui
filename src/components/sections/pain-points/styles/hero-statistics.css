@@ -1,6 +1,6 @@
 /**
  * @file: hero-statistics.css
- * @responsibility: Estilos do grid de estatísticas hero
+ * @responsibility: Estilos do grid de estatísticas hero - Azul + Dourado Integrados
  * @layer: styles
  */
 
@@ -32,74 +32,111 @@
   transform: translateY(-5px);
 }
 
-/* Glassmorphism base */
+/* Glassmorphism base - padrão unificado com detalhes azuis */
 .statistic-card.glassmorphism {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 250, 252, 0.90) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 10px 15px -3px rgba(10, 25, 47, 0.1), 
+    0 4px 6px -2px rgba(10, 25, 47, 0.05);
 }
 
-/* Color variations */
+/* Color variations - azul + dourado harmonioso */
 .statistic-card.critical {
-  border-color: rgba(239, 68, 68, 0.3);
+  border-color: rgba(10, 25, 47, 0.15);
 }
 
 .statistic-card.critical .statistic-value {
-  color: #DC2626;
+  background: linear-gradient(135deg, #0A192F 0%, #B8941F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statistic-card.critical:hover {
+  border-color: rgba(10, 25, 47, 0.25);
+  box-shadow: 
+    0 15px 25px -5px rgba(10, 25, 47, 0.15), 
+    0 8px 15px -3px rgba(212, 175, 55, 0.1);
 }
 
 .statistic-card.critical:hover .statistic-glow {
   opacity: 1;
-  background: radial-gradient(circle at center, rgba(239, 68, 68, 0.2), transparent);
+  background: radial-gradient(
+    circle at center, 
+    rgba(10, 25, 47, 0.08), 
+    rgba(212, 175, 55, 0.12), 
+    transparent
+  );
 }
 
 .statistic-card.extreme {
-  border-color: rgba(249, 115, 22, 0.3);
+  border-color: rgba(249, 115, 22, 0.2);
 }
 
 .statistic-card.extreme .statistic-value {
   color: #EA580C;
 }
 
+.statistic-card.extreme:hover {
+  border-color: rgba(249, 115, 22, 0.3);
+  box-shadow: 
+    0 15px 25px -5px rgba(249, 115, 22, 0.1), 
+    0 8px 15px -3px rgba(10, 25, 47, 0.05);
+}
+
 .statistic-card.extreme:hover .statistic-glow {
   opacity: 1;
-  background: radial-gradient(circle at center, rgba(249, 115, 22, 0.2), transparent);
+  background: radial-gradient(circle at center, rgba(249, 115, 22, 0.12), transparent);
 }
 
 .statistic-card.warning {
-  border-color: rgba(245, 158, 11, 0.3);
+  border-color: rgba(234, 179, 8, 0.2);
 }
 
 .statistic-card.warning .statistic-value {
-  color: #D97706;
+  color: #A16207;
+}
+
+.statistic-card.warning:hover {
+  border-color: rgba(234, 179, 8, 0.3);
+  box-shadow: 
+    0 15px 25px -5px rgba(234, 179, 8, 0.1), 
+    0 8px 15px -3px rgba(10, 25, 47, 0.05);
 }
 
 .statistic-card.warning:hover .statistic-glow {
   opacity: 1;
-  background: radial-gradient(circle at center, rgba(245, 158, 11, 0.2), transparent);
+  background: radial-gradient(circle at center, rgba(234, 179, 8, 0.12), transparent);
 }
 
-/* Typography */
+/* Typography - alinhada com design system */
 .statistic-value {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 900;
   line-height: 1;
   margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 
 .statistic-label {
   font-family: 'Inter', sans-serif;
   font-size: clamp(0.875rem, 1.5vw, 1rem);
   font-weight: 500;
-  color: #374151;
+  color: #4A5568;
   line-height: 1.5;
   max-width: 250px;
   margin: 0 auto;
 }
 
-/* Glow effect */
+/* Glow effect - mais sutil */
 .statistic-glow {
   position: absolute;
   inset: 0;

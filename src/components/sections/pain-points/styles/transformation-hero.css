@@ -1,7 +1,7 @@
 /**
  * TransformationHero Styles - Sistema de Design Premium Unificado
- * CTA dramático com design premium seguindo padrão da página
- * Card de solução com glassmorphism e dourado
+ * Integrado ao design system principal da página
+ * Combinando azul escuro + dourado para harmonia perfeita
  */
 
 /* ========================================
@@ -22,7 +22,7 @@
 }
 
 /* ========================================
-   CARD DOURADO PREMIUM
+   CARD DOURADO PREMIUM - AZUL + DOURADO INTEGRADOS
    ======================================== */
 .golden-card {
   position: relative;
@@ -32,7 +32,7 @@
   transition: all var(--pain-transition-normal);
 }
 
-/* Glassmorphism Premium com Dourado */
+/* Glassmorphism Premium - Mesmo padrão das outras seções com toques azuis */
 .golden-card.glassmorphism {
   background: linear-gradient(
     135deg,
@@ -41,9 +41,10 @@
   );
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 2px solid rgba(212, 175, 55, 0.3);
+  border: 2px solid;
+  border-image: linear-gradient(135deg, rgba(10, 25, 47, 0.2), rgba(212, 175, 55, 0.3)) 1;
   box-shadow: 
-    0 20px 60px rgba(212, 175, 55, 0.15),
+    0 25px 50px -12px rgba(212, 175, 55, 0.25),
     0 10px 30px rgba(10, 25, 47, 0.1),
     inset 0 2px 8px rgba(255, 255, 255, 0.8);
 }
@@ -51,22 +52,24 @@
 .golden-card:hover {
   transform: translateY(-2px);
   box-shadow: 
-    0 25px 70px rgba(212, 175, 55, 0.2),
+    0 30px 60px -12px rgba(212, 175, 55, 0.3),
     0 15px 35px rgba(10, 25, 47, 0.12),
     inset 0 2px 8px rgba(255, 255, 255, 0.9);
+  border-image: linear-gradient(135deg, rgba(10, 25, 47, 0.3), rgba(212, 175, 55, 0.4)) 1;
 }
 
 /* ========================================
-   EFEITO SHIMMER PREMIUM
+   EFEITO SHIMMER PREMIUM - AZUL + DOURADO
    ======================================== */
 .shimmer-effect {
   position: absolute;
   inset: -50%;
   background: linear-gradient(
     105deg,
-    transparent 40%,
-    rgba(212, 175, 55, 0.15) 50%,
-    transparent 60%
+    transparent 30%,
+    rgba(10, 25, 47, 0.08) 45%,
+    rgba(212, 175, 55, 0.15) 55%,
+    transparent 70%
   );
   animation: shimmer 4s ease-in-out infinite;
   pointer-events: none;
@@ -91,12 +94,12 @@
 }
 
 /* ========================================
-   BADGE DE TRANSFORMAÇÃO
+   BADGE DE TRANSFORMAÇÃO - GRADIENTE AZUL/DOURADO
    ======================================== */
 .transformation-badge {
   display: inline-block;
   padding: var(--pain-space-xs) var(--pain-space-md);
-  background: linear-gradient(135deg, var(--pain-accent) 0%, #B8941F 100%);
+  background: linear-gradient(135deg, var(--pain-primary) 0%, var(--pain-accent) 100%);
   color: white;
   font-size: var(--pain-text-xs);
   font-weight: 700;
@@ -104,17 +107,21 @@
   text-transform: uppercase;
   border-radius: var(--pain-radius-full);
   margin-bottom: var(--pain-space-lg);
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  box-shadow: 
+    0 4px 12px rgba(10, 25, 47, 0.2),
+    0 2px 6px rgba(212, 175, 55, 0.1);
   transition: all var(--pain-transition-fast);
 }
 
 .transformation-badge:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+  box-shadow: 
+    0 6px 16px rgba(10, 25, 47, 0.25),
+    0 3px 8px rgba(212, 175, 55, 0.2);
 }
 
 /* ========================================
-   TIPOGRAFIA
+   TIPOGRAFIA - ALINHADA COM DESIGN SYSTEM
    ======================================== */
 .transformation-title {
   font-size: var(--pain-text-3xl);
@@ -126,7 +133,7 @@
 }
 
 .transformation-title .highlight {
-  background: linear-gradient(135deg, var(--pain-accent) 0%, #B8941F 100%);
+  background: linear-gradient(135deg, var(--pain-primary) 0%, var(--pain-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -148,14 +155,15 @@
 }
 
 /* ========================================
-   ÊNFASE ADICIONAL
+   ÊNFASE ADICIONAL - GRADIENTE SUTIL AZUL/DOURADO
    ======================================== */
 .transformation-emphasis {
   margin: var(--pain-space-lg) 0;
   padding: var(--pain-space-md);
-  background: rgba(212, 175, 55, 0.05);
+  background: linear-gradient(135deg, rgba(10, 25, 47, 0.03), rgba(212, 175, 55, 0.05));
   border-radius: var(--pain-radius-lg);
-  border-left: 4px solid var(--pain-accent);
+  border-left: 4px solid;
+  border-image: linear-gradient(180deg, var(--pain-primary), var(--pain-accent)) 1;
 }
 
 .emphasis-text {
@@ -167,19 +175,22 @@
 }
 
 .emphasis-text strong {
-  color: var(--pain-accent);
+  background: linear-gradient(135deg, var(--pain-primary) 0%, var(--pain-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-weight: 700;
 }
 
 /* ========================================
-   CTA BUTTON PREMIUM
+   CTA BUTTON PREMIUM - GRADIENTE AZUL/DOURADO
    ======================================== */
 .transformation-cta {
   display: inline-flex;
   align-items: center;
   gap: var(--pain-space-sm);
   padding: var(--pain-space-md) var(--pain-space-xl);
-  background: linear-gradient(135deg, var(--pain-accent) 0%, #B8941F 100%);
+  background: linear-gradient(135deg, var(--pain-primary) 0%, var(--pain-accent) 100%);
   color: white;
   font-size: var(--pain-text-lg);
   font-weight: 600;
@@ -188,8 +199,8 @@
   cursor: pointer;
   transition: all var(--pain-transition-normal);
   box-shadow: 
-    0 10px 30px rgba(212, 175, 55, 0.3),
-    0 5px 15px rgba(10, 25, 47, 0.1);
+    0 10px 30px rgba(10, 25, 47, 0.2),
+    0 5px 15px rgba(212, 175, 55, 0.1);
   position: relative;
   overflow: hidden;
   margin-top: var(--pain-space-lg);
@@ -202,7 +213,9 @@
   background: linear-gradient(
     135deg,
     transparent 0%,
+    rgba(255, 255, 255, 0.15) 30%,
     rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.15) 70%,
     transparent 100%
   );
   transform: translateX(-100%);
@@ -216,8 +229,8 @@
 .transformation-cta:hover {
   transform: translateY(-2px);
   box-shadow: 
-    0 15px 40px rgba(212, 175, 55, 0.4),
-    0 8px 20px rgba(10, 25, 47, 0.15);
+    0 15px 40px rgba(10, 25, 47, 0.25),
+    0 8px 20px rgba(212, 175, 55, 0.2);
 }
 
 .cta-arrow {
@@ -282,7 +295,7 @@
   }
   
   .transformation-badge {
-    border: 2px solid var(--pain-accent);
+    border: 2px solid white;
   }
   
   .transformation-cta {

@@ -1,7 +1,7 @@
 /**
  * EmotionalTransition Styles - Sistema de Design Premium Unificado
- * Transição visual sutil entre pain points e solução
- * Seguindo padrão de design da página
+ * Integrado ao design system principal da página
+ * Usando cores harmoniosas alinhadas com outras seções
  */
 
 /* ========================================
@@ -27,7 +27,7 @@
 }
 
 /* ========================================
-   PADRÃO DE RACHADURA/LINHA
+   PADRÃO DE RACHADURA/LINHA - CORES UNIFICADAS
    ======================================== */
 .crack-pattern {
   width: 100%;
@@ -47,7 +47,7 @@
   stroke-dasharray: 2000;
   stroke-dashoffset: 0;
   animation: crackReveal 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.1));
+  filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.2));
 }
 
 /* ========================================
@@ -65,7 +65,7 @@
 }
 
 /* ========================================
-   TEXTO DE TRANSIÇÃO
+   TEXTO DE TRANSIÇÃO - CORES UNIFICADAS
    ======================================== */
 .transition-text {
   font-size: var(--pain-text-2xl);
@@ -109,7 +109,7 @@
 }
 
 /* ========================================
-   EFEITO DE BRILHO SUTIL
+   EFEITO DE BRILHO SUTIL - DOURADO UNIFICADO
    ======================================== */
 .transition-container::before {
   content: '';
@@ -188,6 +188,6 @@
   }
   
   .crack-pattern path {
-    filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.2));
+    filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
   }
 }

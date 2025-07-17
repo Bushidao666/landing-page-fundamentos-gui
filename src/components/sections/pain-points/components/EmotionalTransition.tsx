@@ -29,9 +29,10 @@ export const EmotionalTransition: React.FC = () => {
             />
             <defs>
               <linearGradient id="crackGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#EF4444" stopOpacity="0.2" />
-                <stop offset="50%" stopColor="#F97316" stopOpacity="0.5" />
-                <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.8" />
+                <stop offset="0%" stopColor="#0A192F" stopOpacity="0.3" />
+                <stop offset="30%" stopColor="#F97316" stopOpacity="0.5" />
+                <stop offset="70%" stopColor="#D4AF37" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#0A192F" stopOpacity="0.4" />
               </linearGradient>
             </defs>
           </svg>

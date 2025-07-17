@@ -1,11 +1,11 @@
 /**
  * PainPointsSection Styles - Sistema de Design Premium Unificado
- * Aplicando o mesmo padrão da FooterSection e BonusStackSection
- * Mantendo fundo branco/claro conforme design da página
+ * Integrado ao design system principal da página
+ * Seguindo padrão das outras seções (BonusStack, Solution, etc.)
  */
 
 /* ========================================
-   VARIÁVEIS CSS CUSTOMIZADAS - PAIN POINTS
+   VARIÁVEIS CSS UNIFICADAS - ALINHADAS COM DESIGN SYSTEM
    ======================================== */
 :root {
   /* Spacing System Unificado - Escala Fibonacci */
@@ -36,27 +36,35 @@
   --pain-grid-gap-tablet: clamp(1rem, 4vw, 1.5rem);
   --pain-grid-gap-desktop: clamp(1.5rem, 5vw, 2rem);
 
-  /* Colors Premium Unificados */
+  /* CORES UNIFICADAS - ALINHADAS COM DESIGN SYSTEM PRINCIPAL */
   --pain-primary: #0A192F;
   --pain-accent: #D4AF37;
   --pain-accent-light: #FFD700;
-  --pain-danger: #EF4444;
-  --pain-danger-dark: #DC2626;
-  --pain-warning: #F97316;
+  --pain-accent-dark: #B8941F;
+  
+  /* Cores sutis para problemas - mais harmoniosas */
+  --pain-problem-primary: #F97316;    /* Laranja sutil */
+  --pain-problem-secondary: #EAB308;  /* Amarelo dourado */
+  --pain-problem-tertiary: #DC2626;   /* Vermelho apenas para casos extremos */
+  
+  /* Backgrounds uniformes */
   --pain-bg-primary: #FFFFFF;
   --pain-bg-secondary: #FAFBFC;
   --pain-bg-tertiary: #F8FAFC;
+  --pain-bg-glass: rgba(255, 255, 255, 0.95);
+  
+  /* Textos unificados */
   --pain-text-primary: #0A192F;
   --pain-text-secondary: #4A5568;
   --pain-text-muted: #718096;
 
-  /* Shadows Premium Unificados */
+  /* Shadows unificados - padrão dourado */
   --pain-shadow-sm: 0 1px 3px 0 rgba(10, 25, 47, 0.1), 0 1px 2px 0 rgba(10, 25, 47, 0.06);
   --pain-shadow-md: 0 4px 6px -1px rgba(10, 25, 47, 0.1), 0 2px 4px -1px rgba(10, 25, 47, 0.06);
   --pain-shadow-lg: 0 10px 15px -3px rgba(10, 25, 47, 0.1), 0 4px 6px -2px rgba(10, 25, 47, 0.05);
   --pain-shadow-xl: 0 20px 25px -5px rgba(10, 25, 47, 0.1), 0 10px 10px -5px rgba(10, 25, 47, 0.04);
   --pain-shadow-premium: 0 25px 50px -12px rgba(212, 175, 55, 0.25);
-  --pain-shadow-danger: 0 20px 40px -10px rgba(239, 68, 68, 0.2);
+  --pain-shadow-accent: 0 20px 40px -10px rgba(212, 175, 55, 0.2);
 
   /* Border Radius System */
   --pain-radius-sm: 0.5rem;
@@ -73,7 +81,7 @@
 }
 
 /* ========================================
-   SEÇÃO PRINCIPAL - PAIN POINTS
+   SEÇÃO PRINCIPAL - FUNDO ESCURECIDO PARA CONTRASTE
    ======================================== */
 .pain-points-section-v2 {
   /* Layout */
@@ -81,14 +89,14 @@
   width: 100%;
   overflow: hidden;
   
-  /* Background BRANCO com gradiente sutil */
+  /* Background com mais contraste para destacar os cards azuis */
   background: linear-gradient(
     135deg,
-    #FFFFFF 0%,
-    var(--pain-bg-secondary) 25%,
-    #FFFFFF 50%,
-    var(--pain-bg-tertiary) 75%,
-    #FFFFFF 100%
+    #F8FAFC 0%,
+    #F1F5F9 25%,
+    #E2E8F0 50%,
+    #F1F5F9 75%,
+    #F8FAFC 100%
   );
   
   /* Spacing */
@@ -102,7 +110,7 @@
 }
 
 /* ========================================
-   SISTEMA DE BACKGROUNDS SUTIS
+   BACKGROUNDS SUTIS - PADRÃO UNIFICADO
    ======================================== */
 .section-background {
   position: absolute;
@@ -113,16 +121,22 @@
 .gradient-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse at 30% 30%,
-    rgba(239, 68, 68, 0.03) 0%,
-    transparent 50%
-  ),
-  radial-gradient(
-    ellipse at 70% 70%,
-    rgba(249, 115, 22, 0.02) 0%,
-    transparent 50%
-  );
+  background: 
+    radial-gradient(
+      ellipse at 30% 30%,
+      rgba(10, 25, 47, 0.04) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 70% 70%,
+      rgba(212, 175, 55, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(59, 130, 246, 0.03) 0%,
+      transparent 60%
+    );
   z-index: 1;
 }
 
@@ -130,11 +144,11 @@
   position: absolute;
   inset: 0;
   background-image: 
-    radial-gradient(circle at 25% 25%, rgba(10, 25, 47, 0.02) 1px, transparent 1px),
-    radial-gradient(circle at 75% 75%, rgba(239, 68, 68, 0.02) 1px, transparent 1px);
+    radial-gradient(circle at 25% 25%, rgba(10, 25, 47, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
   background-size: 60px 60px, 90px 90px;
   background-position: 0 0, 30px 30px;
-  opacity: 0.3;
+  opacity: 0.6;
   z-index: 2;
 }
 
@@ -151,7 +165,7 @@
 }
 
 /* ========================================
-   HEADER DA SEÇÃO
+   HEADER DA SEÇÃO - AZUL + DOURADO INTEGRADOS
    ======================================== */
 .section-header {
   text-align: center;
@@ -161,21 +175,25 @@
 .section-badge {
   display: inline-block;
   padding: var(--pain-space-xs) var(--pain-space-md);
-  background: rgba(239, 68, 68, 0.1);
-  color: var(--pain-danger-dark);
+  background: linear-gradient(135deg, rgba(10, 25, 47, 0.08), rgba(212, 175, 55, 0.1));
+  color: var(--pain-primary);
   font-size: var(--pain-text-xs);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   border-radius: var(--pain-radius-full);
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(10, 25, 47, 0.15);
   margin-bottom: var(--pain-space-md);
   transition: all var(--pain-transition-fast);
 }
 
 .section-badge:hover {
-  background: rgba(239, 68, 68, 0.15);
+  background: linear-gradient(135deg, rgba(10, 25, 47, 0.12), rgba(212, 175, 55, 0.15));
   transform: scale(1.02);
+  box-shadow: 
+    0 4px 12px rgba(10, 25, 47, 0.1),
+    0 2px 6px rgba(212, 175, 55, 0.2);
+  border-color: rgba(10, 25, 47, 0.2);
 }
 
 .section-title {
@@ -191,9 +209,12 @@
 }
 
 .section-title .highlight {
-  color: var(--pain-danger);
+  background: linear-gradient(135deg, var(--pain-primary) 0%, var(--pain-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-decoration: underline;
-  text-decoration-color: var(--pain-danger);
+  text-decoration-color: var(--pain-accent);
   text-decoration-thickness: 3px;
   text-underline-offset: 0.3em;
 }

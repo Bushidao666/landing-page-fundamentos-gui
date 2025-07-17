@@ -9,15 +9,11 @@
 export { default as PainPointsSection } from "./PainPointsSection";
 
 // New components
-export { HeroStatisticsGrid } from "./components/HeroStatisticsGrid";
 export { PainPointBentoGrid } from "./components/PainPointBentoGrid";
 export { BentoPainCard } from "./components/BentoPainCard";
 export { EmotionalTransition } from "./components/EmotionalTransition";
 export { TransformationHero } from "./components/TransformationHero";
 
-// Legacy components still in use
-export { AnimatedCounter } from "./components/AnimatedCounter";
-export { FloatingElements } from "./components/FloatingElements";
 
 
 // Hooks
