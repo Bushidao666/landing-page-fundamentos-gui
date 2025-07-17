@@ -1,6 +1,6 @@
 /**
  * @file: BonusHeader.tsx
- * @responsibility: header section with badge, headline and value reveal
+ * @responsibility: professional header with unified copy block and optimized animations
  * @exports: BonusHeader
  * @imports: framer-motion, lucide-react, bonusData
  * @layer: components
@@ -9,21 +9,34 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Gift, Crown, Sparkles } from "lucide-react";
+import { Gift, Crown } from "lucide-react";
 import { bonusMetrics } from "../data/bonusData";
 
 interface BonusHeaderProps {
   className?: string;
 }
 
-const itemVariants = {
-  hidden: { y: 60, opacity: 0, scale: 0.9 },
+// Simplified animation variants - maximum 3 per viewport
+const headerVariants = {
+  hidden: { opacity: 0, y: 30 },
   visible: {
-    y: 0,
     opacity: 1,
-    scale: 1,
+    y: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.6,
+      ease: "easeOut" as const,
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
       ease: "easeOut" as const,
     },
   },
@@ -31,188 +44,121 @@ const itemVariants = {
 
 export default function BonusHeader({ className = "" }: BonusHeaderProps) {
   return (
-    <motion.div 
-      className={`text-center max-w-6xl mx-auto mb-8 md:mb-12 lg:mb-16 ${className}`}
-      variants={itemVariants}
+    <motion.header 
+      className={`text-center max-w-6xl mx-auto mb-6 md:mb-8 lg:mb-10 ${className}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={headerVariants}
     >
-      {/* Badge de Impacto - Refinado */}
+      {/* Professional Badge - Simplified */}
       <motion.div
-        className="inline-flex items-center gap-2 md:gap-3 lg:gap-4 bg-gradient-to-r from-[#D4AF37]/40 via-[#FFD700]/30 to-[#D4AF37]/40 backdrop-blur-2xl border border-[#D4AF37]/60 px-4 md:px-6 lg:px-8 py-2.5 md:py-3.5 lg:py-4 rounded-full shadow-2xl mb-8 md:mb-10 lg:mb-12"
+        className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-[#D4AF37]/15 to-[#FFD700]/15 backdrop-blur-sm border border-[#D4AF37]/30 px-4 md:px-5 py-2 md:py-2.5 rounded-full shadow-sm mb-4 md:mb-6"
         variants={itemVariants}
         whileHover={{ 
-          scale: 1.03, 
-          y: -1,
-          boxShadow: "0 0 40px rgba(212, 175, 55, 0.6)"
+          scale: 1.02,
+          backgroundColor: "rgba(212, 175, 55, 0.1)"
         }}
-        whileTap={{ scale: 0.98 }}
-        animate={{ 
-          boxShadow: [
-            "0 0 20px rgba(212, 175, 55, 0.3)", 
-            "0 0 30px rgba(212, 175, 55, 0.5)", 
-            "0 0 20px rgba(212, 175, 55, 0.3)"
-          ]
-        }}
-        transition={{ 
-          boxShadow: { duration: 2, repeat: Infinity }
-        }}
+        transition={{ duration: 0.2 }}
         role="banner"
         aria-label="Seção de bônus exclusivos"
       >
-        <motion.div
-          animate={{ rotate: [0, 10, -10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-        >
-          <Gift className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#D4AF37]" />
-        </motion.div>
-        <span className="text-[#D4AF37] font-bold text-xs md:text-sm lg:text-base uppercase tracking-wider select-none">
+        <Gift className="w-4 h-4 md:w-5 md:h-5 text-[#D4AF37]" />
+        <span className="text-[#D4AF37] font-semibold text-xs md:text-sm uppercase tracking-wide">
           Bônus Exclusivos
         </span>
-        <motion.div
-          animate={{ rotate: [0, -10, 10, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 2.5 }}
-        >
-          <Crown className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#D4AF37]" />
-        </motion.div>
+        <Crown className="w-4 h-4 md:w-5 md:h-5 text-[#D4AF37]" />
       </motion.div>
 
-      {/* Headline Épica - Hierarquia Refinada */}
-      <motion.div className="space-y-4 md:space-y-5 lg:space-y-6 mb-8 md:mb-10 lg:mb-12" variants={itemVariants}>
-        <header className="text-center" role="heading" aria-level={2}>
-          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-black leading-[1.1] tracking-tight text-[#0A192F]">
-            <motion.span 
-              className="block text-gray-600 text-sm md:text-base lg:text-lg xl:text-xl font-normal mb-3 md:mb-4 opacity-90"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 0.9, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              Mas eu não quero te dar só o alicerce.
-            </motion.span>
-            <motion.span 
-              className="block text-gray-700 text-sm md:text-base lg:text-lg xl:text-xl font-medium mb-3 md:mb-4"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              Quero te dar a casa toda, com a chave na mão.
-            </motion.span>
-            <motion.span 
-              className="block text-gray-600 text-xs md:text-sm lg:text-base xl:text-lg font-light mb-4 md:mb-5 lg:mb-6 opacity-85"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 0.85, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-            >
-              Por isso, ao garantir seu acesso ao Fundamentos HOJE, você leva um
-            </motion.span>
-            <motion.span 
-              className="block text-transparent bg-gradient-to-r from-[#D4AF37] via-[#FFD700] via-[#FFA500] to-[#D4AF37] bg-clip-text animate-shimmer bg-[length:200%_100%] font-bold"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1,
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{
-                opacity: { delay: 0.8, duration: 0.6 },
-                scale: { delay: 0.8, duration: 0.6 },
-                backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear" }
-              }}
-            >
-              arsenal de bônus avaliado em
-            </motion.span>
-          </h2>
-        </header>
-
-        {/* Revelação Dramática do Valor - Premium Experience */}
-        <motion.div 
-          className="relative group"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 1.0, duration: 0.8, type: "spring", bounce: 0.3 }}
-        >
-          {/* Valor Principal com Micro-interactions */}
-          <motion.div 
-            className="inline-flex items-center gap-3 md:gap-4 lg:gap-5 bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] rounded-xl md:rounded-2xl lg:rounded-3xl px-5 md:px-7 lg:px-9 py-4 md:py-5 lg:py-7 shadow-2xl border-2 md:border-4 border-white/30 relative overflow-hidden"
-            whileHover={{ 
-              scale: 1.02, 
-              boxShadow: "0 0 60px rgba(212, 175, 55, 0.8)"
-            }}
-            whileTap={{ scale: 0.98 }}
-            role="presentation"
-            aria-label={`Valor total dos bônus: R$ ${bonusMetrics.totalValue.toLocaleString()}`}
+      {/* Unified Copy Block - Professional Hierarchy */}
+      <motion.div className="unified-copy-block mb-6 md:mb-8" variants={itemVariants}>
+        <div className="text-center space-y-4 md:space-y-6" role="heading" aria-level={2}>
+          {/* Emotional Setup - Refined */}
+          <motion.p 
+            className="text-gray-600 text-sm md:text-base font-normal opacity-90"
+            variants={itemVariants}
           >
-            {/* Shimmer effect no hover */}
+            Mas eu não quero te dar só o alicerce.
+          </motion.p>
+          
+          {/* Main Promise - Hero Typography */}
+          <motion.h2 
+            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-[1.1] tracking-tight text-[#0A192F] font-serif"
+            variants={itemVariants}
+          >
+            Quero te dar a{" "}
+            <span className="text-[#D4AF37] relative">
+              casa toda
+              <motion.span
+                className="absolute -inset-1 bg-[#D4AF37]/10 blur-sm -z-10"
+                animate={{ opacity: [0, 0.5, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </span>
+            ,<br className="hidden md:block" />
+            {" "}com a{" "}
+            <span className="text-[#D4AF37] relative">
+              chave na mão
+              <motion.span
+                className="absolute -inset-1 bg-[#D4AF37]/10 blur-sm -z-10"
+                animate={{ opacity: [0, 0.5, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              />
+            </span>
+            .
+          </motion.h2>
+          
+          {/* Transition to Value - Clean */}
+          <motion.p
+            className="text-lg md:text-xl lg:text-2xl text-gray-700 font-medium"
+            variants={itemVariants}
+          >
+            Por isso, você leva um arsenal de bônus de
+          </motion.p>
+        </div>
+      </motion.div>
+
+      {/* Value Showcase - Professional Implementation */}
+      <motion.div 
+        className="value-showcase relative inline-block"
+        variants={itemVariants}
+      >
+        <div className="relative">
+          {/* Main Value - Clean Focus */}
+          <motion.div 
+            className="bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] rounded-2xl md:rounded-3xl px-6 md:px-8 lg:px-12 py-4 md:py-5 lg:py-6 shadow-2xl relative overflow-hidden"
+            whileHover={{ 
+              scale: 1.01, 
+              boxShadow: "0 25px 50px rgba(212, 175, 55, 0.25)"
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* Subtle Shimmer - Performance Optimized */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "200%" }}
-              transition={{ duration: 0.8 }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent -skew-x-12"
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
             />
             
-            <motion.span 
-              className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-[#0A192F] relative z-10 select-none"
-              animate={{ 
-                textShadow: [
-                  "0 0 0px rgba(10, 25, 47, 0)",
-                  "0 0 20px rgba(10, 25, 47, 0.3)",
-                  "0 0 0px rgba(10, 25, 47, 0)"
-                ]
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              R$ {bonusMetrics.totalValue.toLocaleString()}
-            </motion.span>
-            
-            <motion.div
-              className="relative z-10"
-              animate={{ 
-                rotate: [0, 10, -10, 0],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{ 
-                duration: 2, 
-                repeat: Infinity, 
-                repeatDelay: 1
-              }}
-            >
-              <Sparkles className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 text-[#0A192F] drop-shadow-lg" />
-            </motion.div>
+            <span className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#0A192F] relative z-10 block font-serif">
+              R$ {bonusMetrics.totalValue.toLocaleString('pt-BR')}
+            </span>
           </motion.div>
           
-          {/* DE GRAÇA - Explosão Premium */}
+          {/* FREE Badge - Mobile Optimized */}
           <motion.div
-            className="absolute -bottom-5 md:-bottom-6 lg:-bottom-7 left-1/2 transform -translate-x-1/2 z-20"
-            initial={{ scale: 0, rotate: -25, y: 20 }}
-            animate={{ scale: 1, rotate: 2, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.7, type: "spring", bounce: 0.6 }}
-            whileHover={{ 
-              scale: 1.05, 
-              rotate: -2,
-              boxShadow: "0 0 30px rgba(239, 68, 68, 0.6)"
-            }}
+            className="absolute -bottom-2 -right-2 md:-bottom-3 md:-right-3 lg:-bottom-4 lg:-right-4"
+            initial={{ scale: 0, rotate: -12 }}
+            animate={{ scale: 1, rotate: -6 }}
+            transition={{ delay: 0.3, duration: 0.4, type: "spring", stiffness: 300 }}
           >
-            <div className="bg-gradient-to-r from-red-500 via-red-600 to-pink-600 text-white font-black text-sm md:text-lg lg:text-xl xl:text-2xl px-4 md:px-5 lg:px-7 py-2 md:py-2.5 lg:py-3 rounded-lg md:rounded-xl shadow-2xl border-2 md:border-4 border-white relative overflow-hidden">
-              {/* Pulse effect interno */}
-              <motion.div
-                className="absolute inset-0 bg-white/20"
-                animate={{ opacity: [0, 0.3, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-              <span className="relative z-10 select-none tracking-wide">DE GRAÇA!</span>
+            <div className="bg-gradient-to-r from-red-500 to-red-600 text-white font-black text-sm md:text-base lg:text-lg xl:text-xl px-3 md:px-4 py-1.5 md:py-2 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-200">
+              <span className="tracking-tight">DE GRAÇA!</span>
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       </motion.div>
 
-      <style jsx>{`
-        @keyframes shimmer {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-shimmer {
-          animation: shimmer 3s ease-in-out infinite;
-        }
-      `}</style>
-    </motion.div>
+    </motion.header>
   );
 } 

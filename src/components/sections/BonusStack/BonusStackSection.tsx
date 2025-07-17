@@ -16,13 +16,15 @@ import PassportBonus from "./components/PassportBonus";
 import GPTsBonus from "./components/GPTsBonus";
 import FinalCTA from "./components/FinalCTA";
 
+// Optimized container animation - performance focused
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3,
-      delayChildren: 0.4,
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
+      ease: "easeOut",
     },
   },
 };
@@ -31,10 +33,10 @@ export default function BonusStackSection() {
   return (
     <motion.section
       id="bonus-stack"
-      className="relative py-4 md:py-8 lg:py-16 xl:py-20 overflow-hidden"
+      className="relative py-6 md:py-8 lg:py-12 overflow-hidden"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.15 }}
       variants={containerVariants}
     >
       {/* Background Tech-Aristocrático Otimizado */}
@@ -44,8 +46,8 @@ export default function BonusStackSection() {
         {/* Header Explosivo */}
         <BonusHeader />
 
-        {/* Containers dos Bônus - SPACING OTIMIZADO */}
-        <div className="max-w-6xl mx-auto space-y-6 md:space-y-8 lg:space-y-12">
+        {/* Containers dos Bônus - PROFESSIONAL SPACING */}
+        <div className="max-w-6xl mx-auto space-y-3 md:space-y-4 lg:space-y-6">
           
           {/* SUPER BÔNUS #1: Comunidade Vitalícia */}
           <CommunityBonus index={0} />
@@ -57,7 +59,7 @@ export default function BonusStackSection() {
           <GPTsBonus index={2} />
         </div>
 
-        {/* Call to Action Final Dramático */}
+        {/* Call to Action Final Profissional */}
         <FinalCTA />
       </div>
     </motion.section>
