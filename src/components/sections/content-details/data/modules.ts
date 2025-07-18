@@ -21,8 +21,7 @@ export const modules: Module[] = [
       "Como o Google 'pensa' e toma decisões",
       "Estratégias de lances que economizam dinheiro", 
       "Controlando a fase de aprendizado",
-      "Mapeando a jornada do seu cliente",
-      "Aplicando funis dentro do Google Ads"
+      "Mapeando a jornada do seu cliente"
     ],
     color: "from-blue-500 to-purple-600",
     bgColor: "from-blue-500/10 to-purple-600/5"
@@ -38,7 +37,6 @@ export const modules: Module[] = [
       "Criando um plano de métricas eficaz",
       "Definindo metas realistas e ambiciosas",
       "Calculando seu ROAS mínimo",
-      "Planilhas de controle financeiro",
       "Quando investir e quando parar"
     ],
     color: "from-[#D4AF37] to-yellow-500",
@@ -55,7 +53,6 @@ export const modules: Module[] = [
       "Qual tipo de campanha começar primeiro",
       "Critérios para campanhas que convertem",
       "Segmentação de públicos qualificados",
-      "Estruturas que já nascem otimizadas",
       "Evitando público curioso"
     ],
     color: "from-green-500 to-emerald-600",
@@ -72,7 +69,6 @@ export const modules: Module[] = [
       "Criando anúncios que convertem",
       "Gerando cliques qualificados",
       "Estratégias de remarketing avançadas",
-      "Especificações técnicas do Google",
       "Evitando reprovações desnecessárias"
     ],
     color: "from-orange-500 to-red-500",

@@ -22,8 +22,6 @@ export interface Module {
 
 export interface ModuleCardProps {
   module: Module;
-  isActive: boolean;
-  onToggle: () => void;
   index: number;
 }
 

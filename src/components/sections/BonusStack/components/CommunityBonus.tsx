@@ -55,7 +55,7 @@ export default function CommunityBonus({ index = 0 }: CommunityBonusProps) {
               SUPER BÔNUS #1
             </motion.span>
           </motion.div>
-
+          
           {/* MOCKUP MOBILE - Entre Badge e Título */}
           <motion.div
             className="lg:hidden mb-4"
@@ -66,43 +66,43 @@ export default function CommunityBonus({ index = 0 }: CommunityBonusProps) {
             <div className="relative group">
               <motion.div
                 className="relative overflow-hidden rounded-2xl"
-                whileHover={{ 
+            whileHover={{ 
                   y: -4,
                   scale: 1.01,
                   transition: { type: "spring", stiffness: 300, damping: 25 }
-                }}
-              >
+            }}
+          >
                 {/* Shimmer effect DA ESQUERDA PARA DIREITA diretamente na imagem */}
-                <motion.div
+            <motion.div
                   className="absolute inset-0 z-10 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 pointer-events-none"
                   initial={{ x: "-150%" }}
                   animate={{ x: "150%" }}
-                  transition={{ 
+              transition={{ 
                     duration: 2.5, 
-                    repeat: Infinity,
+                repeat: Infinity,
                     repeatDelay: 4,
-                    ease: "easeInOut"
-                  }}
-                />
-                
-                <Image
-                  src="/images/Mockups/mockup-do-zero-a-100k.png"
-                  alt="Mockup da Comunidade Zero ao 100K mostrando conversas da comunidade em múltiplos dispositivos"
+                ease: "easeInOut"
+              }}
+            />
+            
+            <Image
+              src="/images/Mockups/mockup-do-zero-a-100k.png"
+              alt="Mockup da Comunidade Zero ao 100K mostrando conversas da comunidade em múltiplos dispositivos"
                   width={1200}
                   height={900}
                   className="w-full h-auto rounded-2xl shadow-xl shadow-black/20 transition-shadow duration-500"
-                  priority
-                />
+              priority
+            />
               </motion.div>
             </div>
           </motion.div>
-
+            
           {/* Título e Valor */}
-          <motion.div
+            <motion.div
             initial={{ y: 15, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
-          >
+            >
             <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 mb-2 leading-tight">
               Comunidade Zero ao 100K - Acesso Vitalício
             </h3>
@@ -110,106 +110,106 @@ export default function CommunityBonus({ index = 0 }: CommunityBonusProps) {
             <p className="text-lg lg:text-xl font-bold text-[#B8860B] mb-4">
               R$ {bonusMetrics.communityValue}/ano
             </p>
-          </motion.div>
+      </motion.div>
 
           {/* Copy ULTRA RESUMIDA - Máximo impacto */}
-          <motion.div
+      <motion.div
             className="mb-4"
-            initial={{ y: 15, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
+        initial={{ y: 15, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
             <p className="text-base md:text-lg font-bold text-[#B8860B] mb-3 leading-tight">
               Sinceramente, vale 10x o valor do curso.
-            </p>
+        </p>
             <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4">
               Acesso{" "}
-              <motion.span 
+          <motion.span 
                 className="text-[#B8860B] font-bold text-base md:text-lg"
                 animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2.5, repeat: Infinity }}
-              >
-                PARA SEMPRE
-              </motion.span>{" "}
+            transition={{ duration: 2.5, repeat: Infinity }}
+          >
+            PARA SEMPRE
+          </motion.span>{" "}
               à comunidade de elite com suporte direto, networking e materiais exclusivos.
-            </p>
-          </motion.div>
+        </p>
+      </motion.div>
 
           {/* MINI-CARDS PROTAGONISTAS */}
           <div className="grid grid-cols-2 gap-3">
-            {communityBenefits.map((benefit, i) => (
-              <motion.article 
-                key={i}
+        {communityBenefits.map((benefit, i) => (
+          <motion.article 
+            key={i}
                 className="bg-[#0A192F]/90 backdrop-blur-sm border border-[#1A2444]/60 rounded-lg p-3 lg:p-4 transition-all duration-300 hover:bg-[#0A192F]/95 hover:border-[#B8860B]/40 hover:shadow-xl hover:transform hover:translate-y-[-3px] group cursor-pointer relative overflow-hidden"
                 initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
                   delay: 0.6 + i * 0.1,
-                  duration: 0.3
-                }}
-                whileHover={{ 
+              duration: 0.3
+            }}
+            whileHover={{ 
                   y: -3,
-                  transition: { duration: 0.2 }
-                }}
-                role="article"
-                tabIndex={0}
-                aria-label={`Benefício: ${benefit.title}`}
+              transition: { duration: 0.2 }
+            }}
+            role="article"
+            tabIndex={0}
+            aria-label={`Benefício: ${benefit.title}`}
                 title={benefit.description}
-              >
+          >
                 {/* Shimmer effect */}
-                <motion.div
+            <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 rounded-xl"
-                  initial={{ x: "-100%" }}
-                  animate={{ x: "200%" }}
-                  transition={{ 
+              initial={{ x: "-100%" }}
+              animate={{ x: "200%" }}
+              transition={{ 
                     duration: 1.5, 
-                    repeat: Infinity,
+                repeat: Infinity,
                     repeatDelay: 5,
-                    ease: "easeInOut"
-                  }}
-                />
+                ease: "easeInOut"
+              }}
+            />
 
                 {/* Layout LIMPO: Icon + Título centrado */}
                 <div className="text-center">
                   {/* Icon ULTRA COMPACTO */}
-                  <motion.div 
+              <motion.div 
                     className="w-6 h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-[#B8860B] to-[#DAA520] rounded-md flex items-center justify-center shadow-sm mx-auto mb-1 relative"
-                    whileHover={{ 
-                      scale: 1.05,
-                      rotate: 3,
+                whileHover={{ 
+                  scale: 1.05,
+                  rotate: 3,
                       transition: { type: "spring", stiffness: 400, damping: 20 }
-                    }}
-                  >
+                }}
+              >
                     {/* Glow */}
-                    <motion.div
+                <motion.div
                       className="absolute inset-0 bg-white/15 rounded-xl"
-                      animate={{ opacity: [0, 0.4, 0] }}
+                  animate={{ opacity: [0, 0.4, 0] }}
                       transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
-                    />
-                    
-                    <motion.div
+                />
+                
+                <motion.div
                       initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
+                  animate={{ scale: 1, opacity: 1 }}
                       transition={{ delay: 0.8 + i * 0.1, duration: 0.3 }}
                       whileHover={{ scale: 1.1 }}
-                    >
-                      {getBenefitIcon(i)}
-                    </motion.div>
-                  </motion.div>
-                  
+                >
+                  {getBenefitIcon(i)}
+                </motion.div>
+              </motion.div>
+              
                   {/* Título ULTRA COMPACTO */}
-                  <motion.h4 
+                <motion.h4 
                     className="text-[10px] lg:text-xs font-medium text-white leading-tight group-hover:text-[#B8860B] transition-colors duration-300"
                     initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
+                  animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.9 + i * 0.1 }}
-                  >
+                >
                     {benefit.title.split(':')[0]}
-                  </motion.h4>
-                </div>
-              </motion.article>
-            ))}
-          </div>
+                </motion.h4>
+            </div>
+          </motion.article>
+        ))}
+      </div>
         </div>
       </motion.div>
 

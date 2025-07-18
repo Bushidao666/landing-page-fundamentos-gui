@@ -70,9 +70,9 @@ export default function GPTsBonus({ index = 2 }: GPTsBonusProps) {
                 variants={isFloating ? floatingVariants : undefined}
                 initial="initial"
                 animate={isFloating ? "animate" : "initial"}
-                whileHover={{ 
+            whileHover={{ 
                   y: -4,
-                  scale: 1.01,
+              scale: 1.01,
                   transition: { type: "spring", stiffness: 300, damping: 25 }
                 }}
               >
@@ -117,12 +117,12 @@ export default function GPTsBonus({ index = 2 }: GPTsBonusProps) {
           </motion.div>
 
           {/* Descrição Premium */}
-          <motion.div
+            <motion.div
             className="mb-4"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
-          >
+            >
             <p className="text-base md:text-lg font-bold text-[#B8860B] mb-2 leading-tight">
               7 GPTs personalizados trabalhando para você 24/7.
             </p>
@@ -132,13 +132,13 @@ export default function GPTsBonus({ index = 2 }: GPTsBonusProps) {
                 className="text-[#B8860B] font-bold text-base"
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2.5, repeat: Infinity }}
-              >
+                  >
                 criação de anúncios
               </motion.span>{" "}
               até análise de métricas e otimização de campanhas.
             </p>
-          </motion.div>
-
+                  </motion.div>
+                  
           {/* ACCORDION DOS 7 GPTs COMPLETO */}
           <div className="space-y-2">
             {gptsData.map((gpt, i) => (
@@ -165,32 +165,32 @@ export default function GPTsBonus({ index = 2 }: GPTsBonusProps) {
                       {gpt.name}
                     </span>
                   </div>
-                  <motion.div
+                <motion.div
                     animate={{ rotate: expandedGPT === i ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                  transition={{ duration: 0.2 }}
+                >
                     <ChevronDown className="w-4 h-4 text-white/70" />
-                  </motion.div>
+                </motion.div>
                 </button>
 
-                <AnimatePresence>
+            <AnimatePresence>
                   {expandedGPT === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
-                    >
+                >
                       <div className="px-3 pb-3 text-xs text-gray-300 leading-relaxed border-t border-white/10 pt-2">
                         {gpt.description}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
-          </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        ))}
+      </div>
         </div>
       </motion.div>
 

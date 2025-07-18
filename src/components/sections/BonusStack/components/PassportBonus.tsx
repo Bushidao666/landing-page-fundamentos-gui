@@ -100,14 +100,14 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <motion.span 
+          <motion.span 
               className="inline-block bg-gradient-to-r from-[#B8860B] to-[#DAA520] text-white px-3 py-1 rounded-full text-xs font-bold mb-3 shadow-lg"
               whileHover={{ scale: 1.05 }}
-            >
+          >
               SUPER BÔNUS #2
             </motion.span>
           </motion.div>
-
+        
           {/* MOCKUP MOBILE - Entre Badge e Título */}
           <motion.div
             className="lg:hidden mb-4"
@@ -116,30 +116,30 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
             transition={{ delay: 0.3, duration: 0.6 }}
           >
             <div className="relative group">
-              <motion.div
+      <motion.div 
                 className="relative overflow-hidden rounded-2xl"
                 variants={isFloating ? floatingVariants : undefined}
                 initial="initial"
                 animate={isFloating ? "animate" : "initial"}
-                whileHover={{ 
+        whileHover={{ 
                   y: -4,
                   scale: 1.01,
                   transition: { type: "spring", stiffness: 300, damping: 25 }
-                }}
-              >
+        }}
+      >
                 {/* Shimmer effect DA ESQUERDA PARA DIREITA diretamente na imagem */}
-                <motion.div
+        <motion.div
                   className="absolute inset-0 z-10 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 pointer-events-none"
                   initial={{ x: "-150%" }}
                   animate={{ x: "150%" }}
-                  transition={{ 
+          transition={{ 
                     duration: 2.5, 
-                    repeat: Infinity,
-                    repeatDelay: 4,
-                    ease: "easeInOut"
-                  }}
-                />
-                
+            repeat: Infinity,
+            repeatDelay: 4,
+            ease: "easeInOut"
+          }}
+        />
+        
                 <Image
                   src="/images/Mockups/mockup passaporte.png"
                   alt="Mockup do Passaporte Aceleração mostrando as 9 aulas rápidas e ferramentas práticas"
@@ -166,7 +166,7 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
               (Valor: R$ {bonusMetrics.passportValue})
             </p>
           </motion.div>
-
+          
           {/* Descrição Premium */}
           <motion.div
             className="mb-4"
@@ -187,7 +187,7 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
                 className="text-[#B8860B] font-bold relative"
                 animate={{ scale: [1, 1.02, 1] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-              >
+          >
                 kit de primeiros socorros
               </motion.span>. 
             </p>
@@ -207,8 +207,8 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
               </motion.span>{" "}
               de verba nas suas campanhas. Um complementa o outro perfeitamente.
             </p>
-          </motion.div>
-
+                </motion.div>
+                
           {/* MINI-CARDS PROTAGONISTAS */}
           <div className="grid grid-cols-2 gap-3">
             {tools.slice(0, 6).map((tool, i) => (
@@ -229,24 +229,24 @@ export default function PassportBonus({ index = 1 }: PassportBonusProps) {
                 tabIndex={0}
                 aria-label={`Ferramenta: ${tool.name}`}
                 title={tool.description}
-              >
-                {/* Shimmer effect */}
-                <motion.div
+                  >
+                    {/* Shimmer effect */}
+                    <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-900/8 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 rounded-lg"
                   initial={{ x: "-100%" }}
                   animate={{ x: "200%" }}
-                  transition={{ 
-                    duration: 1.5, 
-                    repeat: Infinity,
+                      transition={{ 
+                        duration: 1.5,
+                        repeat: Infinity,
                     repeatDelay: 5,
-                    ease: "easeInOut"
-                  }}
-                />
-
+                        ease: "easeInOut"
+                      }}
+                    />
+                  
                 {/* Layout LIMPO: Icon + Título centrado */}
                 <div className="text-center">
                   {/* Icon PROTAGONISTA */}
-                  <motion.div 
+                  <motion.div
                     className="w-6 h-6 lg:w-8 lg:h-8 bg-gradient-to-br from-[#B8860B] to-[#DAA520] rounded-md flex items-center justify-center shadow-sm mx-auto mb-1 relative"
                     whileHover={{ 
                       scale: 1.05,

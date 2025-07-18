@@ -51,42 +51,42 @@ export default function ProductMockup({
       {/* Container do Mockup com z-index controlado */}
       <div className="relative z-10 w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto">
         {/* MOCKUP LIMPO COM SHIMMER DIRETO NA IMAGEM - Padrão BonusStack Otimizado */}
-        <div className="relative group">
-          <motion.div
+      <div className="relative group">
+        <motion.div
             className="relative overflow-hidden rounded-2xl"
             variants={isFloating ? floatingVariants : undefined}
             initial="initial"
             animate={isFloating ? "animate" : "initial"}
-            whileHover={{ 
+          whileHover={{ 
               y: -8,
               scale: 1.02,
               transition: { type: "spring", stiffness: 300, damping: 25 }
-            }}
-          >
+          }}
+        >
             {/* Shimmer effect DA ESQUERDA PARA DIREITA diretamente na imagem */}
-            <motion.div
+          <motion.div
               className="absolute inset-0 z-10 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 pointer-events-none"
               initial={{ x: "-150%" }}
               animate={{ x: "150%" }}
-              transition={{ 
+            transition={{ 
                 duration: 2.5, 
-                repeat: Infinity,
+              repeat: Infinity,
                 repeatDelay: 4,
-                ease: "easeInOut"
-              }}
-            />
-            
-            <Image
-              src={imageSrc}
-              alt={imageAlt}
+              ease: "easeInOut"
+            }}
+          />
+          
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
               width={1200}
               height={900}
               className="w-full h-auto rounded-2xl shadow-2xl shadow-black/30 group-hover:shadow-[#B8860B]/40 transition-shadow duration-500"
-              priority
-              quality={95}
-            />
-          </motion.div>
-        </div>
+            priority
+            quality={95}
+          />
+        </motion.div>
+          </div>
       </div>
     </motion.div>
   );

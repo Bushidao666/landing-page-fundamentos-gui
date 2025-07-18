@@ -2,169 +2,334 @@
  * @file: ModuleCard.tsx
  * @responsibility: individual module card component
  * @exports: ModuleCard
- * @imports: motion, AnimatePresence, ChevronDown, Sparkles, MotionWrapper, ModuleHighlights, ModuleLessons
+ * @imports: React, motion, MotionWrapper, ModuleHighlights, ModuleLessons, useFloatingAnimation, createFloatingVariants
  * @layer: components
  */
 
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Sparkles } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
 import { MotionWrapper } from "@/components/ui/motion-wrapper";
 import { cn } from "@/lib/utils";
 import { ModuleHighlights } from "./ModuleHighlights";
 import { ModuleLessons } from "./ModuleLessons";
+import { useFloatingAnimation, createFloatingVariants } from "../../../../hooks/useFloatingAnimation";
 import type { ModuleCardProps } from "../types";
+import Image from "next/image";
 
-export function ModuleCard({ module, isActive, onToggle }: ModuleCardProps) {
+// Componente para Mockup limpo com Shimmer + Floating
+function ModuleMockup({ module, size = "desktop" }: { module: any; size?: "desktop" | "mobile" }) {
+  const isFloating = useFloatingAnimation(2 + module.id);
+  const floatingVariants = createFloatingVariants(4 + module.id, 3);
+
+  const mockupImages = {
+    1: "/images/Mockups/mockup-modulo-1-entendendo-jogo.png",
+    2: "/images/Mockups/mockup-modulo-2-planejamento-estrategico.png", 
+    3: "/images/Mockups/mockup-modulo-3-estrutura-campanhas.png",
+    4: "/images/Mockups/mockup-modulo-4-criacao-anuncios.png"
+  };
+
   return (
-    <MotionWrapper 
-      className="relative group"
-      whileHover={{ scale: 1.01, y: -2 }}
-      transition={{ duration: 0.3 }}
+    <motion.div 
+      className={cn(
+        "relative mx-auto",
+        size === "desktop" ? "w-full max-w-md" : "w-full max-w-xs"
+      )}
+      variants={isFloating ? floatingVariants : {}}
+      animate={isFloating ? "animate" : "initial"}
     >
-      {/* Card Container */}
+      {/* Mockup Image com Shimmer Effect */}
       <div className={cn(
-        "relative bg-gradient-to-br from-white/10 via-white/5 to-white/10",
-        "backdrop-blur-2xl border border-white/20",
-        "rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl",
-        "transition-all duration-300 transform-gpu",
-        "hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]"
+        "relative overflow-hidden rounded-2xl shadow-2xl",
+        size === "desktop" ? "aspect-[2/3]" : "aspect-[2/3]"
       )}>
-        
-        {/* Module Header */}
+        {/* Shimmer effect DA ESQUERDA PARA DIREITA diretamente na imagem */}
         <motion.div
-          className={cn(
-            "relative p-4 sm:p-6 md:p-8 cursor-pointer touch-manipulation",
-            "transition-colors duration-300",
-            "hover:bg-white/5"
-          )}
-          onClick={onToggle}
-          whileTap={{ scale: 0.98 }}
-        >
-          {/* Background Pattern */}
-          <div className={`absolute inset-0 bg-gradient-to-r ${module.bgColor} opacity-50`} />
-          
-          <div className="relative z-10 flex items-center justify-between">
-            <div className="flex items-center gap-3 sm:gap-4 md:gap-6 flex-1 min-w-0">
-              {/* Module Icon */}
-              <MotionWrapper 
-                className={cn(
-                  "w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16",
-                  "bg-gradient-to-br rounded-xl sm:rounded-2xl",
-                  "flex items-center justify-center shadow-2xl flex-shrink-0",
-                  "transition-all duration-300",
-                  module.color
-                )}
-                whileHover={{ scale: 1.1, rotate: 3 }}
-              >
-                <module.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
-              </MotionWrapper>
+          className="absolute inset-0 z-10 bg-gradient-to-r from-transparent via-white/15 to-transparent skew-x-12 pointer-events-none"
+          initial={{ x: "-150%" }}
+          animate={{ x: "150%" }}
+          transition={{ 
+            duration: 2.5, 
+            repeat: Infinity,
+            repeatDelay: 4,
+            ease: "easeInOut"
+          }}
+        />
 
-              {/* Header Content */}
-              <div className="flex-1 min-w-0">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                  <span className={cn(
-                    "px-2 sm:px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37]",
-                    "text-[10px] sm:text-xs font-bold uppercase tracking-wider",
-                    "rounded-full border border-[#D4AF37]/30 w-fit"
-                  )}>
-                    Módulo {module.id}
-                  </span>
-                  {isActive && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="flex items-center gap-1 w-fit"
-                    >
-                      <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-[#D4AF37]" />
-                      <span className="text-[#D4AF37] text-xs font-medium">Expandido</span>
-                    </motion.div>
-                  )}
-                </div>
-                
-                <h3 className={cn(
-                  "text-lg sm:text-xl md:text-2xl font-bold text-white",
-                  "mb-1 sm:mb-2 group-hover:text-[#D4AF37]",
-                  "transition-colors duration-300 leading-tight"
-                )}>
+        <Image
+          src={mockupImages[module.id as keyof typeof mockupImages]}
+          alt={`Mockup ${module.title}`}
+          width={1024}
+          height={1536}
+          className="w-full h-full object-contain object-center rounded-2xl"
+          onError={(e) => {
+            // Fallback para placeholder se imagem não existir
+            const target = e.currentTarget;
+            const fallback = target.nextElementSibling;
+            if (target && fallback && fallback instanceof HTMLElement) {
+              target.style.display = 'none';
+              fallback.style.display = 'flex';
+            }
+          }}
+        />
+        
+        {/* Fallback Placeholder */}
+        <div className="w-full h-full bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 rounded-2xl flex items-center justify-center" style={{ display: 'none' }}>
+          <div className="text-center space-y-3">
+            <module.icon className={cn(
+              "mx-auto text-gray-400",
+              size === "desktop" ? "w-12 h-12" : "w-8 h-8"
+            )} />
+            <div className="space-y-2">
+              <div className={cn(
+                "bg-gray-300 rounded mx-auto animate-pulse",
+                size === "desktop" ? "h-3 w-24" : "h-2 w-16"
+              )} />
+              <div className={cn(
+                "bg-gray-300 rounded mx-auto animate-pulse",
+                size === "desktop" ? "h-2 w-32" : "h-1.5 w-20"
+              )} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// Parser avançado para formatação da descrição
+function EnhancedDescription({ text, moduleId }: { text: string; moduleId: number }) {
+  // Mapeamento de palavras-chave especiais por módulo
+  const keywordMappings = {
+    1: {
+      // Módulo 1 - Entendendo o Jogo
+      bold: ['Google', 'algoritmo', 'leilão', 'ansiedade', 'cliente', 'Google Ads'],
+      italic: ['Lógica do Algoritmo', 'Aprendizado de Campanha', 'Jornada de Compra', 'Funil de Marketing'],
+      highlight: ['maior aliado', 'pagar caro', 'controlar'],
+      special: ['mente', 'inimigo', 'DENTRO']
+    },
+    2: {
+      // Módulo 2 - Planejamento Estratégico  
+      bold: ['ROAS Mínimo', 'métricas', 'metas', 'planilha', 'método'],
+      italic: ['Planejamento de Métricas', 'achismo'],
+      highlight: ['pagando pra trabalhar', 'colocando dinheiro no bolso'],
+      special: ['profissional', 'ambiciosas mas realistas', 'quanto investir']
+    },
+    3: {
+      // Módulo 3 - Estrutura de Campanhas
+      bold: ['primeira campanha', 'e-commerce', 'controle', 'tipo de campanha'],
+      italic: ['Critérios Essenciais', 'Melhores Práticas'],
+      highlight: ['resultados mais rápidos', 'potencial de comprar'],
+      special: ['Medo', 'resolve', 'curiosos']
+    },
+    4: {
+      // Módulo 4 - Criação de Anúncios
+      bold: ['clique qualificado', 'reprovado', 'Central de Transparência', 'anúncio'],
+      italic: ['Remarketing', 'Especificações'],
+      highlight: ['se destacam', 'língua do seu cliente'],
+      special: ['De nada adianta', 'nunca mais', 'besteira']
+    }
+  };
+
+  const keywords = keywordMappings[moduleId as keyof typeof keywordMappings] || keywordMappings[1];
+
+  // Função para criar quebras de linha naturais
+  const addNaturalBreaks = (text: string) => {
+    // Pontos de quebra natural baseados em conectores e pontuação
+    return text
+      .replace(/\. (Vai|Vamos|Você|Também|Aqui|De nada)/g, '.\n\n$1') // Quebra após frases completas
+      .replace(/, (para você|e o mais importante|incluindo)/g, ',\n$1') // Quebras em explicações importantes
+      .replace(/\. (É o número|Chega de)/g, '.\n\n$1') // Quebra antes de conclusões
+      .replace(/(Google Ads)\./g, '$1.\n') // Quebra final suave
+  };
+
+  const formatText = (text: string) => {
+    // Primeiro, adicionar quebras naturais
+    let formattedText = addNaturalBreaks(text);
+    
+    const elements: React.ReactElement[] = [];
+    let elementIndex = 0;
+
+    // 1. Processar negritos já existentes (**texto**)
+    formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, (match, content) => {
+      const key = `bold-existing-${elementIndex++}`;
+      elements.push(
+        <span key={key} className="text-[#D4AF37] font-bold">
+          {content}
+        </span>
+      );
+      return `__ELEMENT_${key}__`;
+    });
+
+    // 2. Adicionar negritos para palavras-chave
+    keywords.bold.forEach(keyword => {
+      const regex = new RegExp(`\\b(${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`, 'gi');
+      formattedText = formattedText.replace(regex, (match) => {
+        if (match.includes('__ELEMENT_')) return match; // Evitar formatação dupla
+        const key = `bold-${elementIndex++}`;
+        elements.push(
+          <span key={key} className="font-bold text-white">
+            {match}
+          </span>
+        );
+        return `__ELEMENT_${key}__`;
+      });
+    });
+
+    // 3. Adicionar itálicos para conceitos
+    keywords.italic.forEach(keyword => {
+      const regex = new RegExp(`\\b(${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`, 'gi');
+      formattedText = formattedText.replace(regex, (match) => {
+        if (match.includes('__ELEMENT_')) return match;
+        const key = `italic-${elementIndex++}`;
+        elements.push(
+          <span key={key} className="italic font-semibold text-[#D4AF37]">
+            {match}
+          </span>
+        );
+        return `__ELEMENT_${key}__`;
+      });
+    });
+
+    // 4. Adicionar background highlights
+    keywords.highlight.forEach(keyword => {
+      const regex = new RegExp(`\\b(${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`, 'gi');
+      formattedText = formattedText.replace(regex, (match) => {
+        if (match.includes('__ELEMENT_')) return match;
+        const key = `highlight-${elementIndex++}`;
+        elements.push(
+          <span key={key} className="bg-[#D4AF37]/20 text-[#D4AF37] px-2 py-1 rounded font-semibold">
+            {match}
+          </span>
+        );
+        return `__ELEMENT_${key}__`;
+      });
+    });
+
+    // 5. Adicionar cores especiais
+    keywords.special.forEach(keyword => {
+      const regex = new RegExp(`\\b(${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`, 'gi');
+      formattedText = formattedText.replace(regex, (match) => {
+        if (match.includes('__ELEMENT_')) return match;
+        const key = `special-${elementIndex++}`;
+        elements.push(
+          <span key={key} className="text-blue-300 font-medium underline decoration-blue-300/50">
+            {match}
+          </span>
+        );
+        return `__ELEMENT_${key}__`;
+      });
+    });
+
+    // 6. Reconstruir o texto com elementos formatados e quebras de linha
+    const parts = formattedText.split(/(__ELEMENT_[^_]+__|\n)/);
+    
+    return parts.map((part, index) => {
+      if (part.startsWith('__ELEMENT_')) {
+        const elementKey = part.replace(/__ELEMENT_|__/g, '');
+        const element = elements.find(el => el.key === elementKey);
+        return element || part;
+      } else if (part === '\n') {
+        return <br key={`br-${index}`} />;
+      }
+      return part;
+    });
+  };
+
+  return (
+    <motion.div 
+      className="text-lg text-gray-300 leading-relaxed space-y-4"
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.2 }}
+    >
+      <div className="text-center lg:text-left">
+        {formatText(text)}
+      </div>
+    </motion.div>
+  );
+}
+
+export function ModuleCard({ module, index }: ModuleCardProps) {
+  const isEven = index % 2 === 0;
+
+  return (
+    <div className="relative">
+      {/* Desktop Layout - Grid 50/50 Alternado SEM CARDS */}
+      <div className="hidden lg:block">
+        <div className={cn(
+          "grid grid-cols-2 gap-8 lg:gap-12 items-center min-h-[500px]"
+        )}>
+          {/* Content Column */}
+          <div className={cn(
+            "space-y-8",
+            isEven ? "order-2" : "order-1"
+          )}>
+            {/* Module Header */}
+            <div className="space-y-6">
+              {/* Title and Subtitle */}
+              <div className="space-y-4">
+                <h3 className="text-3xl xl:text-4xl font-bold text-white leading-tight">
                   {module.title}
                 </h3>
                 
-                <p className="text-sm sm:text-base md:text-lg text-gray-300 font-medium leading-relaxed">
+                <p className="text-xl text-gray-200 font-medium leading-relaxed">
                   {module.subtitle}
                 </p>
               </div>
             </div>
 
-            {/* Chevron */}
-            <motion.div
-              animate={{ rotate: isActive ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
-              className="ml-2 sm:ml-4 flex-shrink-0"
-            >
-              <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37]" />
-            </motion.div>
+            {/* Enhanced Description */}
+            <EnhancedDescription text={module.description} moduleId={module.id} />
+
+            {/* Highlights and Lessons */}
+            <div className="space-y-8">
+              <ModuleHighlights highlights={module.highlights} />
+              <ModuleLessons lessons={module.lessons} />
+            </div>
           </div>
-        </motion.div>
 
-        {/* Expandable Content */}
-        <AnimatePresence>
-          {isActive && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="overflow-hidden"
-            >
-              <div className="px-4 sm:px-6 md:px-8 pb-4 sm:pb-6 md:pb-8">
-                {/* Separator */}
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent mb-4 sm:mb-6 md:mb-8" />
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-                  {/* Description and Highlights */}
-                  <div className="space-y-4 sm:space-y-6">
-                    <motion.p 
-                      className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed"
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      {module.description.split('**').map((part, i) => 
-                        i % 2 === 0 ? part : <span key={i} className="text-[#D4AF37] font-semibold">{part}</span>
-                      )}
-                    </motion.p>
-
-                    <ModuleHighlights highlights={module.highlights} />
-                  </div>
-
-                  {/* Lessons */}
-                  <ModuleLessons lessons={module.lessons} />
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+          {/* Mockup Column */}
+          <div className={cn(
+            "flex items-center justify-center",
+            isEven ? "order-1" : "order-2"
+          )}>
+            <ModuleMockup module={module} size="desktop" />
+          </div>
+        </div>
       </div>
 
-      {/* Module Number */}
-      <MotionWrapper
-        className={cn(
-          "absolute -top-2 sm:-top-3 md:-top-4 -left-2 sm:-left-3 md:-left-4",
-          "w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12",
-          "bg-gradient-to-br from-[#D4AF37] to-yellow-400 rounded-full",
-          "flex items-center justify-center",
-          "border-2 sm:border-[3px] md:border-4 border-[#0A192F]",
-          "shadow-2xl z-20"
-        )}
-        whileHover={{ scale: 1.2 }}
-        style={{
-          boxShadow: `0 0 20px rgba(212, 175, 55, 0.6)`,
-        }}
-      >
-        <span className="text-[#0A192F] font-bold text-sm sm:text-base md:text-lg">{module.id}</span>
-      </MotionWrapper>
-    </MotionWrapper>
+      {/* Mobile Layout - Stack Vertical SEM CARDS */}
+      <div className="lg:hidden space-y-8">
+        {/* Mobile Mockup */}
+        <ModuleMockup module={module} size="mobile" />
+
+        {/* Header Content */}
+        <div className="space-y-4">
+          <h3 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
+            {module.title}
+          </h3>
+          
+          <p className="text-lg text-gray-200 font-medium leading-relaxed">
+            {module.subtitle}
+          </p>
+        </div>
+
+        {/* Mobile Content */}
+        <div className="space-y-8">
+          {/* Enhanced Description */}
+          <div className="text-center lg:text-left">
+            <EnhancedDescription text={module.description} moduleId={module.id} />
+          </div>
+
+          {/* Highlights and Lessons */}
+          <div className="space-y-8">
+            <ModuleHighlights highlights={module.highlights} />
+            <ModuleLessons lessons={module.lessons} />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

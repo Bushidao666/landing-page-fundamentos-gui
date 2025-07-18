@@ -238,72 +238,72 @@ export default function BonusCard({
           {/* Coluna de Conteúdo */}
           <div className={`${isImageLeft ? 'lg:order-2' : 'lg:order-1'} ${layout === 'horizontal-right' ? 'flex-1 lg:w-[60%]' : 'flex-1'}`}>
             
-            {/* Header do Bônus Premium */}
+        {/* Header do Bônus Premium */}
             <header className="bonus-card-header flex-shrink-0">
-              {/* Icon Premium */}
+          {/* Icon Premium */}
+          <motion.div 
+            className="bonus-card-icon"
+            whileHover={{ 
+              scale: 1.05,
+              rotate: 3,
+              transition: { duration: 0.2 }
+            }}
+          >
+            <Icon className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-white" />
+          </motion.div>
+          
+          {/* Content Area com Typography Unificada */}
+          <div className="bonus-card-content">
+            {/* Badge Premium */}
+            <motion.span 
+              className="bonus-badge"
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.2 }
+              }}
+            >
+              {badgeText}
+            </motion.span>
+            
+            {/* Title Premium */}
+            <motion.h3 
+              className="bonus-card-title group-hover:text-[#D4AF37] transition-colors duration-300"
+              initial={{ opacity: 0.95 }}
+              whileHover={{ opacity: 1 }}
+            >
+              {title}
+            </motion.h3>
+            
+            {/* Value Premium */}
+            {value && (
               <motion.div 
-                className="bonus-card-icon"
-                whileHover={{ 
-                  scale: 1.05,
-                  rotate: 3,
-                  transition: { duration: 0.2 }
-                }}
+                className="flex items-center gap-2 md:gap-3"
+                initial={{ opacity: 0, x: -5 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
               >
-                <Icon className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-white" />
-              </motion.div>
-              
-              {/* Content Area com Typography Unificada */}
-              <div className="bonus-card-content">
-                {/* Badge Premium */}
                 <motion.span 
-                  className="bonus-badge"
-                  whileHover={{ 
-                    scale: 1.02,
-                    transition: { duration: 0.2 }
+                  className="bonus-card-value"
+                  whileHover={{ scale: 1.01 }}
+                  animate={{
+                    textShadow: [
+                      "0 0 0px rgba(212, 175, 55, 0.1)",
+                      "0 0 8px rgba(212, 175, 55, 0.3)",
+                      "0 0 0px rgba(212, 175, 55, 0.1)"
+                    ]
                   }}
+                  transition={{ duration: 3, repeat: Infinity }}
                 >
-                  {badgeText}
+                  {value}
                 </motion.span>
-                
-                {/* Title Premium */}
-                <motion.h3 
-                  className="bonus-card-title group-hover:text-[#D4AF37] transition-colors duration-300"
-                  initial={{ opacity: 0.95 }}
-                  whileHover={{ opacity: 1 }}
-                >
-                  {title}
-                </motion.h3>
-                
-                {/* Value Premium */}
-                {value && (
-                  <motion.div 
-                    className="flex items-center gap-2 md:gap-3"
-                    initial={{ opacity: 0, x: -5 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <motion.span 
-                      className="bonus-card-value"
-                      whileHover={{ scale: 1.01 }}
-                      animate={{
-                        textShadow: [
-                          "0 0 0px rgba(212, 175, 55, 0.1)",
-                          "0 0 8px rgba(212, 175, 55, 0.3)",
-                          "0 0 0px rgba(212, 175, 55, 0.1)"
-                        ]
-                      }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                    >
-                      {value}
-                    </motion.span>
-                  </motion.div>
-                )}
-              </div>
-            </header>
+              </motion.div>
+            )}
+          </div>
+        </header>
 
-            {/* Content Area */}
-            <div className="relative z-10">
-              {children}
+        {/* Content Area */}
+        <div className="relative z-10">
+          {children}
             </div>
           </div>
 
