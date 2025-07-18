@@ -19,6 +19,7 @@ interface HeroCTAProps {
   icon?: LucideIcon;
   trailingIcon?: LucideIcon;
   onClick?: () => void;
+  action?: string;
   className?: string;
   animate?: boolean;
   shimmerEffect?: boolean;
@@ -30,11 +31,23 @@ export default function HeroCTA({
   icon: Icon,
   trailingIcon: TrailingIcon,
   onClick,
+  action,
   className,
   animate = true,
   shimmerEffect = true,
   ariaLabel,
 }: HeroCTAProps) {
+  
+  const handleClick = () => {
+    if (action === "scroll-to-pain-points") {
+      document.getElementById("pain-points")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    } else if (onClick) {
+      onClick();
+    }
+  };
   const MotionWrapper = animate ? motion.div : "div";
   const animationProps = animate
     ? {
@@ -54,7 +67,7 @@ export default function HeroCTA({
         <Button 
           size="lg" 
           className={heroStyles.ctaButton}
-          onClick={onClick}
+          onClick={handleClick}
           aria-label={ariaLabel || text}
         >
           {/* Shimmer Effect */}

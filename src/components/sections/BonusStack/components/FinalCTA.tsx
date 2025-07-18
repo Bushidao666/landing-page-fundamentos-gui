@@ -44,6 +44,13 @@ const itemVariants = {
 };
 
 export default function FinalCTA({ className = "" }: FinalCTAProps) {
+  const handleScrollToSocialProof = () => {
+    document.getElementById("social-proof")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  };
+
   return (
     <motion.div 
       className={`text-center max-w-5xl mx-auto bonus-spacing-xl ${className}`}
@@ -188,7 +195,10 @@ export default function FinalCTA({ className = "" }: FinalCTAProps) {
         whileTap={{ scale: 0.98 }}
         className="inline-block"
       >
-        <button className="group relative overflow-hidden bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-black text-lg md:text-xl lg:text-2xl px-8 md:px-12 lg:px-16 py-4 md:py-6 lg:py-8 rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-[#D4AF37]/30">
+        <button 
+          onClick={handleScrollToSocialProof}
+          className="group relative overflow-hidden bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-black text-lg md:text-xl lg:text-2xl px-8 md:px-12 lg:px-16 py-4 md:py-6 lg:py-8 rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-[#D4AF37]/30"
+        >
           {/* Shine effect */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
@@ -203,7 +213,7 @@ export default function FinalCTA({ className = "" }: FinalCTAProps) {
           
           <span className="relative flex items-center gap-3 z-10">
             <Sparkles className="w-6 h-6 md:w-7 md:h-7 group-hover:rotate-12 transition-transform duration-300" />
-            QUERO GARANTIR MEUS BÔNUS AGORA!
+            Ver Quem Já Está Tendo Resultados
             <ArrowRight className="w-6 h-6 md:w-7 md:h-7 group-hover:translate-x-2 transition-transform duration-300" />
           </span>
         </button>

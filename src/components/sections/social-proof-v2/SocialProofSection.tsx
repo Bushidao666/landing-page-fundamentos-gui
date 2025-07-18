@@ -62,6 +62,14 @@ const SocialProofSection: React.FC = () => {
     isMobile,
     prefersReducedMotion
   );
+
+  // Função de navegação progressiva
+  const handleScrollToPriceAnchoring = () => {
+    document.getElementById("price-anchoring")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  };
   
   const responsiveItemVariants = getResponsiveVariants(
     itemVariants,
@@ -219,6 +227,7 @@ const SocialProofSection: React.FC = () => {
             variants={responsiveItemVariants}
           >
             <motion.button
+              onClick={handleScrollToPriceAnchoring}
               className="inline-flex items-center px-8 py-4 sm:px-10 sm:py-5 
                 bg-gradient-to-r from-[#D4AF37] to-yellow-400 
                 text-[#0A192F] font-bold text-lg sm:text-xl rounded-full 
@@ -227,7 +236,7 @@ const SocialProofSection: React.FC = () => {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
-              EU QUERO FAZER PARTE DESSE GRUPO DE SUCESSO POR R$ 47!
+              Quero Fazer Parte! Ver a Oferta Completa
             </motion.button>
           </motion.div>
         </motion.div>

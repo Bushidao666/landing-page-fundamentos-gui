@@ -12,22 +12,44 @@ import PriceJustificationSection from "@/components/sections/PriceJustification"
 import GuaranteeSection from "@/components/sections/GuaranteeSection";
 import { FAQSectionAdvanced } from "@/components/sections/faq";
 import FooterSection from "@/components/sections/FooterSection";
+import InterestModal from "@/components/modals/InterestModal";
+import { useStrategicModals } from "@/hooks/useStrategicModals";
 
 export default function Home() {
+  const {
+    modalState,
+    closeModal,
+    handleContinueToCheckout,
+    handleContinueReading,
+  } = useStrategicModals();
+
   return (
-    <main className="min-h-screen">
-      <HeroSection />
-      <PainPointsSection />
-      <SolutionTransitionSection />
-      <SolutionSection />
-      <ContentDetailsSection />
-      <BonusStackSection />
-      <SocialProofSection />
-      <PriceAnchoringSectionComplete />
-      <PriceJustificationSection />
-      <GuaranteeSection />
-      <FooterSection />
-      <FAQSectionAdvanced />
-    </main>
+    <>
+      <main className="min-h-screen">
+        <HeroSection />
+        <PainPointsSection />
+        <SolutionTransitionSection />
+        <SolutionSection />
+        <ContentDetailsSection />
+        <BonusStackSection />
+        <SocialProofSection />
+        <PriceAnchoringSectionComplete />
+        <PriceJustificationSection />
+        <GuaranteeSection />
+        <FooterSection />
+        <FAQSectionAdvanced />
+      </main>
+
+      {/* Strategic Modal */}
+      <InterestModal
+        isOpen={modalState.leadCaptureModal}
+        onClose={closeModal}
+        onContinueToCheckout={handleContinueToCheckout}
+        onContinueReading={() => {
+          closeModal();
+          handleContinueReading('bonus-stack');
+        }}
+      />
+    </>
   );
 }

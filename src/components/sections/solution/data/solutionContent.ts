@@ -53,8 +53,9 @@ export const solutionContent = {
 
   // CTA Button
   cta: {
-    desktopText: "Quero Começar a Anunciar com Inteligência por",
-    mobileText: "Começar Agora por",
-    price: "R$ 47"
+    desktopText: "Vou Ver Tudo Que Vou Receber",
+    mobileText: "Ver Conteúdo",
+    price: "",
+    action: "scroll-to-content-details"
   }
 };

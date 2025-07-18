@@ -4,16 +4,23 @@ import { motion } from "framer-motion";
 import { ArrowRight, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export const CTAButton = () => (
-  <motion.div
-    className="w-full max-w-2xl mx-auto"
-    initial={{ y: 30, opacity: 0 }}
-    animate={{ y: 0, opacity: 1 }}
-    transition={{ delay: 0.6, duration: 0.6 }}
-    whileHover={{ scale: 1.02 }}
-    whileTap={{ scale: 0.98 }}
-  >
-    <Button 
+export const CTAButton = () => {
+  // Função para abrir modal de captura
+  const handleOpenModal = () => {
+    window.dispatchEvent(new CustomEvent('openLeadCaptureModal'));
+  };
+
+  return (
+    <motion.div
+      className="w-full max-w-2xl mx-auto"
+      initial={{ y: 30, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.6, duration: 0.6 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <Button
+        onClick={handleOpenModal} 
       size="lg" 
       className="
         relative w-full
@@ -62,4 +69,5 @@ export const CTAButton = () => (
       </span>
     </Button>
   </motion.div>
-);
+  );
+};

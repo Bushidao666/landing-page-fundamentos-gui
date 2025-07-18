@@ -5,6 +5,13 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 export default function SolutionTransitionSection() {
+  const handleScrollToSolution = () => {
+    document.getElementById("solution")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  };
+
   return (
     <section 
       className="relative py-16 md:py-20 lg:py-24 overflow-hidden"
@@ -130,11 +137,12 @@ export default function SolutionTransitionSection() {
                   transition={{ delay: 0.6 }}
                 >
                   <motion.button 
+                    onClick={handleScrollToSolution}
                     className="group relative inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-6 bg-gradient-to-r from-[#D4AF37] to-[#FFD700] hover:from-[#FFD700] hover:to-[#D4AF37] text-[#0A192F] font-black text-lg md:text-xl rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <span>Quero Dominar os Fundamentos</span>
+                    <span>Mostrar a Solução Completa</span>
                     <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform duration-300" />
                   </motion.button>
                 </motion.div>

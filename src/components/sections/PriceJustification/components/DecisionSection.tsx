@@ -29,6 +29,12 @@ export function DecisionSection() {
     },
   };
 
+  // Função para abrir modal de captura
+  const handleOpenModal = () => {
+    // Dispara evento customizado para abrir o modal
+    window.dispatchEvent(new CustomEvent('openLeadCaptureModal'));
+  };
+
   return (
     <motion.div
       ref={ref}
@@ -81,6 +87,7 @@ export function DecisionSection() {
           className="inline-block"
         >
           <Button 
+            onClick={handleOpenModal}
             size="lg" 
             className="relative overflow-hidden text-lg md:text-xl lg:text-2xl px-8 md:px-12 lg:px-16 py-6 md:py-8 lg:py-10 h-auto bg-gradient-to-r from-[#0A192F] via-[#1A2444] to-[#0A192F] hover:from-[#1A2444] hover:via-[#0A192F] hover:to-[#1A2444] text-white font-black shadow-xl border-2 border-[#D4AF37]/60 hover:border-[#D4AF37] rounded-xl md:rounded-2xl transition-all duration-300"
           >

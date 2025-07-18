@@ -121,6 +121,7 @@ export default function HeroSection() {
               text={HERO_CONTENT.cta.text}
               icon={CTAIcon}
               trailingIcon={CTATrailingIcon}
+              action={HERO_CONTENT.cta.action}
             />
 
             {/* Trust Indicators */}

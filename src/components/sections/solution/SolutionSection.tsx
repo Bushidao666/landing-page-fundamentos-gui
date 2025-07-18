@@ -26,6 +26,13 @@ import { trustIndicators } from "./data/trustIndicatorsData";
 import { containerVariants, itemVariants } from "./data/animationConfig";
 
 export default function SolutionSection() {
+  const handleScrollToContentDetails = () => {
+    document.getElementById("content-details")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  };
+
   return (
     <motion.section
       id="solution"
@@ -114,6 +121,7 @@ export default function SolutionSection() {
                 className="group"
               >
                 <Button 
+                  onClick={handleScrollToContentDetails}
                   size="lg" 
                   className="relative overflow-hidden w-full sm:w-auto text-base md:text-lg lg:text-xl px-6 md:px-8 lg:px-10 py-4 md:py-5 lg:py-6 h-auto bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-bold shadow-2xl shadow-[#D4AF37]/40 border-2 border-[#D4AF37]/30 rounded-xl md:rounded-2xl transition-all duration-500 backdrop-blur-sm"
                 >
@@ -134,9 +142,8 @@ export default function SolutionSection() {
                   <span className="relative flex items-center justify-center gap-2 md:gap-3 lg:gap-4 z-10">
                     <CreditCard className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 group-hover:rotate-12 transition-transform duration-300" />
                     <span className="tracking-wide text-center whitespace-nowrap sm:whitespace-normal">
-                      <span className="hidden sm:inline">{solutionContent.cta.desktopText} </span>
-                      <span className="sm:hidden">{solutionContent.cta.mobileText} </span>
-                      {solutionContent.cta.price}
+                      <span className="hidden sm:inline">{solutionContent.cta.desktopText}</span>
+                      <span className="sm:hidden">{solutionContent.cta.mobileText}</span>
                     </span>
                     <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-[#0A192F] group-hover:text-[#0A192F] transition-colors duration-300" />
                   </span>

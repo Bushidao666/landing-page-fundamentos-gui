@@ -117,9 +117,10 @@ export const HERO_CONTENT: HeroContent = {
     { icon: "TrendingUp", text: "Escala Inteligente" },
   ],
   cta: {
-    text: "Quero Dominar Google Ads por R$ 47",
+    text: "Vou Te Mostrar a Realidade",
     icon: "Target",
     trailingIcon: "TrendingUp",
+    action: "scroll-to-pain-points",
   },
   trust: [
     { icon: "Shield", text: "Pagamento 100% Seguro" },

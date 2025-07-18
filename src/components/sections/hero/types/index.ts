@@ -94,6 +94,7 @@ export interface HeroContent {
     text: string;
     icon: string;
     trailingIcon: string;
+    action?: string;
   };
   trust: Array<{
     icon: string;
