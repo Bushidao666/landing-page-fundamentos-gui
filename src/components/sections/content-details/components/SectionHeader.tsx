@@ -66,8 +66,8 @@ export function SectionHeader({ className = "" }: SectionHeaderProps) {
         Aqui não tem teoria vaga. É o{" "}
         <span className="text-[#D4AF37] font-semibold relative">
           mapa prático
-          <motion.div
-            className="absolute -bottom-0.5 sm:-bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent"
+          <motion.span
+            className="absolute -bottom-0.5 sm:-bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent block"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 2, duration: 1 }}

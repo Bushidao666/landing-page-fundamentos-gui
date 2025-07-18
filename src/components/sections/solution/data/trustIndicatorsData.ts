@@ -9,8 +9,8 @@
 import { Shield, Clock, CheckCircle, Award } from "lucide-react";
 
 export const trustIndicators = [
-  { icon: Shield, text: "Pagamento 100% Seguro" },
-  { icon: Clock, text: "Acesso Imediato e Vitalício" },
-  { icon: CheckCircle, text: "Garantia Blindada 7 Dias" },
+  { icon: Shield, text: "100% Seguro" },
+  { icon: Clock, text: "Acesso Vitalício" },
+  { icon: CheckCircle, text: "Garantia 7 Dias" },
   { icon: Award, text: "Resultados Comprovados" }
 ];

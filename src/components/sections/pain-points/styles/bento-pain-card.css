@@ -14,7 +14,7 @@
   cursor: pointer;
   height: 100%;
   transition: all var(--pain-transition-normal);
-  will-change: transform, box-shadow;
+  will-change: transform;
   transform: translateZ(0);
 }
 
@@ -26,22 +26,11 @@
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
-    0 20px 40px -10px rgba(10, 25, 47, 0.6),
-    0 8px 16px -4px rgba(59, 130, 246, 0.5),
-    inset 0 2px 0 rgba(255, 255, 255, 0.3),
-    0 0 0 1px rgba(10, 25, 47, 0.2);
 }
 
 .bento-pain-card:hover {
   transform: translateY(-6px);
   background: linear-gradient(135deg, rgba(10, 25, 47, 0.98) 0%, rgba(26, 36, 68, 0.95) 100%);
-  box-shadow: 
-    0 30px 60px -12px rgba(10, 25, 47, 0.7),
-    0 15px 25px -5px rgba(59, 130, 246, 0.6),
-    0 8px 16px rgba(10, 25, 47, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.4),
-    0 0 0 2px rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -98,9 +87,7 @@
   color: #ffffff;
   border: 1px solid rgba(239, 68, 68, 0.4);
   backdrop-filter: blur(10px);
-  box-shadow: 
-    0 4px 15px rgba(239, 68, 68, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
 }
 
 .bento-pain-card:hover .icon-3d {
@@ -112,10 +99,7 @@
   );
   color: #ffffff;
   border-color: rgba(239, 68, 68, 0.6);
-  box-shadow: 
-    0 8px 25px rgba(239, 68, 68, 0.5),
-    0 4px 15px rgba(220, 38, 38, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
 }
 
 /* Ícones específicos por severity */
@@ -193,10 +177,7 @@
   background: linear-gradient(135deg, rgba(239, 68, 68, 0.85), rgba(185, 28, 28, 0.90));
   color: #ffffff;
   border: 2px solid rgba(239, 68, 68, 0.8);
-  box-shadow: 
-    0 3px 12px rgba(239, 68, 68, 0.4),
-    0 1px 4px rgba(185, 28, 28, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
 
@@ -204,10 +185,7 @@
   background: linear-gradient(135deg, rgba(249, 115, 22, 0.85), rgba(234, 88, 12, 0.90));
   color: #ffffff;
   border: 2px solid rgba(249, 115, 22, 0.8);
-  box-shadow: 
-    0 3px 12px rgba(249, 115, 22, 0.4),
-    0 1px 4px rgba(234, 88, 12, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
 
@@ -215,10 +193,7 @@
   background: linear-gradient(135deg, rgba(245, 158, 11, 0.85), rgba(217, 119, 6, 0.90));
   color: #ffffff;
   border: 2px solid rgba(245, 158, 11, 0.8);
-  box-shadow: 
-    0 3px 12px rgba(245, 158, 11, 0.4),
-    0 1px 4px rgba(217, 119, 6, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
 
@@ -226,19 +201,13 @@
   background: linear-gradient(135deg, rgba(185, 28, 28, 0.90), rgba(153, 27, 27, 0.95));
   color: #ffffff;
   border: 2px solid rgba(185, 28, 28, 0.9);
-  box-shadow: 
-    0 3px 12px rgba(185, 28, 28, 0.5),
-    0 1px 4px rgba(153, 27, 27, 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .severity-badge:hover {
   transform: scale(1.08);
-  box-shadow: 
-    0 5px 20px rgba(239, 68, 68, 0.6),
-    0 2px 8px rgba(185, 28, 28, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
 }
 
 .severity-badge.crítico:hover {

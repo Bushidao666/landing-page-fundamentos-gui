@@ -31,24 +31,25 @@ export function StrategicExplanation() {
   return (
     <motion.div
       ref={ref}
-      className="grid lg:grid-cols-[320px_1fr] gap-8 lg:gap-12 items-start mb-12 md:mb-16 lg:mb-20"
+      className="text-center mb-12 md:mb-16 lg:mb-20"
       initial="hidden"
       animate={isVisible ? "visible" : "hidden"}
       variants={containerVariants}
     >
-      {/* Foto Independente - Fora do Card */}
+      {/* Imagem Circular Centralizada + Legenda */}
       <motion.div
-        className="flex justify-center lg:justify-start"
+        className="flex flex-col items-center mb-8 md:mb-12"
         variants={itemVariants}
       >
-        <div className="relative w-full max-w-[280px] md:max-w-[320px]">
-          <div className="aspect-[3/4] relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#0A192F] to-[#1A2444] p-1.5">
-            <div className="w-full h-full rounded-xl overflow-hidden bg-white">
+        {/* Imagem Circular Premium */}
+        <div className="relative w-full max-w-[280px] md:max-w-[320px] mb-4 md:mb-6">
+          <div className="aspect-square relative rounded-full overflow-hidden bg-gradient-to-br from-[#0A192F] to-[#1A2444] p-2">
+            <div className="w-full h-full rounded-full overflow-hidden bg-white">
               <Image
                 src="/images/Gui Mornatti Fotos/Gui Mornatti Foto Expert.jpg"
                 alt="Gui Mornatti - Expert em Google Ads"
                 width={320}
-                height={427}
+                height={320}
                 className="w-full h-full object-cover"
                 loading="lazy"
                 sizes="(max-width: 768px) 280px, 320px"
@@ -58,64 +59,85 @@ export function StrategicExplanation() {
           </div>
           {/* Glow effect azul premium */}
           {!prefersReducedMotion && (
-            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,25,47,0.3)] to-transparent rounded-2xl blur-2xl -z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,25,47,0.15)] to-transparent rounded-full blur-2xl -z-10" />
           )}
+        </div>
+
+        {/* Legenda */}
+        <div className="text-center">
+          <p className="text-lg md:text-xl font-bold text-slate-900 mb-1">
+            Gui Mornatti
+          </p>
+          <p className="text-sm md:text-base text-slate-500 font-medium">
+            Fundador da Pushing
+          </p>
         </div>
       </motion.div>
 
-      {/* Card de Conteúdo - Compacto e Equilibrado */}
+      {/* Conteúdo Textual em 4 Blocos Centralizados */}
       <motion.div
-        className="bg-gradient-to-br from-[rgba(10,25,47,0.92)] to-[rgba(26,36,68,0.88)] backdrop-blur-sm rounded-2xl md:rounded-3xl p-5 md:p-6 lg:p-7 border border-white/20 shadow-xl"
+        className="max-w-4xl mx-auto space-y-6 md:space-y-8 lg:space-y-10"
         variants={itemVariants}
       >
-        <div className="space-y-4 md:space-y-5">
-          <motion.p
-            className="text-sm md:text-base lg:text-lg text-white leading-relaxed"
-            variants={itemVariants}
-          >
+        {/* BLOCO 1 - Headline Forte */}
+        <motion.div
+          className="space-y-3 md:space-y-4"
+          variants={itemVariants}
+        >
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-slate-900 leading-tight">
             Meu negócio principal é{" "}
-            <span className="font-bold text-[#D4AF37] relative inline-block">
-              acelerar e-commerces para 7 e 8 dígitos de faturamento
-              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent" />
+            <span className="text-transparent bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] bg-clip-text animate-gradient bg-[length:200%_100%] font-bold">
+              acelerar e-commerces para 7 e 8 dígitos
             </span>
-            . Eu não vivo de vender &quot;cursinho&quot;.
-          </motion.p>
+          </h3>
+          <p className="text-lg md:text-xl lg:text-2xl text-slate-500 font-light leading-relaxed">
+            Eu não vivo de vender "cursinho".
+          </p>
+        </motion.div>
 
-          <motion.p
-            className="text-sm md:text-base lg:text-lg text-white/90 leading-relaxed"
-            variants={itemVariants}
-          >
-            Eu criei o &quot;Fundamentos&quot; por um motivo estratégico: eu preciso de mais{" "}
-            <span className="text-[#D4AF37] font-semibold">cases de sucesso</span>. 
-            Preciso que donos de e-commerce como você tenham a base certa, parem de 
+        {/* BLOCO 2 - Explicação Estratégica */}
+        <motion.div
+          className="space-y-4 md:space-y-5"
+          variants={itemVariants}
+        >
+          <p className="text-base md:text-lg lg:text-xl text-slate-700 leading-relaxed">
+            Eu criei o "Fundamentos" por um motivo estratégico: eu preciso de mais{" "}
+            <span className="font-bold text-slate-900">
+              cases de sucesso
+            </span>
+            . Preciso que donos de e-commerce como você tenham a base certa, parem de 
             cometer erros primários e comecem a ter os primeiros resultados.
-          </motion.p>
+          </p>
+        </motion.div>
 
-          <motion.div
-            className="bg-gradient-to-r from-[rgba(212,175,55,0.15)] to-[rgba(255,215,0,0.10)] backdrop-blur-md rounded-xl p-4 md:p-5 border border-[rgba(212,175,55,0.3)]"
-            variants={itemVariants}
-            whileHover={!prefersReducedMotion ? { scale: 1.01 } : {}}
-          >
-            <p className="text-sm md:text-base lg:text-lg text-white leading-relaxed font-medium">
-              Porque quando você tiver essa base, vai ganhar confiança, vai começar 
-              a crescer e, lá na frente, talvez se torne um dos e-commerces que a 
-              minha equipe e eu vamos ajudar a escalar de verdade.{" "}
-              <span className="text-[#D4AF37] font-bold block mt-2">
-                Estou investindo em você agora, porque acredito no seu potencial futuro.
-              </span>
-            </p>
-          </motion.div>
+        {/* BLOCO 3 - Card em Destaque (Mensagem Emocional) */}
+        <motion.div
+          className="relative p-6 md:p-8 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/50 border-l-4 border-[#D4AF37] shadow-sm"
+          variants={itemVariants}
+          whileHover={!prefersReducedMotion ? { x: 4 } : {}}
+        >
+          <p className="text-lg md:text-xl lg:text-2xl text-slate-800 leading-relaxed font-medium mb-4 md:mb-6">
+            Porque quando você tiver essa base, vai ganhar confiança, vai começar 
+            a crescer e, lá na frente, talvez se torne um dos e-commerces que a 
+            minha equipe e eu vamos ajudar a escalar de verdade.
+          </p>
+          <p className="text-xl md:text-2xl lg:text-3xl text-[#D4AF37] font-bold">
+            Estou investindo em você agora, porque acredito no seu potencial futuro.
+          </p>
+        </motion.div>
 
-          <motion.p
-            className="text-sm md:text-base lg:text-lg text-white/90 leading-relaxed italic"
-            variants={itemVariants}
-          >
+        {/* BLOCO 4 - Conclusão Emocional */}
+        <motion.div
+          className="space-y-2"
+          variants={itemVariants}
+        >
+          <p className="text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed">
             Estou te dando o alicerce por um preço simbólico, porque{" "}
-            <span className="text-[#D4AF37] font-semibold not-italic">
+            <span className="font-bold text-[#D4AF37]">
               o seu sucesso é a maior prova que meu método funciona.
             </span>
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
       </motion.div>
     </motion.div>
   );

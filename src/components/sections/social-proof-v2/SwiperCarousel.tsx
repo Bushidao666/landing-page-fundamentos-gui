@@ -10,7 +10,7 @@
 
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation, Lazy, Keyboard, Mousewheel } from "swiper/modules";
+import { Autoplay, Pagination, Navigation, Keyboard, Mousewheel } from "swiper/modules";
 import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 import { motion } from "framer-motion";
 import type { Swiper as SwiperType } from "swiper";
@@ -19,10 +19,11 @@ import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "swiper/css/lazy";
+// Swiper lazy loading styles are included in main css
 
 // Types
 import type { SwiperCarouselProps, CarouselConfig } from "./types";
+import { TestimonialCardV2 } from "./TestimonialCardV2";
 
 /**
  * Configuração otimizada do Swiper para testimonials
@@ -31,7 +32,7 @@ const createCarouselConfig = (
   autoplayDelay: number,
   isMobile: boolean
 ): CarouselConfig => ({
-  slidesPerView: isMobile ? 1 : 'auto',
+  slidesPerView: isMobile ? 1.2 : 3,
   spaceBetween: isMobile ? 20 : 30,
   centeredSlides: true,
   loop: true,
@@ -50,45 +51,42 @@ const createCarouselConfig = (
   breakpoints: {
     // Mobile
     320: {
-      slidesPerView: 1,
+      slidesPerView: 1.2,
       spaceBetween: 15,
       centeredSlides: true,
     },
     // Mobile landscape
     480: {
-      slidesPerView: 1,
+      slidesPerView: 1.4,
       spaceBetween: 20,
       centeredSlides: true,
     },
     // Tablet
     640: {
-      slidesPerView: 1,
+      slidesPerView: 2.2,
       spaceBetween: 30,
       centeredSlides: true,
     },
     // Tablet landscape
     768: {
-      slidesPerView: 1,
+      slidesPerView: 3,
       spaceBetween: 40,
       centeredSlides: true,
     },
     // Desktop
     1024: {
-      slidesPerView: 1,
+      slidesPerView: 3,
       spaceBetween: 50,
       centeredSlides: true,
     },
     // Large desktop
     1280: {
-      slidesPerView: 1,
+      slidesPerView: 3,
       spaceBetween: 60,
       centeredSlides: true,
     },
   },
-  lazy: {
-    loadPrevNext: true,
-    loadOnTransitionStart: true,
-  },
+  // Lazy loading configuration removed - using custom implementation
   keyboard: {
     enabled: true,
     onlyInViewport: true,
@@ -219,14 +217,14 @@ export const SwiperCarousel: React.FC<SwiperCarouselProps> = ({
   return (
     <div className={`relative w-full ${className}`}>
       {/* Container do Swiper */}
-      <div className="relative w-full max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto">
+      <div className="relative w-full max-w-[320px] sm:max-w-[500px] md:max-w-[900px] lg:max-w-[1100px] mx-auto overflow-hidden">
         
         {/* Altura responsiva para manter proporção */}
         <div className="w-full min-h-[300px] sm:min-h-[400px] md:min-h-[520px] lg:min-h-[580px] mb-8 sm:mb-10 md:mb-12">
           
           {/* Swiper Component */}
           <Swiper
-            modules={[Autoplay, Pagination, Navigation, Lazy, Keyboard, Mousewheel]}
+            modules={[Autoplay, Pagination, Navigation, Keyboard, Mousewheel]}
             onSwiper={handleSwiperInit}
             onSlideChange={handleSlideChange}
             onAutoplayStart={handleAutoplayStart}
@@ -247,65 +245,15 @@ export const SwiperCarousel: React.FC<SwiperCarouselProps> = ({
                 key={testimonial.id}
                 className="flex items-center justify-center"
               >
-                {/* Placeholder para TestimonialCard - será implementado na Etapa 3 */}
-                <div className="w-full max-w-xs mx-auto">
-                  <div
-                    className="relative bg-gradient-to-br from-gray-100 via-white to-gray-50 
-                      rounded-xl sm:rounded-2xl border-2 border-[#D4AF37]/30 shadow-lg sm:shadow-2xl 
-                      overflow-hidden hover:border-[#D4AF37]/50 transition-all duration-300"
-                    style={{
-                      aspectRatio: isMobile ? "3/4" : "9/16",
-                      minHeight: "300px",
-                    }}
-                  >
-                    {/* Badge de destaque */}
-                    {testimonial.highlight && (
-                      <div className="absolute -top-2 sm:-top-3 md:-top-4 -right-2 sm:-right-3 md:-right-4 
-                        w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 
-                        bg-gradient-to-br from-[#D4AF37] to-yellow-400 rounded-full 
-                        flex items-center justify-center 
-                        border-2 sm:border-3 md:border-4 border-white shadow-xl z-20">
-                        <span className="text-[#0A192F] text-sm sm:text-base md:text-lg font-bold">⭐</span>
-                      </div>
-                    )}
-
-                    {/* Header WhatsApp Style */}
-                    <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 
-                      border-b border-gray-200 bg-gradient-to-r from-green-50 to-green-100">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-full 
-                        flex items-center justify-center">
-                        <span className="text-white text-xs sm:text-sm font-bold">💬</span>
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-[#0A192F] text-xs sm:text-sm">
-                          Depoimento WhatsApp
-                        </h4>
-                        <p className="text-xs text-gray-500">Aluno Verificado ✓</p>
-                      </div>
-                    </div>
-
-                    {/* Placeholder para imagem */}
-                    <div className="flex-1 flex items-center justify-center h-full bg-white">
-                      <div className="text-center p-6">
-                        <div className="w-16 h-16 bg-[#D4AF37]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <span className="text-2xl">📱</span>
-                        </div>
-                        <h3 className="text-lg font-bold text-[#0A192F] mb-2">
-                          {testimonial.name}
-                        </h3>
-                        <p className="text-sm text-gray-600 mb-4">
-                          {testimonial.title}
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          Slide {index + 1} de {testimonials.length}
-                        </p>
-                        <div className="mt-4 text-xs text-[#D4AF37] font-medium">
-                          ⚡ Carregamento com Swiper.js
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <TestimonialCardV2 
+                  testimonial={testimonial}
+                  isCenter={index === currentSlide}
+                  position={
+                    index === currentSlide ? 'center' :
+                    index === (currentSlide - 1 + testimonials.length) % testimonials.length ? 'left' :
+                    index === (currentSlide + 1) % testimonials.length ? 'right' : 'hidden'
+                  }
+                />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -421,24 +369,26 @@ export const SwiperCarousel: React.FC<SwiperCarouselProps> = ({
           transition-property: transform, opacity;
           transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           transition-duration: 0.4s;
-          opacity: 0.8;
-          transform: scale(0.95);
+          opacity: 0.7;
+          transform: scale(0.85);
+          z-index: 5;
         }
         
         .testimonials-swiper .swiper-slide-active {
           opacity: 1;
           transform: scale(1);
-          z-index: 10;
+          z-index: 20;
         }
         
         .testimonials-swiper .swiper-slide-prev,
         .testimonials-swiper .swiper-slide-next {
-          opacity: 0.6;
-          transform: scale(0.85);
+          opacity: 0.8;
+          transform: scale(0.9);
+          z-index: 15;
         }
         
         .testimonials-swiper .swiper-slide-duplicate {
-          opacity: 0.4;
+          opacity: 0.6;
           transform: scale(0.8);
         }
         
@@ -463,6 +413,15 @@ export const SwiperCarousel: React.FC<SwiperCarouselProps> = ({
         /* Smooth touch feedback */
         .testimonials-swiper .swiper-wrapper {
           transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Controlar visibilidade dos cards */
+        .testimonials-swiper {
+          overflow: hidden;
+        }
+        
+        .testimonials-swiper .swiper-wrapper {
+          overflow: visible;
         }
         
         /* Prevent text selection during swipe */

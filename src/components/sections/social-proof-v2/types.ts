@@ -6,6 +6,13 @@ export interface Testimonial {
   description: string;
   image: string;
   highlight: boolean;
+  layout: 'square' | 'horizontal' | 'vertical';
+}
+
+export interface MosaicGroup {
+  id: number;
+  testimonials: [Testimonial, Testimonial, Testimonial]; // [left, center, right]
+  pattern: 'A' | 'B' | 'C'; // Diferentes padrões de disposição
 }
 
 export interface TestimonialCardProps {
@@ -19,14 +26,21 @@ export interface Benefit {
   icon: React.ComponentType<{ className?: string }>;
 }
 
-// Tipos específicos para Swiper.js Implementation
-export interface SwiperCarouselProps {
-  testimonials: Testimonial[];
+// Tipos específicos para Mosaic Implementation
+export interface MosaicCarouselProps {
+  mosaicGroups: MosaicGroup[];
   autoplay?: boolean;
   autoplayDelay?: number;
   showControls?: boolean;
   showIndicators?: boolean;
   className?: string;
+}
+
+export interface MosaicCardProps {
+  testimonial: Testimonial;
+  size: 'large' | 'medium' | 'small';
+  position: 'left' | 'center' | 'right';
+  isActive: boolean;
 }
 
 export interface CarouselConfig {

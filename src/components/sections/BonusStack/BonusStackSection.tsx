@@ -52,8 +52,8 @@ export default function BonusStackSection() {
           {/* Header Premium */}
           <BonusHeader />
 
-          {/* Containers dos Bônus - Premium Spacing */}
-          <div className="space-y-6 md:space-y-8 lg:space-y-10 bonus-spacing-xl">
+          {/* Containers dos Bônus - Layout Empilhado com Espaçamento Otimizado */}
+          <div className="space-y-12 md:space-y-16 lg:space-y-20 xl:space-y-24 bonus-spacing-xl">
             
             {/* SUPER BÔNUS #1: Comunidade Vitalícia */}
             <CommunityBonus index={0} />

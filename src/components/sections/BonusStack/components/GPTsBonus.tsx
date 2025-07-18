@@ -9,11 +9,12 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, ArrowRight } from "lucide-react";
+import { Bot, ArrowRight, Sparkles, Brain, Zap, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
-import BonusCard from "./BonusCard";
 import { bonusMetrics, gptsData } from "../data/bonusData";
 import "../styles/aristocratic-tokens.css";
+import Image from "next/image";
+import { useFloatingAnimation, createFloatingVariants } from "../../../../hooks/useFloatingAnimation";
 
 interface GPTsBonusProps {
   index?: number;
@@ -21,171 +22,222 @@ interface GPTsBonusProps {
 
 export default function GPTsBonus({ index = 2 }: GPTsBonusProps) {
   const [expandedGPT, setExpandedGPT] = useState<number | null>(null);
+  const isFloating = useFloatingAnimation(4);
+  const floatingVariants = createFloatingVariants(6, 3);
+
+  const getGPTIcon = (index: number) => {
+    const icons = [Bot, Brain, Sparkles, Zap, ArrowRight, Bot, Brain];
+    const Icon = icons[index] || Bot;
+    return <Icon className="w-3 h-3 lg:w-4 lg:h-4 text-[#0A192F]" />;
+  };
 
   return (
-    <BonusCard
-      badgeText="Super Bônus #3"
-      badgeVariant="tertiary"
-      title="Seu Exército Pessoal de IA: 7 Assistentes GPTs Exclusivos"
-      value={`(Valor: R$ ${bonusMetrics.gptsValue})`}
-      icon={Bot}
-      iconVariant="tertiary"
-      floatingIcon={Bot}
-      index={index}
-    >
-      {/* Texto Introdutório */}
-      <motion.p 
-        className="text-sm md:text-base lg:text-lg xl:text-xl text-gray-300 leading-relaxed mb-6 md:mb-8 lg:mb-10 font-light"
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.5 }}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-10 items-center">
+      
+      {/* COLUNA 1: CONTEÚDO COMPACTO - 50% do espaço */}
+      <motion.div
+        className="lg:col-span-1 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center order-1 lg:order-1"
+        initial={{ x: -30, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
       >
-        Por que passar horas fazendo trabalho manual se a inteligência artificial pode fazer por você em segundos? Eu criei e treinei{" "}
-        <span className="text-[#D4AF37] font-semibold">7 assistentes de IA (GPTs)</span>{" "}
-        para serem seus consultores particulares. Você vai receber:
-      </motion.p>
-
-      {/* Lista Completa dos 7 GPTs com Accordion */}
-      <div className="space-y-3 md:space-y-4 lg:space-y-6">
-        {gptsData.map((gpt, gptIndex) => (
+        {/* CONTEÚDO DIRETO SEM CARD - MUITO MAIS CLEAN */}
+        <div className="space-y-4">
+          {/* Badge */}
           <motion.div
-            key={gptIndex}
-            className="bg-gradient-to-br from-[rgba(10,25,47,0.8)] via-[rgba(10,25,47,0.9)] to-[rgba(10,25,47,0.8)] backdrop-blur-xl rounded-xl md:rounded-2xl border border-white/20 overflow-hidden shadow-lg group"
+            initial={{ y: 15, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            <motion.span 
+              className="inline-block bg-gradient-to-r from-[#B8860B] to-[#DAA520] text-white px-3 py-1 rounded-full text-xs font-bold mb-3 shadow-lg"
+              whileHover={{ scale: 1.05 }}
+            >
+              SUPER BÔNUS #3
+            </motion.span>
+          </motion.div>
+
+          {/* MOCKUP MOBILE - Entre Badge e Título */}
+          <motion.div
+            className="lg:hidden mb-4"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.7 + gptIndex * 0.1, duration: 0.5 }}
-            whileHover={{ 
-              scale: 1.01,
-              borderColor: "rgba(212, 175, 55, 0.3)"
-            }}
+            transition={{ delay: 0.3, duration: 0.6 }}
           >
-            {/* Header do GPT */}
-            <motion.div
-              className="p-4 md:p-5 lg:p-6 cursor-pointer"
-              onClick={() => setExpandedGPT(expandedGPT === gptIndex ? null : gptIndex)}
-              whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.05)" }}
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3 md:gap-4 flex-1">
-                  {/* Ícone do GPT */}
+            <div className="relative group">
+              <motion.div
+                className="relative overflow-hidden rounded-2xl"
+                variants={isFloating ? floatingVariants : undefined}
+                initial="initial"
+                animate={isFloating ? "animate" : "initial"}
+                whileHover={{ 
+                  y: -4,
+                  scale: 1.01,
+                  transition: { type: "spring", stiffness: 300, damping: 25 }
+                }}
+              >
+                {/* Shimmer effect DA ESQUERDA PARA DIREITA diretamente na imagem */}
+                <motion.div
+                  className="absolute inset-0 z-10 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 pointer-events-none"
+                  initial={{ x: "-150%" }}
+                  animate={{ x: "150%" }}
+                  transition={{ 
+                    duration: 2.5, 
+                    repeat: Infinity,
+                    repeatDelay: 4,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                <Image
+                  src="/images/Mockups/mockup-exercito-pessoal-ia.png"
+                  alt="Mockup do Exército Pessoal de IAs mostrando os 7 GPTs especializados trabalhando em diferentes áreas do negócio"
+                  width={1200}
+                  height={900}
+                  className="w-full h-auto rounded-2xl shadow-xl shadow-black/20 transition-shadow duration-500"
+                  priority
+                />
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Título e Valor */}
+          <motion.div
+            initial={{ y: 15, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4 }}
+          >
+            <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 mb-2 leading-tight">
+              Exército Pessoal de IAs
+            </h3>
+            
+            <p className="text-lg lg:text-xl font-bold text-[#B8860B] mb-4">
+              (Valor: R$ {bonusMetrics.gptsValue})
+            </p>
+          </motion.div>
+
+          {/* Descrição Premium */}
+          <motion.div
+            className="mb-4"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4 }}
+          >
+            <p className="text-base md:text-lg font-bold text-[#B8860B] mb-2 leading-tight">
+              7 GPTs personalizados trabalhando para você 24/7.
+            </p>
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4">
+              Cada IA especializada em uma área específica do seu negócio: desde{" "}
+              <motion.span 
+                className="text-[#B8860B] font-bold text-base"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2.5, repeat: Infinity }}
+              >
+                criação de anúncios
+              </motion.span>{" "}
+              até análise de métricas e otimização de campanhas.
+            </p>
+          </motion.div>
+
+          {/* ACCORDION DOS 7 GPTs COMPLETO */}
+          <div className="space-y-2">
+            {gptsData.map((gpt, i) => (
+              <motion.div
+                key={i}
+                className="bg-[#0A192F]/90 backdrop-blur-sm border border-[#1A2444]/60 rounded-lg transition-all duration-300 hover:bg-[#0A192F]/95 hover:border-[#B8860B]/40"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 + i * 0.05 }}
+              >
+                <button
+                  className="w-full p-3 text-left flex items-center justify-between group"
+                  onClick={() => setExpandedGPT(expandedGPT === i ? null : i)}
+                  aria-expanded={expandedGPT === i}
+                >
+                  <div className="flex items-center gap-3">
+                    <motion.div 
+                      className="w-6 h-6 bg-gradient-to-br from-[#B8860B] to-[#DAA520] rounded-md flex items-center justify-center shadow-sm"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                    >
+                      {getGPTIcon(i)}
+                    </motion.div>
+                    <span className="text-sm font-semibold text-white group-hover:text-[#B8860B] transition-colors">
+                      {gpt.name}
+                    </span>
+                  </div>
                   <motion.div
-                    className={`w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-gradient-to-br ${gpt.color} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0`}
-                    whileHover={{ scale: 1.05, rotate: 5 }}
+                    animate={{ rotate: expandedGPT === i ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <gpt.icon className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-white" />
+                    <ChevronDown className="w-4 h-4 text-white/70" />
                   </motion.div>
-                  
-                  {/* Info do GPT */}
-                  <div className="flex-1 min-w-0">
-                    <motion.h4 
-                      className="text-base md:text-lg lg:text-xl font-bold text-white mb-1 leading-tight group-hover:text-[#D4AF37] transition-colors duration-300"
-                      initial={{ opacity: 0.9 }}
-                      whileHover={{ opacity: 1 }}
-                    >
-                      {gpt.name}
-                    </motion.h4>
-                    <motion.p 
-                      className="text-xs md:text-sm lg:text-base text-gray-300 leading-relaxed"
-                      initial={{ opacity: 0.8 }}
-                      animate={{ opacity: [0.8, 1, 0.8] }}
-                      transition={{ duration: 3, repeat: Infinity, delay: gptIndex * 0.5 }}
-                    >
-                      {gpt.subtitle}
-                    </motion.p>
-                  </div>
-                </div>
-                
-                {/* Arrow */}
-                <motion.div
-                  animate={{ rotate: expandedGPT === gptIndex ? 90 : 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="ml-3 flex-shrink-0"
-                >
-                  <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-[#D4AF37]" />
-                </motion.div>
-              </div>
-            </motion.div>
+                </button>
 
-            {/* Conteúdo Expandido */}
-            <AnimatePresence>
-              {expandedGPT === gptIndex && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="overflow-hidden border-t border-white/10"
-                >
-                  <div className="p-4 md:p-5 lg:p-6 bg-gradient-to-br from-[rgba(10,25,47,0.3)] to-transparent">
+                <AnimatePresence>
+                  {expandedGPT === i && (
                     <motion.div
-                      initial={{ y: 10, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.1, duration: 0.3 }}
-                      className="space-y-4 md:space-y-5"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
                     >
-                                             {/* Descrição Completa */}
-                       <motion.div 
-                         className="p-3 md:p-4 bg-gradient-to-br from-[#D4AF37]/10 via-[#FFD700]/5 to-[#D4AF37]/10 rounded-lg border border-[#D4AF37]/20"
-                         initial={{ scale: 0.98, opacity: 0 }}
-                         animate={{ scale: 1, opacity: 1 }}
-                         transition={{ delay: 0.2, duration: 0.4 }}
-                         whileHover={{ scale: 1.01 }}
-                       >
-                         <motion.p 
-                           className="text-sm md:text-base text-white leading-relaxed"
-                           animate={{
-                             textShadow: [
-                               "0 0 0px rgba(255, 255, 255, 0)",
-                               "0 0 4px rgba(255, 255, 255, 0.1)",
-                               "0 0 0px rgba(255, 255, 255, 0)"
-                             ]
-                           }}
-                           transition={{ duration: 4, repeat: Infinity }}
-                         >
-                           {gpt.description.split('**').map((part, i) => 
-                             i % 2 === 0 ? (
-                               <span key={i}>{part}</span>
-                             ) : (
-                               <span key={i} className="text-[#D4AF37] font-bold">
-                                 {part}
-                               </span>
-                             )
-                           )}
-                         </motion.p>
-                       </motion.div>
+                      <div className="px-3 pb-3 text-xs text-gray-300 leading-relaxed border-t border-white/10 pt-2">
+                        {gpt.description}
+                      </div>
                     </motion.div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Call to Action Final */}
-      <motion.div
-        className="mt-6 md:mt-8 lg:mt-10 p-4 md:p-6 bg-gradient-to-br from-[#D4AF37]/15 via-[#FFD700]/10 to-[#D4AF37]/15 backdrop-blur-xl rounded-xl md:rounded-2xl border border-[#D4AF37]/30"
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
-        whileHover={{ scale: 1.01 }}
-      >
-        <motion.p 
-          className="text-center text-sm md:text-base lg:text-lg text-white font-medium leading-relaxed"
-          animate={{
-            textShadow: [
-              "0 0 0px rgba(255, 255, 255, 0)",
-              "0 0 8px rgba(255, 255, 255, 0.2)",
-              "0 0 0px rgba(255, 255, 255, 0)"
-            ]
-          }}
-          transition={{ duration: 4, repeat: Infinity }}
-        >
-          <span className="text-[#D4AF37] font-bold">7 assistentes de IA exclusivos</span>, criados especificamente para potencializar seus resultados em tráfego pago. É como ter uma equipe de consultores trabalhando{" "}
-          <span className="text-[#D4AF37] font-bold">24/7</span> só para você.
-        </motion.p>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </motion.div>
-    </BonusCard>
+
+      {/* COLUNA 2: MOCKUP PROTAGONISTA - 50% do espaço - APENAS DESKTOP */}
+      <motion.div
+        className="hidden lg:flex lg:col-span-1 min-h-[400px] lg:min-h-[500px] items-center justify-center order-2 lg:order-2"
+        initial={{ x: 30, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.6 }}
+      >
+        {/* MOCKUP LIMPO COM SHIMMER DIRETO NA IMAGEM */}
+        <div className="relative group">
+          <motion.div
+            className="relative overflow-hidden rounded-2xl"
+            variants={isFloating ? floatingVariants : undefined}
+            initial="initial"
+            animate={isFloating ? "animate" : "initial"}
+            whileHover={{ 
+              y: -8,
+              scale: 1.02,
+              transition: { type: "spring", stiffness: 300, damping: 25 }
+            }}
+          >
+            {/* Shimmer effect DA ESQUERDA PARA DIREITA diretamente na imagem */}
+            <motion.div
+              className="absolute inset-0 z-10 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 pointer-events-none"
+              initial={{ x: "-150%" }}
+              animate={{ x: "150%" }}
+              transition={{ 
+                duration: 2.5, 
+                repeat: Infinity,
+                repeatDelay: 4,
+                ease: "easeInOut"
+              }}
+            />
+            
+            <Image
+              src="/images/Mockups/mockup-exercito-pessoal-ia.png"
+              alt="Mockup do Exército Pessoal de IAs mostrando os 7 GPTs especializados trabalhando em diferentes áreas do negócio"
+              width={1200}
+              height={900}
+              className="w-full h-auto rounded-2xl shadow-2xl shadow-black/30 group-hover:shadow-[#B8860B]/40 transition-shadow duration-500"
+              priority
+            />
+          </motion.div>
+        </div>
+      </motion.div>
+    </div>
   );
 } 

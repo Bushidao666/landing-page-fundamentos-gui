@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Target, Lightbulb } from "lucide-react";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 
 export function Header() {
@@ -23,28 +22,17 @@ export function Header() {
       viewport={{ once: true, amount: 0.8 }}
       variants={variants}
     >
-      {/* Badge Premium - Sistema Azul Glassmorphism */}
-      <motion.div
-        className="inline-flex items-center gap-3 md:gap-4 bg-gradient-to-r from-[rgba(10,25,47,0.85)] via-[rgba(26,36,68,0.80)] to-[rgba(10,25,47,0.85)] backdrop-blur-xl border border-white/20 px-6 md:px-8 py-3 md:py-4 rounded-full shadow-lg mb-8 md:mb-12"
-        whileHover={!prefersReducedMotion ? { scale: 1.02 } : {}}
-      >
-        <Target className="w-5 h-5 md:w-6 md:h-6 text-white" />
-        <span className="text-white font-bold text-sm md:text-base uppercase tracking-[0.15em] md:tracking-[0.2em] text-shadow-md">
-          A Verdade por Trás do Preço
-        </span>
-        <Lightbulb className="w-5 h-5 md:w-6 md:h-6 text-white" />
-      </motion.div>
-
-      {/* Pergunta Principal - Sistema Dourado */}
-      <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-black leading-tight tracking-tight text-slate-900 mb-4 md:mb-6">
+      {/* Título Principal - Hierarquia Clara */}
+      <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-black leading-tight tracking-tight text-slate-900 mb-6 md:mb-8">
         Por que um valor{" "}
-        <span className="text-transparent bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] bg-clip-text animate-gradient bg-[length:200%_100%]">
+        <span className="text-transparent bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] bg-clip-text animate-gradient bg-[length:200%_100%] font-black">
           tão baixo?
         </span>
       </h2>
 
-      <p className="text-xl md:text-2xl lg:text-3xl text-slate-600 font-light max-w-3xl mx-auto">
-        A resposta é simples e egoísta (da minha parte).
+      {/* Subtítulo Simplificado - Hierarquia Secundária */}
+      <p className="text-xl md:text-2xl lg:text-3xl text-slate-500 font-light max-w-3xl mx-auto leading-relaxed">
+        A resposta é simples e estratégica.
       </p>
     </motion.div>
   );

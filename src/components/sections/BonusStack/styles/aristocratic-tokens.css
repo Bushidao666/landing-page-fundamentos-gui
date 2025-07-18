@@ -462,6 +462,38 @@
   .bonus-container {
     padding-inline: var(--bonus-space-xl);
   }
+  
+  /* Estilos específicos para layouts horizontais */
+  .bonus-card .flex.lg\:flex-row {
+    align-items: flex-start;
+    gap: var(--bonus-space-xl);
+  }
+  
+  /* Garantir que o conteúdo de texto tenha espaço adequado */
+  .bonus-card .flex-1 {
+    min-width: 0;
+    flex: 1;
+  }
+  
+  /* Largura otimizada para mockups em layout horizontal */
+  .bonus-card .lg\:w-96 {
+    width: 24rem;
+    flex-shrink: 0;
+  }
+  
+  .bonus-card .xl\:w-\[480px\] {
+    width: 30rem;
+  }
+  
+  /* Padding otimizado para cards horizontais */
+  .bonus-card {
+    padding: var(--bonus-space-xl) var(--bonus-space-2xl);
+  }
+  
+  /* Espaçamento interno otimizado para headers */
+  .bonus-card-header {
+    margin-bottom: var(--bonus-space-lg);
+  }
 }
 
 /* ========================================

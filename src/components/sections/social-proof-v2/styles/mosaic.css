@@ -1,0 +1,110 @@
+/**
+ * @file: mosaic.css
+ * @responsibility: Estilos específicos para o mosaico de provas sociais
+ * @layer: styles
+ */
+
+/* Column-based Masonry Layout */
+.mosaic-columns {
+  column-count: 4;
+  column-gap: 1.5rem;
+}
+
+@media (max-width: 1280px) {
+  .mosaic-columns {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .mosaic-columns {
+    column-count: 2;
+    column-gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .mosaic-columns {
+    column-count: 1;
+  }
+}
+
+/* Prevent cards from breaking across columns */
+.mosaic-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+}
+
+/* Card Container Styles */
+.mosaic-card-container {
+  width: 100%;
+  background: #f9fafb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.mosaic-card-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Fitting */
+.mosaic-image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Image Container */
+.mosaic-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding: 1rem;
+  min-height: 200px;
+}
+
+/* Card Shadow and Hover Effects */
+.mosaic-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.mosaic-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mosaic-card-active {
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+.mosaic-card-active:hover {
+  box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
+}
+
+/* Loading States */
+.mosaic-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

@@ -29,7 +29,7 @@ export default function SolutionSection() {
   return (
     <motion.section
       id="solution"
-      className="relative py-12 md:py-16 lg:py-20 xl:py-24 overflow-hidden"
+      className="relative py-16 md:py-20 lg:py-24 xl:py-28 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
@@ -43,10 +43,14 @@ export default function SolutionSection() {
         {/* Overlay de Transição */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A192F]/5 to-[#0A192F]/15" />
         
-        {/* Grid Pattern Sutil */}
-        <div className="absolute inset-0 opacity-[0.01] md:opacity-[0.02]">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#D4AF37_1px,transparent_1px),linear-gradient(to_bottom,#D4AF37_1px,transparent_1px)] bg-[size:40px_40px] md:bg-[size:60px_60px]" />
-        </div>
+        {/* Grid Pattern Unificado - mesmo das outras seções */}
+        <div 
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: `linear-gradient(to right, #0A192F 1px, transparent 1px), linear-gradient(to bottom, #0A192F 1px, transparent 1px)`,
+            backgroundSize: '60px 60px'
+          }}
+        />
         
         {/* Nebulosa Premium */}
         <div className="absolute inset-0 opacity-20">
@@ -59,11 +63,11 @@ export default function SolutionSection() {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-center max-w-sm md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-start lg:items-center max-w-sm md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto">
           
           {/* Conteúdo da Solução Premium - Lado Esquerdo */}
           <motion.div 
-            className="space-y-6 md:space-y-8 lg:space-y-10 xl:space-y-12 order-2 lg:order-1"
+            className="relative z-20 space-y-6 md:space-y-8 lg:space-y-10 xl:space-y-12 order-2 lg:order-1"
             variants={containerVariants}
           >
             {/* Badge de Apresentação Premium */}
@@ -103,7 +107,7 @@ export default function SolutionSection() {
             </motion.div>
 
             {/* CTA Button Premium */}
-            <motion.div variants={itemVariants}>
+            <motion.div variants={itemVariants} className="relative z-30">
               <motion.div
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.98 }}
@@ -111,7 +115,7 @@ export default function SolutionSection() {
               >
                 <Button 
                   size="lg" 
-                  className="relative overflow-hidden w-full md:w-auto text-base md:text-lg lg:text-xl px-6 md:px-8 lg:px-10 py-4 md:py-5 lg:py-6 h-auto bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-bold shadow-2xl shadow-[#D4AF37]/40 border-2 border-[#D4AF37]/30 rounded-xl md:rounded-2xl transition-all duration-500 backdrop-blur-sm"
+                  className="relative overflow-hidden w-full sm:w-auto text-base md:text-lg lg:text-xl px-6 md:px-8 lg:px-10 py-4 md:py-5 lg:py-6 h-auto bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-bold shadow-2xl shadow-[#D4AF37]/40 border-2 border-[#D4AF37]/30 rounded-xl md:rounded-2xl transition-all duration-500 backdrop-blur-sm"
                 >
                   {/* Efeito de Brilho */}
                   <motion.div
@@ -129,9 +133,9 @@ export default function SolutionSection() {
                   
                   <span className="relative flex items-center justify-center gap-2 md:gap-3 lg:gap-4 z-10">
                     <CreditCard className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 group-hover:rotate-12 transition-transform duration-300" />
-                    <span className="tracking-wide text-center">
-                      <span className="hidden md:inline">{solutionContent.cta.desktopText} </span>
-                      <span className="md:hidden">{solutionContent.cta.mobileText} </span>
+                    <span className="tracking-wide text-center whitespace-nowrap sm:whitespace-normal">
+                      <span className="hidden sm:inline">{solutionContent.cta.desktopText} </span>
+                      <span className="sm:hidden">{solutionContent.cta.mobileText} </span>
                       {solutionContent.cta.price}
                     </span>
                     <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-[#0A192F] group-hover:text-[#0A192F] transition-colors duration-300" />

@@ -2,9 +2,10 @@
 
 import { HeroSection } from "@/components/sections/hero";
 import { PainPointsSection } from "@/components/sections/pain-points";
+import { SolutionTransitionSection } from "@/components/sections/solution-transition";
 import { SolutionSection } from "@/components/sections/solution";
 import { ContentDetailsSection } from "@/components/sections/content-details";
-import { SocialProofSection } from "@/components/sections/social-proof";
+import { SocialProofSection } from "@/components/sections/social-proof-v2";
 import { BonusStackSection } from "@/components/sections/BonusStack";
 import PriceAnchoringSectionComplete from "@/components/sections/price-anchoring";
 import PriceJustificationSection from "@/components/sections/PriceJustification";
@@ -17,10 +18,11 @@ export default function Home() {
     <main className="min-h-screen">
       <HeroSection />
       <PainPointsSection />
+      <SolutionTransitionSection />
       <SolutionSection />
       <ContentDetailsSection />
-      <SocialProofSection />
       <BonusStackSection />
+      <SocialProofSection />
       <PriceAnchoringSectionComplete />
       <PriceJustificationSection />
       <GuaranteeSection />

@@ -23,7 +23,7 @@ export default function PriceJustificationSection() {
         
         {/* Grid pattern with unified colors */}
         <div 
-          className="absolute inset-0 opacity-[0.02]"
+          className="absolute inset-0 opacity-[0.05]"
           style={{
             backgroundImage: `linear-gradient(to right, #0A192F 1px, transparent 1px), linear-gradient(to bottom, #0A192F 1px, transparent 1px)`,
             backgroundSize: '60px 60px'
@@ -36,7 +36,7 @@ export default function PriceJustificationSection() {
 
       {/* Main Content */}
       <div className="relative z-10 container-fluid">
-        <div className="max-w-5xl mx-auto space-y-12 md:space-y-16 lg:space-y-20">
+        <div className="max-w-6xl mx-auto space-y-16 md:space-y-20 lg:space-y-24">
           
           {/* Header Section */}
           <Header />

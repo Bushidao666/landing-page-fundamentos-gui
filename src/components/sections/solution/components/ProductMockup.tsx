@@ -10,12 +10,12 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Award } from "lucide-react";
+import { useFloatingAnimation, createFloatingVariants } from "../../../../hooks/useFloatingAnimation";
 
 interface ProductMockupProps {
   imageSrc: string;
   imageAlt: string;
-  badgeText: string;
+  badgeText?: string; // Opcional agora que removemos o badge
   className?: string;
 }
 
@@ -32,82 +32,61 @@ const itemVariants = {
   },
 };
 
-const floatingVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      delay: 1.2,
-    },
-  },
-};
-
 export default function ProductMockup({ 
   imageSrc,
   imageAlt,
-  badgeText,
+  badgeText, // Não utilizado mas mantido para compatibilidade
   className = ""
 }: ProductMockupProps) {
+  const isFloating = useFloatingAnimation(2.5);
+  const floatingVariants = createFloatingVariants(4.5, 3);
   return (
     <motion.div 
-      className={`relative max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto lg:mx-0 ${className}`}
+      className={`relative flex items-center justify-center ${className}`}
       variants={itemVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
     >
-      {/* Container Principal da Imagem - Padrão BonusStack */}
-      <div className="relative group">
-        {/* Glow effect behind the mockup */}
-        <motion.div
-          className="absolute -inset-4 bg-gradient-to-r from-[#D4AF37]/20 via-white/10 to-[#D4AF37]/20 rounded-2xl blur-lg"
-          animate={{ opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 3, repeat: Infinity }}
-        />
-        
-        {/* Main mockup container */}
-        <motion.div
-          className="relative bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/10 hover:border-[#D4AF37]/30 transition-all duration-500"
-          whileHover={{ 
-            y: -3,
-            transition: { type: "spring", stiffness: 400, damping: 25 }
-          }}
-        >
-          {/* Shimmer overlay */}
+      {/* Container do Mockup com z-index controlado */}
+      <div className="relative z-10 w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto">
+        {/* MOCKUP LIMPO COM SHIMMER DIRETO NA IMAGEM - Padrão BonusStack Otimizado */}
+        <div className="relative group">
           <motion.div
-            className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent"
-            initial={{ x: "-100%" }}
-            animate={{ x: "200%" }}
-            transition={{ 
-              duration: 2, 
-              repeat: Infinity,
-              repeatDelay: 3,
-              ease: "easeInOut"
+            className="relative overflow-hidden rounded-2xl"
+            variants={isFloating ? floatingVariants : undefined}
+            initial="initial"
+            animate={isFloating ? "animate" : "initial"}
+            whileHover={{ 
+              y: -8,
+              scale: 1.02,
+              transition: { type: "spring", stiffness: 300, damping: 25 }
             }}
-          />
-          
-          <Image
-            src={imageSrc}
-            alt={imageAlt}
-            width={600}
-            height={600}
-            className="w-full h-auto rounded-lg shadow-2xl shadow-black/30 group-hover:shadow-[#D4AF37]/20 transition-shadow duration-500"
-            priority
-            quality={95}
-          />
-        </motion.div>
-
-        {/* Status Badge Flutuante */}
-        <motion.div 
-          className="absolute -top-3 md:-top-4 lg:-top-6 -right-3 md:-right-4 lg:-right-6 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-[#0A192F] px-4 md:px-5 lg:px-6 py-2.5 md:py-3 lg:py-3.5 rounded-full font-bold text-sm md:text-base shadow-2xl border-2 border-white/20 z-10"
-          variants={floatingVariants}
-          animate={{ y: [-2, 2, -2] }}
-          transition={{ duration: 4, repeat: Infinity }}
-        >
-          <div className="flex items-center gap-2 md:gap-3">
-            <Award className="w-4 h-4 md:w-5 md:h-5" />
-            <span>{badgeText}</span>
-          </div>
-        </motion.div>
+          >
+            {/* Shimmer effect DA ESQUERDA PARA DIREITA diretamente na imagem */}
+            <motion.div
+              className="absolute inset-0 z-10 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 pointer-events-none"
+              initial={{ x: "-150%" }}
+              animate={{ x: "150%" }}
+              transition={{ 
+                duration: 2.5, 
+                repeat: Infinity,
+                repeatDelay: 4,
+                ease: "easeInOut"
+              }}
+            />
+            
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              width={1200}
+              height={900}
+              className="w-full h-auto rounded-2xl shadow-2xl shadow-black/30 group-hover:shadow-[#B8860B]/40 transition-shadow duration-500"
+              priority
+              quality={95}
+            />
+          </motion.div>
+        </div>
       </div>
     </motion.div>
   );

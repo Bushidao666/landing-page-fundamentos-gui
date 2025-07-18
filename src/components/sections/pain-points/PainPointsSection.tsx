@@ -10,13 +10,9 @@
 
 import React from 'react';
 import { PainPointBentoGrid } from './components/PainPointBentoGrid';
-import { EmotionalTransition } from './components/EmotionalTransition';
-import { TransformationHero } from './components/TransformationHero';
 import './styles/pain-points-v2.css';
 import './styles/bento-grid.css';
 import './styles/bento-pain-card.css';
-import './styles/emotional-transition.css';
-import './styles/transformation-hero.css';
 
 export default function PainPointsSection() {
   return (
@@ -24,6 +20,15 @@ export default function PainPointsSection() {
       <div className="section-background">
         <div className="gradient-overlay" />
         <div className="pattern-overlay" />
+        
+        {/* Grid pattern unificado - mesmo da PriceJustification */}
+        <div 
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: `linear-gradient(to right, #0A192F 1px, transparent 1px), linear-gradient(to bottom, #0A192F 1px, transparent 1px)`,
+            backgroundSize: '60px 60px'
+          }}
+        />
       </div>
       
       <div className="section-content">
@@ -41,8 +46,6 @@ export default function PainPointsSection() {
         </div>
         
         <PainPointBentoGrid />
-        <EmotionalTransition />
-        <TransformationHero />
       </div>
     </section>
   );
