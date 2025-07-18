@@ -16,7 +16,7 @@ import type { ModuleLessonsProps } from "../types";
 export function ModuleLessons({ lessons }: ModuleLessonsProps) {
   return (
     <motion.div 
-      className="space-y-4"
+      className="hidden lg:block space-y-4"
       initial={{ y: 20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.4 }}
@@ -27,7 +27,7 @@ export function ModuleLessons({ lessons }: ModuleLessonsProps) {
       </h4>
       
       {/* Grid de Mini Cards Quadrados - 4 Cards Perfeito - APENAS DESKTOP */}
-      <div className="hidden lg:grid lg:grid-cols-4 gap-3">
+      <div className="lg:grid lg:grid-cols-4 gap-3">
         {lessons.map((lesson, i) => (
           <motion.div 
             key={i}

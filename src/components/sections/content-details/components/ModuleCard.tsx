@@ -269,7 +269,7 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
             {/* Module Header */}
             <div className="space-y-6">
               {/* Title and Subtitle */}
-              <div className="space-y-4">
+              <div className="space-y-4 text-center lg:text-left">
                 <h3 className="text-3xl xl:text-4xl font-bold text-white leading-tight">
                   {module.title}
                 </h3>
@@ -281,7 +281,9 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
             </div>
 
             {/* Enhanced Description */}
-            <EnhancedDescription text={module.description} moduleId={module.id} />
+            <div className="text-center lg:text-left">
+              <EnhancedDescription text={module.description} moduleId={module.id} />
+            </div>
 
             {/* Highlights and Lessons */}
             <div className="space-y-8">
@@ -306,7 +308,7 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
         <ModuleMockup module={module} size="mobile" />
 
         {/* Header Content */}
-        <div className="space-y-4">
+        <div className="space-y-4 text-center">
           <h3 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
             {module.title}
           </h3>
