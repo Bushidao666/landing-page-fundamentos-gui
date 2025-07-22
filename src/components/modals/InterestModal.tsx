@@ -10,14 +10,16 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Target, ShoppingCart, Check, Phone, Mail, User } from 'lucide-react';
+import { X, ShoppingCart, Check, Phone, Mail, User, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useFacebookConversions } from '@/hooks/useFacebookConversions';
+import { buildCheckoutUrl } from '@/lib/checkout-url-builder';
+import { sendToWebhook } from '@/lib/webhook-sender';
 
 interface InterestModalProps {
   isOpen: boolean;
   onClose: () => void;
   onContinueToCheckout: () => void;
-  onContinueReading: () => void;
 }
 
 interface FormData {
@@ -29,23 +31,80 @@ interface FormData {
 export default function InterestModal({
   isOpen,
   onClose,
-  onContinueToCheckout,
-  onContinueReading
+  onContinueToCheckout
 }: InterestModalProps) {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: ''
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Hook do Facebook Conversions
+  const { sendLead, sendInitiateCheckout } = useFacebookConversions();
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    // Limpar erro ao digitar
+    if (error) setError(null);
   };
 
-  const handleCheckout = () => {
-    // Aqui você pode salvar os dados do lead
-    console.log('Lead capturado:', formData);
-    onContinueToCheckout();
+  const handleCheckout = async () => {
+    if (!isFormValid || isSubmitting) return;
+
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      // 1. Enviar evento Lead para Facebook
+      console.log('📤 Enviando evento Lead...');
+      await sendLead(formData);
+
+      // 2. Enviar evento InitiateCheckout para Facebook
+      console.log('📤 Enviando evento InitiateCheckout...');
+      await sendInitiateCheckout({
+        value: 47,
+        currency: 'BRL',
+        productName: 'Kit Inteligência Estratégica',
+        category: 'Digital Product',
+        productIds: ['kit-inteligencia-estrategica'],
+        numItems: 1
+      });
+
+      // 3. Enviar dados para webhook
+      console.log('📡 Enviando dados para webhook...');
+      await sendToWebhook(formData, {
+        includeMetadata: true,
+        retries: 3,
+        timeout: 10000
+      });
+
+      // 4. Construir URL de checkout com parâmetros
+      console.log('🔗 Construindo URL de checkout...');
+      const checkoutUrl = buildCheckoutUrl(formData);
+
+      // 5. Fechar modal e executar callback se fornecido
+      onClose();
+      if (onContinueToCheckout) {
+        onContinueToCheckout();
+      }
+
+      // 6. Redirecionar para checkout
+      console.log('↗️ Redirecionando para checkout...', checkoutUrl);
+      
+      // Pequeno delay para garantir que o modal feche suavemente
+      setTimeout(() => {
+        window.location.href = checkoutUrl;
+      }, 300);
+
+    } catch (error) {
+      console.error('❌ Erro no processo de checkout:', error);
+      setError('Ocorreu um erro. Tente novamente em alguns segundos.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isFormValid = formData.name && formData.email && formData.phone;
@@ -83,108 +142,190 @@ export default function InterestModal({
                 <X className="w-5 h-5 text-white" />
               </button>
 
-              {/* Header */}
-              <div className="bg-gradient-to-r from-[#D4AF37]/20 to-[#FFD700]/20 p-6 text-center">
-                <motion.div
-                  className="inline-flex items-center justify-center w-16 h-16 bg-[#D4AF37]/20 rounded-full mb-4"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, duration: 0.5, type: "spring" }}
-                >
-                  <Target className="w-8 h-8 text-[#D4AF37]" />
-                </motion.div>
-                
-                <h2 className="text-2xl font-bold text-white mb-2">
-                  Já viu o valor?
-                </h2>
-                <p className="text-[#D4AF37] font-medium">
-                  Quer garantir por R$ 47?
-                </p>
+              {/* Header Premium */}
+              <div className="relative bg-gradient-to-br from-[#D4AF37]/30 via-[#FFD700]/20 to-[#D4AF37]/30 p-6 text-center overflow-hidden">
+                {/* Background Pattern */}
+                <div 
+                  className="absolute inset-0 opacity-10"
+                  style={{
+                    backgroundImage: `linear-gradient(45deg, #D4AF37 1px, transparent 1px), linear-gradient(-45deg, #D4AF37 1px, transparent 1px)`,
+                    backgroundSize: '20px 20px'
+                  }}
+                />
               </div>
 
               {/* Content */}
-              <div className="p-6 space-y-6">
-                <p className="text-gray-300 text-center leading-relaxed">
-                  Você já viu todo o conteúdo incrível que vai receber. 
-                  <span className="text-[#D4AF37] font-medium"> Que tal garantir sua vaga agora</span> e começar sua transformação hoje mesmo?
-                </p>
+              <div className="p-8 space-y-8">
+                <motion.div 
+                  className="text-center space-y-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                >
+                  <p className="text-xl text-gray-300 leading-relaxed">
+                    Você descobriu o <span className="text-white font-bold">Kit de Inteligência Estratégica</span> que vai transformar suas campanhas de 
+                    <span className="text-red-400 font-medium"> "queimadoras de dinheiro"</span> em 
+                    <span className="text-[#D4AF37] font-bold"> máquinas de lucro previsível</span>.
+                  </p>
+                  <p className="text-lg text-gray-400">
+                    <span className="text-[#D4AF37] font-semibold">Apenas R$ 47</span> separam você do controle total sobre seu Google Ads. 
+                    Garante sua vaga antes que a oferta expire.
+                  </p>
+                </motion.div>
 
-                {/* Form */}
-                <div className="space-y-4">
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                {/* Form Premium */}
+                <motion.div 
+                  className="space-y-5"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                >
+                  <div className="relative group">
+                    <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#D4AF37] transition-colors duration-200" />
                     <input
                       type="text"
                       placeholder="Seu nome completo"
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] transition-colors duration-200"
+                      className="w-full pl-13 pr-4 py-4 bg-gradient-to-r from-white/5 to-white/10 border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] focus:from-[#D4AF37]/5 focus:to-[#FFD700]/5 transition-all duration-300 text-lg"
                     />
                   </div>
                   
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <div className="relative group">
+                    <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#D4AF37] transition-colors duration-200" />
                     <input
                       type="email"
                       placeholder="Seu melhor email"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] transition-colors duration-200"
+                      className="w-full pl-13 pr-4 py-4 bg-gradient-to-r from-white/5 to-white/10 border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] focus:from-[#D4AF37]/5 focus:to-[#FFD700]/5 transition-all duration-300 text-lg"
                     />
                   </div>
                   
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <div className="relative group">
+                    <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#D4AF37] transition-colors duration-200" />
                     <input
                       type="tel"
                       placeholder="Seu WhatsApp"
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] transition-colors duration-200"
+                      className="w-full pl-13 pr-4 py-4 bg-gradient-to-r from-white/5 to-white/10 border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] focus:from-[#D4AF37]/5 focus:to-[#FFD700]/5 transition-all duration-300 text-lg"
                     />
                   </div>
-                </div>
+                </motion.div>
 
-                {/* Action Buttons */}
-                <div className="space-y-3">
+                {/* Action Button Premium */}
+                <motion.div 
+                  className="space-y-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                >
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ scale: 1.03, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="relative group"
                   >
                     <Button
                       onClick={handleCheckout}
-                      disabled={!isFormValid}
-                      className={`w-full py-4 text-lg font-bold rounded-xl transition-all duration-300 ${
-                        isFormValid
-                          ? 'bg-gradient-to-r from-[#D4AF37] to-[#FFD700] hover:from-[#FFD700] hover:to-[#D4AF37] text-[#0A192F]'
+                      disabled={!isFormValid || isSubmitting}
+                      className={`relative w-full py-6 text-xl font-black rounded-2xl overflow-hidden transition-all duration-500 ${
+                        isFormValid && !isSubmitting
+                          ? 'bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] shadow-2xl shadow-[#D4AF37]/40'
                           : 'bg-gray-600 text-gray-400 cursor-not-allowed'
                       }`}
                     >
-                      <ShoppingCart className="w-5 h-5 mr-2" />
-                      Quero Garantir Minha Vaga Agora
+                      {/* Shimmer Effect */}
+                      {isFormValid && !isSubmitting && (
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
+                          animate={{
+                            x: ["-100%", "100%"],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            repeatDelay: 3,
+                            ease: "easeInOut",
+                          }}
+                        />
+                      )}
+                      
+                      <span className="relative flex items-center justify-center gap-3 z-10">
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="w-6 h-6 animate-spin" />
+                            <span className="tracking-wide">Processando...</span>
+                          </>
+                        ) : (
+                          <>
+                            <ShoppingCart className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" strokeWidth={2.5} />
+                            <span className="tracking-wide">Garantir minha vaga</span>
+                            <motion.span
+                              animate={{ x: [0, 5, 0] }}
+                              transition={{ duration: 1.5, repeat: Infinity }}
+                            >
+                              →
+                            </motion.span>
+                          </>
+                        )}
+                      </span>
                     </Button>
                   </motion.div>
 
-                  <Button
-                    variant="ghost"
-                    onClick={onContinueReading}
-                    className="w-full py-3 text-gray-300 hover:text-white border border-white/20 hover:border-white/40 rounded-xl transition-all duration-300"
-                  >
-                    Ainda Quero Ver Mais
-                  </Button>
-                </div>
+                  {/* Error Message */}
+                  {error && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-center"
+                    >
+                      <p className="text-red-400 font-medium text-sm bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-2">
+                        {error}
+                      </p>
+                    </motion.div>
+                  )}
 
-                {/* Trust Indicators */}
-                <div className="flex items-center justify-center gap-4 text-sm text-gray-400 pt-4 border-t border-white/10">
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#D4AF37]" />
-                    <span>Pagamento Seguro</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#D4AF37]" />
-                    <span>Acesso Imediato</span>
-                  </div>
-                </div>
+                  {/* Price Highlight */}
+                  <motion.div 
+                    className="text-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8, duration: 0.6 }}
+                  >
+                    <p className="text-[#D4AF37] font-bold text-lg">
+                      ⚡ Apenas R$ 47 • Acesso Vitalício • Garantia Blindada
+                    </p>
+                  </motion.div>
+                </motion.div>
+
+                {/* Trust Indicators Premium */}
+                <motion.div 
+                  className="flex items-center justify-center gap-6 text-sm pt-6 border-t border-[#D4AF37]/20"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0, duration: 0.6 }}
+                >
+                  <motion.div 
+                    className="flex items-center gap-2 text-gray-300"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#FFD700] flex items-center justify-center">
+                      <Check className="w-3 h-3 text-[#0A192F]" strokeWidth={3} />
+                    </div>
+                    <span className="font-medium">Pagamento 100% Seguro</span>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="flex items-center gap-2 text-gray-300"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#FFD700] flex items-center justify-center">
+                      <Check className="w-3 h-3 text-[#0A192F]" strokeWidth={3} />
+                    </div>
+                    <span className="font-medium">Acesso Imediato</span>
+                  </motion.div>
+                </motion.div>
               </div>
             </motion.div>
           </motion.div>

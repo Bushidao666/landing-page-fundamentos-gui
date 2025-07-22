@@ -19,6 +19,7 @@ import {
   getResponsiveVariants 
 } from "./animationsV2";
 import { Shield } from "lucide-react";
+import { useFacebookConversions } from "@/hooks/useFacebookConversions";
 
 /**
  * Hook para detectar mobile e preferências de animação
@@ -55,6 +56,10 @@ const useResponsiveAnimations = () => {
  */
 const SocialProofSection: React.FC = () => {
   const { isMobile, prefersReducedMotion } = useResponsiveAnimations();
+  const { sendViewContent } = useFacebookConversions();
+  
+  // Ref para o elemento da seção
+  const sectionRef = React.useRef<HTMLElement>(null);
   
   // Variantes responsivas para animações
   const responsiveContainerVariants = getResponsiveVariants(
@@ -62,7 +67,7 @@ const SocialProofSection: React.FC = () => {
     isMobile,
     prefersReducedMotion
   );
-
+  
   // Função de navegação progressiva
   const handleScrollToPriceAnchoring = () => {
     document.getElementById("price-anchoring")?.scrollIntoView({
@@ -70,6 +75,38 @@ const SocialProofSection: React.FC = () => {
       block: "start"
     });
   };
+
+  // Hook para detectar visualização da seção e enviar ViewContent
+  React.useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Usuário visualizou a seção de prova social
+            sendViewContent({
+              content_name: 'Social Proof Section',
+              content_category: 'Landing Page Section',
+              content_ids: ['social-proof-testimonials'],
+              value: 0,
+              currency: 'BRL'
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Disparar quando 30% da seção for visível
+        rootMargin: '-50px 0px -50px 0px' // Margem para garantir engajamento real
+      }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [sendViewContent]);
   
   const responsiveItemVariants = getResponsiveVariants(
     itemVariants,
@@ -79,6 +116,7 @@ const SocialProofSection: React.FC = () => {
 
   return (
     <section 
+      ref={sectionRef}
       className="relative bg-gradient-to-br from-[#0A192F] via-[#112240] to-[#0A192F] 
         py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden"
       id="social-proof"

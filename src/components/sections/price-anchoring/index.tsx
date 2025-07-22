@@ -186,8 +186,8 @@ function PriceAnchoringContent() {
               <PriceRevealOptimized 
                 isRevealed={priceRevealed}
                 onCtaClick={() => {
-                  // Handle CTA click
-                  console.log('CTA clicked');
+                  // Abre modal de captura de lead
+                  window.dispatchEvent(new CustomEvent('openLeadCaptureModal'));
                 }}
               />
             </Suspense>

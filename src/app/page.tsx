@@ -14,8 +14,12 @@ import { FAQSectionAdvanced } from "@/components/sections/faq";
 import FooterSection from "@/components/sections/FooterSection";
 import InterestModal from "@/components/modals/InterestModal";
 import { useStrategicModals } from "@/hooks/useStrategicModals";
+import { useAutoPageView } from "@/hooks/useFacebookConversions";
 
 export default function Home() {
+  // Hook para envio automático de PageView
+  useAutoPageView();
+
   const {
     modalState,
     closeModal,
@@ -25,30 +29,26 @@ export default function Home() {
 
   return (
     <>
-      <main className="min-h-screen">
-        <HeroSection />
-        <PainPointsSection />
-        <SolutionTransitionSection />
-        <SolutionSection />
-        <ContentDetailsSection />
-        <BonusStackSection />
-        <SocialProofSection />
-        <PriceAnchoringSectionComplete />
-        <PriceJustificationSection />
-        <GuaranteeSection />
-        <FooterSection />
-        <FAQSectionAdvanced />
-      </main>
+    <main className="min-h-screen">
+      <HeroSection />
+      <PainPointsSection />
+      <SolutionTransitionSection />
+      <SolutionSection />
+      <ContentDetailsSection />
+      <BonusStackSection />
+      <SocialProofSection />
+      <PriceAnchoringSectionComplete />
+      <PriceJustificationSection />
+      <GuaranteeSection />
+      <FooterSection />
+      <FAQSectionAdvanced />
+    </main>
 
       {/* Strategic Modal */}
       <InterestModal
         isOpen={modalState.leadCaptureModal}
         onClose={closeModal}
         onContinueToCheckout={handleContinueToCheckout}
-        onContinueReading={() => {
-          closeModal();
-          handleContinueReading('bonus-stack');
-        }}
       />
     </>
   );

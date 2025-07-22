@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Lora } from "next/font/google";
 import "./globals.css";
+import FacebookPixel from "@/components/analytics/FacebookPixel";
 
 const fontSans = Poppins({
   subsets: ["latin"],
@@ -26,6 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="dark" suppressHydrationWarning>
+      <head>
+        <FacebookPixel />
+      </head>
       <body
         className={`${fontSans.variable} ${fontSerif.variable} font-sans antialiased`}
       >

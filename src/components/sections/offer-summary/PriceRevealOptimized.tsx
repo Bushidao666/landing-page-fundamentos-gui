@@ -249,6 +249,7 @@ export default function PriceRevealOptimized({
                            rounded-xl sm:rounded-2xl
                            transition-all duration-300
                            transform-gpu"
+                onClick={() => window.dispatchEvent(new CustomEvent('openLeadCaptureModal'))}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => setIsCtaHovered(true)}
                 onMouseLeave={() => setIsCtaHovered(false)}
