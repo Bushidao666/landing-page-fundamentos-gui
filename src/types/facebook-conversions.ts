@@ -188,7 +188,8 @@ export interface WebhookPayload {
 export interface CheckoutUrlParams {
   name: string;
   email: string;
-  phone: string;
+  phoneac: string; // Código DDD (ex: 21, 11, 47)
+  phonenumber: string; // Número sem DDD (ex: 990478137)
   s1_extid: string;
   s2_fbp?: string;
   s3_fbc?: string;

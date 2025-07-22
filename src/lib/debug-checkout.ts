@@ -38,12 +38,16 @@ export const DebugCheckout = {
       const urlParams = Object.fromEntries(urlObj.searchParams.entries());
       console.log('📊 Parâmetros na URL:', urlParams);
       
-      // Verificar se telefone está presente
-      if (urlParams.phone) {
-        console.log('✅ Telefone encontrado na URL:', urlParams.phone);
-      } else {
-        console.warn('❌ Telefone NÃO encontrado na URL!');
-      }
+             // Verificar se telefone está presente (formato correto)
+       if (urlParams.phoneac && urlParams.phonenumber) {
+         console.log('✅ Telefone encontrado na URL:');
+         console.log(`   📞 DDD: ${urlParams.phoneac}`);
+         console.log(`   📱 Número: ${urlParams.phonenumber}`);
+       } else {
+         console.warn('❌ Telefone NÃO encontrado na URL!');
+         console.warn(`   phoneac: ${urlParams.phoneac || 'AUSENTE'}`);
+         console.warn(`   phonenumber: ${urlParams.phonenumber || 'AUSENTE'}`);
+       }
     }
     
     console.groupEnd();
@@ -69,18 +73,18 @@ export const DebugCheckout = {
       console.log('🌐 URL válida:', url);
       console.log('📋 Parâmetros encontrados:');
       
-      // Verificar parâmetros essenciais
-      const essentialParams = ['name', 'email', 'phone'];
-      let allEssentialPresent = true;
-      
-      essentialParams.forEach(param => {
-        if (params[param]) {
-          console.log(`✅ ${param}: ${params[param]}`);
-        } else {
-          console.warn(`❌ ${param}: AUSENTE`);
-          allEssentialPresent = false;
-        }
-      });
+             // Verificar parâmetros essenciais
+       const essentialParams = ['name', 'email', 'phoneac', 'phonenumber'];
+       let allEssentialPresent = true;
+       
+       essentialParams.forEach(param => {
+         if (params[param]) {
+           console.log(`✅ ${param}: ${params[param]}`);
+         } else {
+           console.warn(`❌ ${param}: AUSENTE`);
+           allEssentialPresent = false;
+         }
+       });
 
       // Verificar parâmetros de rastreamento
       const trackingParams = ['s1_extid', 's2_fbp', 's3_fbc'];
@@ -129,8 +133,8 @@ export const DebugCheckout = {
         phone
       };
       
-      const params = buildCheckoutParams(testData);
-      console.log(`📱 "${phone}" → "${params.phone}"`);
+             const params = buildCheckoutParams(testData);
+       console.log(`📱 "${phone}" → DDD:${params.phoneac} | NUM:${params.phonenumber}`);
     });
     
     console.groupEnd();

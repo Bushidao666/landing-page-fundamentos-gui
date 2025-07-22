@@ -59,25 +59,43 @@ export function buildCheckoutUrl(formData: LeadFormData): string {
 }
 
 /**
- * Sanitiza o número de telefone removendo caracteres especiais
+ * Extrai DDD e número do telefone brasileiro
  */
-function sanitizePhone(phone: string): string {
-  if (!phone) return '';
+function parsePhoneNumber(phone: string): { ddd: string; number: string } {
+  if (!phone) return { ddd: '', number: '' };
   
-  // Remover todos os caracteres não numéricos exceto o '+'
-  const cleaned = phone.replace(/[^\d+]/g, '');
+  // Remover todos os caracteres não numéricos
+  const cleaned = phone.replace(/\D/g, '');
   
-  // Se não começar com +55 e tiver 11 dígitos, adicionar +55
-  if (!cleaned.startsWith('+55') && cleaned.length === 11) {
-    return `+55${cleaned}`;
+  // Diferentes cenários de formatação brasileira
+  let ddd = '';
+  let number = '';
+  
+  if (cleaned.length === 11) {
+    // Formato: 11999999999 (celular com 9)
+    ddd = cleaned.substring(0, 2);
+    number = cleaned.substring(2);
+  } else if (cleaned.length === 10) {
+    // Formato: 1199999999 (fixo ou celular antigo)
+    ddd = cleaned.substring(0, 2);
+    number = cleaned.substring(2);
+  } else if (cleaned.length === 13 && cleaned.startsWith('55')) {
+    // Formato: 5511999999999 (+55 incluso)
+    ddd = cleaned.substring(2, 4);
+    number = cleaned.substring(4);
+  } else if (cleaned.length === 12 && cleaned.startsWith('55')) {
+    // Formato: 551199999999 (+55 incluso, sem 9)
+    ddd = cleaned.substring(2, 4);
+    number = cleaned.substring(4);
+  } else {
+    // Fallback: tentar extrair últimos 8-9 dígitos como número
+    if (cleaned.length >= 10) {
+      ddd = cleaned.substring(0, 2);
+      number = cleaned.substring(2);
+    }
   }
   
-  // Se começar com 55 mas não com +55, adicionar o +
-  if (cleaned.startsWith('55') && !cleaned.startsWith('+55')) {
-    return `+${cleaned}`;
-  }
-  
-  return cleaned;
+  return { ddd, number };
 }
 
 /**
@@ -87,14 +105,15 @@ export function buildCheckoutParams(formData: LeadFormData): CheckoutUrlParams {
   const globalData = getGlobalUserData();
   const urlParams = getUrlParameters();
 
-  // Sanitizar telefone para garantir formato correto na URL
-  const sanitizedPhone = sanitizePhone(formData.phone);
+  // Extrair DDD e número do telefone
+  const { ddd, number } = parsePhoneNumber(formData.phone);
 
   // Parâmetros base do cliente (pré-preenchimento)
   const baseParams: CheckoutUrlParams = {
     name: formData.name,
     email: formData.email,
-    phone: sanitizedPhone,
+    phoneac: ddd, // Código DDD
+    phonenumber: number, // Número sem DDD
     s1_extid: globalData.external_id,
   };
 
@@ -127,7 +146,7 @@ export function buildCheckoutParams(formData: LeadFormData): CheckoutUrlParams {
   debugLog('Parâmetros de checkout construídos', {
     baseParams: {
       ...baseParams,
-      phone: `${formData.phone} → ${sanitizedPhone}` // Mostrar transformação
+      phoneTransformation: `${formData.phone} → DDD:${ddd} | NUM:${number}` // Mostrar transformação
     },
     trackingParams,
     utmParams,
