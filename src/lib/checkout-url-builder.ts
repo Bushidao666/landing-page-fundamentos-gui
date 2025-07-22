@@ -59,17 +59,42 @@ export function buildCheckoutUrl(formData: LeadFormData): string {
 }
 
 /**
+ * Sanitiza o número de telefone removendo caracteres especiais
+ */
+function sanitizePhone(phone: string): string {
+  if (!phone) return '';
+  
+  // Remover todos os caracteres não numéricos exceto o '+'
+  const cleaned = phone.replace(/[^\d+]/g, '');
+  
+  // Se não começar com +55 e tiver 11 dígitos, adicionar +55
+  if (!cleaned.startsWith('+55') && cleaned.length === 11) {
+    return `+55${cleaned}`;
+  }
+  
+  // Se começar com 55 mas não com +55, adicionar o +
+  if (cleaned.startsWith('55') && !cleaned.startsWith('+55')) {
+    return `+${cleaned}`;
+  }
+  
+  return cleaned;
+}
+
+/**
  * Constrói objeto com todos os parâmetros de checkout
  */
 export function buildCheckoutParams(formData: LeadFormData): CheckoutUrlParams {
   const globalData = getGlobalUserData();
   const urlParams = getUrlParameters();
 
+  // Sanitizar telefone para garantir formato correto na URL
+  const sanitizedPhone = sanitizePhone(formData.phone);
+
   // Parâmetros base do cliente (pré-preenchimento)
   const baseParams: CheckoutUrlParams = {
     name: formData.name,
     email: formData.email,
-    phone: formData.phone,
+    phone: sanitizedPhone,
     s1_extid: globalData.external_id,
   };
 
@@ -100,7 +125,10 @@ export function buildCheckoutParams(formData: LeadFormData): CheckoutUrlParams {
   };
 
   debugLog('Parâmetros de checkout construídos', {
-    baseParams,
+    baseParams: {
+      ...baseParams,
+      phone: `${formData.phone} → ${sanitizedPhone}` // Mostrar transformação
+    },
     trackingParams,
     utmParams,
     totalParams: Object.keys(allParams).length

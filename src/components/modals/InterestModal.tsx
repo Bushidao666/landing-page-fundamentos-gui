@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { useFacebookConversions } from '@/hooks/useFacebookConversions';
 import { buildCheckoutUrl } from '@/lib/checkout-url-builder';
 import { sendToWebhook } from '@/lib/webhook-sender';
+import { DebugCheckout } from '@/lib/debug-checkout';
 
 interface InterestModalProps {
   isOpen: boolean;
@@ -83,7 +84,15 @@ export default function InterestModal({
 
       // 4. Construir URL de checkout com parâmetros
       console.log('🔗 Construindo URL de checkout...');
+      
+      // 🧪 DEBUG: Simular fluxo completo para diagnóstico
+      DebugCheckout.simulateModalFlow(formData);
+      
       const checkoutUrl = buildCheckoutUrl(formData);
+      
+      // 🧪 DEBUG: Validar URL construída
+      console.log('🔍 Validando URL construída...');
+      DebugCheckout.validateCheckoutUrl(checkoutUrl);
 
       // 5. Fechar modal e executar callback se fornecido
       onClose();

@@ -117,8 +117,9 @@ export const useStrategicModals = () => {
   }, []);
 
   const handleContinueToCheckout = useCallback(() => {
-    // Implementar redirecionamento para checkout
-    window.open('https://checkout-url.com', '_blank');
+    // ✅ Redirecionamento será feito pelo InterestModal
+    // Não fazer nada aqui para evitar duplo redirecionamento
+    console.log('✅ Redirecionamento será feito pelo modal principal');
   }, []);
 
   const handleContinueReading = useCallback((targetSection?: string) => {
