@@ -9,7 +9,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-// Removendo import individual do BackgroundEffects - vai ser simplificado
+import BackgroundEffects from "./components/BackgroundEffects";
 import BonusHeader from "./components/BonusHeader";
 import CommunityBonus from "./components/CommunityBonus";
 import PassportBonus from "./components/PassportBonus";
@@ -40,7 +40,7 @@ export default function BonusStackSection() {
       viewport={{ once: true, amount: 0.15 }}
       variants={containerVariants}
     >
-      {/* Background Effects Simplificados para Mobile */}
+      {/* Background Effects Sutis */}
       <div className="absolute inset-0">
         <div className="bonus-bg-base" />
         <div className="bonus-bg-pattern" />

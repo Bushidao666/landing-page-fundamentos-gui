@@ -9,7 +9,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy } from "react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { PriceAnchoringProvider, usePriceAnchoring } from "./hooks/usePriceAnchoring";
 import { SPACING, COLORS } from "./data/constants";
@@ -17,9 +17,6 @@ import { staggerContainerVariants, slideUpVariants } from "./utils/animations";
 
 // Optimized imports
 import PremiumBackground from "./components/organisms/PremiumBackground";
-import OfferHeaderOptimized from "./components/molecules/OfferHeaderOptimized";
-import ValueBreakdownOptimized from "./components/molecules/ValueBreakdownOptimized";
-import TotalValueOptimized from "./components/molecules/TotalValueOptimized";
 
 // Lazy load heavy components
 const PriceRevealOptimized = lazy(() => import("./components/molecules/PriceRevealOptimized-v2"));
@@ -41,29 +38,12 @@ const PriceSkeleton = () => (
 
 // Section content component
 function PriceAnchoringContent() {
-  const { 
-    totalValue, 
-    priceRevealed, 
-    setPriceRevealed 
-  } = usePriceAnchoring();
-  
   // Intersection observer for animations
   const { ref, hasIntersected } = useIntersectionObserver({
     threshold: 0.1,
     rootMargin: "50px",
     freezeOnceVisible: true,
   });
-
-  // Progressive price reveal
-  useEffect(() => {
-    if (hasIntersected && totalValue > 0) {
-      const timer = setTimeout(() => {
-        setPriceRevealed(true);
-      }, 300);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [hasIntersected, totalValue, setPriceRevealed]);
 
   return (
     <section
@@ -98,58 +78,7 @@ function PriceAnchoringContent() {
           animate={hasIntersected ? "visible" : "hidden"}
           variants={staggerContainerVariants}
         >
-          {/* Section header */}
-          <div id="price-section-title" style={{ marginBottom: SPACING['2xl'] }}>
-            <OfferHeaderOptimized />
-          </div>
 
-          {/* Value breakdown section */}
-          <motion.div 
-            className="mx-auto"
-            style={{ 
-              maxWidth: '80rem',
-              marginBottom: SPACING['3xl']
-            }}
-            variants={slideUpVariants}
-          >
-            {/* Premium card container */}
-            <div className="relative">
-              {/* Card glow effect */}
-              <div 
-                className="absolute -inset-1 rounded-3xl blur-xl opacity-50"
-                style={{ 
-                  background: `linear-gradient(to right, ${COLORS.primary}20, transparent, ${COLORS.primary}20)`,
-                }}
-                aria-hidden="true"
-              />
-              
-              {/* Main card */}
-              <div 
-                className="relative backdrop-blur-xl rounded-3xl shadow-2xl"
-                style={{
-                  background: `linear-gradient(to bottom right, ${COLORS.surface.glass}, ${COLORS.surface.glassHover})`,
-                  border: `1px solid ${COLORS.border.default}`,
-                  padding: SPACING['2xl'],
-                }}
-              >
-                {/* Value items with loading state */}
-                <Suspense fallback={
-                  <div>
-                    {[1,2,3,4].map(i => <CardSkeleton key={i} />)}
-                  </div>
-                }>
-                  <ValueBreakdownOptimized />
-                </Suspense>
-                
-                {/* Total value display */}
-                {totalValue > 0 && (
-                  <Suspense fallback={<CardSkeleton />}>
-                    <TotalValueOptimized total={totalValue} />
-                  </Suspense>
-                )}
-              </div>
-            </div>
-          </motion.div>
 
           {/* Price reveal section */}
           <motion.div 
@@ -182,9 +111,10 @@ function PriceAnchoringContent() {
 
 
             {/* Price reveal and CTA */}
-            <Suspense fallback={priceRevealed ? <PriceSkeleton /> : null}>
+            <Suspense fallback={<PriceSkeleton />}>
               <PriceRevealOptimized 
-                isRevealed={priceRevealed}
+                isRevealed={true}
+                paymentOption="installments"
                 onCtaClick={() => {
                   // Abre modal de captura de lead
                   window.dispatchEvent(new CustomEvent('openLeadCaptureModal'));
@@ -193,11 +123,9 @@ function PriceAnchoringContent() {
             </Suspense>
 
             {/* Security badges */}
-            {priceRevealed && (
-              <Suspense fallback={null}>
-                <SecurityBadges />
-              </Suspense>
-            )}
+            <Suspense fallback={null}>
+              <SecurityBadges />
+            </Suspense>
           </motion.div>
         </motion.div>
       </div>

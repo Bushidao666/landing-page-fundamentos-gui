@@ -11,6 +11,7 @@
 import { motion } from "framer-motion";
 import { Gift, Crown } from "lucide-react";
 import { bonusMetrics } from "../data/bonusData";
+import "../styles/aristocratic-tokens.css";
 
 interface BonusHeaderProps {
   className?: string;
