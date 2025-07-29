@@ -12,7 +12,6 @@ import { motion } from "framer-motion";
 import { Users, Crown, MessageSquare, Briefcase, TrendingUp, Gift } from "lucide-react";
 import BonusCard from "./BonusCard";
 import { bonusMetrics, communityBenefits } from "../data/bonusData";
-import "../styles/aristocratic-tokens.css";
 import Image from "next/image";
 import { useFloatingAnimation, createFloatingVariants } from "../../../../hooks/useFloatingAnimation";
 
