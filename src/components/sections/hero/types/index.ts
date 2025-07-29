@@ -67,11 +67,6 @@ export interface HeroColors {
 }
 
 export interface HeroContent {
-  badge: {
-    icon: string;
-    text: string;
-    trailingIcon: string;
-  };
   headline: {
     prefix: string;
     highlight: string;

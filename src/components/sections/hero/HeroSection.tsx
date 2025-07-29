@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import {
   HeroBackground,
-  HeroBadge,
+
   HeroHeadline,
   HeroMetric,
   HeroValueProp,
@@ -39,8 +39,6 @@ const iconMap = {
 
 export default function HeroSection() {
   // Map icons from content
-  const BadgeIcon = iconMap[HERO_CONTENT.badge.icon as keyof typeof iconMap];
-  const BadgeTrailingIcon = iconMap[HERO_CONTENT.badge.trailingIcon as keyof typeof iconMap];
   const MetricIcon = iconMap[HERO_CONTENT.metric.icon as keyof typeof iconMap];
   const CTAIcon = iconMap[HERO_CONTENT.cta.icon as keyof typeof iconMap];
   const CTATrailingIcon = iconMap[HERO_CONTENT.cta.trailingIcon as keyof typeof iconMap];
@@ -76,12 +74,7 @@ export default function HeroSection() {
             className={heroStyles.contentColumn}
             variants={heroAnimations.container}
           >
-            {/* Premium Badge */}
-            <HeroBadge
-              icon={BadgeIcon}
-              text={HERO_CONTENT.badge.text}
-              trailingIcon={BadgeTrailingIcon}
-            />
+
 
             {/* Headline Group */}
             <motion.div 

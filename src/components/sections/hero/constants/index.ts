@@ -92,11 +92,6 @@ export const HERO_COLORS: HeroColors = {
 };
 
 export const HERO_CONTENT: HeroContent = {
-  badge: {
-    icon: "Target",
-    text: "Google Ads Master Class",
-    trailingIcon: "TrendingUp",
-  },
   headline: {
     prefix: "Seu E-commerce Desperdiça Dinheiro com um",
     highlight: "Sócio Sanguessuga",
