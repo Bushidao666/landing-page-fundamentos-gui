@@ -71,7 +71,7 @@ export function CTASection({ className = "" }: CTASectionProps) {
           <Button 
             onClick={handleScrollToBonusStack}
             size="lg" 
-            className="relative overflow-hidden px-8 py-6 h-auto bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-700 hover:via-emerald-600 hover:to-emerald-700 text-white font-bold shadow-2xl shadow-emerald-500/40 border-2 border-emerald-500/30 rounded-xl transition-all duration-500 backdrop-blur-sm text-lg"
+            className="relative overflow-hidden px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 h-auto bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-700 hover:via-emerald-600 hover:to-emerald-700 text-white font-bold shadow-2xl shadow-emerald-500/40 border-2 border-emerald-500/30 rounded-xl transition-all duration-500 backdrop-blur-sm text-base sm:text-lg max-w-full"
           >
             {/* Efeito de Brilho */}
             <motion.div
@@ -89,7 +89,8 @@ export function CTASection({ className = "" }: CTASectionProps) {
             
             <span className="relative flex items-center gap-3 z-10">
               <Gift className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-              <span className="tracking-wide">E Tem Mais! Ver os Bônus Exclusivos</span>
+              <span className="tracking-wide hidden sm:inline">E Tem Mais! Ver os Bônus Exclusivos</span>
+              <span className="tracking-wide sm:hidden">Ver Bônus</span>
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </Button>

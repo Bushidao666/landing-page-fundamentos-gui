@@ -23,10 +23,10 @@ export const CTAButton = () => {
         onClick={handleOpenModal} 
       size="lg" 
       className="
-        relative w-full
-        text-lg md:text-xl lg:text-2xl xl:text-3xl
-        px-8 py-6 md:px-10 md:py-7 lg:px-12 lg:py-8
-        h-auto min-h-[64px] md:min-h-[72px] lg:min-h-[80px]
+        relative w-full max-w-2xl
+        text-base md:text-lg lg:text-xl xl:text-2xl
+        px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 lg:px-10 lg:py-7
+        h-auto min-h-[56px] md:min-h-[64px] lg:min-h-[72px]
         bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37]
         hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700]
         text-[#0A192F] font-bold
@@ -49,10 +49,10 @@ export const CTAButton = () => {
       <span className="relative flex items-center justify-center gap-3 md:gap-4">
         <ShoppingCart className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 flex-shrink-0" strokeWidth={2.5} />
         <span className="flex flex-col items-center leading-none">
-          <span className="text-base md:text-lg lg:text-xl uppercase tracking-wider">
+          <span className="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wider">
             PEGAR MEU KIT COMPLETO
           </span>
-          <span className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black mt-1.5">
+          <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black mt-1">
             POR R$ 47 AGORA!
           </span>
         </span>

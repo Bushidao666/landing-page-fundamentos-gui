@@ -36,16 +36,16 @@ export function FinalCTA() {
         <Button 
           size="lg" 
           className="relative overflow-hidden 
-            text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 
-            px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 
-            py-4 sm:py-5 md:py-6 lg:py-8 xl:py-10 
+            text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 
+            px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 
+            py-3 sm:py-4 md:py-5 lg:py-6 xl:py-8 
             h-auto bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] 
             hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] 
             text-[#0A192F] font-black 
             shadow-lg sm:shadow-xl md:shadow-2xl shadow-[#D4AF37]/40 sm:shadow-[#D4AF37]/50 md:shadow-[#D4AF37]/60 
             border-2 sm:border-3 md:border-4 border-[#D4AF37]/30 sm:border-[#D4AF37]/40 
             rounded-xl sm:rounded-2xl md:rounded-3xl 
-            transition-all duration-500 backdrop-blur-sm"
+            transition-all duration-500 backdrop-blur-sm max-w-full"
         >
           {/* Shine effect */}
           <motion.div
@@ -64,8 +64,11 @@ export function FinalCTA() {
           <span className="relative flex items-center gap-2 sm:gap-3 md:gap-4 z-10">
             <Trophy className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 
               group-hover:rotate-12 transition-transform duration-300" />
-            <span className="tracking-wide sm:tracking-wider">
+            <span className="tracking-wide sm:tracking-wider hidden sm:inline">
               GARANTO MEU ATALHO PARA O SUCESSO!
+            </span>
+            <span className="tracking-wide sm:hidden">
+              GARANTIR AGORA!
             </span>
             <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 
               text-[#0A192F] group-hover:translate-x-2 transition-transform duration-300" />

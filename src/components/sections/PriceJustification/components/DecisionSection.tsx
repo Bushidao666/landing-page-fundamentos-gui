@@ -89,7 +89,7 @@ export function DecisionSection() {
           <Button 
             onClick={handleOpenModal}
             size="lg" 
-            className="relative overflow-hidden text-lg md:text-xl lg:text-2xl px-8 md:px-12 lg:px-16 py-6 md:py-8 lg:py-10 h-auto bg-gradient-to-r from-[#0A192F] via-[#1A2444] to-[#0A192F] hover:from-[#1A2444] hover:via-[#0A192F] hover:to-[#1A2444] text-white font-black shadow-xl border-2 border-[#D4AF37]/60 hover:border-[#D4AF37] rounded-xl md:rounded-2xl transition-all duration-300"
+            className="relative overflow-hidden text-base md:text-lg lg:text-xl px-4 sm:px-6 md:px-10 lg:px-14 py-3 sm:py-4 md:py-6 lg:py-8 h-auto bg-gradient-to-r from-[#0A192F] via-[#1A2444] to-[#0A192F] hover:from-[#1A2444] hover:via-[#0A192F] hover:to-[#1A2444] text-white font-black shadow-xl border-2 border-[#D4AF37]/60 hover:border-[#D4AF37] rounded-xl md:rounded-2xl transition-all duration-300 max-w-full"
           >
             {/* Shine effect dourado */}
             {!prefersReducedMotion && (
@@ -108,8 +108,11 @@ export function DecisionSection() {
             
             <span className="relative flex items-center gap-3 md:gap-4 z-10">
               <ShoppingCart className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
-              <span className="tracking-wide uppercase">
+              <span className="tracking-wide uppercase hidden sm:inline">
                 Quero o Kit Completo por Apenas R$ 47!
+              </span>
+              <span className="tracking-wide uppercase sm:hidden">
+                Quero por R$ 47!
               </span>
               <ArrowRight className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
             </span>

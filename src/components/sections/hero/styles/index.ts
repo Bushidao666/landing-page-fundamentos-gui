@@ -57,7 +57,7 @@ export const heroStyles = {
   
   ctaWrapper: `flex justify-center pt-6 sm:pt-8`,
   
-  ctaButton: `relative overflow-hidden text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-12 py-4 sm:py-6 md:py-8 h-auto bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-bold shadow-2xl shadow-[#D4AF37]/40 border-2 border-[#D4AF37]/30 rounded-2xl transition-all duration-500 backdrop-blur-sm`,
+  ctaButton: `relative overflow-hidden text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-12 py-3 sm:py-4 md:py-8 h-auto bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] font-bold shadow-2xl shadow-[#D4AF37]/40 border-2 border-[#D4AF37]/30 rounded-2xl transition-all duration-500 backdrop-blur-sm max-w-full`,
   
   trustContainer: `flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 pt-8 sm:pt-10 text-gray-200 max-w-4xl mx-auto ${getResponsiveClasses('text', HERO_TYPOGRAPHY.caption)}`,
   

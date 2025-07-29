@@ -86,20 +86,20 @@ export default function HeroCTA({
             />
           )}
           
-          <span className="relative flex items-center gap-2 sm:gap-3 md:gap-4 z-10">
+          <span className="relative flex items-center gap-1.5 sm:gap-2 md:gap-3 z-10">
             {Icon && (
               <Icon 
                 className={cn(
                   heroStyles.iconLarge, 
-                  "group-hover:rotate-12 transition-transform duration-300"
+                  "group-hover:rotate-12 transition-transform duration-300 flex-shrink-0"
                 )} 
                 aria-hidden="true"
               />
             )}
-            <span className="tracking-wide">{text}</span>
+            <span className="tracking-wide text-center">{text}</span>
             {TrailingIcon && (
               <TrailingIcon 
-                className={heroStyles.iconMedium} 
+                className={cn(heroStyles.iconMedium, "flex-shrink-0")} 
                 aria-hidden="true"
               />
             )}
