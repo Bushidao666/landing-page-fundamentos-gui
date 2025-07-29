@@ -81,24 +81,36 @@
   width: 100%;
   overflow: hidden;
   
-  /* Background BRANCO conforme solicitado */
-  background: linear-gradient(
-    135deg,
-    #FFFFFF 0%,
-    var(--bonus-bg-secondary) 25%,
-    #FFFFFF 50%,
-    var(--bonus-bg-tertiary) 75%,
-    #FFFFFF 100%
-  );
+  /* Background BRANCO conforme solicitado - simplificado para mobile */
+  background: #FFFFFF;
   
-  /* Spacing */
-  padding-block: var(--bonus-space-xl);
+  /* Spacing - otimizado para mobile */
+  padding: var(--bonus-space-lg) 0;
   
   /* Typography */
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* Garantir visibilidade em mobile */
+  min-height: 100vh;
+  display: block;
+}
+
+/* Media query para desktop - aplicar gradiente apenas em telas maiores */
+@media (min-width: 768px) {
+  .bonus-section {
+    background: linear-gradient(
+      135deg,
+      #FFFFFF 0%,
+      var(--bonus-bg-secondary) 25%,
+      #FFFFFF 50%,
+      var(--bonus-bg-tertiary) 75%,
+      #FFFFFF 100%
+    );
+    padding-block: var(--bonus-space-xl);
+  }
 }
 
 /* ========================================
@@ -118,6 +130,8 @@
     transparent 50%
   );
   z-index: 1;
+  /* Desabilitar em mobile para performance */
+  display: none;
 }
 
 .bonus-bg-pattern {
@@ -130,6 +144,16 @@
   background-position: 0 0, 30px 30px;
   opacity: 0.3;
   z-index: 2;
+  /* Desabilitar em mobile para performance */
+  display: none;
+}
+
+/* Habilitar backgrounds apenas em desktop */
+@media (min-width: 768px) {
+  .bonus-bg-base,
+  .bonus-bg-pattern {
+    display: block;
+  }
 }
 
 /* ========================================
@@ -142,6 +166,16 @@
   padding-inline: var(--bonus-container-padding);
   position: relative;
   z-index: 10;
+  /* Garantir visibilidade em mobile */
+  display: block;
+  visibility: visible;
+}
+
+/* Ajuste específico para mobile */
+@media (max-width: 767px) {
+  .bonus-container {
+    padding-inline: 1rem;
+  }
 }
 
 /* ========================================
@@ -444,6 +478,30 @@
 /* ========================================
    RESPONSIVIDADE PREMIUM
    ======================================== */
+/* Mobile First - garantir renderização */
+@media (max-width: 767px) {
+  .bonus-section {
+    background-color: #FFFFFF !important;
+    padding: 2rem 0;
+    min-height: auto;
+  }
+  
+  .bonus-card {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+  
+  .bonus-benefit-grid {
+    gap: 0.75rem;
+  }
+  
+  /* Garantir que elementos internos sejam visíveis */
+  .bonus-section * {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
 @media (min-width: 768px) {
   .bonus-section {
     padding-block: var(--bonus-space-2xl);
@@ -541,6 +599,34 @@
 .bonus-spacing-lg { margin-bottom: var(--bonus-space-lg); }
 .bonus-spacing-xl { margin-bottom: var(--bonus-space-xl); }
 .bonus-spacing-2xl { margin-bottom: var(--bonus-space-2xl); }
+
+/* ========================================
+   FIX MOBILE VISIBILITY
+   ======================================== */
+@media (max-width: 767px) {
+  .bonus-section,
+  .bonus-section * {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+  }
+  
+  .bonus-section .flex {
+    display: flex !important;
+  }
+  
+  .bonus-section .grid {
+    display: grid !important;
+  }
+  
+  .bonus-section .inline-flex {
+    display: inline-flex !important;
+  }
+  
+  .bonus-section .hidden {
+    display: none !important;
+  }
+}
 
 /* ========================================
    OVERRIDE CLASSES PARA CARDS AZUIS

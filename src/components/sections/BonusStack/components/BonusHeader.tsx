@@ -47,6 +47,7 @@ export default function BonusHeader({ className = "" }: BonusHeaderProps) {
   return (
     <motion.header 
       className={`text-center max-w-6xl mx-auto bonus-spacing-xl ${className}`}
+      style={{ visibility: 'visible', opacity: 1 }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}

@@ -133,14 +133,14 @@ export default function InterestModal({
 
           {/* Modal */}
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <motion.div
-              className="relative w-full max-w-md bg-gradient-to-br from-[#0A192F] via-[#1A2444] to-[#0A192F] border border-[#D4AF37]/30 rounded-2xl shadow-2xl overflow-hidden"
+              className="relative w-full max-w-md max-h-[95vh] overflow-y-auto bg-gradient-to-br from-[#0A192F] via-[#1A2444] to-[#0A192F] border border-[#D4AF37]/30 rounded-2xl shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -152,7 +152,7 @@ export default function InterestModal({
               </button>
 
               {/* Header Premium */}
-              <div className="relative bg-gradient-to-br from-[#D4AF37]/30 via-[#FFD700]/20 to-[#D4AF37]/30 p-6 text-center overflow-hidden">
+              <div className="relative bg-gradient-to-br from-[#D4AF37]/30 via-[#FFD700]/20 to-[#D4AF37]/30 p-3 sm:p-6 text-center overflow-hidden">
                 {/* Background Pattern */}
                 <div 
                   className="absolute inset-0 opacity-10"
@@ -164,19 +164,19 @@ export default function InterestModal({
               </div>
 
               {/* Content */}
-              <div className="p-8 space-y-8">
+              <div className="p-4 sm:p-8 space-y-4 sm:space-y-8">
                 <motion.div 
-                  className="text-center space-y-4"
+                  className="text-center space-y-3 sm:space-y-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
                 >
-                  <p className="text-xl text-gray-300 leading-relaxed">
+                  <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
                     Você descobriu o <span className="text-white font-bold">Kit de Inteligência Estratégica</span> que vai transformar suas campanhas de 
                     <span className="text-red-400 font-medium"> "queimadoras de dinheiro"</span> em 
                     <span className="text-[#D4AF37] font-bold"> máquinas de lucro previsível</span>.
                   </p>
-                  <p className="text-lg text-gray-400">
+                  <p className="text-base sm:text-lg text-gray-400">
                     <span className="text-[#D4AF37] font-semibold">Apenas R$ 47</span> separam você do controle total sobre seu Google Ads. 
                     Garante sua vaga antes que a oferta expire.
                   </p>
@@ -184,7 +184,7 @@ export default function InterestModal({
 
                 {/* Form Premium */}
                 <motion.div 
-                  className="space-y-5"
+                  className="space-y-3 sm:space-y-5"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
@@ -196,7 +196,7 @@ export default function InterestModal({
                       placeholder="Seu nome completo"
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
-                      className="w-full pl-13 pr-4 py-4 bg-gradient-to-r from-white/5 to-white/10 border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] focus:from-[#D4AF37]/5 focus:to-[#FFD700]/5 transition-all duration-300 text-lg"
+                      className="w-full pl-12 pr-4 py-3 sm:py-4 bg-gradient-to-r from-white/5 to-white/10 border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] focus:from-[#D4AF37]/5 focus:to-[#FFD700]/5 transition-all duration-300 text-base sm:text-lg"
                     />
                   </div>
                   
@@ -207,7 +207,7 @@ export default function InterestModal({
                       placeholder="Seu melhor email"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="w-full pl-13 pr-4 py-4 bg-gradient-to-r from-white/5 to-white/10 border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] focus:from-[#D4AF37]/5 focus:to-[#FFD700]/5 transition-all duration-300 text-lg"
+                      className="w-full pl-12 pr-4 py-3 sm:py-4 bg-gradient-to-r from-white/5 to-white/10 border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] focus:from-[#D4AF37]/5 focus:to-[#FFD700]/5 transition-all duration-300 text-base sm:text-lg"
                     />
                   </div>
                   
@@ -218,14 +218,14 @@ export default function InterestModal({
                       placeholder="Seu WhatsApp"
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="w-full pl-13 pr-4 py-4 bg-gradient-to-r from-white/5 to-white/10 border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] focus:from-[#D4AF37]/5 focus:to-[#FFD700]/5 transition-all duration-300 text-lg"
+                      className="w-full pl-12 pr-4 py-3 sm:py-4 bg-gradient-to-r from-white/5 to-white/10 border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] focus:from-[#D4AF37]/5 focus:to-[#FFD700]/5 transition-all duration-300 text-base sm:text-lg"
                     />
                   </div>
                 </motion.div>
 
                 {/* Action Button Premium */}
                 <motion.div 
-                  className="space-y-6"
+                  className="space-y-4 sm:space-y-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.6 }}
@@ -238,7 +238,7 @@ export default function InterestModal({
                     <Button
                       onClick={handleCheckout}
                       disabled={!isFormValid || isSubmitting}
-                      className={`relative w-full py-6 text-xl font-black rounded-2xl overflow-hidden transition-all duration-500 ${
+                      className={`relative w-full py-4 sm:py-6 text-lg sm:text-xl font-black rounded-2xl overflow-hidden transition-all duration-500 ${
                         isFormValid && !isSubmitting
                           ? 'bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] hover:from-[#FFD700] hover:via-[#D4AF37] hover:to-[#FFD700] text-[#0A192F] shadow-2xl shadow-[#D4AF37]/40'
                           : 'bg-gray-600 text-gray-400 cursor-not-allowed'
@@ -302,7 +302,7 @@ export default function InterestModal({
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8, duration: 0.6 }}
                   >
-                    <p className="text-[#D4AF37] font-bold text-lg">
+                    <p className="text-[#D4AF37] font-bold text-base sm:text-lg">
                       ⚡ Apenas R$ 47 • Acesso Vitalício • Garantia Blindada
                     </p>
                   </motion.div>
@@ -310,7 +310,7 @@ export default function InterestModal({
 
                 {/* Trust Indicators Premium */}
                 <motion.div 
-                  className="flex items-center justify-center gap-6 text-sm pt-6 border-t border-[#D4AF37]/20"
+                  className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm pt-4 sm:pt-6 border-t border-[#D4AF37]/20"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.0, duration: 0.6 }}

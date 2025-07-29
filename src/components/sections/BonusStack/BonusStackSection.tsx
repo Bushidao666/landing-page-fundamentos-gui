@@ -35,19 +35,25 @@ export default function BonusStackSection() {
     <motion.section
       id="bonus-stack"
       className="bonus-section relative overflow-hidden"
+      style={{
+        backgroundColor: '#FFFFFF',
+        minHeight: 'auto',
+        display: 'block',
+        visibility: 'visible'
+      }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
       variants={containerVariants}
     >
-      {/* Background Effects Sutis */}
-      <div className="absolute inset-0">
+      {/* Background Effects Sutis - otimizado para mobile */}
+      <div className="absolute inset-0 hidden md:block">
         <div className="bonus-bg-base" />
         <div className="bonus-bg-pattern" />
       </div>
 
-      <div className="bonus-container">
-        <div className="max-w-6xl mx-auto">
+      <div className="bonus-container" style={{ position: 'relative', zIndex: 10 }}>
+        <div className="max-w-6xl mx-auto px-4 md:px-0">
           
           {/* Header Premium */}
           <BonusHeader />
