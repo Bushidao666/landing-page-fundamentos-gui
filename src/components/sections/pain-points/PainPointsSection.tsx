@@ -26,7 +26,7 @@ export default function PainPointsSection() {
   };
 
   return (
-    <section id="pain-points" className="pain-points-section-v2">
+    <section id="pain-points" className="pain-points-section-v2 cv-auto">
       <div className="section-background">
         <div className="gradient-overlay" />
         <div className="pattern-overlay" />

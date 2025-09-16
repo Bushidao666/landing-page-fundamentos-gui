@@ -1,0 +1,54 @@
+/* Upsell theme tokens: paleta, bordas, blur e sombras padronizadas */
+
+:root {
+  --upsell-accent: #D4AF37; /* gold */
+  --upsell-accent-2: #FFD700; /* gold light */
+  --upsell-primary: #0A192F; /* deep blue */
+  --upsell-success: #10B981;
+  --upsell-danger: #EF4444;
+  --upsell-warning: #F59E0B;
+
+  --upsell-border: rgba(10, 25, 47, 0.12);
+  --upsell-border-strong: rgba(10, 25, 47, 0.2);
+  --upsell-card-bg: rgba(255, 255, 255, 0.96);
+
+  --upsell-blur: 24px; /* usar equivalente a blur-2xl */
+
+  --upsell-shadow-sm: 0 2px 6px rgba(10, 25, 47, 0.08);
+  --upsell-shadow-md: 0 6px 16px rgba(10, 25, 47, 0.12);
+  --upsell-shadow-lg: 0 12px 28px rgba(10, 25, 47, 0.16);
+}
+
+.upsell-theme {
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Utilitários leves, opcionais */
+.upsell-card {
+  background: var(--upsell-card-bg);
+  border: 1px solid var(--upsell-border);
+  box-shadow: var(--upsell-shadow-md);
+  border-radius: 1rem;
+}
+
+.upsell-border {
+  border-color: var(--upsell-border);
+}
+
+.upsell-shadow {
+  box-shadow: var(--upsell-shadow-md);
+}
+
+.upsell-shadow-lg {
+  box-shadow: var(--upsell-shadow-lg);
+}
+
+/* Alto contraste para textos sobre fundos claros */
+.upsell-text-strong {
+  color: #111827; /* gray-900 */
+}
+
+

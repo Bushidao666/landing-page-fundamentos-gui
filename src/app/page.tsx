@@ -1,55 +1,5 @@
-"use client";
-
-import { HeroSection } from "@/components/sections/hero";
-import { PainPointsSection } from "@/components/sections/pain-points";
-import { SolutionTransitionSection } from "@/components/sections/solution-transition";
-import { SolutionSection } from "@/components/sections/solution";
-import { ContentDetailsSection } from "@/components/sections/content-details";
-import { SocialProofSection } from "@/components/sections/social-proof-v2";
-import { BonusStackSection } from "@/components/sections/BonusStack";
-import PriceAnchoringSectionComplete from "@/components/sections/price-anchoring";
-import PriceJustificationSection from "@/components/sections/PriceJustification";
-import GuaranteeSection from "@/components/sections/GuaranteeSection";
-import { FAQSectionAdvanced } from "@/components/sections/faq";
-import FooterSection from "@/components/sections/FooterSection";
-import InterestModal from "@/components/modals/InterestModal";
-import { useStrategicModals } from "@/hooks/useStrategicModals";
-import { useAutoPageView } from "@/hooks/useFacebookConversions";
+import HomeClient from "./HomeClient";
 
 export default function Home() {
-  // Hook para envio automático de PageView
-  useAutoPageView();
-
-  const {
-    modalState,
-    closeModal,
-    handleContinueToCheckout,
-    handleContinueReading,
-  } = useStrategicModals();
-
-  return (
-    <>
-    <main className="min-h-screen">
-      <HeroSection />
-      <PainPointsSection />
-      <SolutionTransitionSection />
-      <SolutionSection />
-      <ContentDetailsSection />
-      <BonusStackSection />
-      <SocialProofSection />
-      <PriceAnchoringSectionComplete />
-      <PriceJustificationSection />
-      <GuaranteeSection />
-      <FooterSection />
-      <FAQSectionAdvanced />
-    </main>
-
-      {/* Strategic Modal */}
-      <InterestModal
-        isOpen={modalState.leadCaptureModal}
-        onClose={closeModal}
-        onContinueToCheckout={handleContinueToCheckout}
-      />
-    </>
-  );
+  return <HomeClient />;
 }

@@ -55,7 +55,7 @@ export function ThinkAboutIt() {
         {/* Pergunta 1 - Valor do investimento */}
         <motion.div
           variants={itemVariants}
-          className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl border-2 border-blue-200 shadow-xl hover:shadow-2xl transition-shadow"
+          className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl border-2 border-blue-200 upsell-shadow hover:shadow-2xl transition-shadow"
         >
           <div className="flex items-start gap-4 mb-6">
             <div className="bg-blue-100 p-3 rounded-full shrink-0">
@@ -103,7 +103,7 @@ export function ThinkAboutIt() {
         {/* Pergunta 2 - Acesso ao conhecimento */}
         <motion.div
           variants={itemVariants}
-          className="bg-gradient-to-br from-green-50 to-yellow-50 p-8 rounded-2xl border-2 border-green-200 shadow-xl hover:shadow-2xl transition-shadow"
+          className="bg-gradient-to-br from-green-50 to-yellow-50 p-8 rounded-2xl border-2 border-green-200 upsell-shadow hover:shadow-2xl transition-shadow"
         >
           <div className="flex items-start gap-4 mb-6">
             <div className="bg-green-100 p-3 rounded-full shrink-0">

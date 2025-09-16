@@ -23,8 +23,19 @@ const useResponsive = () => {
   React.useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    let rafId = 0 as number | 0;
+    const onResize = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        checkMobile();
+        rafId = 0 as number | 0;
+      });
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId as number);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   return { isMobile };

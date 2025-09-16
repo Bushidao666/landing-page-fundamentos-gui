@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import bundleAnalyzer from "@next/bundle-analyzer";
 
 const nextConfig: NextConfig = {
   eslint: {
@@ -34,5 +35,9 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_USER_DATA_CACHE_TTL: process.env.NEXT_PUBLIC_USER_DATA_CACHE_TTL,
   },
 };
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+  openAnalyzer: false,
+});
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);

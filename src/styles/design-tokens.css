@@ -88,6 +88,11 @@
     0 0 0 1px rgba(212, 175, 55, 0.05);
 }
 
+/* Content-visibility utility for offscreen sections (não altera estética) */
+.cv-auto {
+  content-visibility: auto;
+}
+
 /* Reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,

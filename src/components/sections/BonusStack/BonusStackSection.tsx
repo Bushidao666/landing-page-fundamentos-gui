@@ -34,7 +34,7 @@ export default function BonusStackSection() {
   return (
     <motion.section
       id="bonus-stack"
-      className="bonus-section relative overflow-hidden"
+      className="bonus-section relative overflow-hidden cv-auto"
       style={{
         backgroundColor: '#FFFFFF',
         minHeight: 'auto',

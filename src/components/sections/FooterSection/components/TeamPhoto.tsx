@@ -49,7 +49,6 @@ export function TeamPhoto() {
             width={600}
             height={400}
             className="w-full h-auto object-cover rounded-lg sm:rounded-[16px]"
-            priority
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
           />
           

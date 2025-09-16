@@ -8,7 +8,7 @@ export function useWebVitals() {
       if ('web-vitals' in window) return;
       
       try {
-        const { onCLS, onFID, onFCP, onLCP, onTTFB } = await import('web-vitals');
+        const { onCLS, onFID, onFCP, onLCP, onTTFB, onINP } = await import('web-vitals');
         
         // Log metrics in development
         if (process.env.NODE_ENV === 'development') {
@@ -17,6 +17,7 @@ export function useWebVitals() {
           onFCP((metric) => console.log('FCP:', metric.value));
           onLCP((metric) => console.log('LCP:', metric.value));
           onTTFB((metric) => console.log('TTFB:', metric.value));
+          onINP((metric) => console.log('INP:', metric.value));
         }
       } catch (error) {
         console.error('Failed to load web-vitals:', error);

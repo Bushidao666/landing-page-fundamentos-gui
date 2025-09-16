@@ -37,13 +37,23 @@ const useResponsiveAnimations = () => {
     checkMobile();
     checkMotionPreference();
 
-    window.addEventListener("resize", checkMobile);
+    let rafId = 0 as number | 0;
+    const onResize = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        checkMobile();
+        rafId = 0 as number | 0;
+      });
+    };
+
+    window.addEventListener("resize", onResize);
     
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     mediaQuery.addEventListener("change", checkMotionPreference);
 
     return () => {
-      window.removeEventListener("resize", checkMobile);
+      if (rafId) cancelAnimationFrame(rafId as number);
+      window.removeEventListener("resize", onResize);
       mediaQuery.removeEventListener("change", checkMotionPreference);
     };
   }, []);
@@ -118,7 +128,7 @@ const SocialProofSection: React.FC = () => {
     <section 
       ref={sectionRef}
       className="relative bg-gradient-to-br from-[#0A192F] via-[#112240] to-[#0A192F] 
-        py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden"
+        py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden cv-auto"
       id="social-proof"
       aria-label="Depoimentos de alunos verificados"
     >

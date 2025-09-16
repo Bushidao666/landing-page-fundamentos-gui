@@ -34,6 +34,7 @@ export default function InterestModal({
   onClose,
   onContinueToCheckout
 }: InterestModalProps) {
+  const DEBUG = process.env.NEXT_PUBLIC_DEBUG_MODE === 'true';
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -60,11 +61,11 @@ export default function InterestModal({
 
     try {
       // 1. Enviar evento Lead para Facebook
-      console.log('📤 Enviando evento Lead...');
+      DEBUG && console.log('📤 Enviando evento Lead...');
       await sendLead(formData);
 
       // 2. Enviar evento InitiateCheckout para Facebook
-      console.log('📤 Enviando evento InitiateCheckout...');
+      DEBUG && console.log('📤 Enviando evento InitiateCheckout...');
       await sendInitiateCheckout({
         value: 47,
         currency: 'BRL',
@@ -75,7 +76,7 @@ export default function InterestModal({
       });
 
       // 3. Enviar dados para webhook
-      console.log('📡 Enviando dados para webhook...');
+      DEBUG && console.log('📡 Enviando dados para webhook...');
       await sendToWebhook(formData, {
         includeMetadata: true,
         retries: 3,
@@ -83,16 +84,16 @@ export default function InterestModal({
       });
 
       // 4. Construir URL de checkout com parâmetros
-      console.log('🔗 Construindo URL de checkout...');
+      DEBUG && console.log('🔗 Construindo URL de checkout...');
       
       // 🧪 DEBUG: Simular fluxo completo para diagnóstico
-      DebugCheckout.simulateModalFlow(formData);
+      DEBUG && DebugCheckout.simulateModalFlow(formData);
       
       const checkoutUrl = buildCheckoutUrl(formData);
       
       // 🧪 DEBUG: Validar URL construída
-      console.log('🔍 Validando URL construída...');
-      DebugCheckout.validateCheckoutUrl(checkoutUrl);
+      DEBUG && console.log('🔍 Validando URL construída...');
+      DEBUG && DebugCheckout.validateCheckoutUrl(checkoutUrl);
 
       // 5. Fechar modal e executar callback se fornecido
       onClose();
@@ -101,7 +102,7 @@ export default function InterestModal({
       }
 
       // 6. Redirecionar para checkout
-      console.log('↗️ Redirecionando para checkout...', checkoutUrl);
+      DEBUG && console.log('↗️ Redirecionando para checkout...', checkoutUrl);
       
       // Pequeno delay para garantir que o modal feche suavemente
       setTimeout(() => {

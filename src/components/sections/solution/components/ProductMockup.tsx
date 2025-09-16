@@ -82,8 +82,8 @@ export default function ProductMockup({
               width={1200}
               height={900}
               className="w-full h-auto rounded-2xl shadow-2xl shadow-black/30 group-hover:shadow-[#B8860B]/40 transition-shadow duration-500"
-            priority
             quality={95}
+            sizes="(max-width: 768px) 100vw, 800px"
           />
         </motion.div>
           </div>

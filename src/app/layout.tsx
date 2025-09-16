@@ -29,6 +29,9 @@ export default function RootLayout({
     <html lang="pt-BR" className="dark" suppressHydrationWarning>
       <head>
         <FacebookPixel />
+        {/* Performance: Facebook Pixel preconnect/dns-prefetch */}
+        <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
       </head>
       <body
         className={`${fontSans.variable} ${fontSerif.variable} font-sans antialiased`}

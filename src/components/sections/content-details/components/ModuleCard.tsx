@@ -251,7 +251,7 @@ function EnhancedDescription({ text, moduleId }: { text: string; moduleId: numbe
   );
 }
 
-export function ModuleCard({ module, index }: ModuleCardProps) {
+function ModuleCardComponent({ module, index }: ModuleCardProps) {
   const isEven = index % 2 === 0;
 
   return (
@@ -335,3 +335,5 @@ export function ModuleCard({ module, index }: ModuleCardProps) {
     </div>
   );
 }
+
+export const ModuleCard = React.memo(ModuleCardComponent);

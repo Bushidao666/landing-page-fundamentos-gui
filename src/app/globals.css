@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "../styles/design-tokens.css";
+@import "../styles/upsell-tokens.css";
+@import "../styles/token-aliases.css";
 
 @theme {
   --color-primary: #0A192F;

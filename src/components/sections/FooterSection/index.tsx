@@ -54,7 +54,7 @@ export default function FooterSection() {
   return (
     <motion.section
       id="about-guilherme"
-      className="footer-section relative overflow-hidden"
+      className="footer-section relative overflow-hidden cv-auto"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.05 }}

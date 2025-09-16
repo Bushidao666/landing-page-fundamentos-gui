@@ -91,7 +91,7 @@ export default function CommunityBonus({ index = 0 }: CommunityBonusProps) {
                   width={1200}
                   height={900}
                   className="w-full h-auto rounded-2xl shadow-xl shadow-black/20 transition-shadow duration-500"
-              priority
+              sizes="(max-width: 768px) 100vw, 600px"
             />
               </motion.div>
             </div>
@@ -254,7 +254,7 @@ export default function CommunityBonus({ index = 0 }: CommunityBonusProps) {
               width={1200}
               height={900}
               className="w-full h-auto rounded-2xl shadow-2xl shadow-black/30 group-hover:shadow-[#B8860B]/40 transition-shadow duration-500"
-              priority
+              sizes="(max-width: 1024px) 80vw, 720px"
             />
             
 

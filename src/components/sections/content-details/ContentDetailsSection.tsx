@@ -21,7 +21,7 @@ export function ContentDetailsSection() {
   return (
     <motion.section
       id="content-details"
-      className="relative py-16 md:py-20 lg:py-24 xl:py-28 overflow-hidden"
+      className="relative py-16 md:py-20 lg:py-24 xl:py-28 overflow-hidden cv-auto"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}

@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+ 
 import { OfferHeadline } from "./components/OfferHeadline";
 import { PriceAnchoring } from "./components/PriceAnchoring";
 import { OfferBox } from "./components/OfferBox";
@@ -27,17 +25,11 @@ export function OfferSection() {
           <OfferBox />
 
           {/* Widget Hotmart - Botões de Aceite e Recusa */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="max-w-3xl mx-auto"
-          >
+          <div className="max-w-3xl mx-auto">
             {/* Container do Widget Hotmart */}
             <div id="hotmart-sales-funnel-offer"></div>
             <HotmartWidget containerId="hotmart-sales-funnel-offer" type="salesFunnel" />
-          </motion.div>
+          </div>
 
           {/* Selo de Garantia */}
           <GuaranteeBadge />

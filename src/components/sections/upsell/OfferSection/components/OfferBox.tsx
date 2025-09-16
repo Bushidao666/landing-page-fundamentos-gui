@@ -22,7 +22,7 @@ export function OfferBox() {
       />
 
       {/* Caixa principal da oferta */}
-      <div className="relative bg-gradient-to-br from-yellow-50 via-white to-orange-50 border-2 sm:border-3 md:border-4 border-yellow-400 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 shadow-2xl">
+      <div className="relative bg-gradient-to-br from-yellow-50 via-white to-orange-50 border-2 sm:border-3 md:border-4 border-yellow-400 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 upsell-shadow-lg">
         
         {/* Sparkles decorativos - menores em mobile */}
         <div
@@ -62,7 +62,7 @@ export function OfferBox() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900">
             12x de R$ 19,70
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-700">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-800">
             (ou R$ 197,00 à vista)
           </p>
         </motion.div>

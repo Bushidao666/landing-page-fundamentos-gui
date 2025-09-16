@@ -69,7 +69,7 @@ const FAQSectionAdvanced = () => {
       
       <section 
         id="faq"
-        className="relative py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-[#0f1419] to-[#0A192F]"
+        className="relative py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 bg-gradient-to-b from-[#0f1419] to-[#0A192F] cv-auto"
         aria-labelledby="faq-heading"
       >
         {/* Background patterns */}

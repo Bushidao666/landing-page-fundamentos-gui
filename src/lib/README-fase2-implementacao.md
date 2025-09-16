@@ -368,3 +368,28 @@ window.useFacebookConversions().debugInfo()
 **🚀 Tudo implementado e funcionando perfeitamente!**
 
 **Próximo passo:** Configurar as variáveis de ambiente e testar em produção. 
+
+---
+
+## 📏 Critérios de Aceite e Revalidação de Performance
+
+### Metas (mobile 4G / desktop)
+- LCP: ≤ 2.0s (móvel) / ≤ 1.5s (desktop)
+- CLS: ≤ 0.05
+- TBT: ≤ 200ms (desktop) / INP consistente "good"
+- Redução de ≥ 25% no JS inicial vs baseline
+
+### Como medir
+1. Lighthouse em Mobile e Desktop (3x cada, usar mediana)
+2. Web Vitals no console (dev): `useWebVitals()` ativo
+3. Análise de bundle: `npm run analyze` (ANALYZE=true) e revisar pacotes mais pesados
+
+### Checklist rápido
+- [ ] LCP na dobra dentro da meta
+- [ ] Zero regressão visual (pixel perfect)
+- [ ] Imagens abaixo da dobra sem `priority` e com `sizes`
+- [ ] Seções pesadas com `content-visibility: auto`
+- [ ] Seções abaixo da dobra via `next/dynamic` + SSR
+- [ ] `LazyMotion` + `MotionConfig reducedMotion="user"`
+- [ ] Modal dinâmico apenas quando necessário
+- [ ] Pixel com `preconnect`/`dns-prefetch`

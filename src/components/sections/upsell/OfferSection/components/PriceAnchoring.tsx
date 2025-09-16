@@ -12,7 +12,7 @@ export function PriceAnchoring() {
       className="max-w-4xl mx-auto space-y-6 text-center"
     >
       {/* Descrição do produto - EXATAMENTE como na copy */}
-      <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+      <p className="text-lg sm:text-xl text-gray-800 leading-relaxed">
         O <span className="font-bold text-gray-900">Sistema de Tração para E-commerce</span> é 
         nosso treinamento completo, a nossa "planta baixa" para construir negócios de 7 dígitos. 
         O valor normal dele, vendido separadamente, é{" "}
@@ -49,7 +49,7 @@ export function PriceAnchoring() {
         transition={{ delay: 1, duration: 0.6 }}
         className="space-y-4"
       >
-        <p className="text-lg sm:text-xl text-gray-700">
+        <p className="text-lg sm:text-xl text-gray-800">
           Você acabou de tomar uma decisão. Você investiu nos Fundamentos e provou que está 
           <span className="font-bold text-gray-900 bg-yellow-100 px-2 py-1 rounded mx-1">
             comprometido(a) com seu crescimento
@@ -74,7 +74,7 @@ export function PriceAnchoring() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 1.3, duration: 0.6 }}
-        className="text-xl text-gray-700 font-medium mt-8"
+        className="text-xl text-gray-800 font-medium mt-8"
       >
         Em vez de R$ 997...
       </motion.p>

@@ -11,7 +11,7 @@ export default function PriceJustificationSection() {
   return (
     <section
       id="price-justification"
-      className="relative py-12 md:py-16 lg:py-24 overflow-hidden"
+      className="relative py-12 md:py-16 lg:py-24 overflow-hidden cv-auto"
     >
       {/* Background Premium Unificado */}
       <div className="absolute inset-0">

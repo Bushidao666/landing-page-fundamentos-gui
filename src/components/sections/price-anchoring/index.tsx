@@ -49,7 +49,7 @@ function PriceAnchoringContent() {
     <section
       ref={ref}
       id="price-anchoring"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden cv-auto"
       aria-labelledby="price-section-title"
       style={{ 
         isolation: 'isolate' // Performance optimization

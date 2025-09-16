@@ -14,7 +14,7 @@ export default function SolutionTransitionSection() {
 
   return (
     <section 
-      className="relative py-16 md:py-20 lg:py-24 overflow-hidden"
+      className="relative py-16 md:py-20 lg:py-24 overflow-hidden cv-auto"
       id="solution-transition"
     >
       {/* Background Azul Premium */}

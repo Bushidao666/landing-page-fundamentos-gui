@@ -9,7 +9,7 @@ const GuaranteeSection = () => {
       className="
         relative 
         py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32
-        overflow-hidden
+        overflow-hidden cv-auto
       "
       aria-labelledby="guarantee-heading"
     >

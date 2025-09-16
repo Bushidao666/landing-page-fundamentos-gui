@@ -38,7 +38,7 @@ export function ObjectionHeadline() {
         transition={{ delay: 0.3, duration: 0.6 }}
         className="space-y-4"
       >
-        <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+        <p className="text-lg sm:text-xl text-gray-800 leading-relaxed">
           Eu sei. E é por isso que o Sistema de Tração não é só mais "conteúdo". 
           É um <span className="font-bold text-gray-900 bg-yellow-100 px-2 py-1 rounded">
             conjunto de PROCESSOS, CHECKLISTS e AULAS COM ESPECIALISTAS
