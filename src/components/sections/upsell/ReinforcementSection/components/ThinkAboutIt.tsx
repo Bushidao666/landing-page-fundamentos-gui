@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Brain, CalendarX, BookOpen, TrendingUp, DollarSign, Timer } from "lucide-react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function ThinkAboutIt() {
+  const reduced = useReducedMotion();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -148,14 +150,8 @@ export function ThinkAboutIt() {
 
       {/* Indicador visual de scroll */}
       <motion.div
-        animate={{ 
-          y: [0, 10, 0],
-        }}
-        transition={{ 
-          duration: 2,
-          repeat: Infinity,
-          repeatType: "loop"
-        }}
+        animate={reduced ? undefined : { y: [0, 10, 0] }}
+        transition={reduced ? undefined : { duration: 2, repeat: 2, repeatType: "loop" }}
         className="flex justify-center pt-4"
       >
         <div className="w-1 h-8 bg-gradient-to-b from-purple-400 to-transparent rounded-full" />

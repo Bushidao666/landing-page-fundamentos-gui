@@ -5,7 +5,7 @@ import { AlertCircle } from "lucide-react";
 
 export function InterruptionHeadline() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* ESPERE! - Elemento de interrupção */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -16,7 +16,7 @@ export function InterruptionHeadline() {
           type: "spring",
           stiffness: 200
         }}
-        className="flex items-center justify-center gap-3"
+        className="flex items-center justify-center gap-2 sm:gap-3"
       >
         <motion.div
           animate={{ 
@@ -29,17 +29,17 @@ export function InterruptionHeadline() {
             repeatDelay: 1
           }}
         >
-          <AlertCircle className="w-10 h-10 text-red-500" />
+          <AlertCircle className="w-8 h-8 sm:w-10 sm:h-10 text-red-500" />
         </motion.div>
         
         <motion.h1 
-          className="text-4xl sm:text-5xl md:text-6xl font-black text-red-500 uppercase"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-red-500 uppercase"
           animate={{ 
             scale: [1, 1.05, 1],
           }}
           transition={{ 
             duration: 2,
-            repeat: Infinity,
+            repeat: 1,
             repeatType: "reverse"
           }}
         >
@@ -47,31 +47,31 @@ export function InterruptionHeadline() {
         </motion.h1>
       </motion.div>
 
-      {/* Headline principal - EXATAMENTE como na copy */}
+      {/* Headline principal */}
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center leading-tight"
+        className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 text-center leading-tight px-2"
       >
         Sua Compra Está Quase Completa... 
-        <span className="block text-yellow-600 mt-2">
+        <span className="block text-yellow-600 mt-1 sm:mt-2">
           Mas Falta a Peça Mais Importante.
         </span>
       </motion.h2>
 
-      {/* Sub-headline - Validação e nova oportunidade - EXATAMENTE como na copy */}
+      {/* Sub-headline - Validação e nova oportunidade */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
         className="space-y-4"
       >
-        <p className="text-lg sm:text-xl text-gray-700 text-center leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl text-gray-700 text-center leading-relaxed px-2">
           Você acabou de garantir o <span className="font-bold text-gray-900">alicerce</span> com o Fundamentos. 
           <span className="text-green-600 font-bold"> Parabéns!</span> Essa foi a decisão mais inteligente 
           que você poderia tomar hoje. Mas... e se eu te dissesse que o verdadeiro jogo 
-          da aceleração <span className="font-bold text-gray-900 underline decoration-yellow-400 decoration-4">começa agora?</span>
+          da aceleração <span className="font-bold text-gray-900 underline decoration-yellow-400 decoration-2 sm:decoration-4">começa agora?</span>
         </p>
       </motion.div>
     </div>

@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Play, Rocket } from "lucide-react";
 import { useState } from "react";
-import Image from "next/image";
 
 export function VideoArea() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -82,6 +81,8 @@ export function VideoArea() {
             src="https://www.youtube.com/embed/VIDEO_ID_AQUI?autoplay=1"
             title="Vídeo de apresentação do Sistema de Tração"
             className="absolute inset-0 w-full h-full"
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />

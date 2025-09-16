@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Rocket, TrendingUp, Building, Gauge } from "lucide-react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function AcceleratorMessage() {
+  const reduced = useReducedMotion();
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -36,14 +38,8 @@ export function AcceleratorMessage() {
             </h3>
             
             <motion.div
-              animate={{ 
-                scale: [1, 1.05, 1],
-              }}
-              transition={{ 
-                duration: 3,
-                repeat: Infinity,
-                repeatType: "reverse"
-              }}
+              animate={reduced ? undefined : { scale: [1, 1.05, 1] }}
+              transition={reduced ? undefined : { duration: 3, repeat: 1, repeatType: "reverse" }}
               className="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full shadow-lg"
             >
               <Rocket className="w-8 h-8 text-orange-500" />
@@ -105,15 +101,8 @@ export function AcceleratorMessage() {
 
         {/* Badge flutuante de destaque */}
         <motion.div
-          animate={{ 
-            rotate: [-5, 5, -5],
-            y: [-5, 5, -5]
-          }}
-          transition={{ 
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
+          animate={reduced ? undefined : { rotate: [-5, 5, -5], y: [-5, 5, -5] }}
+          transition={reduced ? undefined : { duration: 4, repeat: 1, repeatType: "reverse" }}
           className="absolute -top-3 -right-3 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full font-bold text-sm uppercase shadow-xl"
         >
           Decisão inteligente

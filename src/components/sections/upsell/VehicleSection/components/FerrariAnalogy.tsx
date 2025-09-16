@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Zap, AlertCircle, DollarSign, Fuel } from "lucide-react";
+import { Zap, AlertCircle, DollarSign, Fuel, CheckCircle, XCircle } from "lucide-react";
 
 export function FerrariAnalogy() {
   const containerVariants = {
@@ -61,7 +61,7 @@ export function FerrariAnalogy() {
               </div>
               <div>
                 <p className="font-bold text-gray-900">Motor de Ferrari</p>
-                <p className="text-sm text-gray-600">= Tráfego Otimizado ✅</p>
+                <p className="text-sm text-gray-600 flex items-center">= Tráfego Otimizado <CheckCircle className="w-5 h-5 text-green-600 ml-1" /></p>
               </div>
             </div>
           </motion.div>
@@ -77,7 +77,7 @@ export function FerrariAnalogy() {
               </div>
               <div>
                 <p className="font-bold text-gray-900">Pneu Careca</p>
-                <p className="text-sm text-gray-600">= Sua loja não converte ❌</p>
+                <p className="text-sm text-gray-600 flex items-center">= Sua loja não converte <XCircle className="w-5 h-5 text-red-600 ml-1" /></p>
               </div>
             </div>
           </motion.div>
@@ -93,7 +93,7 @@ export function FerrariAnalogy() {
               </div>
               <div>
                 <p className="font-bold text-gray-900">Suspensão Fraca</p>
-                <p className="text-sm text-gray-600">= Precificação esmaga a margem ❌</p>
+                <p className="text-sm text-gray-600 flex items-center">= Precificação esmaga a margem <XCircle className="w-5 h-5 text-red-600 ml-1" /></p>
               </div>
             </div>
           </motion.div>
@@ -109,7 +109,7 @@ export function FerrariAnalogy() {
               </div>
               <div>
                 <p className="font-bold text-gray-900">Falta de Combustível</p>
-                <p className="text-sm text-gray-600">= Sem sistema para recompra ❌</p>
+                <p className="text-sm text-gray-600 flex items-center">= Sem sistema para recompra <XCircle className="w-5 h-5 text-red-600 ml-1" /></p>
               </div>
             </div>
           </motion.div>

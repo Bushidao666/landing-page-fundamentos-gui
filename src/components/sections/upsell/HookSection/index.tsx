@@ -1,59 +1,42 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { ProgressBar } from "./components/ProgressBar";
 import { InterruptionHeadline } from "./components/InterruptionHeadline";
+import { OpportunityMessage } from "./components/OpportunityMessage";
 import { VideoArea } from "./components/VideoArea";
 
 export function HookSection() {
   return (
-    <section className="relative min-h-screen">
+    <section className="relative">
       {/* Barra de Progresso - Fixa no topo */}
       <div className="sticky top-0 z-50">
         <ProgressBar />
       </div>
 
-      {/* Container principal com padding responsivo */}
-      <div className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <div className="max-w-5xl mx-auto">
-          {/* Background decorativo */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.03 }}
-            transition={{ duration: 1 }}
-            className="absolute inset-0 overflow-hidden pointer-events-none"
-          >
-            <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-400 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-400 rounded-full blur-3xl"></div>
-          </motion.div>
+      {/* Container principal com padding responsivo otimizado */}
+      <div className="px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16 lg:py-20">
+        <div className="max-w-4xl mx-auto">
+          {/* Background decorativo sutil (estático) */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true" role="presentation">
+            <div className="absolute top-10 -left-20 w-64 h-64 bg-yellow-300 rounded-full blur-2xl opacity-5"></div>
+            <div className="absolute bottom-10 -right-20 w-64 h-64 bg-red-300 rounded-full blur-2xl opacity-5"></div>
+          </div>
 
-          {/* Conteúdo da seção */}
-          <div className="relative z-10 space-y-12">
+          {/* Conteúdo da seção com espaçamento otimizado */}
+          <div className="relative z-10 space-y-8 sm:space-y-10 md:space-y-12">
             {/* Headlines de Interrupção */}
             <InterruptionHeadline />
 
-            {/* Área do Vídeo e Sub-headline da Oportunidade */}
+            {/* Mensagem da Oportunidade */}
+            <OpportunityMessage />
+
+            {/* Vídeo de apresentação */}
             <VideoArea />
           </div>
 
-          {/* Indicador de scroll - sutil */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 2 }}
-            className="mt-16 flex justify-center"
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ 
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop"
-              }}
-              className="text-gray-400"
-            >
+          {/* Indicador de scroll (estático) */}
+          <div className="mt-8 sm:mt-12 flex justify-center">
+            <div className="text-gray-300 hover:text-gray-400 transition-colors">
               <svg 
-                className="w-6 h-6" 
+                className="w-5 h-5" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -65,8 +48,8 @@ export function HookSection() {
                   d="M19 14l-7 7m0 0l-7-7m7 7V3" 
                 />
               </svg>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

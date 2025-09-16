@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Shield, CheckCircle } from "lucide-react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function GuaranteeBadge() {
+  const reduced = useReducedMotion();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -16,14 +18,8 @@ export function GuaranteeBadge() {
         <div className="flex flex-col sm:flex-row items-center gap-4">
           {/* Selo de garantia */}
           <motion.div
-            animate={{ 
-              rotate: [0, 5, -5, 0],
-            }}
-            transition={{ 
-              duration: 4,
-              repeat: Infinity,
-              repeatDelay: 2
-            }}
+            animate={reduced ? undefined : { rotate: [0, 5, -5, 0] }}
+            transition={reduced ? undefined : { duration: 4, repeat: 1, repeatDelay: 1 }}
             className="flex-shrink-0"
           >
             <div className="relative">

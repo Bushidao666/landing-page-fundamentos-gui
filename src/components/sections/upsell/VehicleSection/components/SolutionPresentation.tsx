@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function SolutionPresentation() {
+  const reduced = useReducedMotion();
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -80,12 +82,8 @@ export function SolutionPresentation() {
             className="mt-8 flex justify-center"
           >
             <motion.div
-              animate={{ x: [0, 10, 0] }}
-              transition={{ 
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop"
-              }}
+              animate={reduced ? undefined : { x: [0, 10, 0] }}
+              transition={reduced ? undefined : { duration: 1.5, repeat: 2, repeatType: "loop" }}
               className="bg-green-100 text-green-700 px-6 py-3 rounded-full flex items-center gap-2 font-bold"
             >
               <span>Continue lendo para descobrir tudo</span>
@@ -95,14 +93,8 @@ export function SolutionPresentation() {
 
           {/* Efeito de brilho animado */}
           <motion.div
-            animate={{ 
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              repeatType: "reverse"
-            }}
+            animate={reduced ? undefined : { opacity: [0.3, 0.6, 0.3] }}
+            transition={reduced ? undefined : { duration: 2, repeat: 2, repeatType: "reverse" }}
             className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 pointer-events-none rounded-3xl"
             style={{
               backgroundSize: "200% 100%",
