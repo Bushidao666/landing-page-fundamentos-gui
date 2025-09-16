@@ -13,54 +13,54 @@ import { useWebVitals } from "@/hooks/useWebVitals";
 const SolutionTransitionSection = dynamic(
   () => import("@/components/sections/solution-transition").then(m => m.SolutionTransitionSection),
   {
-    ssr: true,
+    ssr: false,
     loading: () => <div className="h-12 sm:h-16" />,
   }
 );
 
 const SolutionSection = dynamic(
   () => import("@/components/sections/solution").then(m => m.SolutionSection),
-  { ssr: true, loading: () => <div className="h-12 sm:h-16" /> }
+  { ssr: false, loading: () => <div className="h-12 sm:h-16" /> }
 );
 
 const ContentDetailsSection = dynamic(
   () => import("@/components/sections/content-details").then(m => m.ContentDetailsSection),
-  { ssr: true, loading: () => <div className="h-24 sm:h-32" /> }
+  { ssr: false, loading: () => <div className="h-24 sm:h-32" /> }
 );
 
 const BonusStackSection = dynamic(
   () => import("@/components/sections/BonusStack").then(m => m.BonusStackSection),
-  { ssr: true, loading: () => <div className="h-24 sm:h-32" /> }
+  { ssr: false, loading: () => <div className="h-24 sm:h-32" /> }
 );
 
 const SocialProofSection = dynamic(
   () => import("@/components/sections/social-proof-v2").then(m => m.SocialProofSection),
-  { ssr: true, loading: () => <div className="h-24 sm:h-32" /> }
+  { ssr: false, loading: () => <div className="h-24 sm:h-32" /> }
 );
 
 const PriceAnchoringSectionComplete = dynamic(
   () => import("@/components/sections/price-anchoring"),
-  { ssr: true, loading: () => <div className="h-16 sm:h-20" /> }
+  { ssr: false, loading: () => <div className="h-16 sm:h-20" /> }
 );
 
 const PriceJustificationSection = dynamic(
   () => import("@/components/sections/PriceJustification"),
-  { ssr: true, loading: () => <div className="h-16 sm:h-20" /> }
+  { ssr: false, loading: () => <div className="h-16 sm:h-20" /> }
 );
 
 const GuaranteeSection = dynamic(
   () => import("@/components/sections/GuaranteeSection"),
-  { ssr: true, loading: () => <div className="h-12 sm:h-16" /> }
+  { ssr: false, loading: () => <div className="h-12 sm:h-16" /> }
 );
 
 const FooterSection = dynamic(
   () => import("@/components/sections/FooterSection"),
-  { ssr: true, loading: () => <div className="h-12" /> }
+  { ssr: false, loading: () => <div className="h-12" /> }
 );
 
 const FAQSectionAdvanced = dynamic(
   () => import("@/components/sections/faq").then(m => m.FAQSectionAdvanced),
-  { ssr: true, loading: () => <div className="h-24 sm:h-32" /> }
+  { ssr: false, loading: () => <div className="h-24 sm:h-32" /> }
 );
 
 // Modal de interesse: carrega apenas quando necessário

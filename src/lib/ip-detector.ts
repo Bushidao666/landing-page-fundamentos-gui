@@ -7,6 +7,9 @@
 
 import { debugLog } from './facebook-conversions';
 
+// Desliga detecção de IP no cliente por padrão para evitar CORS/mixed content
+const IP_DETECT_ENABLED = process.env.NEXT_PUBLIC_ENABLE_IP_DETECT === 'true';
+
 // ==============================================
 // CONFIGURAÇÕES
 // ==============================================
@@ -154,6 +157,10 @@ function isValidIP(ip: string): boolean {
  * Tenta obter IP de múltiplos serviços em paralelo
  */
 async function detectIPParallel(): Promise<string | null> {
+  if (typeof window !== 'undefined' && !IP_DETECT_ENABLED) {
+    debugLog('IP detect desativado no cliente');
+    return null;
+  }
   try {
     debugLog('Iniciando detecção paralela de IP');
     
@@ -181,6 +188,9 @@ async function detectIPParallel(): Promise<string | null> {
  * Tenta obter IP de serviços em sequência (fallback)
  */
 async function detectIPSequential(): Promise<string | null> {
+  if (typeof window !== 'undefined' && !IP_DETECT_ENABLED) {
+    return null;
+  }
   debugLog('Iniciando detecção sequencial de IP (fallback)');
   
   for (const service of IP_SERVICES) {
@@ -203,6 +213,9 @@ async function detectIPSequential(): Promise<string | null> {
  * Obtém IP do usuário (principal função pública)
  */
 export async function getUserIP(): Promise<string | null> {
+  if (typeof window !== 'undefined' && !IP_DETECT_ENABLED) {
+    return null;
+  }
   // 1. Verificar cache primeiro
   const cachedIP = getCachedIP();
   if (cachedIP) return cachedIP;
@@ -335,11 +348,13 @@ export function debugIPInfo(): void {
  * Pre-aquece o cache de IP ao carregar o módulo
  */
 if (typeof window !== 'undefined') {
-  // Pré-carregar IP em background
-  setTimeout(() => {
-    const detector = IPDetector.getInstance();
-    detector.getIP().catch(() => {
-      // Silencioso - apenas pre-aquecimento
-    });
-  }, 1000); // 1s após carregar a página
+  if (IP_DETECT_ENABLED) {
+    // Pré-carregar IP em background
+    setTimeout(() => {
+      const detector = IPDetector.getInstance();
+      detector.getIP().catch(() => {
+        // Silencioso - apenas pre-aquecimento
+      });
+    }, 1000); // 1s após carregar a página
+  }
 } 
